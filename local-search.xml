@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>一、使用Hyper-V安装win10LTSC</title>
+    <link href="/2024/08/22/Windows-1/"/>
+    <url>/2024/08/22/Windows-1/</url>
+    
+    <content type="html"><![CDATA[    <div class="fold">      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-c2283974" role="button" aria-expanded="false" aria-controls="collapse-c2283974">        <div class="fold-arrow">▶</div>参考链接      </div>      <div class="fold-collapse collapse" id="collapse-c2283974">        <div class="fold-content">          <p><a href="https://learn.microsoft.com/zh-cn/virtualization/hyper-v-on-windows/">Windows 11 上的 Hyper-V</a></p>        </div>      </div>    </div>    <div class="fold">      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-10f0ee70" role="button" aria-expanded="false" aria-controls="collapse-10f0ee70">        <div class="fold-arrow">▶</div>前提条件（来自官方文档）      </div>      <div class="fold-collapse collapse" id="collapse-10f0ee70">        <div class="fold-content">          <ul><li>Windows 10（专业版或企业版），或 Windows 11（专业版或企业版）</li><li>具有二级地址转换 (SLAT) 的 64 位处理器。</li><li>CPU 支持 VM 监视器模式扩展（Intel CPU 上的 VT-c）。</li><li>最少 4 GB 内存。</li></ul>        </div>      </div>    </div><h2 id="使用-PowerShell-启用-Hyper-V"><a href="#使用-PowerShell-启用-Hyper-V" class="headerlink" title="使用 PowerShell 启用 Hyper-V"></a>使用 PowerShell 启用 Hyper-V</h2><p>按下快捷键<code>win+x</code>选择<code>终端管理员</code>，输入</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell"><span class="hljs-built_in">Enable-WindowsOptionalFeature</span> <span class="hljs-literal">-Online</span> <span class="hljs-literal">-FeatureName</span> Microsoft<span class="hljs-literal">-Hyper-V</span> <span class="hljs-literal">-All</span><br></code></pre></td></tr></table></figure><p>之后重启电脑</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Windows Development Environment</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Hyper-V</tag>
+      
+      <tag>win10</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Test Website</title>
     <link href="/2024/08/18/hello-world/"/>
     <url>/2024/08/18/hello-world/</url>
