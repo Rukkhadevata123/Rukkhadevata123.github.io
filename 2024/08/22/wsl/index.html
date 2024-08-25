@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Lofi-Room.png">
 <meta property="article:published_time" content="2024-08-22T09:56:30.000Z">
-<meta property="article:modified_time" content="2024-08-23T15:48:49.505Z">
+<meta property="article:modified_time" content="2024-08-25T03:17:44.905Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="WSL">
@@ -248,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.3k 字
         
       </span>
     
@@ -259,7 +259,7 @@
         
         
         
-          10 分钟
+          11 分钟
         
       </span>
     
@@ -397,7 +397,7 @@
 <li>安装内核更新包后重启</li>
 <li>打开管理员终端，输入</li>
 </ol>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">wsl <span class="hljs-literal">--set-default-version</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">wsl <span class="hljs-literal">--set-default-version</span> <span class="hljs-number">2</span><br>wsl <span class="hljs-literal">--update</span><br></code></pre></td></tr></table></figure>
 
 <ol start="6">
 <li>从微软应用商店安装<a target="_blank" rel="noopener" href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07">Kali-Linux</a></li>
@@ -544,6 +544,14 @@
 <li>最后可以通过<code>jupyter notebook</code>运行Jupyter笔记本，（需要在pytorch文件夹下）浏览器打开<a target="_blank" rel="noopener" href="http://localhost:8888/">http://localhost:8888</a>即可学习</li>
 <li>在运行书籍代码、更新深度学习框架或d2l软件包之前，请始终执行<code>conda activate d2l</code>以激活运行时环境。 要退出环境，请运行<code>conda deactivate</code></li>
 </ol>
+<h2 id="迁移WSL"><a href="#迁移WSL" class="headerlink" title="迁移WSL"></a>迁移WSL</h2><p>打开终端，输入下列命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">mkdir D:\wsl<br>mkdir D:\wsl\kali<br>wsl <span class="hljs-literal">--export</span> kali<span class="hljs-literal">-linux</span> D:\wsl\kali.tar  <span class="hljs-comment"># 导出kali</span><br>wsl <span class="hljs-literal">--unregister</span> kali<span class="hljs-literal">-linux</span>   <span class="hljs-comment"># 注销原来的发行版</span><br>wsl <span class="hljs-literal">--import</span> kali<span class="hljs-literal">-linux</span> D:\wsl\kali D:\wsl\kali.tar <span class="hljs-literal">--version</span> <span class="hljs-number">2</span>  <span class="hljs-comment"># 导入kali</span><br><span class="hljs-built_in">rm</span> D:\wsl\kali.tar  <span class="hljs-comment"># 删除tar文件</span><br>wsl <span class="hljs-literal">-d</span> kali<span class="hljs-literal">-linux</span>  <span class="hljs-comment"># 进入kali</span><br></code></pre></td></tr></table></figure>
+<p>迁移后默认以<code>root</code>身份进入，接下来编辑<code>/etc/wsl.conf</code>文件。假设<code>yoimiya</code>是之前的默认用户名：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[boot]</span><br><span class="hljs-attr">systemd</span>=<span class="hljs-literal">false</span><br><br><span class="hljs-section">[wsl2]</span><br><span class="hljs-attr">networkingMode</span>=mirrored<br><span class="hljs-attr">autoProxy</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">dnsTunneling</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[experimental]</span><br><span class="hljs-attr">autoMemoryReclaim</span>=gradual<br><span class="hljs-attr">hostAddressLoopback</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[user]</span><br><span class="hljs-attr">default</span>=yoimiya<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：上述配置可能仅适用于win11</p>
+</blockquote>
+<p>之后保存退出，重启kali即可</p>
 
                 
               </div>
