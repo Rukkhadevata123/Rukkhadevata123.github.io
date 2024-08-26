@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Fantasy-Lake3.png">
 <meta property="article:published_time" content="2024-08-26T05:58:40.000Z">
-<meta property="article:modified_time" content="2024-08-26T06:40:40.584Z">
+<meta property="article:modified_time" content="2024-08-26T06:50:30.340Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="arch">
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          550 字
+          555 字
         
       </span>
     
@@ -416,7 +416,8 @@
 <h3 id="修改-preset文件-1"><a href="#修改-preset文件-1" class="headerlink" title="修改.preset文件"></a>修改<code>.preset</code>文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">su<br>vim /etc/mkinitcpio.d/linux.preset <span class="hljs-comment">#zen内核则为/etc/mkinitcpio.d/linux-zen.preset</span><br></code></pre></td></tr></table></figure>
 <p>注释掉<code>image</code>字样的行，取消注释<code>uki</code>字样的行，示例文件如下所示<br>splash是启动时闪过的图片，默认是archlinux的logo</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># mkinitcpio preset file for the &#x27;linux&#x27; package</span><br><br><span class="hljs-comment">#ALL_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-attr">ALL_kver</span>=<span class="hljs-string">&quot;/boot/vmlinuz-linux&quot;</span><br><br><span class="hljs-attr">PRESETS</span>=(<span class="hljs-string">&#x27;default&#x27;</span> <span class="hljs-string">&#x27;fallback&#x27;</span>)<br><br><span class="hljs-comment">#default_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#default_image=&quot;/boot/initramfs-linux.img&quot;</span><br><span class="hljs-attr">default_uki</span>=<span class="hljs-string">&quot;/boot/EFI/Linux/arch-linux.efi&quot;</span><br><span class="hljs-attr">default_options</span>=<span class="hljs-string">&quot;--splash=/usr/share/systemd/bootctl/splash-arch.bmp&quot;</span><br><br><span class="hljs-comment">#fallback_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#fallback_image=&quot;/boot/initramfs-linux-fallback.img&quot;</span><br><span class="hljs-attr">fallback_uki</span>=<span class="hljs-string">&quot;/boot/EFI/Linux/arch-linux-fallback.efi&quot;</span><br><span class="hljs-attr">fallback_options</span>=<span class="hljs-string">&quot;-S autodetect&quot;</span><br></code></pre></td></tr></table></figure>
-<h3 id="构建UKI镜像-1"><a href="#构建UKI镜像-1" class="headerlink" title="构建UKI镜像"></a>构建UKI镜像</h3><p>与情况一相同</p>
+<h3 id="构建UKI镜像-1"><a href="#构建UKI镜像-1" class="headerlink" title="构建UKI镜像"></a>构建UKI镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /efi/EFI/Linux<br>mkinitcpio -p linux <span class="hljs-comment">#zen内核则为linux-zen</span><br></code></pre></td></tr></table></figure>
+
 <h3 id="简单清理-1"><a href="#简单清理-1" class="headerlink" title="简单清理"></a>简单清理</h3>
     <div class="fold">
       <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-6aeb2756" role="button" aria-expanded="false" aria-controls="collapse-6aeb2756">
