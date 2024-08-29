@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/default.jpg">
 <meta property="article:published_time" content="2024-08-22T13:35:52.000Z">
-<meta property="article:modified_time" content="2024-08-26T06:38:20.608Z">
+<meta property="article:modified_time" content="2024-08-29T14:37:21.903Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="win10">
 <meta property="article:tag" content="Linux">
@@ -598,12 +598,21 @@
 <h2 id="系统美化"><a href="#系统美化" class="headerlink" title="系统美化"></a>系统美化</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.gnome-look.org/browse?cat=109">GRUB主题</a></li>
 </ul>
-<h2 id="Manjaro特别提示"><a href="#Manjaro特别提示" class="headerlink" title="Manjaro特别提示"></a>Manjaro特别提示</h2><p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Configure_Graphics_Cards/zh-cn">Manjaro配置显卡</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman-mirrors -i -c China -m rank <span class="hljs-comment">#换源</span><br><span class="hljs-built_in">sudo</span> mhwd -a pci nonfree 0300 <span class="hljs-comment">#安装显卡驱动</span><br>yay -R libva-vdpau-driver xf86-video-intel xf86-video-nouveau <span class="hljs-comment">#解决VLC闪退</span><br>yay -S libva-nvidia-driver <span class="hljs-comment">#同上 </span><br><span class="hljs-built_in">sudo</span> pacman -S base-devel linux-headers <span class="hljs-comment">#解决找不到fakeroot错误</span><br><span class="hljs-built_in">sudo</span> pacman -S gdb <span class="hljs-comment">#gdb调试器</span><br></code></pre></td></tr></table></figure>
-<p>开机时开启交换空间：编辑<code>/etc/fstab</code>，加入<code>UUID=[交换分区UUID,可以用Gparted查看] none swap defaults 0 0</code><br>开机自动挂载D盘：编辑<code>/etc/fstab</code>，加入<code>UUID=[D盘的UUID,可以用Gparted查看] /run/media/Yoimiya/Data[挂载路径] ntfs-3g defaults,uid=1000,gid=1000,windows_names,umask=0000 0 0</code></p>
-<p>配置默认编辑器为<code>vim</code>：</p>
+<h2 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a>其他技巧</h2><ul>
+<li><p>开机时开启交换空间：编辑<code>/etc/fstab</code>，加入<code>UUID=[交换分区UUID,可以用Gparted/blkid查看] none swap defaults 0 0</code></p>
+</li>
+<li><p>开机自动挂载D盘：编辑<code>/etc/fstab</code>，加入<code>UUID=[D盘的UUID,可以用Gparted/blkid查看] /run/media/Yoimiya/Data[挂载路径] ntfs-3g defaults,uid=1000,gid=1000,windows_names,umask=0000 0 0</code></p>
+</li>
+<li><p>配置默认编辑器为<code>vim</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">EDITOR=vim sudoedit /etc/profile<br></code></pre></td></tr></table></figure>
 <p>加入<code>export EDITOR=&#39;vim&#39;</code>，再source一下即可</p>
+</li>
+</ul>
+<h2 id="Manjaro特别提示"><a href="#Manjaro特别提示" class="headerlink" title="Manjaro特别提示"></a>Manjaro特别提示</h2><p><a target="_blank" rel="noopener" href="https://wiki.manjaro.org/index.php/Configure_Graphics_Cards/zh-cn">Manjaro配置显卡</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman-mirrors -i -c China -m rank <span class="hljs-comment">#换源</span><br><span class="hljs-built_in">sudo</span> mhwd -a pci nonfree 0300 <span class="hljs-comment">#安装显卡驱动</span><br>yay -R libva-vdpau-driver xf86-video-intel xf86-video-nouveau <span class="hljs-comment">#解决VLC闪退</span><br>yay -S libva-nvidia-driver <span class="hljs-comment">#同上 </span><br><span class="hljs-built_in">sudo</span> pacman -S base-devel linux-headers <span class="hljs-comment">#解决找不到fakeroot错误</span><br><span class="hljs-built_in">sudo</span> pacman -S gdb <span class="hljs-comment">#gdb调试器</span><br></code></pre></td></tr></table></figure>
+
+
+
 
                 
               </div>
