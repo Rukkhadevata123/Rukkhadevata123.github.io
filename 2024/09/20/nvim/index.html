@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Dawn Chirps">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="以下是一份示例nvim配置文件 文件位置为~&#x2F;.config&#x2F;nvim&#x2F;init.lua和~&#x2F;.config&#x2F;nvim&#x2F;ftplugin&#x2F;java.lua  要安装GitHub Copilot，在终端输入 12git clone https:&#x2F;&#x2F;github.com&#x2F;github&#x2F;copilot.vim.git \         ~&#x2F;.config&#x2F;nvim&#x2F;pack&#x2F;github&#x2F;start&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ChatGPT-4o和GitHub Copilot的nvim配置">
+<meta property="og:url" content="https://rukkhadevata123.github.io/2024/09/20/nvim/index.html">
+<meta property="og:site_name" content="Yoimiya&#39;s Blog">
+<meta property="og:description" content="以下是一份示例nvim配置文件 文件位置为~&#x2F;.config&#x2F;nvim&#x2F;init.lua和~&#x2F;.config&#x2F;nvim&#x2F;ftplugin&#x2F;java.lua  要安装GitHub Copilot，在终端输入 12git clone https:&#x2F;&#x2F;github.com&#x2F;github&#x2F;copilot.vim.git \         ~&#x2F;.config&#x2F;nvim&#x2F;pack&#x2F;github&#x2F;start&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rukkhadevata123.github.io/images/summer.png">
+<meta property="article:published_time" content="2024-09-20T05:58:40.000Z">
+<meta property="article:modified_time" content="2024-09-20T11:18:31.596Z">
+<meta property="article:author" content="Dawn Chirps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="vim">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rukkhadevata123.github.io/images/summer.png">
+  
+  
+  
+  <title>ChatGPT-4o和GitHub Copilot的nvim配置 - Yoimiya&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/effect.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rukkhadevata123.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yoimiya&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.xsot.cn/bing?jump=true') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ChatGPT-4o和GitHub Copilot的nvim配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-20 13:58" pubdate>
+          2024年9月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux Daily Use"
+        id="heading-73abfeb7b5b4a95fadf47401ed012632" role="tab" data-toggle="collapse" href="#collapse-73abfeb7b5b4a95fadf47401ed012632"
+        aria-expanded="true"
+      >
+        Linux Daily Use
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-73abfeb7b5b4a95fadf47401ed012632"
+           role="tabpanel" aria-labelledby="heading-73abfeb7b5b4a95fadf47401ed012632">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/09/20/nvim/" title="ChatGPT-4o和GitHub Copilot的nvim配置"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">ChatGPT-4o和GitHub Copilot的nvim配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/15/opensuse/" title="Hyper-V中的openSUSE-Tumbleweed开启增强会话"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hyper-V中的openSUSE-Tumbleweed开启增强会话</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/25/efi/" title="Windows+archlinux分区和引导方案"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows+archlinux分区和引导方案</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/26/uki/" title="使用systemd-boot管理统一内核镜像"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">使用systemd-boot管理统一内核镜像</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ChatGPT-4o和GitHub Copilot的nvim配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="以下是一份示例nvim配置文件"><a href="#以下是一份示例nvim配置文件" class="headerlink" title="以下是一份示例nvim配置文件"></a>以下是一份示例nvim配置文件</h2><blockquote>
+<p>文件位置为<code>~/.config/nvim/init.lua</code>和<code>~/.config/nvim/ftplugin/java.lua</code></p>
+</blockquote>
+<p>要安装GitHub Copilot，在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/github/copilot.vim.git \ <br>        ~/.config/nvim/pack/github/start/copilot.vim<br></code></pre></td></tr></table></figure>
+<p>下面是<code>init.lua</code>文件</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- 插件管理</span><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;packer&#x27;</span>).startup(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span><br>  use <span class="hljs-string">&#x27;wbthomason/packer.nvim&#x27;</span> <span class="hljs-comment">-- 插件管理器</span><br>  use <span class="hljs-string">&#x27;nvim-treesitter/nvim-treesitter&#x27;</span> <span class="hljs-comment">-- 语法高亮</span><br>  use <span class="hljs-string">&#x27;neovim/nvim-lspconfig&#x27;</span> <span class="hljs-comment">-- LSP 配置</span><br>  use <span class="hljs-string">&#x27;hrsh7th/nvim-cmp&#x27;</span> <span class="hljs-comment">-- 补全框架</span><br>  use <span class="hljs-string">&#x27;hrsh7th/cmp-nvim-lsp&#x27;</span> <span class="hljs-comment">-- LSP 补全源</span><br>  use <span class="hljs-string">&#x27;L3MON4D3/LuaSnip&#x27;</span> <span class="hljs-comment">-- 代码片段引擎</span><br>  use <span class="hljs-string">&#x27;saadparwaiz1/cmp_luasnip&#x27;</span> <span class="hljs-comment">-- LuaSnip 补全源</span><br>  use <span class="hljs-string">&#x27;jose-elias-alvarez/null-ls.nvim&#x27;</span> <span class="hljs-comment">-- 代码格式化</span><br>  use <span class="hljs-string">&#x27;nvim-lua/plenary.nvim&#x27;</span> <span class="hljs-comment">-- null-ls.nvim 依赖库</span><br>  use <span class="hljs-string">&#x27;kyazdani42/nvim-tree.lua&#x27;</span> <span class="hljs-comment">-- 文件浏览</span><br>  use <span class="hljs-string">&#x27;mfussenegger/nvim-dap&#x27;</span>  <span class="hljs-comment">-- Neovim 的调试插件</span><br>  use <span class="hljs-string">&#x27;mfussenegger/nvim-jdtls&#x27;</span> <span class="hljs-comment">-- Java LSP 客户端</span><br>  use <span class="hljs-string">&#x27;mfussenegger/nvim-dap-python&#x27;</span> <span class="hljs-comment">-- Python 调试支持</span><br>  use <span class="hljs-string">&#x27;leoluz/nvim-dap-go&#x27;</span> <span class="hljs-comment">-- Go 调试支持</span><br>  use <span class="hljs-string">&#x27;simrat39/rust-tools.nvim&#x27;</span> <span class="hljs-comment">-- Rust 工具</span><br>  use <span class="hljs-string">&#x27;jose-elias-alvarez/nvim-lsp-ts-utils&#x27;</span> <span class="hljs-comment">-- TypeScript 工具</span><br><span class="hljs-keyword">end</span>)<br><br><span class="hljs-comment">-- Treesitter 配置</span><br><span class="hljs-built_in">require</span><span class="hljs-string">&#x27;nvim-treesitter.configs&#x27;</span>.setup &#123;<br>  ensure_installed = &#123; <span class="hljs-string">&quot;java&quot;</span>, <span class="hljs-string">&quot;cpp&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;lua&quot;</span>, <span class="hljs-string">&quot;go&quot;</span>, <span class="hljs-string">&quot;bash&quot;</span>, <span class="hljs-string">&quot;python&quot;</span>, <span class="hljs-string">&quot;rust&quot;</span>, <span class="hljs-string">&quot;javascript&quot;</span>, <span class="hljs-string">&quot;typescript&quot;</span>, <span class="hljs-string">&quot;html&quot;</span>, <span class="hljs-string">&quot;css&quot;</span>, <span class="hljs-string">&quot;json&quot;</span>, <span class="hljs-string">&quot;yaml&quot;</span>, <span class="hljs-string">&quot;markdown&quot;</span> &#125;, <br>  highlight = &#123;<br>    enable = <span class="hljs-literal">true</span>, <span class="hljs-comment">-- 启用语法高亮</span><br>    additional_vim_regex_highlighting = <span class="hljs-literal">false</span>,<br>  &#125;,<br>&#125;<br><br><span class="hljs-comment">-- LSP 和自动补全</span><br><span class="hljs-keyword">local</span> nvim_lsp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;lspconfig&#x27;</span>)<br><span class="hljs-keyword">local</span> cmp = <span class="hljs-built_in">require</span><span class="hljs-string">&#x27;cmp&#x27;</span><br><span class="hljs-keyword">local</span> luasnip = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;luasnip&#x27;</span>)<br><br><span class="hljs-comment">-- 通用 on_attach 函数</span><br><span class="hljs-keyword">local</span> on_attach = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(client, bufnr)</span></span><br>  <span class="hljs-keyword">local</span> bufopts = &#123; noremap=<span class="hljs-literal">true</span>, silent=<span class="hljs-literal">true</span>, buffer=bufnr &#125;<br>  vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;gd&#x27;</span>, vim.lsp.buf.definition, bufopts)<br>  vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;gr&#x27;</span>, vim.lsp.buf.references, bufopts)<br>  vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;K&#x27;</span>, vim.lsp.buf.hover, bufopts)<br>  vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;&lt;leader&gt;rn&#x27;</span>, vim.lsp.buf.<span class="hljs-built_in">rename</span>, bufopts)<br>  vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;&lt;leader&gt;ca&#x27;</span>, vim.lsp.buf.code_action, bufopts)<br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">-- 配置 clangd</span><br>nvim_lsp.clangd.setup&#123;<br>  on_attach = on_attach,<br>&#125;<br><br><span class="hljs-comment">-- 配置 pyright</span><br>nvim_lsp.pyright.setup&#123;<br>  on_attach = on_attach,<br>&#125;<br><br><span class="hljs-comment">-- 配置 gopls</span><br>nvim_lsp.gopls.setup&#123;<br>  on_attach = on_attach,<br>&#125;<br><br><span class="hljs-comment">-- 配置 rust-analyzer</span><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;rust-tools&#x27;</span>).setup(&#123;<br>  server = &#123;<br>    on_attach = on_attach,<br>  &#125;,<br>&#125;)<br><br><span class="hljs-comment">-- 配置 ts_ls</span><br>nvim_lsp.ts_ls.setup&#123;<br>  on_attach = on_attach,<br>&#125;<br><br><span class="hljs-comment">-- 配置 bash-language-server</span><br>nvim_lsp.bashls.setup&#123;<br>  on_attach = on_attach,<br>&#125;<br><br><span class="hljs-comment">-- 自动补全配置</span><br>cmp.setup(&#123;<br>  snippet = &#123;<br>    expand = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(args)</span></span><br>      luasnip.lsp_expand(args.body)<br>    <span class="hljs-keyword">end</span>,<br>  &#125;,<br>  mapping = &#123;<br>    [<span class="hljs-string">&#x27;&lt;C-d&gt;&#x27;</span>] = cmp.mapping.scroll_docs(<span class="hljs-number">-4</span>),<br>    [<span class="hljs-string">&#x27;&lt;C-f&gt;&#x27;</span>] = cmp.mapping.scroll_docs(<span class="hljs-number">4</span>),<br>    [<span class="hljs-string">&#x27;&lt;C-Space&gt;&#x27;</span>] = cmp.mapping.complete(),<br>    [<span class="hljs-string">&#x27;&lt;C-e&gt;&#x27;</span>] = cmp.mapping.<span class="hljs-built_in">close</span>(),<br>    [<span class="hljs-string">&#x27;&lt;CR&gt;&#x27;</span>] = cmp.mapping.confirm(&#123;<br>      behavior = cmp.ConfirmBehavior.Replace,<br>      <span class="hljs-built_in">select</span> = <span class="hljs-literal">true</span>,<br>    &#125;),<br>    [<span class="hljs-string">&#x27;&lt;Tab&gt;&#x27;</span>] = cmp.mapping.select_next_item(),<br>    [<span class="hljs-string">&#x27;&lt;S-Tab&gt;&#x27;</span>] = cmp.mapping.select_prev_item(),<br>  &#125;,<br>  sources = &#123;<br>    &#123; name = <span class="hljs-string">&#x27;nvim_lsp&#x27;</span> &#125;,<br>    &#123; name = <span class="hljs-string">&#x27;luasnip&#x27;</span> &#125;,<br>    &#123; name = <span class="hljs-string">&#x27;path&#x27;</span> &#125;,<br>    &#123; name = <span class="hljs-string">&#x27;buffer&#x27;</span> &#125;,<br>  &#125;,<br>&#125;)<br><br><span class="hljs-comment">-- null-ls 配置</span><br><span class="hljs-keyword">local</span> null_ls = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;null-ls&quot;</span>)<br>null_ls.setup(&#123;<br>  sources = &#123;<br>    null_ls.builtins.formatting.clang_format,<br>  &#125;,<br>&#125;)<br><br><span class="hljs-comment">-- nvim-tree 配置</span><br><span class="hljs-built_in">require</span><span class="hljs-string">&#x27;nvim-tree&#x27;</span>.setup &#123;&#125;<br><br><span class="hljs-comment">-- 快捷键绑定</span><br>vim.api.nvim_set_keymap(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;&lt;leader&gt;f&#x27;</span>, <span class="hljs-string">&#x27;&lt;cmd&gt;lua vim.lsp.buf.format(&#123; async = true &#125;)&lt;CR&gt;&#x27;</span>, &#123; noremap = <span class="hljs-literal">true</span>, silent = <span class="hljs-literal">true</span> &#125;)<br>vim.api.nvim_set_keymap(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;&lt;leader&gt;e&#x27;</span>, <span class="hljs-string">&#x27;:NvimTreeToggle&lt;CR&gt;&#x27;</span>, &#123; noremap = <span class="hljs-literal">true</span>, silent = <span class="hljs-literal">true</span> &#125;)<br>vim.api.nvim_set_keymap(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;zc&#x27;</span>, <span class="hljs-string">&#x27;:foldclose&lt;CR&gt;&#x27;</span>, &#123; noremap = <span class="hljs-literal">true</span>, silent = <span class="hljs-literal">true</span> &#125;)<br>vim.api.nvim_set_keymap(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;zo&#x27;</span>, <span class="hljs-string">&#x27;:foldopen&lt;CR&gt;&#x27;</span>, &#123; noremap = <span class="hljs-literal">true</span>, silent = <span class="hljs-literal">true</span> &#125;)<br>vim.api.nvim_set_keymap(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;&lt;leader&gt;d&#x27;</span>, <span class="hljs-string">&#x27;&lt;cmd&gt;lua vim.diagnostic.open_float()&lt;CR&gt;&#x27;</span>, &#123; noremap = <span class="hljs-literal">true</span>, silent = <span class="hljs-literal">true</span> &#125;)<br>vim.api.nvim_set_keymap(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;[d&#x27;</span>, <span class="hljs-string">&#x27;&lt;cmd&gt;lua vim.diagnostic.goto_prev()&lt;CR&gt;&#x27;</span>, &#123; noremap = <span class="hljs-literal">true</span>, silent = <span class="hljs-literal">true</span> &#125;)<br>vim.api.nvim_set_keymap(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;]d&#x27;</span>, <span class="hljs-string">&#x27;&lt;cmd&gt;lua vim.diagnostic.goto_next()&lt;CR&gt;&#x27;</span>, &#123; noremap = <span class="hljs-literal">true</span>, silent = <span class="hljs-literal">true</span> &#125;)<br><br><span class="hljs-comment">-- 基础设置</span><br>vim.opt.compatible = <span class="hljs-literal">false</span><br>vim.opt.showmatch = <span class="hljs-literal">true</span><br>vim.opt.ignorecase = <span class="hljs-literal">true</span><br>vim.opt.mouse = <span class="hljs-string">&quot;a&quot;</span><br>vim.opt.hlsearch = <span class="hljs-literal">true</span><br>vim.opt.incsearch = <span class="hljs-literal">true</span><br>vim.opt.tabstop = <span class="hljs-number">4</span><br>vim.opt.softtabstop = <span class="hljs-number">4</span><br>vim.opt.expandtab = <span class="hljs-literal">true</span><br>vim.opt.shiftwidth = <span class="hljs-number">4</span><br>vim.opt.autoindent = <span class="hljs-literal">true</span><br>vim.opt.number = <span class="hljs-literal">true</span><br>vim.opt.wildmode = &#123; <span class="hljs-string">&quot;longest&quot;</span>, <span class="hljs-string">&quot;list&quot;</span> &#125;<br>vim.opt.clipboard = <span class="hljs-string">&quot;unnamedplus&quot;</span><br>vim.opt.ttyfast = <span class="hljs-literal">true</span><br>vim.opt.foldmethod = <span class="hljs-string">&quot;expr&quot;</span><br>vim.opt.foldexpr = <span class="hljs-string">&quot;nvim_treesitter#foldexpr()&quot;</span><br>vim.opt.foldenable = <span class="hljs-literal">false</span><br><br><span class="hljs-comment">-- 启用插件和语法高亮</span><br>vim.cmd(<span class="hljs-string">&quot;filetype plugin indent on&quot;</span>)<br>vim.cmd(<span class="hljs-string">&quot;syntax on&quot;</span>)<br><br><span class="hljs-comment">-- 禁用背景高亮</span><br>vim.cmd <span class="hljs-string">[[</span><br><span class="hljs-string">  hi NonText ctermbg=NONE guibg=NONE</span><br><span class="hljs-string">  hi Normal guibg=NONE ctermbg=NONE</span><br><span class="hljs-string">  hi NormalNC guibg=NONE ctermbg=NONE</span><br><span class="hljs-string">  hi SignColumn ctermbg=NONE ctermfg=NONE guibg=NONE</span><br><span class="hljs-string">  hi Pmenu ctermbg=NONE ctermfg=NONE guibg=NONE</span><br><span class="hljs-string">  hi FloatBorder ctermbg=NONE ctermfg=NONE guibg=NONE</span><br><span class="hljs-string">  hi NormalFloat ctermbg=NONE ctermfg=NONE guibg=NONE</span><br><span class="hljs-string">  hi TabLine ctermbg=NONE ctermfg=NONE guibg=NONE</span><br><span class="hljs-string">]]</span><br><br><span class="hljs-comment">-- 配置 nvim-dap-python</span><br><span class="hljs-keyword">local</span> dap = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;dap&#x27;</span>)<br><span class="hljs-keyword">local</span> dap_python = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;dap-python&#x27;</span>)<br><br>dap_python.setup(<span class="hljs-string">&#x27;~/.virtualenvs/debugpy/bin/python&#x27;</span>)<br><br><span class="hljs-comment">-- 配置 nvim-dap-go</span><br><span class="hljs-keyword">local</span> dap_go = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;dap-go&#x27;</span>)<br><br>dap_go.setup()<br><br><span class="hljs-comment">-- 配置 nvim-dap-node</span><br>dap.adapters.node2 = &#123;<br>  <span class="hljs-built_in">type</span> = <span class="hljs-string">&#x27;executable&#x27;</span>,<br>  command = <span class="hljs-string">&#x27;node&#x27;</span>,<br>  args = &#123;<span class="hljs-built_in">os</span>.<span class="hljs-built_in">getenv</span>(<span class="hljs-string">&#x27;HOME&#x27;</span>) .. <span class="hljs-string">&#x27;/.vscode/extensions/ms-vscode.node-debug2-1.42.5/out/src/nodeDebug.js&#x27;</span>&#125;,<br>&#125;<br><br>dap.configurations.javascript = &#123;<br>  &#123;<br>    <span class="hljs-built_in">type</span> = <span class="hljs-string">&#x27;node2&#x27;</span>,<br>    request = <span class="hljs-string">&#x27;launch&#x27;</span>,<br>    program = <span class="hljs-string">&#x27;$&#123;file&#125;&#x27;</span>,<br>    cwd = vim.fn.getcwd(),<br>    sourceMaps = <span class="hljs-literal">true</span>,<br>    protocol = <span class="hljs-string">&#x27;inspector&#x27;</span>,<br>    console = <span class="hljs-string">&#x27;integratedTerminal&#x27;</span>,<br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>下面是<code>~/.config/nvim/ftplugin/java.lua</code>文件</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- Java LSP 配置</span><br><span class="hljs-keyword">local</span> jdtls = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jdtls&#x27;</span>)<br><span class="hljs-keyword">local</span> home = <span class="hljs-built_in">os</span>.<span class="hljs-built_in">getenv</span>(<span class="hljs-string">&#x27;HOME&#x27;</span>)<br><span class="hljs-keyword">local</span> workspace_folder = home .. <span class="hljs-string">&quot;/workspace/&quot;</span> .. vim.fn.fnamemodify(vim.fn.getcwd(), <span class="hljs-string">&quot;:p:h:t&quot;</span>)<br><br><span class="hljs-keyword">local</span> <span class="hljs-built_in">config</span> = &#123;<br>  cmd = &#123;<br>    <span class="hljs-string">&#x27;java&#x27;</span>, <span class="hljs-comment">-- 或者 &#x27;java&#x27; 的完整路径</span><br>    <span class="hljs-string">&#x27;-Declipse.application=org.eclipse.jdt.ls.core.id1&#x27;</span>,<br>    <span class="hljs-string">&#x27;-Dosgi.bundles.defaultStartLevel=4&#x27;</span>,<br>    <span class="hljs-string">&#x27;-Declipse.product=org.eclipse.jdt.ls.core.product&#x27;</span>,<br>    <span class="hljs-string">&#x27;-Dlog.protocol=true&#x27;</span>,<br>    <span class="hljs-string">&#x27;-Dlog.level=ALL&#x27;</span>,<br>    <span class="hljs-string">&#x27;-Xms1g&#x27;</span>,<br>    <span class="hljs-string">&#x27;--add-modules=ALL-SYSTEM&#x27;</span>,<br>    <span class="hljs-string">&#x27;--add-opens&#x27;</span>, <span class="hljs-string">&#x27;java.base/java.util=ALL-UNNAMED&#x27;</span>,<br>    <span class="hljs-string">&#x27;--add-opens&#x27;</span>, <span class="hljs-string">&#x27;java.base/java.lang=ALL-UNNAMED&#x27;</span>,<br>    <span class="hljs-string">&#x27;-jar&#x27;</span>, home .. <span class="hljs-string">&#x27;/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar&#x27;</span>,<br>    <span class="hljs-string">&#x27;-configuration&#x27;</span>, home .. <span class="hljs-string">&#x27;/.local/share/nvim/lsp_servers/jdtls/config_linux&#x27;</span>,<br>    <span class="hljs-string">&#x27;-data&#x27;</span>, workspace_folder<br>  &#125;,<br>  root_dir = vim.fs.root(<span class="hljs-number">0</span>, &#123;<span class="hljs-string">&quot;.git&quot;</span>, <span class="hljs-string">&quot;mvnw&quot;</span>, <span class="hljs-string">&quot;gradlew&quot;</span>&#125;),<br>  settings = &#123;<br>    java = &#123;&#125;<br>  &#125;,<br>  init_options = &#123;<br>    bundles = &#123;&#125;<br>  &#125;,<br>    on_attach = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(client, bufnr)</span></span><br>    <span class="hljs-keyword">local</span> bufopts = &#123; noremap=<span class="hljs-literal">true</span>, silent=<span class="hljs-literal">true</span>, buffer=bufnr &#125;<br>    vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;gd&#x27;</span>, vim.lsp.buf.definition, bufopts)<br>    vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;gr&#x27;</span>, vim.lsp.buf.references, bufopts)<br>    vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;K&#x27;</span>, vim.lsp.buf.hover, bufopts)<br>    vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;&lt;leader&gt;rn&#x27;</span>, vim.lsp.buf.<span class="hljs-built_in">rename</span>, bufopts)<br>    vim.keymap.set(<span class="hljs-string">&#x27;n&#x27;</span>, <span class="hljs-string">&#x27;&lt;leader&gt;ca&#x27;</span>, vim.lsp.buf.code_action, bufopts)<br>  <span class="hljs-keyword">end</span>,<br>&#125;<br><br> jdtls.start_or_attach(<span class="hljs-built_in">config</span>)<br><br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux-Daily-Use/" class="category-chain-item">Linux Daily Use</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/vim/" class="print-no-link">#vim</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ChatGPT-4o和GitHub Copilot的nvim配置</div>
+      <div>https://rukkhadevata123.github.io/2024/09/20/nvim/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Dawn Chirps</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/17/ATRI/" title="ATRI -My Dear Moments-">
+                        <span class="hidden-mobile">ATRI -My Dear Moments-</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23lil0q2ASY6UVQitS","clientSecret":"1c6a251a126a26c1f6b59cff992adaf9ebdbac98","repo":"Rukkhadevata123.github.io","owner":"Rukkhadevata123","admin":["Rukkhadevata123"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'cad8329b57c4b31d70a1046202d5367a'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/effect.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
