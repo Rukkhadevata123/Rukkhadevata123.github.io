@@ -21,28 +21,25 @@
   <meta name="author" content="Dawn Chirps">
   <meta name="keywords" content="">
   
-    <meta name="description" content="▶参考链接                                  UKIsystemd-boot                                            ▶警告                                  本教程使用mkinitcpio，EndeavourOS用户默认使用Dracut，请自行参">
+    <meta name="description" content="zsh和neovim完整配置请查看本人的GitHub仓库Zsh Key Bindings and Aliases OverviewThis document provides a breakdown of the key bindings and aliases in your Zsh configuration. Key BindingsEmacs Key Bindings   Key Comb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用systemd-boot管理统一内核镜像">
-<meta property="og:url" content="https://rukkhadevata123.github.io/2024/08/26/uki/index.html">
+<meta property="og:title" content="ChatGPT-4o辅助的zsh配置">
+<meta property="og:url" content="https://rukkhadevata123.github.io/2024/09/26/zsh/index.html">
 <meta property="og:site_name" content="Yoimiya&#39;s Blog">
-<meta property="og:description" content="▶参考链接                                  UKIsystemd-boot                                            ▶警告                                  本教程使用mkinitcpio，EndeavourOS用户默认使用Dracut，请自行参">
+<meta property="og:description" content="zsh和neovim完整配置请查看本人的GitHub仓库Zsh Key Bindings and Aliases OverviewThis document provides a breakdown of the key bindings and aliases in your Zsh configuration. Key BindingsEmacs Key Bindings   Key Comb">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://rukkhadevata123.github.io/images/Fantasy-Lake3.png">
-<meta property="article:published_time" content="2024-08-26T05:58:40.000Z">
-<meta property="article:modified_time" content="2024-08-26T06:55:21.737Z">
+<meta property="og:image" content="https://rukkhadevata123.github.io/images/forest-landscape.jpg">
+<meta property="article:published_time" content="2024-09-26T05:50:40.000Z">
+<meta property="article:modified_time" content="2024-09-25T16:30:56.405Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
-<meta property="article:tag" content="arch">
-<meta property="article:tag" content="efi">
-<meta property="article:tag" content="uefi">
-<meta property="article:tag" content="uki">
+<meta property="article:tag" content="zsh">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rukkhadevata123.github.io/images/Fantasy-Lake3.png">
+<meta name="twitter:image" content="https://rukkhadevata123.github.io/images/forest-landscape.jpg">
   
   
   
-  <title>使用systemd-boot管理统一内核镜像 - Yoimiya&#39;s Blog</title>
+  <title>ChatGPT-4o辅助的zsh配置 - Yoimiya&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +225,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="使用systemd-boot管理统一内核镜像"></span>
+            <span id="subtitle" data-typed-text="ChatGPT-4o辅助的zsh配置"></span>
           
         </div>
 
@@ -239,8 +236,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-26 13:58" pubdate>
-          2024年8月26日 下午
+        <time datetime="2024-09-26 13:50" pubdate>
+          2024年9月26日 下午
         </time>
       </span>
     
@@ -251,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          555 字
+          79 字
         
       </span>
     
@@ -262,7 +259,7 @@
         
         
         
-          5 分钟
+          1 分钟
         
       </span>
     
@@ -337,7 +334,7 @@
       
         <a href="/2024/09/26/zsh/" title="ChatGPT-4o辅助的zsh配置"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">ChatGPT-4o辅助的zsh配置</span>
         </a>
       
@@ -364,7 +361,7 @@
       
         <a href="/2024/08/26/uki/" title="使用systemd-boot管理统一内核镜像"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">使用systemd-boot管理统一内核镜像</span>
         </a>
       
@@ -387,78 +384,348 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">使用systemd-boot管理统一内核镜像</h1>
+            <h1 id="seo-header">ChatGPT-4o辅助的zsh配置</h1>
             
             
               <div class="markdown-body">
                 
-                
-    <div class="fold">
-      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-02492c09" role="button" aria-expanded="false" aria-controls="collapse-02492c09">
-        <div class="fold-arrow">▶</div>参考链接
-      </div>
-      <div class="fold-collapse collapse" id="collapse-02492c09">
-        <div class="fold-content">
-          <p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Unified_kernel_image#">UKI</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/Systemd-boot#">systemd-boot</a></p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="fold">
-      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-91f23d81" role="button" aria-expanded="false" aria-controls="collapse-91f23d81">
-        <div class="fold-arrow">▶</div>警告
-      </div>
-      <div class="fold-collapse collapse" id="collapse-91f23d81">
-        <div class="fold-content">
-          <p>本教程使用<code>mkinitcpio</code>，EndeavourOS用户默认使用<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Dracut">Dracut</a>，请自行参阅wiki</p>
-        </div>
-      </div>
-    </div>
-
-<h2 id="情况一：两系统在不同硬盘，使用systemd-boot引导"><a href="#情况一：两系统在不同硬盘，使用systemd-boot引导" class="headerlink" title="情况一：两系统在不同硬盘，使用systemd-boot引导"></a>情况一：两系统在不同硬盘，使用systemd-boot引导</h2><h3 id="添加启动参数"><a href="#添加启动参数" class="headerlink" title="添加启动参数"></a>添加启动参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">su<br><span class="hljs-built_in">mkdir</span> /etc/cmdline.d<br><span class="hljs-built_in">touch</span> /etc/cmdline.d/root.conf<br><span class="hljs-built_in">echo</span> root=$(<span class="hljs-built_in">cat</span> /etc/fstab | grep ext4 | awk <span class="hljs-string">&#x27;&#123; print $1 &#125;&#x27;</span>) rw &gt;&gt; /etc/cmdline.d/root.conf<br><span class="hljs-built_in">cat</span> /etc/cmdline.d/root.conf<br></code></pre></td></tr></table></figure>
-<p>文件内容如下所示</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">root</span>=UUID=<span class="hljs-number">0</span>a3407de-<span class="hljs-number">014</span>b-<span class="hljs-number">458</span>b-b5c1-<span class="hljs-number">848</span>e92a327a3 rw<br></code></pre></td></tr></table></figure>
-
-<h3 id="修改-preset文件"><a href="#修改-preset文件" class="headerlink" title="修改.preset文件"></a>修改<code>.preset</code>文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">su<br>vim /etc/mkinitcpio.d/linux.preset <span class="hljs-comment">#zen内核则为/etc/mkinitcpio.d/linux-zen.preset</span><br></code></pre></td></tr></table></figure>
-<p>注释掉<code>image</code>字样的行，取消注释<code>uki</code>字样的行，示例文件如下所示<br>splash是启动时闪过的图片，默认是archlinux的logo</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># mkinitcpio preset file for the &#x27;linux&#x27; package</span><br><br><span class="hljs-comment">#ALL_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-attr">ALL_kver</span>=<span class="hljs-string">&quot;/boot/vmlinuz-linux&quot;</span><br><br><span class="hljs-attr">PRESETS</span>=(<span class="hljs-string">&#x27;default&#x27;</span> <span class="hljs-string">&#x27;fallback&#x27;</span>)<br><br><span class="hljs-comment">#default_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#default_image=&quot;/boot/initramfs-linux.img&quot;</span><br><span class="hljs-attr">default_uki</span>=<span class="hljs-string">&quot;/efi/EFI/Linux/arch-linux.efi&quot;</span><br><span class="hljs-attr">default_options</span>=<span class="hljs-string">&quot;--splash=/usr/share/systemd/bootctl/splash-arch.bmp&quot;</span><br><br><span class="hljs-comment">#fallback_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#fallback_image=&quot;/boot/initramfs-linux-fallback.img&quot;</span><br><span class="hljs-attr">fallback_uki</span>=<span class="hljs-string">&quot;/efi/EFI/Linux/arch-linux-fallback.efi&quot;</span><br><span class="hljs-attr">fallback_options</span>=<span class="hljs-string">&quot;-S autodetect&quot;</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="构建UKI镜像"><a href="#构建UKI镜像" class="headerlink" title="构建UKI镜像"></a>构建UKI镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /efi/EFI/Linux<br>mkinitcpio -p linux <span class="hljs-comment">#zen内核则为linux-zen</span><br></code></pre></td></tr></table></figure>
-<h3 id="简单清理"><a href="#简单清理" class="headerlink" title="简单清理"></a>简单清理</h3>
-    <div class="fold">
-      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-6aeb2756" role="button" aria-expanded="false" aria-controls="collapse-6aeb2756">
-        <div class="fold-arrow">▶</div>警告
-      </div>
-      <div class="fold-collapse collapse" id="collapse-6aeb2756">
-        <div class="fold-content">
-          <p>最好<code>手打</code>下面的命令，用<code>tab</code>补全文件路径</p>
-        </div>
-      </div>
-    </div>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /efi/initramfs-linux.img <br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /efi/initramfs-linux-fallback.img<br><span class="hljs-comment"># sudo rm -rf /boot/initramfs-linux.img</span><br><span class="hljs-comment"># sudo rm -rf /boot/initramfs-linux-fallback.img</span><br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /efi/loader/entries/arch.conf<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /efi/loader/entries/arch-fallback.conf<br></code></pre></td></tr></table></figure>
-
-<h2 id="情况二：两系统在同一块硬盘，使用systemd-boot引导"><a href="#情况二：两系统在同一块硬盘，使用systemd-boot引导" class="headerlink" title="情况二：两系统在同一块硬盘，使用systemd-boot引导"></a>情况二：两系统在同一块硬盘，使用systemd-boot引导</h2><h3 id="添加启动参数-1"><a href="#添加启动参数-1" class="headerlink" title="添加启动参数"></a>添加启动参数</h3><p>与情况一相同</p>
-<h3 id="修改-preset文件-1"><a href="#修改-preset文件-1" class="headerlink" title="修改.preset文件"></a>修改<code>.preset</code>文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">su<br>vim /etc/mkinitcpio.d/linux.preset <span class="hljs-comment">#zen内核则为/etc/mkinitcpio.d/linux-zen.preset</span><br></code></pre></td></tr></table></figure>
-<p>注释掉<code>image</code>字样的行，取消注释<code>uki</code>字样的行，示例文件如下所示<br>splash是启动时闪过的图片，默认是archlinux的logo</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># mkinitcpio preset file for the &#x27;linux&#x27; package</span><br><br><span class="hljs-comment">#ALL_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-attr">ALL_kver</span>=<span class="hljs-string">&quot;/boot/vmlinuz-linux&quot;</span><br><br><span class="hljs-attr">PRESETS</span>=(<span class="hljs-string">&#x27;default&#x27;</span> <span class="hljs-string">&#x27;fallback&#x27;</span>)<br><br><span class="hljs-comment">#default_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#default_image=&quot;/boot/initramfs-linux.img&quot;</span><br><span class="hljs-attr">default_uki</span>=<span class="hljs-string">&quot;/boot/EFI/Linux/arch-linux.efi&quot;</span><br><span class="hljs-attr">default_options</span>=<span class="hljs-string">&quot;--splash=/usr/share/systemd/bootctl/splash-arch.bmp&quot;</span><br><br><span class="hljs-comment">#fallback_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#fallback_image=&quot;/boot/initramfs-linux-fallback.img&quot;</span><br><span class="hljs-attr">fallback_uki</span>=<span class="hljs-string">&quot;/boot/EFI/Linux/arch-linux-fallback.efi&quot;</span><br><span class="hljs-attr">fallback_options</span>=<span class="hljs-string">&quot;-S autodetect&quot;</span><br></code></pre></td></tr></table></figure>
-<h3 id="构建UKI镜像-1"><a href="#构建UKI镜像-1" class="headerlink" title="构建UKI镜像"></a>构建UKI镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /boot/EFI/Linux<br>mkinitcpio -p linux <span class="hljs-comment">#zen内核则为linux-zen</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="简单清理-1"><a href="#简单清理-1" class="headerlink" title="简单清理"></a>简单清理</h3>
-    <div class="fold">
-      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-6aeb2756" role="button" aria-expanded="false" aria-controls="collapse-6aeb2756">
-        <div class="fold-arrow">▶</div>警告
-      </div>
-      <div class="fold-collapse collapse" id="collapse-6aeb2756">
-        <div class="fold-content">
-          <p>最好<code>手打</code>下面的命令，用<code>tab</code>补全文件路径</p>
-        </div>
-      </div>
-    </div>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /boot/initramfs-linux.img<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /boot/initramfs-linux-fallback.img<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /boot/loader/entries/arch.conf<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /boot/loader/entries/arch-fallback.conf<br></code></pre></td></tr></table></figure>
-
+                <h2 id="zsh和neovim完整配置请查看本人的GitHub仓库"><a href="#zsh和neovim完整配置请查看本人的GitHub仓库" class="headerlink" title="zsh和neovim完整配置请查看本人的GitHub仓库"></a><code>zsh</code>和<code>neovim</code>完整配置请查看本人的<a target="_blank" rel="noopener" href="https://github.com/Rukkhadevata123/nvim-config">GitHub仓库</a></h2><h1 id="Zsh-Key-Bindings-and-Aliases-Overview"><a href="#Zsh-Key-Bindings-and-Aliases-Overview" class="headerlink" title="Zsh Key Bindings and Aliases Overview"></a>Zsh Key Bindings and Aliases Overview</h1><p>This document provides a breakdown of the key bindings and aliases in your Zsh configuration.</p>
+<h2 id="Key-Bindings"><a href="#Key-Bindings" class="headerlink" title="Key Bindings"></a>Key Bindings</h2><h3 id="Emacs-Key-Bindings"><a href="#Emacs-Key-Bindings" class="headerlink" title="Emacs Key Bindings"></a>Emacs Key Bindings</h3><table>
+<thead>
+<tr>
+<th>Key Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Home</code></td>
+<td>Move to the beginning of the line</td>
+</tr>
+<tr>
+<td><code>End</code></td>
+<td>Move to the end of the line</td>
+</tr>
+<tr>
+<td><code>Insert</code></td>
+<td>Toggle overwrite mode</td>
+</tr>
+<tr>
+<td><code>Delete</code></td>
+<td>Delete the character under the cursor</td>
+</tr>
+<tr>
+<td><code>Right Arrow</code></td>
+<td>Move forward one character</td>
+</tr>
+<tr>
+<td><code>Left Arrow</code></td>
+<td>Move backward one character</td>
+</tr>
+<tr>
+<td><code>Page Up</code></td>
+<td>Move to the beginning of the history</td>
+</tr>
+<tr>
+<td><code>Page Down</code></td>
+<td>Move to the end of the history</td>
+</tr>
+<tr>
+<td><code>Ctrl + Right Arrow</code></td>
+<td>Move forward one word</td>
+</tr>
+<tr>
+<td><code>Ctrl + Left Arrow</code></td>
+<td>Move backward one word</td>
+</tr>
+<tr>
+<td><code>Shift + Tab</code></td>
+<td>Undo the last action</td>
+</tr>
+</tbody></table>
+<h3 id="Special-Bindings"><a href="#Special-Bindings" class="headerlink" title="Special Bindings"></a>Special Bindings</h3><table>
+<thead>
+<tr>
+<th>Key Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl + Backspace</code></td>
+<td>Delete the previous word</td>
+</tr>
+<tr>
+<td><code>Ctrl + U</code></td>
+<td>Delete the line before the cursor</td>
+</tr>
+<tr>
+<td><code>Ctrl + Delete</code></td>
+<td>Delete the next word</td>
+</tr>
+</tbody></table>
+<h3 id="History-Search-Bindings"><a href="#History-Search-Bindings" class="headerlink" title="History Search Bindings"></a>History Search Bindings</h3><table>
+<thead>
+<tr>
+<th>Key Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Up Arrow</code></td>
+<td>Search up through history</td>
+</tr>
+<tr>
+<td><code>Down Arrow</code></td>
+<td>Search down through history</td>
+</tr>
+<tr>
+<td><code>Space Bar</code></td>
+<td>Perform history expansion</td>
+</tr>
+</tbody></table>
+<h3 id="Terminfo-Key-Bindings"><a href="#Terminfo-Key-Bindings" class="headerlink" title="Terminfo Key Bindings"></a>Terminfo Key Bindings</h3><table>
+<thead>
+<tr>
+<th>Key Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Home</code></td>
+<td>Move to the beginning of the line</td>
+</tr>
+<tr>
+<td><code>End</code></td>
+<td>Move to the end of the line</td>
+</tr>
+<tr>
+<td><code>Insert</code></td>
+<td>Toggle overwrite mode</td>
+</tr>
+<tr>
+<td><code>Backspace</code></td>
+<td>Delete the character before the cursor</td>
+</tr>
+<tr>
+<td><code>Delete</code></td>
+<td>Delete the character under the cursor</td>
+</tr>
+<tr>
+<td><code>Up Arrow</code></td>
+<td>Move up one line or navigate history</td>
+</tr>
+<tr>
+<td><code>Down Arrow</code></td>
+<td>Move down one line or navigate history</td>
+</tr>
+<tr>
+<td><code>Left Arrow</code></td>
+<td>Move backward one character</td>
+</tr>
+<tr>
+<td><code>Right Arrow</code></td>
+<td>Move forward one character</td>
+</tr>
+<tr>
+<td><code>Page Up</code></td>
+<td>Move to the beginning of the buffer</td>
+</tr>
+<tr>
+<td><code>Page Down</code></td>
+<td>Move to the end of the buffer</td>
+</tr>
+<tr>
+<td><code>Shift + Tab</code></td>
+<td>Reverse menu completion</td>
+</tr>
+</tbody></table>
+<h3 id="Application-Mode-Handling"><a href="#Application-Mode-Handling" class="headerlink" title="Application Mode Handling"></a>Application Mode Handling</h3><table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Enter Application Mode</td>
+<td>Switch to application mode</td>
+</tr>
+<tr>
+<td>Exit Application Mode</td>
+<td>Switch back from application mode</td>
+</tr>
+</tbody></table>
+<h3 id="Word-Navigation-Bindings"><a href="#Word-Navigation-Bindings" class="headerlink" title="Word Navigation Bindings"></a>Word Navigation Bindings</h3><table>
+<thead>
+<tr>
+<th>Key Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl + Left Arrow</code></td>
+<td>Move backward one word</td>
+</tr>
+<tr>
+<td><code>Ctrl + Right Arrow</code></td>
+<td>Move forward one word</td>
+</tr>
+</tbody></table>
+<h2 id="Aliases"><a href="#Aliases" class="headerlink" title="Aliases"></a>Aliases</h2><table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>c</code></td>
+<td><code>clear</code></td>
+</tr>
+<tr>
+<td><code>nf</code></td>
+<td><code>fastfetch</code></td>
+</tr>
+<tr>
+<td><code>pf</code></td>
+<td><code>fastfetch</code></td>
+</tr>
+<tr>
+<td><code>ff</code></td>
+<td><code>fastfetch</code></td>
+</tr>
+<tr>
+<td><code>ls</code></td>
+<td><code>eza -a --icons</code></td>
+</tr>
+<tr>
+<td><code>ll</code></td>
+<td><code>eza -al --icons</code></td>
+</tr>
+<tr>
+<td><code>lt</code></td>
+<td><code>eza -a --tree --level=1 --icons</code></td>
+</tr>
+<tr>
+<td><code>shutdown</code></td>
+<td><code>systemctl poweroff</code></td>
+</tr>
+<tr>
+<td><code>v</code></td>
+<td><code>$EDITOR</code></td>
+</tr>
+<tr>
+<td><code>vim</code></td>
+<td><code>$EDITOR</code></td>
+</tr>
+<tr>
+<td><code>wifi</code></td>
+<td><code>nmtui</code></td>
+</tr>
+<tr>
+<td><code>Qtile</code></td>
+<td><code>startx</code></td>
+</tr>
+<tr>
+<td><code>gs</code></td>
+<td><code>git status</code></td>
+</tr>
+<tr>
+<td><code>ga</code></td>
+<td><code>git add</code></td>
+</tr>
+<tr>
+<td><code>gc</code></td>
+<td><code>git commit -m</code></td>
+</tr>
+<tr>
+<td><code>gp</code></td>
+<td><code>git push</code></td>
+</tr>
+<tr>
+<td><code>gpl</code></td>
+<td><code>git pull</code></td>
+</tr>
+<tr>
+<td><code>gst</code></td>
+<td><code>git stash</code></td>
+</tr>
+<tr>
+<td><code>gsp</code></td>
+<td><code>git stash; git pull</code></td>
+</tr>
+<tr>
+<td><code>gcheck</code></td>
+<td><code>git checkout</code></td>
+</tr>
+<tr>
+<td><code>gcredential</code></td>
+<td><code>git config credential.helper store</code></td>
+</tr>
+<tr>
+<td><code>update-grub</code></td>
+<td><code>sudo grub-mkconfig -o /boot/grub/grub.cfg</code></td>
+</tr>
+<tr>
+<td><code>res1</code></td>
+<td><code>xrandr --output DisplayPort-0 --mode 2560x1440 --rate 165</code></td>
+</tr>
+<tr>
+<td><code>res2</code></td>
+<td><code>xrandr --output DisplayPort-0 --mode 1920x1080 --rate 165</code></td>
+</tr>
+<tr>
+<td><code>setkb</code></td>
+<td><code>setxkbmap de; echo &quot;Keyboard set back to de.&quot;</code></td>
+</tr>
+<tr>
+<td><code>cp</code></td>
+<td><code>cp -i</code></td>
+</tr>
+<tr>
+<td><code>df</code></td>
+<td><code>df -h</code></td>
+</tr>
+<tr>
+<td><code>free</code></td>
+<td><code>free -m</code></td>
+</tr>
+<tr>
+<td><code>gitu</code></td>
+<td><code>git add . &amp;&amp; git commit &amp;&amp; git push</code></td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td><code>history 0</code></td>
+</tr>
+<tr>
+<td><code>grep</code></td>
+<td><code>grep --color=auto</code></td>
+</tr>
+<tr>
+<td><code>fgrep</code></td>
+<td><code>fgrep --color=auto</code></td>
+</tr>
+<tr>
+<td><code>egrep</code></td>
+<td><code>egrep --color=auto</code></td>
+</tr>
+<tr>
+<td><code>diff</code></td>
+<td><code>diff --color=auto</code></td>
+</tr>
+<tr>
+<td><code>rm</code></td>
+<td><code>rm -i</code></td>
+</tr>
+<tr>
+<td><code>ip</code></td>
+<td><code>ip --color=auto</code></td>
+</tr>
+<tr>
+<td><code>la</code></td>
+<td><code>ls -A</code></td>
+</tr>
+</tbody></table>
 
                 
               </div>
@@ -494,13 +761,7 @@
       
         <a href="/tags/Linux/" class="print-no-link">#Linux</a>
       
-        <a href="/tags/arch/" class="print-no-link">#arch</a>
-      
-        <a href="/tags/efi/" class="print-no-link">#efi</a>
-      
-        <a href="/tags/uefi/" class="print-no-link">#uefi</a>
-      
-        <a href="/tags/uki/" class="print-no-link">#uki</a>
+        <a href="/tags/zsh/" class="print-no-link">#zsh</a>
       
     </div>
   
@@ -512,8 +773,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>使用systemd-boot管理统一内核镜像</div>
-      <div>https://rukkhadevata123.github.io/2024/08/26/uki/</div>
+      <div>ChatGPT-4o辅助的zsh配置</div>
+      <div>https://rukkhadevata123.github.io/2024/09/26/zsh/</div>
     </div>
     <div class="license-meta">
       
@@ -525,7 +786,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月26日</div>
+          <div>2024年9月26日</div>
         </div>
       
       
@@ -557,18 +818,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/15/opensuse/" title="Hyper-V中的openSUSE-Tumbleweed开启增强会话">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hyper-V中的openSUSE-Tumbleweed开启增强会话</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/25/efi/" title="Windows+archlinux分区和引导方案">
-                        <span class="hidden-mobile">Windows+archlinux分区和引导方案</span>
+                      <a href="/2024/09/20/opensuse-wsl/" title="WSL开发环境搭建(openSUSE-Tumbleweed篇)">
+                        <span class="hidden-mobile">WSL开发环境搭建(openSUSE-Tumbleweed篇)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -591,7 +846,7 @@
         var options = Object.assign(
           {"clientID":"Ov23lil0q2ASY6UVQitS","clientSecret":"1c6a251a126a26c1f6b59cff992adaf9ebdbac98","repo":"Rukkhadevata123.github.io","owner":"Rukkhadevata123","admin":["Rukkhadevata123"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'bddf6afa95624bf28ab513bccc21fd7d'
+            id: '51bfb07e40a8b917ca468abae0686469'
           }
         )
         var gitalk = new Gitalk(options);
