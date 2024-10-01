@@ -23,14 +23,14 @@
   
     <meta name="description" content="▶参考链接                                  openSUSE_wikiopenSUSE_wiki_zh                       更换软件源12345sudo zypper mr -dasudo zypper ar -fcg &#x27;https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;opensu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hyper-V中的openSUSE-Tumbleweed开启增强会话">
+<meta property="og:title" content="体验Hyper-V中的openSUSE-Tumbleweed">
 <meta property="og:url" content="https://rukkhadevata123.github.io/2024/09/15/opensuse/index.html">
 <meta property="og:site_name" content="Yoimiya&#39;s Blog">
 <meta property="og:description" content="▶参考链接                                  openSUSE_wikiopenSUSE_wiki_zh                       更换软件源12345sudo zypper mr -dasudo zypper ar -fcg &#x27;https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;opensu">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/mountain-sunrise.jpg">
 <meta property="article:published_time" content="2024-09-15T13:58:40.000Z">
-<meta property="article:modified_time" content="2024-09-19T16:10:30.890Z">
+<meta property="article:modified_time" content="2024-10-01T08:39:56.889Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Hyper-V">
 <meta property="article:tag" content="Linux">
@@ -40,7 +40,7 @@
   
   
   
-  <title>Hyper-V中的openSUSE-Tumbleweed开启增强会话 - Yoimiya&#39;s Blog</title>
+  <title>体验Hyper-V中的openSUSE-Tumbleweed - Yoimiya&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hyper-V中的openSUSE-Tumbleweed开启增强会话"></span>
+            <span id="subtitle" data-typed-text="体验Hyper-V中的openSUSE-Tumbleweed"></span>
           
         </div>
 
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          301 字
+          299 字
         
       </span>
     
@@ -342,19 +342,19 @@
     
       
       
-        <a href="/2024/09/15/opensuse/" title="Hyper-V中的openSUSE-Tumbleweed开启增强会话"
+        <a href="/2024/08/25/efi/" title="Windows+archlinux分区和引导方案"
            class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">Hyper-V中的openSUSE-Tumbleweed开启增强会话</span>
+           ">
+          <span class="category-post">Windows+archlinux分区和引导方案</span>
         </a>
       
     
       
       
-        <a href="/2024/08/25/efi/" title="Windows+archlinux分区和引导方案"
+        <a href="/2024/09/15/opensuse/" title="体验Hyper-V中的openSUSE-Tumbleweed"
            class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Windows+archlinux分区和引导方案</span>
+           active">
+          <span class="category-post">体验Hyper-V中的openSUSE-Tumbleweed</span>
         </a>
       
     
@@ -385,7 +385,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hyper-V中的openSUSE-Tumbleweed开启增强会话</h1>
+            <h1 id="seo-header">体验Hyper-V中的openSUSE-Tumbleweed</h1>
             
             
               <div class="markdown-body">
@@ -414,7 +414,8 @@
 
 <h2 id="获取IP地址，记下第二个命令的输出"><a href="#获取IP地址，记下第二个命令的输出" class="headerlink" title="获取IP地址，记下第二个命令的输出"></a>获取IP地址，记下第二个命令的输出</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> zypper <span class="hljs-keyword">in</span> busybox-net-tools<br>ifconfig | grep -w <span class="hljs-string">&quot;inet&quot;</span> | grep -v 127.0.0.1 | awk <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span> | awk -F <span class="hljs-string">&#x27;:&#x27;</span> <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="自动启动桌面环境"><a href="#自动启动桌面环境" class="headerlink" title="自动启动桌面环境"></a>自动启动桌面环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> startxfce4 &gt; ~/.xsession<br><span class="hljs-comment"># echo startkde &gt; ~/.xsession</span><br><span class="hljs-comment"># echo gnome-session &gt; ~/.xsession</span><br><span class="hljs-built_in">chmod</span> +x ~/.xsession<br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
+<h2 id="自动启动桌面环境"><a href="#自动启动桌面环境" class="headerlink" title="自动启动桌面环境"></a>自动启动桌面环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> startxfce4 &gt; ~/.xsession<br><span class="hljs-built_in">chmod</span> +x ~/.xsession<br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># ~/.xsession for kde-plasma-x11</span><br><span class="hljs-built_in">export</span> DESKTOP_SESSION=plasma<br><span class="hljs-built_in">exec</span> startplasma-x11<br></code></pre></td></tr></table></figure>
 
 <h2 id="Windows远程桌面连接"><a href="#Windows远程桌面连接" class="headerlink" title="Windows远程桌面连接"></a>Windows远程桌面连接</h2><p>输入&lt;上面获取的IP地址&gt;:3389，确认后选择<code>xorg</code>，输入用户名和密码即可连接成功</p>
 <h2 id="解决声音问题"><a href="#解决声音问题" class="headerlink" title="解决声音问题"></a>解决声音问题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> zypper addrepo https://download.opensuse.org/repositories/home:Psheng/openSUSE_Tumbleweed/home:Psheng.repo<br><span class="hljs-built_in">sudo</span> zypper refresh<br><span class="hljs-built_in">sudo</span> zypper install pulseaudio-module-xrdp<br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
@@ -467,7 +468,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hyper-V中的openSUSE-Tumbleweed开启增强会话</div>
+      <div>体验Hyper-V中的openSUSE-Tumbleweed</div>
       <div>https://rukkhadevata123.github.io/2024/09/15/opensuse/</div>
     </div>
     <div class="license-meta">
