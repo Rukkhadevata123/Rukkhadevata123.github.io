@@ -21,16 +21,16 @@
   <meta name="author" content="Dawn Chirps">
   <meta name="keywords" content="">
   
-    <meta name="description" content="▶参考链接                                  OI-Wiki微软文档NVIDIA文档Kali-LinuxDeepLearningconda官方网站                       安装Kali-Linux并简单配置                     ▶选择Kali-Linux的原因">
+    <meta name="description" content="▶参考链接                                  OI-Wiki微软文档NVIDIA文档kali-linuxDeepLearningconda官方网站                       安装kali-linux并简单配置                     ▶选择kali-linux的原因">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WSL开发环境搭建(Kali-Linux篇)">
+<meta property="og:title" content="WSL开发环境搭建(kali-linux篇)">
 <meta property="og:url" content="https://rukkhadevata123.github.io/2024/08/22/wsl/index.html">
 <meta property="og:site_name" content="Yoimiya&#39;s Blog">
-<meta property="og:description" content="▶参考链接                                  OI-Wiki微软文档NVIDIA文档Kali-LinuxDeepLearningconda官方网站                       安装Kali-Linux并简单配置                     ▶选择Kali-Linux的原因">
+<meta property="og:description" content="▶参考链接                                  OI-Wiki微软文档NVIDIA文档kali-linuxDeepLearningconda官方网站                       安装kali-linux并简单配置                     ▶选择kali-linux的原因">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Lofi-Room.png">
 <meta property="article:published_time" content="2024-08-22T09:56:30.000Z">
-<meta property="article:modified_time" content="2024-10-04T08:13:20.211Z">
+<meta property="article:modified_time" content="2024-10-06T09:04:52.223Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="WSL">
@@ -39,7 +39,7 @@
   
   
   
-  <title>WSL开发环境搭建(Kali-Linux篇) - Yoimiya&#39;s Blog</title>
+  <title>WSL开发环境搭建(kali-linux篇) - Yoimiya&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +225,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="WSL开发环境搭建(Kali-Linux篇)"></span>
+            <span id="subtitle" data-typed-text="WSL开发环境搭建(kali-linux篇)"></span>
           
         </div>
 
@@ -248,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.4k 字
         
       </span>
     
@@ -309,7 +309,7 @@
         aria-expanded="true"
       >
         Linux Development Environment
-        <span class="list-group-count">(3)</span>
+        <span class="list-group-count">(4)</span>
         <i class="iconfont icon-arrowright"></i>
       </a>
       
@@ -323,10 +323,10 @@
     
       
       
-        <a href="/2024/08/22/wsl/" title="WSL开发环境搭建(Kali-Linux篇)"
+        <a href="/2024/08/22/wsl/" title="WSL开发环境搭建(kali-linux篇)"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">WSL开发环境搭建(Kali-Linux篇)</span>
+          <span class="category-post">WSL开发环境搭建(kali-linux篇)</span>
         </a>
       
     
@@ -336,6 +336,15 @@
            class="list-group-item list-group-item-action
            ">
           <span class="category-post">WSL开发环境搭建(openSUSE-Tumbleweed篇)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/06/win11-cpp/" title="Win11LTSC(24H2)配置C++开发环境"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Win11LTSC(24H2)配置C++开发环境</span>
         </a>
       
     
@@ -366,27 +375,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">WSL开发环境搭建(Kali-Linux篇)</h1>
+            <h1 id="seo-header">WSL开发环境搭建(kali-linux篇)</h1>
             
             
               <div class="markdown-body">
                 
                 
     <div class="fold">
-      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-9c19b65c" role="button" aria-expanded="false" aria-controls="collapse-9c19b65c">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-4ff133eb" role="button" aria-expanded="false" aria-controls="collapse-4ff133eb">
         <div class="fold-arrow">▶</div>参考链接
       </div>
-      <div class="fold-collapse collapse" id="collapse-9c19b65c">
+      <div class="fold-collapse collapse" id="collapse-4ff133eb">
         <div class="fold-content">
-          <p><a target="_blank" rel="noopener" href="https://oi-wiki.org/tools/wsl/">OI-Wiki</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/install">微软文档</a><br><a target="_blank" rel="noopener" href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html">NVIDIA文档</a><br><a target="_blank" rel="noopener" href="https://www.kali.org/docs/wsl/wsl-preparations/">Kali-Linux</a><br><a target="_blank" rel="noopener" href="https://zh.d2l.ai/chapter_installation/index.html">DeepLearning</a><br><a target="_blank" rel="noopener" href="https://docs.anaconda.com/miniconda/">conda官方网站</a></p>
+          <p><a target="_blank" rel="noopener" href="https://oi-wiki.org/tools/wsl/">OI-Wiki</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/install">微软文档</a><br><a target="_blank" rel="noopener" href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html">NVIDIA文档</a><br><a target="_blank" rel="noopener" href="https://www.kali.org/docs/wsl/wsl-preparations/">kali-linux</a><br><a target="_blank" rel="noopener" href="https://zh.d2l.ai/chapter_installation/index.html">DeepLearning</a><br><a target="_blank" rel="noopener" href="https://docs.anaconda.com/miniconda/">conda官方网站</a></p>
         </div>
       </div>
     </div>
 
-<h2 id="安装Kali-Linux并简单配置"><a href="#安装Kali-Linux并简单配置" class="headerlink" title="安装Kali-Linux并简单配置"></a>安装Kali-Linux并简单配置</h2>
+<h2 id="安装kali-linux并简单配置"><a href="#安装kali-linux并简单配置" class="headerlink" title="安装kali-linux并简单配置"></a>安装kali-linux并简单配置</h2>
     <div class="fold">
       <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-d20c19c7" role="button" aria-expanded="false" aria-controls="collapse-d20c19c7">
-        <div class="fold-arrow">▶</div>选择Kali-Linux的原因
+        <div class="fold-arrow">▶</div>选择kali-linux的原因
       </div>
       <div class="fold-collapse collapse" id="collapse-d20c19c7">
         <div class="fold-content">
@@ -409,8 +418,8 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">wsl <span class="hljs-literal">--set-default-version</span> <span class="hljs-number">2</span><br>wsl <span class="hljs-literal">--update</span><br></code></pre></td></tr></table></figure>
 
 <ol start="6">
-<li>从微软应用商店安装<a target="_blank" rel="noopener" href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07">Kali-Linux</a></li>
-<li>从开始菜单打开Kali-Linux，输入全小写英文字母用户名，设置好密码</li>
+<li>从微软应用商店安装<a target="_blank" rel="noopener" href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07">kali-linux</a></li>
+<li>从开始菜单打开kali-linux，输入全小写英文字母用户名，设置好密码</li>
 </ol>
 <blockquote>
 <blockquote>
@@ -422,31 +431,37 @@
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chsh -s /usr/bin/zsh<br></code></pre></td></tr></table></figure>
 
-<p>之后关闭Kali-Linux，在Windows终端输入</p>
+<p>之后关闭kali-linux，在Windows终端输入</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">wsl.exe <span class="hljs-literal">--shutdown</span><br></code></pre></td></tr></table></figure>
 
-<p>之后再次打开Kali-Linux即可使用zsh</p>
+<p>之后再次打开kali-linux即可使用zsh</p>
 <ol start="9">
+<li>修改root密码</li>
+</ol>
+<p>输入<code>sudo su</code>, 并输入刚刚设置的(管理员)密码, 进入<code>root</code>用户, 接着输入<code>passwd</code>修改<code>root</code>密码即可</p>
+<ol start="10">
 <li>换源</li>
 </ol>
 <p><a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/help/kali.html">参考链接</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> /etc/apt/sources.list /etc/apt/sources.list.bak<br><span class="hljs-built_in">sudo</span> nano /etc/apt/sources.list<br></code></pre></td></tr></table></figure>
+
 <p>编辑 <code>/etc/apt/sources.list</code> 文件， 在文件最前面添加以下条目：</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c">deb https<span class="hljs-punctuation">:</span><span class="hljs-comment">//mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib</span><br>deb<span class="hljs-punctuation">-</span>src https<span class="hljs-punctuation">:</span><span class="hljs-comment">//mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib</span><br></code></pre></td></tr></table></figure>
 
 <p>保存退出</p>
-<ol start="10">
+<ol start="11">
 <li>更新系统</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y<br></code></pre></td></tr></table></figure>
 
 
     <div class="fold">
-      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-8a958f52" role="button" aria-expanded="false" aria-controls="collapse-8a958f52">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-90f6fc4a" role="button" aria-expanded="false" aria-controls="collapse-90f6fc4a">
         <div class="fold-arrow">▶</div>注意
       </div>
-      <div class="fold-collapse collapse" id="collapse-8a958f52">
+      <div class="fold-collapse collapse" id="collapse-90f6fc4a">
         <div class="fold-content">
-          <p>WSL上的Kali-Linux为最小安装版本，没有预安装<del>入狱</del>所需的工具，如有需要，请参考启动kali后的提示信息</p>
+          <p>WSL上的kali-linux为最小安装版本，没有预安装<del>入狱</del>所需的工具，如有需要，请参考启动kali后的提示信息</p>
         </div>
       </div>
     </div>
@@ -471,14 +486,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install x11-apps -y<br><span class="hljs-comment"># sudo apt install nautilus -y </span><br></code></pre></td></tr></table></figure>
 
 <p>安装完成后，终端输入<code>xcalc</code>或<code>nautilus</code>回车即可开启这些GUI应用</p>
-<h2 id="配置Kali-Linux-Win-KeX会话"><a href="#配置Kali-Linux-Win-KeX会话" class="headerlink" title="配置Kali-Linux Win-KeX会话"></a>配置Kali-Linux Win-KeX会话</h2>
+<h2 id="配置kali-linux-Win-KeX会话"><a href="#配置kali-linux-Win-KeX会话" class="headerlink" title="配置kali-linux Win-KeX会话"></a>配置kali-linux Win-KeX会话</h2>
     <div class="fold">
-      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-f5b92abc" role="button" aria-expanded="false" aria-controls="collapse-f5b92abc">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-4f015009" role="button" aria-expanded="false" aria-controls="collapse-4f015009">
         <div class="fold-arrow">▶</div>官方介绍
       </div>
-      <div class="fold-collapse collapse" id="collapse-f5b92abc">
+      <div class="fold-collapse collapse" id="collapse-4f015009">
         <div class="fold-content">
-          <blockquote><p>Win-KeX provides a GUI desktop experience for Kali Linux in Windows Subsystem for Linux (WSL 2) with the following features:</p><blockquote><ul><li>Window mode: start a Kali Linux desktop in a dedicated window</li><li>Seamless mode: share the Windows desktop between Windows and Kali application and menus</li><li>Enhanced session mode: Similar to Hyper-V, uses RDP for a more feature rich experience</li><li>Sound support</li><li>Shared clipboard for cut and paste support between Kali Linux and Windows</li><li>Root &amp; unprivileged session support</li><li>Multi-session support: root window &amp; non-privileged window &amp; seamless sessions concurrently</li><li>Fully compatible with WSLg</li></ul></blockquote></blockquote>
+          <blockquote><p>Win-KeX provides a GUI desktop experience for kali Linux in Windows Subsystem for Linux (WSL 2) with the following features:</p><blockquote><ul><li>Window mode: start a kali Linux desktop in a dedicated window</li><li>Seamless mode: share the Windows desktop between Windows and kali application and menus</li><li>Enhanced session mode: Similar to Hyper-V, uses RDP for a more feature rich experience</li><li>Sound support</li><li>Shared clipboard for cut and paste support between kali Linux and Windows</li><li>Root &amp; unprivileged session support</li><li>Multi-session support: root window &amp; non-privileged window &amp; seamless sessions concurrently</li><li>Fully compatible with WSLg</li></ul></blockquote></blockquote>
         </div>
       </div>
     </div>
@@ -489,17 +504,17 @@
 <p>有三种模式运行窗口化界面：</p>
 <ul>
 <li>Window Mode<ul>
-<li>Inside of Kali WSL: <code>kex --win -s</code></li>
+<li>Inside of kali WSL: <code>kex --win -s</code></li>
 <li>On Window’s command prompt: <code>wsl -d kali-linux kex --win -s</code></li>
 </ul>
 </li>
 <li>Enhanced Session Mode<ul>
-<li>Inside of Kali WSL: <code>kex --esm --ip -s</code></li>
+<li>Inside of kali WSL: <code>kex --esm --ip -s</code></li>
 <li>On Window’s command prompt: <code>wsl -d kali-linux kex --esm --ip -s</code></li>
 </ul>
 </li>
 <li>Seamless Mode<ul>
-<li>Inside of Kali WSL: <code>kex --sl -s</code></li>
+<li>Inside of kali WSL: <code>kex --sl -s</code></li>
 <li>On Window’s command prompt: <code>wsl -d kali-linux kex --sl -s</code></li>
 </ul>
 </li>
@@ -560,10 +575,10 @@
 <li>最后可以通过<code>jupyter notebook</code>运行Jupyter笔记本，（需要在pytorch文件夹下）浏览器打开<a target="_blank" rel="noopener" href="http://localhost:8888/">http://localhost:8888</a>即可学习</li>
 <li>在运行书籍代码、更新深度学习框架或d2l软件包之前，请始终执行<code>conda activate d2l</code>以激活运行时环境。 要退出环境，请运行<code>conda deactivate</code></li>
 </ol>
-<h2 id="迁移WSL"><a href="#迁移WSL" class="headerlink" title="迁移WSL"></a>迁移WSL</h2><p>打开终端，输入下列命令：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">mkdir D:\wsl<br>mkdir D:\wsl\kali<br>wsl <span class="hljs-literal">--export</span> kali<span class="hljs-literal">-linux</span> D:\wsl\kali.tar  <span class="hljs-comment"># 导出kali</span><br>wsl <span class="hljs-literal">--unregister</span> kali<span class="hljs-literal">-linux</span>   <span class="hljs-comment"># 注销原来的发行版</span><br>wsl <span class="hljs-literal">--import</span> kali<span class="hljs-literal">-linux</span> D:\wsl\kali D:\wsl\kali.tar <span class="hljs-literal">--version</span> <span class="hljs-number">2</span>  <span class="hljs-comment"># 导入kali</span><br><span class="hljs-built_in">rm</span> D:\wsl\kali.tar  <span class="hljs-comment"># 删除tar文件</span><br>wsl <span class="hljs-literal">-d</span> kali<span class="hljs-literal">-linux</span>  <span class="hljs-comment"># 进入kali</span><br></code></pre></td></tr></table></figure>
-<p>迁移后默认以<code>root</code>身份进入，接下来编辑<code>/etc/wsl.conf</code>文件。假设<code>yoimiya</code>是之前的默认用户名：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[boot]</span><br><span class="hljs-attr">systemd</span>=<span class="hljs-literal">false</span><br><br><span class="hljs-section">[wsl2]</span><br><span class="hljs-attr">networkingMode</span>=mirrored<br><span class="hljs-attr">autoProxy</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">dnsTunneling</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[experimental]</span><br><span class="hljs-attr">autoMemoryReclaim</span>=gradual<br><span class="hljs-attr">hostAddressLoopback</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[user]</span><br><span class="hljs-attr">default</span>=yoimiya<br></code></pre></td></tr></table></figure>
+<h2 id="迁移WSL"><a href="#迁移WSL" class="headerlink" title="迁移WSL"></a>迁移WSL</h2><p>打开Windows终端，输入下列命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">wsl <span class="hljs-literal">--shutdown</span><br>mkdir D:\wsl<br>mkdir D:\wsl\kali<br>wsl <span class="hljs-literal">--export</span> kali<span class="hljs-literal">-linux</span> D:\wsl\kali.tar  <span class="hljs-comment"># 导出kali</span><br>wsl <span class="hljs-literal">--unregister</span> kali<span class="hljs-literal">-linux</span>   <span class="hljs-comment"># 注销原来的发行版</span><br>wsl <span class="hljs-literal">--import</span> kali<span class="hljs-literal">-linux</span> D:\wsl\kali D:\wsl\kali.tar <span class="hljs-literal">--version</span> <span class="hljs-number">2</span>  <span class="hljs-comment"># 导入kali</span><br><span class="hljs-built_in">rm</span> D:\wsl\kali.tar  <span class="hljs-comment"># 删除tar文件</span><br>wsl <span class="hljs-literal">-d</span> kali<span class="hljs-literal">-linux</span>  <span class="hljs-comment"># 进入kali</span><br></code></pre></td></tr></table></figure>
+<p>迁移后默认以<code>root</code>身份进入，接下来进入WSL编辑<code>/etc/wsl.conf</code>文件。假设<code>yoimiya</code>是之前的默认用户名：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[boot]</span><br><span class="hljs-attr">systemd</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[user]</span><br><span class="hljs-attr">default</span>=yoimiya<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>注意：上述配置可能仅适用于win11</p>
 </blockquote>
@@ -618,7 +633,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>WSL开发环境搭建(Kali-Linux篇)</div>
+      <div>WSL开发环境搭建(kali-linux篇)</div>
       <div>https://rukkhadevata123.github.io/2024/08/22/wsl/</div>
     </div>
     <div class="license-meta">
