@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Lofi-Cafe1.png">
 <meta property="article:published_time" content="2024-08-25T14:52:42.000Z">
-<meta property="article:modified_time" content="2024-08-29T14:34:11.769Z">
+<meta property="article:modified_time" content="2024-10-07T11:37:38.514Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="win10">
 <meta property="article:tag" content="Linux">
@@ -393,12 +393,12 @@
                 
                 
     <div class="fold">
-      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-59a4f90a" role="button" aria-expanded="false" aria-controls="collapse-59a4f90a">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-a516ab5d" role="button" aria-expanded="false" aria-controls="collapse-a516ab5d">
         <div class="fold-arrow">▶</div>参考链接
       </div>
-      <div class="fold-collapse collapse" id="collapse-59a4f90a">
+      <div class="fold-collapse collapse" id="collapse-a516ab5d">
         <div class="fold-content">
-          <p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface#UEFI_Shell">UEFI Shell</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/EFI_%E7%B3%BB%E7%BB%9F%E5%88%86%E5%8C%BA">EFI系统分区&#x2F;或称为ESP</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/Systemd-boot">Systemd-boot</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/GRUB">GRUB</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/Arch_%2B_Windows_%E5%8F%8C%E7%B3%BB%E7%BB%9F">双系统说明</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/%E5%88%86%E5%8C%BA#">分区</a></p>
+          <p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface#UEFI_Shell">UEFI Shell</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/EFI_system_partition">EFI系统分区&#x2F;或称为ESP</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Systemd-boot">Systemd-boot</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/GRUB">GRUB</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Dual_boot_with_Windows">双系统说明</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Partitioning">分区</a></p>
         </div>
       </div>
     </div>
@@ -537,7 +537,7 @@
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs maxima">## This <span class="hljs-built_in">is</span> just an <span class="hljs-built_in">example</span> config file.<br>## Please edit the paths <span class="hljs-keyword">and</span> kernel parameters according to your <span class="hljs-built_in">system</span>.<br><br><span class="hljs-built_in">title</span>   Arch Linux fallback<br>linux   /vmlinuz-linux-zen<br>initrd  /intel-ucode.img<br>initrd  /initramfs-linux-zen-fallback.img<br>options root=UUID=33c6745e-<span class="hljs-number">87b1</span>-<span class="hljs-number">4663</span>-8a39-a9a82915669d rw<br></code></pre></td></tr></table></figure>
 
 <p>接下来输入<code>bootctl list</code>可以看到引导菜单的情况</p>
-<p>安装完桌面环境，重启即可看到arch和windows的选项（systemd-boot会自动探测同一esp下windows的efi文件）</p>
+<p>安装完桌面环境，重启即可看到arch和windows的选项（<code>systemd-boot</code>会自动探测同一esp下windows的efi文件）</p>
 
                 
               </div>
