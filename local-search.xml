@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>使用oh-my-posh美化Windows和WSL终端</title>
+    <link href="/2024/10/07/oh-my-posh/"/>
+    <url>/2024/10/07/oh-my-posh/</url>
+    
+    <content type="html"><![CDATA[<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><a href="https://ohmyposh.dev/docs/">参考链接</a></h2><h2 id="请自行解决代理问题"><a href="#请自行解决代理问题" class="headerlink" title="请自行解决代理问题"></a>请自行解决代理问题</h2><h2 id="开启PowerShell开发者选项"><a href="#开启PowerShell开发者选项" class="headerlink" title="开启PowerShell开发者选项"></a>开启PowerShell开发者选项</h2><p><img src="/2024/10/07/oh-my-posh/1.png"></p><h2 id="安装Nerd-Font"><a href="#安装Nerd-Font" class="headerlink" title="安装Nerd Font"></a>安装<a href="https://www.nerdfonts.com/font-downloads">Nerd Font</a></h2><p>以<code>MesloLG Nerd Font</code>为例</p><p><img src="/2024/10/07/oh-my-posh/2.png"></p><p>下载解压, 全选字体文件, 右键安装即可</p><p><img src="/2024/10/07/oh-my-posh/3.png"></p><h2 id="更改终端字体"><a href="#更改终端字体" class="headerlink" title="更改终端字体"></a>更改终端字体</h2><p>打开终端, 设置处选择默认配置, 外观, 字体, 选择刚刚安装的<code>Nerd</code>字体, 保存</p><p><img src="/2024/10/07/oh-my-posh/4.png"></p><h2 id="可选-把Windows终端设置默认UTF-8"><a href="#可选-把Windows终端设置默认UTF-8" class="headerlink" title="(可选)把Windows终端设置默认UTF-8"></a>(可选)把Windows终端设置默认UTF-8</h2><p>在控制面板的<code>时钟和区域</code>内更改, 完成后重启电脑</p><p><img src="/2024/10/07/oh-my-posh/5.png"></p><h2 id="安装oh-my-posh"><a href="#安装oh-my-posh" class="headerlink" title="安装oh-my-posh"></a>安装<code>oh-my-posh</code></h2><p>使用<code>winget</code></p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">winget install JanDeDobbeleer.OhMyPosh <span class="hljs-literal">-s</span> winget<br></code></pre></td></tr></table></figure><p><img src="/2024/10/07/oh-my-posh/6.png"></p><p>安装完成后重启终端</p><h2 id="配置Windows的oh-my-posh"><a href="#配置Windows的oh-my-posh" class="headerlink" title="配置Windows的oh-my-posh"></a>配置Windows的<code>oh-my-posh</code></h2><p>新建并编辑配置文件</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell"><span class="hljs-built_in">New-Item</span> <span class="hljs-literal">-Path</span> <span class="hljs-variable">$PROFILE</span> <span class="hljs-literal">-Type</span> File <span class="hljs-literal">-Force</span><br>notepad <span class="hljs-variable">$PROFILE</span><br></code></pre></td></tr></table></figure><p>在<a href="https://ohmyposh.dev/docs/themes">此处</a>找到适合的主题, 在记事本处输入如下内容</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell"><span class="hljs-built_in">oh</span><span class="hljs-literal">-my-posh</span> init pwsh <span class="hljs-literal">--config</span> <span class="hljs-string">&quot;<span class="hljs-variable">$env:POSH_THEMES_PATH</span>/powerlevel10k_rainbow.omp.json&quot;</span> | <span class="hljs-built_in">Invoke-Expression</span><br></code></pre></td></tr></table></figure><p><img src="/2024/10/07/oh-my-posh/7.png"></p><p>关掉并重新打开终端, 即可看到主题效果</p><p><img src="/2024/10/07/oh-my-posh/8.png"></p><h2 id="配置WSL的oh-my-posh"><a href="#配置WSL的oh-my-posh" class="headerlink" title="配置WSL的oh-my-posh"></a>配置WSL的<code>oh-my-posh</code></h2><p>在WSL内输入如下命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install unzip -y<br>curl -s https://ohmyposh.dev/install.sh | bash -s<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export PATH=$PATH:/home/yoimiya/.local/bin&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">source</span> ~/.zshrc<br><span class="hljs-built_in">cd</span><br>wget https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;eval &quot;$(oh-my-posh init zsh --config ~/powerlevel10k_rainbow.omp.json)&quot;&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">source</span> ~/.zshrc<br></code></pre></td></tr></table></figure><p>完成后可以看到主题效果</p><p><img src="/2024/10/07/oh-my-posh/9.png"></p><h2 id="更多配置请参阅开头参考链接"><a href="#更多配置请参阅开头参考链接" class="headerlink" title="更多配置请参阅开头参考链接"></a>更多配置请参阅开头参考链接</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>Windows Daily Use</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Linux</tag>
+      
+      <tag>PowerShell</tag>
+      
+      <tag>win11</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Win11LTSC(24H2)配置C++开发环境</title>
     <link href="/2024/10/06/win11-cpp/"/>
     <url>/2024/10/06/win11-cpp/</url>
@@ -22,9 +51,9 @@
       
       <tag>Linux</tag>
       
-      <tag>WSL</tag>
-      
       <tag>win11</tag>
+      
+      <tag>WSL</tag>
       
     </tags>
     
