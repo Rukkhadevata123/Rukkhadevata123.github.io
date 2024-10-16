@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Beach_light.png">
 <meta property="article:published_time" content="2024-10-13T15:16:55.000Z">
-<meta property="article:modified_time" content="2024-10-14T15:18:03.813Z">
+<meta property="article:modified_time" content="2024-10-16T04:07:34.873Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="gnome">
@@ -260,7 +260,7 @@
         
         
         
-          15 分钟
+          16 分钟
         
       </span>
     
@@ -466,6 +466,11 @@
 <p>再输入<code>source ~/.zshrc</code>即可</p>
 <p><img src="/2024/10/13/ubuntu/3.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="安装vscode"><a href="#安装vscode" class="headerlink" title="安装vscode"></a>安装<code>vscode</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget <span class="hljs-string">&quot;https://code.visualstudio.com/sha/download?build=stable&amp;os=linux-deb-x64&quot;</span> -O code.deb<br><span class="hljs-built_in">mv</span> code.deb /tmp<br><span class="hljs-built_in">cd</span> /tmp<br><span class="hljs-built_in">sudo</span> apt install ./code.deb<br></code></pre></td></tr></table></figure>
+<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
+<li>更新系统: <code>alias update=&quot;sudo apt update &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo snap refresh&quot;</code></li>
+<li>安装主题: <code>sudo apt install papirus-icon-theme bibata-cursor-theme orchis-gtk-theme &amp;&amp; sudo snap install bibata-modern-ice-cursor bibata-all-cursor gtk-theme-orchis orchis-themes</code></li>
+<li>图形化软件包管理器: <code>sudo apt install synaptic</code></li>
+</ul>
 
                 
               </div>
