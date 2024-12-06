@@ -21,16 +21,16 @@
   <meta name="author" content="Dawn Chirps">
   <meta name="keywords" content="">
   
-    <meta name="description" content="重置root密码123sudo su rootpasswd rootexit 换源(可选)                     ▶警告                                  换源前请看清楚版本, 这里以24.04为例                        方法一: 使用命令行  1sudo nano &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;ubunt">
+    <meta name="description" content="重置root密码123sudo su rootpasswd rootexit 换源(使用24.04版本的不必要, 使用24.10或其他Bleeding Edge的不建议)                     ▶警告                                  换源前请看清楚版本, 这里以24.04为例                        方法一: 使用命令行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu24.04LTS配置及美化">
 <meta property="og:url" content="https://rukkhadevata123.github.io/2024/10/13/ubuntu/index.html">
 <meta property="og:site_name" content="Yoimiya&#39;s Blog">
-<meta property="og:description" content="重置root密码123sudo su rootpasswd rootexit 换源(可选)                     ▶警告                                  换源前请看清楚版本, 这里以24.04为例                        方法一: 使用命令行  1sudo nano &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;ubunt">
+<meta property="og:description" content="重置root密码123sudo su rootpasswd rootexit 换源(使用24.04版本的不必要, 使用24.10或其他Bleeding Edge的不建议)                     ▶警告                                  换源前请看清楚版本, 这里以24.04为例                        方法一: 使用命令行">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Beach_light.png">
 <meta property="article:published_time" content="2024-10-13T15:16:55.000Z">
-<meta property="article:modified_time" content="2024-11-22T11:12:11.944Z">
+<meta property="article:modified_time" content="2024-12-06T17:12:56.681Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="gnome">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.5k 字
         
       </span>
     
@@ -418,7 +418,7 @@
               <div class="markdown-body">
                 
                 <h2 id="重置root密码"><a href="#重置root密码" class="headerlink" title="重置root密码"></a>重置<code>root</code>密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> su root<br>passwd root<br><span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
-<h2 id="换源-可选"><a href="#换源-可选" class="headerlink" title="换源(可选)"></a>换源(可选)</h2>
+<h2 id="换源-使用24-04版本的不必要-使用24-10或其他Bleeding-Edge的不建议"><a href="#换源-使用24-04版本的不必要-使用24-10或其他Bleeding-Edge的不建议" class="headerlink" title="换源(使用24.04版本的不必要, 使用24.10或其他Bleeding Edge的不建议)"></a>换源(使用24.04版本的不必要, 使用24.10或其他Bleeding Edge的不建议)</h2>
     <div class="fold">
       <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-40264ee1" role="button" aria-expanded="false" aria-controls="collapse-40264ee1">
         <div class="fold-arrow">▶</div>警告
@@ -447,7 +447,7 @@
 <p><img src="/2024/10/13/ubuntu/2.png" srcset="/img/loading.gif" lazyload></p>
 <p>更新系统</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y<br></code></pre></td></tr></table></figure>
-<h2 id="加速Snap-存疑"><a href="#加速Snap-存疑" class="headerlink" title="加速Snap(存疑)"></a>加速<code>Snap</code>(存疑)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> snap install snap-store-proxy snap-store-proxy-client<br><span class="hljs-built_in">sudo</span> snap refresh<br></code></pre></td></tr></table></figure>
+<h2 id="加速Snap-配置选项等待验证"><a href="#加速Snap-配置选项等待验证" class="headerlink" title="加速Snap(配置选项等待验证)"></a>加速<code>Snap</code>(配置选项等待验证)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> snap install snap-store-proxy snap-store-proxy-client<br><span class="hljs-built_in">sudo</span> snap refresh<br></code></pre></td></tr></table></figure>
 <h2 id="安装解码器和微软字体"><a href="#安装解码器和微软字体" class="headerlink" title="安装解码器和微软字体"></a>安装解码器和微软字体</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install ubuntu-restricted-addons ubuntu-restricted-extras -y<br></code></pre></td></tr></table></figure>
 <h2 id="添加中文-和日语-语言包"><a href="#添加中文-和日语-语言包" class="headerlink" title="添加中文(和日语)语言包"></a>添加中文(和日语)语言包</h2><h3 id="安装语言包和输入法"><a href="#安装语言包和输入法" class="headerlink" title="安装语言包和输入法"></a>安装语言包和输入法</h3><p>打开<code>Language Support</code>, 添加所需语言, 重启即可</p>
 <p>重启后, 去设置添加中文<code>智能拼音</code>, 开启云拼音和词典, 和<code>Manjaro</code>一样</p>
@@ -482,7 +482,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">PATH=<span class="hljs-string">&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/yoimiya/Downloads/clion-2024.2.3/bin:/home/yoimiya/Downloads/RustRover-2024.2.4/bin:/home/yoimiya/.local/bin:&quot;</span><br><br>QT_STYLE_OVERRIDE=kvantum<br></code></pre></td></tr></table></figure>
 
 <blockquote>
-<p>强制使用<code>x11</code>, 则使用<code>env QT_QPA_PLATFORM=xcb python3 main.py</code><br>Qt应用程序可用选项举例<code>./PythagoreanTriple -style=adwaita</code> <code>qt6ct -style=kvantum</code> <code>env QT_SCALE_FACTOR=1.25 kate</code> <code>env QT_FONT_DPI=96 kate</code></p>
+<p>强制使用<code>x11</code>, 则使用<code>env QT_QPA_PLATFORM=xcb python3 main.py</code><br>Qt应用程序可用选项举例<code>./PythagoreanTriple -style=adwaita</code> <code>qt6ct -style=kvantum</code> <code>env QT_SCALE_FACTOR=1.25 kate</code> <code>env QT_FONT_DPI=96 kate</code><br>Qt应用程序其他选项<code>QT_AUTO_SCREEN_SCALE_FACTOR=1</code> <code>QT_SCALE_FACTOR=1.5</code></p>
 </blockquote>
 <h2 id="开启可变刷新率-VRR"><a href="#开启可变刷新率-VRR" class="headerlink" title="开启可变刷新率(VRR)"></a>开启可变刷新率(VRR)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">gsettings <span class="hljs-built_in">set</span> org.gnome.mutter experimental-features <span class="hljs-string">&quot;[&#x27;variable-refresh-rate&#x27;, &#x27;kms-modifiers&#x27;, &#x27;autoclose-xwayland&#x27;]&quot;</span><br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
 <h2 id="文件极速查找工具"><a href="#文件极速查找工具" class="headerlink" title="文件极速查找工具"></a>文件极速查找工具</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install plocate<br><span class="hljs-built_in">sudo</span> updatedb<br><span class="hljs-comment"># sudo updatedb -U /path</span><br>locate something<br></code></pre></td></tr></table></figure>
@@ -491,6 +491,9 @@
 <h2 id="磁盘空间查看器"><a href="#磁盘空间查看器" class="headerlink" title="磁盘空间查看器"></a>磁盘空间查看器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install filelight<br><span class="hljs-built_in">sudo</span> apt install krb5-config <span class="hljs-comment"># 不确定</span><br></code></pre></td></tr></table></figure>
 <h2 id="修复NTFS磁盘无法挂载"><a href="#修复NTFS磁盘无法挂载" class="headerlink" title="修复NTFS磁盘无法挂载"></a>修复NTFS磁盘无法挂载</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> lsblk<br><span class="hljs-built_in">sudo</span> ntfsfix --clear-dirty /dev/nvme0n1p4 <br></code></pre></td></tr></table></figure>
 
+<h2 id="把桌面换成KDE"><a href="#把桌面换成KDE" class="headerlink" title="把桌面换成KDE"></a>把桌面换成KDE</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install kubuntu-desktop<br></code></pre></td></tr></table></figure>
+
+<p>然后自行卸载安装输入法</p>
 <h2 id="增大vm-max-map-count以提升游戏体验"><a href="#增大vm-max-map-count以提升游戏体验" class="headerlink" title="增大vm.max_map_count以提升游戏体验"></a>增大<code>vm.max_map_count</code>以提升游戏体验</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;vm.max_map_count = 2147483642&#x27;</span> | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> /etc/sysctl.d/80-gamecompatibility.conf<br></code></pre></td></tr></table></figure>
 
 <h2 id="玩原神（参考b站up-GTX4090TI）"><a href="#玩原神（参考b站up-GTX4090TI）" class="headerlink" title="玩原神（参考b站up@GTX4090TI）"></a>玩原神（参考b站up@GTX4090TI）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install wine winetricks <br>winetricks <span class="hljs-comment"># 安装字体、dxvk、vkd3d、vcrun2022等组件</span><br></code></pre></td></tr></table></figure>

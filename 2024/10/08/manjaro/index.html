@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Fantasy-Landscape3.png">
 <meta property="article:published_time" content="2024-10-08T15:06:19.000Z">
-<meta property="article:modified_time" content="2024-11-22T05:14:19.925Z">
+<meta property="article:modified_time" content="2024-12-06T17:03:38.436Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="manjaro">
@@ -433,6 +433,9 @@
 <p><img src="/2024/10/08/manjaro/manjaro2.png" srcset="/img/loading.gif" lazyload></p>
 <p><img src="/2024/10/08/manjaro/manjaro3.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="换源并补全依赖"><a href="#换源并补全依赖" class="headerlink" title="换源并补全依赖"></a>换源并补全依赖</h2><p>选择中科大(ustc)或清华(tsinghua)的镜像站<br>使用<code>uname -r</code>命令查看内核版本, 并选择正确的内核头文件</p>
+<blockquote>
+<p>Bleeding Edge的用户不要换中国源，软件包更新慢</p>
+</blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman-mirrors -i -c China -m rank<br><span class="hljs-built_in">sudo</span> pacman -Syyu base-devel linux-headers power-profiles-daemon gst-libav gst-plugin-pipewire eog vlc xwaylandvideobridge fastfetch gedit locate egl-wayland xdg-desktop-portal xdg-desktop-portal-wlr grim --needed<br></code></pre></td></tr></table></figure>
 
 <h2 id="安装显卡驱动-虚拟机不需要"><a href="#安装显卡驱动-虚拟机不需要" class="headerlink" title="安装显卡驱动(虚拟机不需要)"></a>安装显卡驱动(虚拟机不需要)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> mhwd -a pci nonfree 0300 <br><span class="hljs-built_in">sudo</span> pacman -R libva-vdpau-driver xf86-video-intel xf86-video-nouveau <span class="hljs-comment">#解决VLC闪退</span><br><span class="hljs-built_in">sudo</span> pacman -S libva-nvidia-driver <span class="hljs-comment">#同上 </span><br></code></pre></td></tr></table></figure>
@@ -512,8 +515,6 @@
 <li><p>对于QEMU&#x2F;KVM虚拟机里的archlinux, 输入<code>sudo pacman -S spice-vdagent xf86-video-qxl qemu-guest-agent</code>, 然后编辑<code>/etc/mkinitcpio.conf</code>文件, 然后修改开头<code>MODULES=(qxl virtio-gpu virtio virtio_scsi virtio_blk virtio_pci virtio_net virtio_ring)</code>, 再<code>sudo mkinitcpio -P</code>重新生成镜像即可</p>
 </li>
 <li><p>中文压缩包乱码, 使用: <code>unzip -O gbk file.zip</code></p>
-</li>
-<li><p>(<em>存疑</em>)Qt6设置: 往<code>/etc/environment</code>文件追加<code>QT_QPA_PLATFORMTHEME=qt6ct</code>, 然后打开<code>Qt6设置</code>软件设置QT软件的风格(主要是KDE)</p>
 </li>
 <li><p>列出特定仓库软件包<code>pacman -Sl archlinuxcn | grep &#39;\[installed\]&#39;</code></p>
 </li>

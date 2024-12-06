@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Lofi-Room.png">
 <meta property="article:published_time" content="2024-08-22T09:56:30.000Z">
-<meta property="article:modified_time" content="2024-11-22T05:14:20.002Z">
+<meta property="article:modified_time" content="2024-12-06T17:30:08.386Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="WSL">
@@ -497,7 +497,7 @@
 <p><code>networkingMode=mirrored</code>为<code>镜像网络模式</code>，可以直接使用Windows本地代理<br><code>autoMemoryReclaim=gradual</code>意思是检测空闲CPU使用率后，自动缓慢释放缓存的内存</p>
 <h2 id="运行GUI应用"><a href="#运行GUI应用" class="headerlink" title="运行GUI应用"></a>运行GUI应用</h2><p>Windows安装完显卡驱动程序后，此选项应该开箱即用。<br>可以先使用<code>wsl.exe --update</code>更新再启动<br>可以尝试安装以下软件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install x11-apps gedit mesa-utils -y<br><span class="hljs-comment"># sudo apt install nautilus -y </span><br></code></pre></td></tr></table></figure>
-
+<p>出现错误可以参考<a target="_blank" rel="noopener" href="https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg">微软文档</a></p>
 <p>安装完成后，终端输入<code>xcalc</code>或<code>nautilus</code>回车即可开启这些GUI应用</p>
 <h2 id="配置kali-linux-Win-KeX会话"><a href="#配置kali-linux-Win-KeX会话" class="headerlink" title="配置kali-linux Win-KeX会话"></a>配置kali-linux Win-KeX会话</h2>
     <div class="fold">
