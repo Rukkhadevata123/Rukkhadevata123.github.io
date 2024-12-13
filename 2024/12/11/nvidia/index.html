@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/lofoten2.jpg">
 <meta property="article:published_time" content="2024-12-11T08:59:18.000Z">
-<meta property="article:modified_time" content="2024-12-11T09:55:43.168Z">
+<meta property="article:modified_time" content="2024-12-13T15:57:40.688Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="kde">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          565 字
+          569 字
         
       </span>
     
@@ -441,7 +441,7 @@
 <h2 id="更新系统，安装内核头文件"><a href="#更新系统，安装内核头文件" class="headerlink" title="更新系统，安装内核头文件"></a>更新系统，安装内核头文件</h2><ul>
 <li>Debian:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt -y full-upgrade -y<br><span class="hljs-built_in">sudo</span> apt install linux-headers-$(<span class="hljs-built_in">uname</span> -r) dkms -y<br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt -y full-upgrade<br><span class="hljs-built_in">sudo</span> apt install linux-headers-$(<span class="hljs-built_in">uname</span> -r) dkms -y<br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>openSUSE:</li>
@@ -451,7 +451,7 @@
 <h2 id="卸载以前的NVIDIA驱动"><a href="#卸载以前的NVIDIA驱动" class="headerlink" title="卸载以前的NVIDIA驱动"></a>卸载以前的NVIDIA驱动</h2><ul>
 <li>Debian:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt purge --auto-remove nvidia*<br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt purge --auto-remove nvidia*<br><span class="hljs-built_in">sudo</span> apt purge --auto-remove xserver-xorg-video-intel<br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>openSUSE:</li>
@@ -467,29 +467,28 @@
 
 <p>务必仔细阅读安装过程中的提示，一般来说，只需要一路回车即可。</p>
 <p>安装过程叫你重建<code>initramfs</code>，选择确定即可。</p>
-<h2 id="暂时-卸载显示管理器-如sddm"><a href="#暂时-卸载显示管理器-如sddm" class="headerlink" title="(暂时)卸载显示管理器(如sddm)"></a>(暂时)卸载显示管理器(如sddm)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt purge --auto-remove sddm <span class="hljs-comment"># Debian</span><br><span class="hljs-built_in">sudo</span> zypper <span class="hljs-built_in">rm</span> -u sddm <span class="hljs-comment"># openSUSE</span><br></code></pre></td></tr></table></figure>
+<h2 id="暂时-卸载显示管理器-如sddm"><a href="#暂时-卸载显示管理器-如sddm" class="headerlink" title="(暂时)卸载显示管理器(如sddm)"></a>(暂时)卸载显示管理器(如sddm)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt purge --auto-remove sddm <span class="hljs-comment"># Debian</span><br>zypper <span class="hljs-built_in">rm</span> -u sddm <span class="hljs-comment"># openSUSE</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="KMS早启动"><a href="#KMS早启动" class="headerlink" title="KMS早启动"></a>KMS早启动</h2><ul>
-<li>Debian:</li>
+<li><p>Debian:</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;nvidia\nnvidia_modeset\nnvidia_uvm\nnvidia_drm&quot;</span> | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> -a /etc/modules-load.d/modules.conf<br>update-initramfs -u<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>openSUSE:</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano /etc/dracut.conf.d/nvidia.conf<br></code></pre></td></tr></table></figure>
+
+<p>  在文件中添加：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">force_drivers+=<span class="hljs-string">&quot; nvidia nvidia_modeset nvidia_uvm nvidia_drm &quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>  保存后执行<code>drauct -f</code>。</p>
+</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;nvidia\nnvidia_modeset\nnvidia_uvm\nnvidia_drm&quot;</span> | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> -a /etc/modules-load.d/modules.conf<br><span class="hljs-built_in">sudo</span> update-initramfs -u<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>openSUSE:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano /etc/dracut.conf.d/nvidia.conf<br></code></pre></td></tr></table></figure>
-
-<p>在文件中添加：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">force_drivers+=<span class="hljs-string">&quot; nvidia nvidia_modeset nvidia_uvm nvidia_drm &quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>保存后执行<code>drauct -f</code>。</p>
-<h2 id="GRUB内核参数"><a href="#GRUB内核参数" class="headerlink" title="GRUB内核参数"></a><code>GRUB</code>内核参数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim /etc/default/grub<br></code></pre></td></tr></table></figure>
+<h2 id="GRUB内核参数"><a href="#GRUB内核参数" class="headerlink" title="GRUB内核参数"></a><code>GRUB</code>内核参数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /etc/default/grub<br></code></pre></td></tr></table></figure>
 
 <p>在打开的文件中找到<code>GRUB_CMDLINE_LINUX_DEFAULT</code>这一行，并添加以下参数：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;quiet splash nouveau.modeset=0 modprobe.blacklist=nouveau rd.driver.blacklist=nouveau nvidia-drm.modeset=1&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>保存并退出编辑器，然后更新<code>GRUB</code>配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> grub-mkconfig -o /boot/grub/grub.cfg<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg<br></code></pre></td></tr></table></figure>
 
 <h2 id="重启系统，检查驱动是否安装成功"><a href="#重启系统，检查驱动是否安装成功" class="headerlink" title="重启系统，检查驱动是否安装成功"></a>重启系统，检查驱动是否安装成功</h2><blockquote>
 <p>由于卸载了显示管理器，所以需要在TTY中以用户身份登入。</p>
