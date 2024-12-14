@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/lofoten2.jpg">
 <meta property="article:published_time" content="2024-12-11T08:59:18.000Z">
-<meta property="article:modified_time" content="2024-12-14T15:04:05.823Z">
+<meta property="article:modified_time" content="2024-12-14T15:08:42.324Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="kde">
@@ -489,7 +489,7 @@
 <h2 id="GRUB内核参数"><a href="#GRUB内核参数" class="headerlink" title="GRUB内核参数"></a><code>GRUB</code>内核参数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /etc/default/grub<br></code></pre></td></tr></table></figure>
 
 <p>在打开的文件中找到<code>GRUB_CMDLINE_LINUX_DEFAULT</code>这一行，并添加以下参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;quiet splash nouveau.modeset=0 modprobe.blacklist=nouveau rd.driver.blacklist=nouveau nvidia-drm.modeset=1 </span><br><span class="hljs-string">nvidia-drm.fbdev=1&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;quiet splash nouveau.modeset=0 modprobe.blacklist=nouveau rd.driver.blacklist=nouveau nvidia-drm.modeset=1 nvidia-drm.fbdev=1&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>保存并退出编辑器，然后更新<code>GRUB</code>配置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg<br></code></pre></td></tr></table></figure>
