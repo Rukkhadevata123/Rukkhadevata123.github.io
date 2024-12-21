@@ -1,0 +1,43 @@
+html, body {
+  cursor: url('/images/cursor/STMC_GenshinFurina_01_Normal.cur'), auto; /* 使用自定义光标 */
+}
+
+/* 封面大图 */
+.banner {
+  cursor: url('/images/cursor/STMC_GenshinNahida_01_Normal.cur'), auto; /* 使用自定义光标 */
+}
+
+/* 封面向下 */
+.scroll-down-bar {
+  cursor: url('/images/cursor/STMC_GenshinFurina_15_Finger(alternative).cur'), auto; /* 使用小手光标 */
+}
+
+/* 所有可跳转链接 */
+a[href] {
+  cursor: url('/images/cursor/STMC_Common_15_Finger.cur'), auto !important; /* 使用小手光标 */
+}
+
+/* 搜索框关闭按钮 */
+#local-search-close.close {
+  cursor: url('/images/cursor/STMC_GenshinFurina_15_Finger(alternative).cur'), auto; /* 使用小手光标 */
+}
+
+/* 搜索框、输入框 */
+input, textarea {
+  cursor: url('/images/cursor/STMC_GenshinNahida_06_Beam.cur'), auto; /* 使用竖条光标 */
+}
+
+/* 代码复制按钮 */
+.copy-btn {
+  cursor: url('/images/cursor/STMC_Common_15_Finger.cur'), auto; /* 使用小手光标 */
+}
+
+/* 按钮 */
+button {
+  cursor: url('/images/cursor/STMC_Common_15_Finger.cur'), auto !important; /* 使用小手光标 */
+}
+
+/* SVG 图标 */
+svg {
+  cursor: url('/images/cursor/STMC_Common_15_Finger.cur'), auto !important; /* 使用小手光标 */
+}
