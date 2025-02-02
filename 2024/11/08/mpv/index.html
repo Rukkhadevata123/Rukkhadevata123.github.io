@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Mountain_light.png">
 <meta property="article:published_time" content="2024-11-08T14:37:17.000Z">
-<meta property="article:modified_time" content="2024-12-22T02:13:49.434Z">
+<meta property="article:modified_time" content="2025-01-31T08:58:44.879Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="mpv">
@@ -454,7 +454,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gnome-text-editor ~/.config/mpv/mpv.conf<br></code></pre></td></tr></table></figure>
 
 <p>添加内容</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[svp]</span><br><span class="hljs-attr">input-ipc-server</span>=/tmp/mpvsocket     <span class="hljs-comment"># Receives input from SVP</span><br><span class="hljs-attr">hr-seek-framedrop</span>=<span class="hljs-literal">no</span>                <span class="hljs-comment"># Fixes audio desync</span><br><span class="hljs-attr">watch-later-options-remove</span>=vf       <span class="hljs-comment"># Do not remember SVP&#x27;s video filters</span><br><br><span class="hljs-comment"># Can fix stuttering in some cases, in other cases probably causes it. Try it if you experience stuttering.</span><br><span class="hljs-comment">#opengl-early-flush=yes</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs toml"><span class="hljs-section">[svp]</span><br><span class="hljs-attr">input-ipc-server</span>=/tmp/mpvsocket     <span class="hljs-comment"># Receives input from SVP</span><br><span class="hljs-attr">hr-seek-framedrop</span>=<span class="hljs-literal">no</span>                <span class="hljs-comment"># Fixes audio desync</span><br><span class="hljs-attr">watch-later-options-remove</span>=vf       <span class="hljs-comment"># Do not remember SVP&#x27;s video filters</span><br><br><span class="hljs-comment"># Can fix stuttering in some cases, in other cases probably causes it. Try it if you experience stuttering.</span><br><span class="hljs-comment">#opengl-early-flush=yes</span><br></code></pre></td></tr></table></figure>
 
 <p>之后启动<code>mpv</code>使用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mpv --profile=svp &lt;URL&gt;/&lt;path/to/video&gt;/&lt;path/to/*&gt;<br></code></pre></td></tr></table></figure>

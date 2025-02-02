@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/lofoten2.jpg">
 <meta property="article:published_time" content="2024-12-11T08:59:18.000Z">
-<meta property="article:modified_time" content="2024-12-21T07:34:15.726Z">
+<meta property="article:modified_time" content="2025-01-31T08:36:35.639Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="kde">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          588 字
+          590 字
         
       </span>
     
@@ -464,7 +464,7 @@
 
 <h2 id="从官网下载最新的驱动-run文件"><a href="#从官网下载最新的驱动-run文件" class="headerlink" title="从官网下载最新的驱动(run文件)"></a>从官网下载最新的驱动(run文件)</h2><p>从<a target="_blank" rel="noopener" href="https://www.nvidia.com/en-us/drivers/">此处</a>查找最新的驱动，下载到本地。</p>
 <p>截止到写这篇文章时，最新的驱动是<code>NVIDIA-Linux-x86_64-565.77.run</code>。可以把下好的文件放入<code>/home/&lt;username&gt;/Downloads</code>目录。</p>
-<h2 id="禁用Nouveau-驱动文件会帮你做这个事情"><a href="#禁用Nouveau-驱动文件会帮你做这个事情" class="headerlink" title="禁用Nouveau(驱动文件会帮你做这个事情)"></a>禁用Nouveau(驱动文件会帮你做这个事情)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;blacklist nouveau\noptions nouveau.modeset=0&quot;</span> | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> /etc/modprobe.d/blacklist-nouveau.conf<br><span class="hljs-built_in">sudo</span> update-initramfs -u <span class="hljs-comment"># Debian</span><br><span class="hljs-built_in">sudo</span> dracut -f <span class="hljs-comment"># openSUSE</span><br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
+<h2 id="禁用Nouveau-驱动文件会帮你做这个事情"><a href="#禁用Nouveau-驱动文件会帮你做这个事情" class="headerlink" title="禁用Nouveau(驱动文件会帮你做这个事情)"></a>禁用Nouveau(驱动文件会帮你做这个事情)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;blacklist nouveau\noptions nouveau.modeset=0&quot;</span> | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> /etc/modprobe.d/blacklist-nouveau.conf<br><span class="hljs-built_in">sudo</span> update-initramfs -u <span class="hljs-comment"># Debian</span><br><span class="hljs-built_in">sudo</span> dracut -f <span class="hljs-comment"># openSUSE</span><br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
 
 <h2 id="建议-使用nomodeset进入TTY"><a href="#建议-使用nomodeset进入TTY" class="headerlink" title="(建议)使用nomodeset进入TTY"></a>(建议)使用<code>nomodeset</code>进入TTY</h2><p>在GRUB界面按<code>e</code>键，在形如<code> linux /boot/vmlinuz-5.14.21-150400.20-default ... splash=silent ... quiet ...</code>的行末尾加上<code>nomodeset 3</code>，<code>3</code>的意思是进入第三个TTY，然后进入系统，以root用户登入TTY。</p>
 <h2 id="也可以直接在TTY使用快捷键Ctrl-Alt-F3进入TTY3，然后登入root用户。"><a href="#也可以直接在TTY使用快捷键Ctrl-Alt-F3进入TTY3，然后登入root用户。" class="headerlink" title="也可以直接在TTY使用快捷键Ctrl+Alt+F3进入TTY3，然后登入root用户。"></a>也可以直接在TTY使用快捷键<code>Ctrl+Alt+F3</code>进入TTY3，然后登入root用户。</h2><h2 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># ROOT用户</span><br><span class="hljs-built_in">cd</span> /home/&lt;username&gt;/Downloads<br><span class="hljs-built_in">chmod</span> +x NVIDIA-Linux-x86_64-565.77.run<br>./NVIDIA-Linux-x86_64-565.77.run<br></code></pre></td></tr></table></figure>
@@ -475,7 +475,7 @@
 
 <h2 id="KMS早启动"><a href="#KMS早启动" class="headerlink" title="KMS早启动"></a>KMS早启动</h2><ul>
 <li><p>Debian:</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;nvidia\nnvidia_modeset\nnvidia_uvm\nnvidia_drm&quot;</span> | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> -a /etc/modules-load.d/modules.conf<br>update-initramfs -u<br></code></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;nvidia\nnvidia_modeset\nnvidia_uvm\nnvidia_drm&quot;</span> | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> -a /etc/modules-load.d/modules.conf<br>update-initramfs -u<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>openSUSE:</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano /etc/dracut.conf.d/nvidia.conf<br></code></pre></td></tr></table></figure>
