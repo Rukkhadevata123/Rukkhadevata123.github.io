@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/Lofi-Cafe1.png">
 <meta property="article:published_time" content="2024-08-25T14:52:42.000Z">
-<meta property="article:modified_time" content="2024-12-22T02:13:49.434Z">
+<meta property="article:modified_time" content="2025-02-17T04:41:50.753Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="win10">
 <meta property="article:tag" content="Linux">
@@ -194,6 +194,18 @@
               <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
                 <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/piano-typing-game" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>小游戏</span>
               </a>
             </li>
           
@@ -388,19 +400,19 @@
     
       
       
-        <a href="/2024/09/15/opensuse/" title="体验Hyper-V中的openSUSE-Tumbleweed"
+        <a href="/2024/08/26/uki/" title="使用systemd-boot管理统一内核镜像"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">体验Hyper-V中的openSUSE-Tumbleweed</span>
+          <span class="category-post">使用systemd-boot管理统一内核镜像</span>
         </a>
       
     
       
       
-        <a href="/2024/08/26/uki/" title="使用systemd-boot管理统一内核镜像"
+        <a href="/2024/09/15/opensuse/" title="在Hyper-V中配置openSUSE-Tumbleweed"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">使用systemd-boot管理统一内核镜像</span>
+          <span class="category-post">在Hyper-V中配置openSUSE-Tumbleweed</span>
         </a>
       
     
@@ -526,7 +538,7 @@
 <p>重启进入archlinux，为方便操作，请用<code>su</code>进入root账户</p>
 <h3 id="处理windows分区情况"><a href="#处理windows分区情况" class="headerlink" title="处理windows分区情况"></a>处理windows分区情况</h3><p>先安装<code>edk2-shell</code>软件包</p>
 <p>复制shellx64.efi以便systemd-boot检测到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> /usr/share/edk2-shell/x64/Shell.efi /efi/shellx64.efi<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> /usr/share/edk2-shell/x64/Shell.efi /efi/shellx64.efi<br></code></pre></td></tr></table></figure>
 
 <p>接下来用<code>fdisk -l</code>命令查看windows的<code>efi</code>分区位置，再用<code>blkid</code>命令，看一下这个分区的UUID</p>
 <p>重启，引导菜单选择<code>EFI Shell</code>，输入<code>map</code>查看所有分区，找到上一步分区对应的UUID，查看这一行开头的<code>Alias</code>字样后面的内容，例如可能是<code>HD0a65535a1</code>，记下这串字符</p>
