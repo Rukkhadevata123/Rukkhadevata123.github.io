@@ -1,0 +1,1163 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Dawn Chirps">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="完整配置请参考Zsh Key Bindings and Aliases OverviewThis document provides a simplified and accurate breakdown of the key bindings and aliases in your Zsh configuration. Essential Key Bindings   Key Combinati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ChatGPT-4o辅助的zsh配置">
+<meta property="og:url" content="https://rukkhadevata123.github.io/2024/09/26/zsh/index.html">
+<meta property="og:site_name" content="Yoimiya&#39;s Blog">
+<meta property="og:description" content="完整配置请参考Zsh Key Bindings and Aliases OverviewThis document provides a simplified and accurate breakdown of the key bindings and aliases in your Zsh configuration. Essential Key Bindings   Key Combinati">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rukkhadevata123.github.io/images/forest-landscape.jpg">
+<meta property="article:published_time" content="2024-09-26T05:50:40.000Z">
+<meta property="article:modified_time" content="2025-03-28T04:03:46.963Z">
+<meta property="article:author" content="Dawn Chirps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="zsh">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rukkhadevata123.github.io/images/forest-landscape.jpg">
+  
+  
+  
+  <title>ChatGPT-4o辅助的zsh配置 - Yoimiya&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/effect.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rukkhadevata123.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yoimiya&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/piano-typing-game" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>小游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.xsot.cn/bing?jump=true') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ChatGPT-4o辅助的zsh配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-26 13:50" pubdate>
+          2024年9月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          171 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          2 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux Daily Use"
+        id="heading-73abfeb7b5b4a95fadf47401ed012632" role="tab" data-toggle="collapse" href="#collapse-73abfeb7b5b4a95fadf47401ed012632"
+        aria-expanded="true"
+      >
+        Linux Daily Use
+        <span class="list-group-count">(9)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-73abfeb7b5b4a95fadf47401ed012632"
+           role="tabpanel" aria-labelledby="heading-73abfeb7b5b4a95fadf47401ed012632">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/09/20/nvim/" title="ChatGPT-4o辅助的neovim配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ChatGPT-4o辅助的neovim配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/26/zsh/" title="ChatGPT-4o辅助的zsh配置"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">ChatGPT-4o辅助的zsh配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/08/manjaro/" title="Manjaro Gnome配置及美化指南"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Manjaro Gnome配置及美化指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/13/ubuntu/" title="Ubuntu24.04LTS配置及美化"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Ubuntu24.04LTS配置及美化</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/25/efi/" title="Windows+archlinux分区和引导方案"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows+archlinux分区和引导方案</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/11/08/mpv/" title="mpv播放器+SVP4+Anime4K简单配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mpv播放器+SVP4+Anime4K简单配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/12/11/nvidia/" title="openSUSE/Debian/kali手动安装NVIDIA显卡驱动"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">openSUSE/Debian/kali手动安装NVIDIA显卡驱动</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/26/uki/" title="使用systemd-boot管理统一内核镜像"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">使用systemd-boot管理统一内核镜像</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/15/opensuse/" title="在Hyper-V中配置openSUSE-Tumbleweed"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在Hyper-V中配置openSUSE-Tumbleweed</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ChatGPT-4o辅助的zsh配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="完整配置请参考"><a href="#完整配置请参考" class="headerlink" title="完整配置请参考"></a>完整配置请<a target="_blank" rel="noopener" href="https://yoimiyalove.top/2024/10/13/ubuntu/">参考</a></h2><h1 id="Zsh-Key-Bindings-and-Aliases-Overview"><a href="#Zsh-Key-Bindings-and-Aliases-Overview" class="headerlink" title="Zsh Key Bindings and Aliases Overview"></a>Zsh Key Bindings and Aliases Overview</h1><p>This document provides a simplified and accurate breakdown of the key bindings and aliases in your Zsh configuration.</p>
+<h2 id="Essential-Key-Bindings"><a href="#Essential-Key-Bindings" class="headerlink" title="Essential Key Bindings"></a>Essential Key Bindings</h2><table>
+<thead>
+<tr>
+<th>Key Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Home</code></td>
+<td>Move to the beginning of the line</td>
+</tr>
+<tr>
+<td><code>End</code></td>
+<td>Move to the end of the line</td>
+</tr>
+<tr>
+<td><code>Insert</code></td>
+<td>Toggle overwrite mode</td>
+</tr>
+<tr>
+<td><code>Delete</code></td>
+<td>Delete the character under the cursor</td>
+</tr>
+<tr>
+<td><code>Right Arrow</code></td>
+<td>Move forward one character</td>
+</tr>
+<tr>
+<td><code>Left Arrow</code></td>
+<td>Move backward one character</td>
+</tr>
+<tr>
+<td><code>Page Up</code></td>
+<td>Search backward through command history</td>
+</tr>
+<tr>
+<td><code>Page Down</code></td>
+<td>Search forward through command history</td>
+</tr>
+<tr>
+<td><code>Ctrl + Right Arrow</code></td>
+<td>Move forward one word</td>
+</tr>
+<tr>
+<td><code>Ctrl + Left Arrow</code></td>
+<td>Move backward one word</td>
+</tr>
+</tbody></table>
+<h2 id="Simplified-Editing-and-Navigation"><a href="#Simplified-Editing-and-Navigation" class="headerlink" title="Simplified Editing and Navigation"></a>Simplified Editing and Navigation</h2><table>
+<thead>
+<tr>
+<th>Key Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Shift + Tab</code></td>
+<td>Undo the last action (reverse undo)</td>
+</tr>
+<tr>
+<td><code>Ctrl + Backspace</code></td>
+<td>Delete the previous word</td>
+</tr>
+<tr>
+<td><code>Ctrl + U</code></td>
+<td>Delete the line before the cursor</td>
+</tr>
+<tr>
+<td><code>Ctrl + Delete</code></td>
+<td>Delete the next word</td>
+</tr>
+</tbody></table>
+<h2 id="History-Search"><a href="#History-Search" class="headerlink" title="History Search"></a>History Search</h2><table>
+<thead>
+<tr>
+<th>Key Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Up Arrow</code></td>
+<td>Search up through command history</td>
+</tr>
+<tr>
+<td><code>Down Arrow</code></td>
+<td>Search down through command history</td>
+</tr>
+</tbody></table>
+<h2 id="Terminfo-Key-Bindings"><a href="#Terminfo-Key-Bindings" class="headerlink" title="Terminfo Key Bindings"></a>Terminfo Key Bindings</h2><p>(These are optional key bindings using terminfo for portability.)</p>
+<table>
+<thead>
+<tr>
+<th>Key Combination</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$&#123;terminfo[khome]&#125;</code></td>
+<td>Move to the beginning of the line (Home)</td>
+</tr>
+<tr>
+<td><code>$&#123;terminfo[kend]&#125;</code></td>
+<td>Move to the end of the line (End)</td>
+</tr>
+<tr>
+<td><code>$&#123;terminfo[kich1]&#125;</code></td>
+<td>Toggle overwrite mode (Insert)</td>
+</tr>
+<tr>
+<td><code>$&#123;terminfo[kdch1]&#125;</code></td>
+<td>Delete the character under the cursor</td>
+</tr>
+<tr>
+<td><code>$&#123;terminfo[kcuu1]&#125;</code></td>
+<td>Move up one line or navigate history (Up)</td>
+</tr>
+<tr>
+<td><code>$&#123;terminfo[kcud1]&#125;</code></td>
+<td>Move down one line or navigate history (Down)</td>
+</tr>
+<tr>
+<td><code>$&#123;terminfo[kcub1]&#125;</code></td>
+<td>Move backward one character (Left)</td>
+</tr>
+<tr>
+<td><code>$&#123;terminfo[kcuf1]&#125;</code></td>
+<td>Move forward one character (Right)</td>
+</tr>
+<tr>
+<td><code>$&#123;terminfo[kpp]&#125;</code></td>
+<td>Move to the beginning of the history (Page Up)</td>
+</tr>
+<tr>
+<td><code>$&#123;terminfo[knp]&#125;</code></td>
+<td>Move to the end of the history (Page Down)</td>
+</tr>
+</tbody></table>
+<h2 id="Aliases"><a href="#Aliases" class="headerlink" title="Aliases"></a>Aliases</h2><table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>c</code></td>
+<td><code>clear</code></td>
+</tr>
+<tr>
+<td><code>nf</code></td>
+<td><code>fastfetch</code></td>
+</tr>
+<tr>
+<td><code>pf</code></td>
+<td><code>fastfetch</code></td>
+</tr>
+<tr>
+<td><code>ff</code></td>
+<td><code>fastfetch</code></td>
+</tr>
+<tr>
+<td><code>ls</code></td>
+<td><code>eza -a --icons</code></td>
+</tr>
+<tr>
+<td><code>ll</code></td>
+<td><code>eza -al --icons</code></td>
+</tr>
+<tr>
+<td><code>lt</code></td>
+<td><code>eza -a --tree --level=1 --icons</code></td>
+</tr>
+<tr>
+<td><code>shutdown</code></td>
+<td><code>systemctl poweroff</code></td>
+</tr>
+<tr>
+<td><code>v</code></td>
+<td><code>$EDITOR</code></td>
+</tr>
+<tr>
+<td><code>vim</code></td>
+<td><code>$EDITOR</code></td>
+</tr>
+<tr>
+<td><code>wifi</code></td>
+<td><code>nmtui</code></td>
+</tr>
+<tr>
+<td><code>Qtile</code></td>
+<td><code>startx</code></td>
+</tr>
+<tr>
+<td><code>gs</code></td>
+<td><code>git status</code></td>
+</tr>
+<tr>
+<td><code>ga</code></td>
+<td><code>git add</code></td>
+</tr>
+<tr>
+<td><code>gc</code></td>
+<td><code>git commit -m</code></td>
+</tr>
+<tr>
+<td><code>gp</code></td>
+<td><code>git push</code></td>
+</tr>
+<tr>
+<td><code>gpl</code></td>
+<td><code>git pull</code></td>
+</tr>
+<tr>
+<td><code>gst</code></td>
+<td><code>git stash</code></td>
+</tr>
+<tr>
+<td><code>gsp</code></td>
+<td><code>git stash; git pull</code></td>
+</tr>
+<tr>
+<td><code>gcheck</code></td>
+<td><code>git checkout</code></td>
+</tr>
+<tr>
+<td><code>gcredential</code></td>
+<td><code>git config credential.helper store</code></td>
+</tr>
+<tr>
+<td><code>update-grub</code></td>
+<td><code>sudo grub-mkconfig -o /boot/grub/grub.cfg</code></td>
+</tr>
+<tr>
+<td><code>res1</code></td>
+<td><code>xrandr --output DisplayPort-0 --mode 2560x1440 --rate 165</code></td>
+</tr>
+<tr>
+<td><code>res2</code></td>
+<td><code>xrandr --output DisplayPort-0 --mode 1920x1080 --rate 165</code></td>
+</tr>
+<tr>
+<td><code>setkb</code></td>
+<td><code>setxkbmap de; echo &quot;Keyboard set back to de.&quot;</code></td>
+</tr>
+<tr>
+<td><code>cp</code></td>
+<td><code>cp -i</code></td>
+</tr>
+<tr>
+<td><code>df</code></td>
+<td><code>df -h</code></td>
+</tr>
+<tr>
+<td><code>free</code></td>
+<td><code>free -m</code></td>
+</tr>
+<tr>
+<td><code>gitu</code></td>
+<td><code>git add . &amp;&amp; git commit &amp;&amp; git push</code></td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td><code>history 0</code></td>
+</tr>
+<tr>
+<td><code>grep</code></td>
+<td><code>grep --color=auto</code></td>
+</tr>
+<tr>
+<td><code>fgrep</code></td>
+<td><code>fgrep --color=auto</code></td>
+</tr>
+<tr>
+<td><code>egrep</code></td>
+<td><code>egrep --color=auto</code></td>
+</tr>
+<tr>
+<td><code>diff</code></td>
+<td><code>diff --color=auto</code></td>
+</tr>
+<tr>
+<td><code>rm</code></td>
+<td><code>rm -i</code></td>
+</tr>
+<tr>
+<td><code>ip</code></td>
+<td><code>ip --color=auto</code></td>
+</tr>
+<tr>
+<td><code>la</code></td>
+<td><code>ls -A</code></td>
+</tr>
+<tr>
+<td><code>make</code></td>
+<td><code>make -j\</code>nproc`&#96;</td>
+</tr>
+<tr>
+<td><code>ninja</code></td>
+<td><code>ninja -j\</code>nproc`&#96;</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td><code>ninja</code></td>
+</tr>
+<tr>
+<td><code>please</code></td>
+<td><code>sudo</code></td>
+</tr>
+<tr>
+<td><code>tb</code></td>
+<td><code>nc termbin.com 9999</code></td>
+</tr>
+<tr>
+<td><code>jctl</code></td>
+<td><code>journalctl -p 3 -xb</code></td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td><code>sudo apt update &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo snap refresh &amp;&amp; flatpak update &amp;&amp; sudo apt autoremove -y &amp;&amp; sudo apt autoclean -y &amp;&amp; sudo apt clean -y &amp;&amp; flatpak uninstall --unused</code></td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux-Daily-Use/" class="category-chain-item">Linux Daily Use</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/zsh/" class="print-no-link">#zsh</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ChatGPT-4o辅助的zsh配置</div>
+      <div>https://rukkhadevata123.github.io/2024/09/26/zsh/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Dawn Chirps</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/29/eden/" title="eden*">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">eden*</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/20/opensuse-wsl/" title="WSL开发环境搭建(openSUSE-Tumbleweed篇)">
+                        <span class="hidden-mobile">WSL开发环境搭建(openSUSE-Tumbleweed篇)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23lil0q2ASY6UVQitS","clientSecret":"1c6a251a126a26c1f6b59cff992adaf9ebdbac98","repo":"Rukkhadevata123.github.io","owner":"Rukkhadevata123","admin":["Rukkhadevata123"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '51bfb07e40a8b917ca468abae0686469'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/effect.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
