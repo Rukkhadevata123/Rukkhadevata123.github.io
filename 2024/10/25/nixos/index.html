@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/northern-night.jpg">
 <meta property="article:published_time" content="2024-10-24T17:02:14.000Z">
-<meta property="article:modified_time" content="2025-03-28T05:15:45.379Z">
+<meta property="article:modified_time" content="2025-03-29T10:54:50.469Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="NixOS">
@@ -260,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          986 字
+          877 字
         
       </span>
     
@@ -271,7 +271,7 @@
         
         
         
-          9 分钟
+          8 分钟
         
       </span>
     
@@ -468,9 +468,6 @@
 <h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
 <li><p>可以安装<code>linux-zen</code>内核</p>
 </li>
-<li><p>下列配置使用<code>nix-shell</code>可以使用<code>clang</code>工具链, 以及<code>Qt</code>应用程序开发:</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-keyword">with</span> <span class="hljs-built_in">import</span> <span class="hljs-symbol">&lt;nixpkgs&gt;</span> &#123;<br>  <span class="hljs-attr">config</span> <span class="hljs-operator">=</span> &#123;<br>    <span class="hljs-attr">allowUnfree</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<br>  &#125;;<br>&#125;;<br><span class="hljs-keyword">let</span><br>  <span class="hljs-attr">gccForLibs</span> <span class="hljs-operator">=</span> stdenv.cc.cc;<br><span class="hljs-keyword">in</span><br>stdenv.mkDerivation &#123;<br>  <span class="hljs-attr">name</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;llvm-env&quot;</span>;<br>  <span class="hljs-attr">buildInputs</span> <span class="hljs-operator">=</span> [<br>    <span class="hljs-comment"># clang</span><br>  ];<br><br>  <span class="hljs-attr">CPLUS_INCLUDE_PATH</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;gccForLibs&#125;</span>/include/c++/<span class="hljs-subst">$&#123;gccForLibs.version&#125;</span>:<span class="hljs-subst">$&#123;gccForLibs&#125;</span>/include/c++/<span class="hljs-subst">$&#123;gccForLibs.version&#125;</span>/x86_64-unknown-linux-gnu:<span class="hljs-subst">$&#123;gccForLibs&#125;</span>/lib/gcc/x86_64-unknown-linux-gnu/<span class="hljs-subst">$&#123;gccForLibs.version&#125;</span>/include:<span class="hljs-subst">$&#123;stdenv.cc.libc.dev&#125;</span>/include&quot;</span>;<br>  <span class="hljs-attr">QT_QPA_PLATFORM_PLUGIN_PATH</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;libsForQt5.qt5.qtbase&#125;</span>/lib/qt-<span class="hljs-subst">$&#123;libsForQt5.qt5.qtbase.version&#125;</span>/plugins/platforms&quot;</span>;<br>  <span class="hljs-attr">shellHook</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-string">    echo <span class="hljs-subst">$&#123;libsForQt5.qt5.qtbase.version&#125;</span>;</span><br><span class="hljs-string">  &#x27;&#x27;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-</li>
 <li><p>关于<code>Pycharm</code>无法使用的问题, 手动导入环境变量, 先在终端运行, 然后把完整文本路径导入<code>Pycharm</code>对应位置(不是直接把下面的命令导入<code>Pycharm</code>):</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> LD_LIBRARY_PATH=$(find /nix/store -<span class="hljs-built_in">type</span> d -name <span class="hljs-string">&#x27;*steam-run-fhs*&#x27;</span> -<span class="hljs-built_in">exec</span> <span class="hljs-built_in">echo</span> -n &#123;&#125;<span class="hljs-string">&#x27;/usr/lib32:&#x27;</span>&#123;&#125;<span class="hljs-string">&#x27;/usr/lib64:&#x27;</span> \;)<br></code></pre></td></tr></table></figure>
 
@@ -482,7 +479,9 @@
 </li>
 <li><p><code>nix-shell -p gtk4 gtk3 pkg-config</code>此配置用于rust-gtk开发</p>
 </li>
-<li><p>获取软件包列表 <code>nix-env -qaP --description &gt; packages.txt</code></p>
+<li><p>获取软件包列表 <code>nix-env -qaP --description &gt; pkglist.txt</code></p>
+</li>
+<li><p>其他补充说明请查看仓库中的配置文件</p>
 </li>
 </ul>
 
