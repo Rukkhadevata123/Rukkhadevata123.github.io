@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Dawn Chirps">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="This document is written causally, and is not a complete guide. It is intended to be a quick reference for post-installation tasks on Arch Linux.  Pacman123sudo vim &#x2F;etc&#x2F;pacman.confsudo vim &#x2F;etc&#x2F;pacm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch Linux Post-Install Guide">
+<meta property="og:url" content="https://rukkhadevata123.github.io/2025/06/03/arch-post-install/index.html">
+<meta property="og:site_name" content="Yoimiya&#39;s Blog">
+<meta property="og:description" content="This document is written causally, and is not a complete guide. It is intended to be a quick reference for post-installation tasks on Arch Linux.  Pacman123sudo vim &#x2F;etc&#x2F;pacman.confsudo vim &#x2F;etc&#x2F;pacm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rukkhadevata123.github.io/images/river_to_castle_theme_blue.jpg">
+<meta property="article:published_time" content="2025-06-03T06:27:09.000Z">
+<meta property="article:modified_time" content="2025-06-03T07:42:54.400Z">
+<meta property="article:author" content="Dawn Chirps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="arch">
+<meta property="article:tag" content="gnome">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rukkhadevata123.github.io/images/river_to_castle_theme_blue.jpg">
+  
+  
+  
+  <title>Arch Linux Post-Install Guide - Yoimiya&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/effect.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rukkhadevata123.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yoimiya&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/piano-typing-game" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>小游戏</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.xsot.cn/bing?jump=true') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Arch Linux Post-Install Guide"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-03 14:27" pubdate>
+          2025年6月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux Daily Use"
+        id="heading-73abfeb7b5b4a95fadf47401ed012632" role="tab" data-toggle="collapse" href="#collapse-73abfeb7b5b4a95fadf47401ed012632"
+        aria-expanded="true"
+      >
+        Linux Daily Use
+        <span class="list-group-count">(10)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-73abfeb7b5b4a95fadf47401ed012632"
+           role="tabpanel" aria-labelledby="heading-73abfeb7b5b4a95fadf47401ed012632">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2025/06/03/arch-post-install/" title="Arch Linux Post-Install Guide"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Arch Linux Post-Install Guide</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/20/nvim/" title="ChatGPT-4o辅助的neovim配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ChatGPT-4o辅助的neovim配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/26/zsh/" title="ChatGPT-4o辅助的zsh配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ChatGPT-4o辅助的zsh配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/08/manjaro/" title="Manjaro Gnome配置及美化指南"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Manjaro Gnome配置及美化指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/13/ubuntu/" title="Ubuntu24.04LTS配置及美化"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Ubuntu24.04LTS配置及美化</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/25/efi/" title="Windows+archlinux分区和引导方案"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows+archlinux分区和引导方案</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/11/08/mpv/" title="mpv播放器+SVP4+Anime4K简单配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mpv播放器+SVP4+Anime4K简单配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/12/11/nvidia/" title="openSUSE/Debian/kali手动安装NVIDIA显卡驱动"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">openSUSE/Debian/kali手动安装NVIDIA显卡驱动</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/26/uki/" title="使用systemd-boot管理统一内核镜像"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">使用systemd-boot管理统一内核镜像</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/15/opensuse/" title="在Hyper-V中配置openSUSE-Tumbleweed"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在Hyper-V中配置openSUSE-Tumbleweed</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Arch Linux Post-Install Guide</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>This document is written causally, and is not a complete guide. It is intended to be a quick reference for post-installation tasks on Arch Linux.</p>
+</blockquote>
+<h2 id="Pacman"><a href="#Pacman" class="headerlink" title="Pacman"></a>Pacman</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim /etc/pacman.conf<br><span class="hljs-built_in">sudo</span> vim /etc/pacman.d/mirrorlist<br><span class="hljs-built_in">sudo</span> pacman -S archlinuxcn-keyring<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs toml"><span class="hljs-section">[core]</span><br><span class="hljs-attr">Include</span> = /etc/pacman.d/mirrorlist<br><br><span class="hljs-section">[extra]</span><br><span class="hljs-attr">Include</span> = /etc/pacman.d/mirrorlist<br><br><span class="hljs-section">[multilib]</span><br><span class="hljs-attr">Include</span> = /etc/pacman.d/mirrorlist<br><br><span class="hljs-section">[archlinuxcn]</span><br><span class="hljs-attr">Server</span> = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="hljs-variable">$arch</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Drivers"><a href="#Drivers" class="headerlink" title="Drivers"></a>Drivers</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S base-devel linux-headers power-profiles-daemon gst-libav gst-plugin-pipewire eog egl-wayland xdg-desktop-portal xdg-desktop-portal-wlr grim --needed<br><span class="hljs-built_in">sudo</span> pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader<br><span class="hljs-built_in">sudo</span> pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader<br><span class="hljs-built_in">sudo</span> pacman -S intel-compute-runtime hashcat cuda cuda-toolkit <br><span class="hljs-built_in">sudo</span> pacman -S switcheroo-control switcheroo nvidia-prime libva-utils<br>lsmod | grep kvm<br><span class="hljs-built_in">cat</span> /proc/driver/nvidia/params | grep PreserveVideoMemoryAllocations<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> /sys/module/nvidia_drm/parameters/fbdev<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> /sys/module/nvidia_drm/parameters/modeset<br><span class="hljs-comment"># echo &#x27;GRUB_CMDLINE_LINUX=&quot;$GRUB_CMDLINE_LINUX nvidia-drm.fbdev=1&quot;&#x27; | sudo tee /etc/default/grub.d/nvidia-fbdev.cfg</span><br><span class="hljs-comment"># echo &#x27;GRUB_CMDLINE_LINUX=&quot;$GRUB_CMDLINE_LINUX nvidia-drm.modeset=1&quot;&#x27; | sudo tee /etc/default/grub.d/nvidia-modeset.cfg</span><br><span class="hljs-comment"># echo &#x27;options nvidia NVreg_PreserveVideoMemoryAllocations=1&#x27; | sudo tee /etc/modprobe.d/nvidia-power-management.conf</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Grub"><a href="#Grub" class="headerlink" title="Grub"></a>Grub</h2><figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs toml"><span class="hljs-comment"># /etc/default/grub</span><br><span class="hljs-attr">GRUB_CMDLINE_LINUX_DEFAULT</span>=<span class="hljs-string">&quot;loglevel=3 sysrq_always_enabled=1&quot;</span><br><span class="hljs-attr">GRUB_THEME</span>=<span class="hljs-string">&quot;/usr/share/grub/themes/Hyacine/theme.txt&quot;</span><br><span class="hljs-attr">GRUB_DISABLE_OS_PROBER</span>=<span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S os-prober efibootmgr<br><span class="hljs-built_in">sudo</span> grub-mkconfig -o /boot/grub/grub.cfg<br></code></pre></td></tr></table></figure>
+
+<h2 id="Desktop-Environment-Wayland"><a href="#Desktop-Environment-Wayland" class="headerlink" title="Desktop Environment(Wayland)"></a>Desktop Environment(Wayland)</h2><ul>
+<li>Avatar</li>
+<li>Wallpaper</li>
+</ul>
+<h3 id="Gnome"><a href="#Gnome" class="headerlink" title="Gnome"></a>Gnome</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S extension-manager gnome-shell-extension-blur-my-shell gnome-shell-extension-dash-to-dock gnome-shell-extension-easyscreencast gnome-shell-extension-gnome-ui-tune-git gnome-shell-extension-gsconnect gnome-shell-extension-just-perfection-desktop gnome-shell-extension-kimpanel-git<br><span class="hljs-built_in">sudo</span> pacman -S gnome-browser-connector gnome-shell-extension-appindicator gnome-shell-extension-desktop-icons-ng gnome-shell-extensions<br>gsettings <span class="hljs-built_in">set</span> org.gnome.mutter experimental-features <span class="hljs-string">&quot;[&#x27;scale-monitor-framebuffer&#x27;, &#x27;kms-modifiers&#x27;, &#x27;autoclose-xwayland&#x27;, &#x27;variable-refresh-rate&#x27;, &#x27;xwayland-native-scaling&#x27;]&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="QT"><a href="#QT" class="headerlink" title="QT"></a>QT</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S kvantum<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;QT_STYLE_OVERRIDE=kvantum&#x27;</span> &gt;&gt; /etc/environment<br></code></pre></td></tr></table></figure>
+
+<h3 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S orchis-theme papirus-icon-theme papirus-folders bibata-cursor-theme<br>papirus-folders -C brown --theme Papirus-Light<br></code></pre></td></tr></table></figure>
+
+<h3 id="IME"><a href="#IME" class="headerlink" title="IME"></a>IME</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S fcitx5 fcitx5-chinese-addons fcitx5-configtool  <br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;QT_IM_MODULE=fcitx&#x27;</span> &gt;&gt; /etc/environment<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;XMODIFIERS=@im=fcitx&#x27;</span> &gt;&gt; /etc/environment<br><span class="hljs-built_in">cat</span> ~/.config/electron-flags.conf<br><span class="hljs-built_in">ln</span> -sf ~/.config/electron-flags.conf ~/.config/chrome-flags.conf<br><span class="hljs-built_in">ln</span> -sf ~/.config/electron-flags.conf ~/.config/chromium-flags.conf<br><span class="hljs-built_in">ln</span> -sf ~/.config/electron-flags.conf ~/.config/code-flags.conf<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">--enable-features=WaylandWindowDecorations<br>--enable-features=TouchpadOverscrollHistoryNavigation<br>--enable-features=WebRTCPipeWireCapturer<br>--ozone-platform-hint=auto<br>--enable-wayland-ime --wayland-text-input-version=3<br></code></pre></td></tr></table></figure>
+
+<h3 id="Zram"><a href="#Zram" class="headerlink" title="Zram"></a>Zram</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S zram-generator<br><span class="hljs-built_in">sudo</span> vim /etc/systemd/zram-generator.conf<br><span class="hljs-built_in">sudo</span> systemctl restart systemd-zram-setup@zram0.service<br>free -h<br>zramctl<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs toml"><span class="hljs-section">[zram0]</span><br><span class="hljs-attr">zram-size</span> = min(ram / <span class="hljs-number">2</span>, <span class="hljs-number">4096</span>)<br><span class="hljs-attr">compression-algorithm</span> = zstd<br></code></pre></td></tr></table></figure>
+
+<h3 id="Print"><a href="#Print" class="headerlink" title="Print"></a>Print</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S cups<br><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> --now cups<br></code></pre></td></tr></table></figure>
+
+<h3 id="Fonts"><a href="#Fonts" class="headerlink" title="Fonts"></a>Fonts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> usermod -aG disk <span class="hljs-variable">$USER</span><br><span class="hljs-comment"># Logout and re-login</span><br>yay -S ttf-ms-win11-auto-zh_cn --noconfirm<br><span class="hljs-built_in">sudo</span> pacman -S otf-aurulent-nerd otf-codenewroman-nerd otf-comicshanns-nerd otf-commit-mono-nerd otf-droid-nerd otf-firamono-nerd otf-geist-mono-nerd otf-hasklig-nerd otf-hermit-nerd otf-monaspace-nerd otf-opendyslexic-nerd otf-overpass-nerd ttf-0xproto-nerd ttf-3270-nerd ttf-agave-nerd ttf-anonymouspro-nerd ttf-arimo-nerd ttf-bigblueterminal-nerd ttf-bitstream-vera-mono-nerd ttf-cascadia-code ttf-cascadia-code-nerd ttf-cascadia-mono-nerd ttf-cousine-nerd ttf-d2coding-nerd ttf-daddytime-mono-nerd ttf-dejavu-nerd ttf-envycoder-nerd ttf-fantasque-nerd ttf-firacode-nerd ttf-go-nerd ttf-gohu-nerd ttf-hack-nerd ttf-heavydata-nerd ttf-iawriter-nerd ttf-ibmplex-mono-nerd ttf-inconsolata-go-nerd ttf-inconsolata-lgc-nerd ttf-inconsolata-nerd ttf-input-nerd ttf-intone-nerd ttf-iosevka-nerd ttf-iosevkaterm-nerd ttf-iosevkatermslab-nerd ttf-jetbrains-mono-nerd ttf-lekton-nerd ttf-liberation-mono-nerd ttf-lilex-nerd ttf-martian-mono-nerd ttf-meslo-nerd ttf-monofur-nerd ttf-monoid-nerd ttf-mononoki-nerd ttf-mplus-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols-mono ttf-noto-nerd ttf-profont-nerd ttf-proggyclean-nerd ttf-recursive-nerd ttf-roboto-mono-nerd ttf-sharetech-mono-nerd ttf-sourcecodepro-nerd ttf-space-mono-nerd ttf-terminus-nerd ttf-tinos-nerd ttf-ubuntu-mono-nerd ttf-ubuntu-nerd ttf-victor-mono-nerd ttf-zed-mono-nerd<br><span class="hljs-comment"># Alternative: Essential nerd fonts only</span><br><span class="hljs-built_in">sudo</span> pacman -S ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd ttf-nerd-fonts-symbols-common<br><span class="hljs-built_in">sudo</span> gnome-text-editor /etc/fonts/conf.d/64-language-selector-prefer.conf<br>fc-cache -fv<br>fc-match -s sans-serif:lang=zh-cn<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span>?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">fontconfig</span> <span class="hljs-keyword">SYSTEM</span> <span class="hljs-string">&quot;fonts.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">fontconfig</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">alias</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>sans-serif<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">prefer</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK SC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK TC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK JP<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">prefer</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">alias</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">alias</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>monospace<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">prefer</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK SC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK TC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK JP<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">prefer</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">alias</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">fontconfig</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Terminals"><a href="#Terminals" class="headerlink" title="Terminals"></a>Terminals</h3><h4 id="Alacritty"><a href="#Alacritty" class="headerlink" title="Alacritty"></a>Alacritty</h4><figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs toml"><span class="hljs-comment"># ~/.config/alacritty/alacritty.toml</span><br><span class="hljs-section">[font]</span><br><span class="hljs-attr">size</span> = <span class="hljs-number">12.0</span><br><br><span class="hljs-section">[font.normal]</span><br><span class="hljs-attr">family</span> = <span class="hljs-string">&quot;FiraCode Nerd Font&quot;</span><br><span class="hljs-attr">style</span> = <span class="hljs-string">&quot;Regular&quot;</span><br><br><span class="hljs-section">[window]</span><br><span class="hljs-attr">opacity</span> = <span class="hljs-number">0.9</span><br><span class="hljs-attr">dynamic_padding</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">blur</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-section">[window.padding]</span><br><span class="hljs-attr">x</span> = <span class="hljs-number">15</span><br><span class="hljs-attr">y</span> = <span class="hljs-number">15</span><br><br><span class="hljs-section">[window.dimensions]</span><br><span class="hljs-attr">columns</span> = <span class="hljs-number">120</span><br><span class="hljs-attr">lines</span> = <span class="hljs-number">36</span><br><br><span class="hljs-section">[selection]</span><br><span class="hljs-attr">save_to_clipboard</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># [terminal]</span><br><span class="hljs-comment"># shell = &#123; program = &quot;/usr/bin/fish&quot;, args = [] &#125;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="Kitty"><a href="#Kitty" class="headerlink" title="Kitty"></a>Kitty</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"># ~/.config/kitty/kitty.conf<br><br># 字体设置<br>font_family      FiraCode Nerd Font<br>font_size        12.0<br><br># 窗口设置<br>background_opacity    0.9<br>dynamic_background_opacity yes<br>dim_opacity          0.9<br>window_padding_width 15<br><br># 窗口尺寸<br>remember_window_size  yes<br><br># 选择设置<br>clipboard_control write-clipboard write-primary read-clipboard read-primary<br><br># Shell设置<br># shell /usr/bin/fish<br></code></pre></td></tr></table></figure>
+
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 -m venv base_python_env<br><span class="hljs-built_in">source</span> ~/base_python_env/bin/activate<br>pip install requests matplotlib notebook jupyterlab numpy scipy pillow isort black flake8 pylint mypy pandas bs4<br></code></pre></td></tr></table></figure>
+
+<h2 id="Virtualization"><a href="#Virtualization" class="headerlink" title="Virtualization"></a>Virtualization</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S qemu-full libvirt virt-manager dnsmasq<br><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">enable</span> --now libvirtd<br></code></pre></td></tr></table></figure>
+
+<h2 id="Zsh"><a href="#Zsh" class="headerlink" title="Zsh"></a>Zsh</h2><h3 id="zshrc"><a href="#zshrc" class="headerlink" title=".zshrc"></a><code>.zshrc</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.</span><br><span class="hljs-comment"># Initialization code that may require console input (password prompts, [y/n]</span><br><span class="hljs-comment"># confirmations, etc.) must go above this block; everything else may go below.</span><br><span class="hljs-keyword">if</span> [[ -r <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;XDG_CACHE_HOME:-<span class="hljs-variable">$HOME</span>/.cache&#125;</span>/p10k-instant-prompt-<span class="hljs-variable">$&#123;(%):-%n&#125;</span>.zsh&quot;</span> ]]; <span class="hljs-keyword">then</span><br>  <span class="hljs-built_in">source</span> <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;XDG_CACHE_HOME:-<span class="hljs-variable">$HOME</span>/.cache&#125;</span>/p10k-instant-prompt-<span class="hljs-variable">$&#123;(%):-%n&#125;</span>.zsh&quot;</span><br><span class="hljs-keyword">fi</span><br><br><span class="hljs-built_in">source</span> /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme<br><br><span class="hljs-comment"># To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.</span><br>[[ ! -f ~/.p10k.zsh ]] || <span class="hljs-built_in">source</span> ~/.p10k.zsh<br><br><span class="hljs-comment"># Load plugins</span><br><span class="hljs-built_in">source</span> /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh<br><span class="hljs-built_in">source</span> /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh<br><span class="hljs-built_in">source</span> /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh<br><span class="hljs-built_in">source</span> /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh<br><span class="hljs-comment"># sudo pkgfile --update</span><br><span class="hljs-built_in">source</span> /usr/share/doc/pkgfile/command-not-found.zsh<br><br><span class="hljs-comment"># History configuration</span><br>HISTFILE=~/.zsh_history<br>HISTSIZE=1000<br>SAVEHIST=2000<br><br><span class="hljs-comment"># Set options</span><br><span class="hljs-built_in">setopt</span> correct                     <span class="hljs-comment"># Auto correct mistakes</span><br><span class="hljs-built_in">setopt</span> extendedglob               <span class="hljs-comment"># Extended globbing with regular expressions</span><br><span class="hljs-built_in">setopt</span> nocaseglob                 <span class="hljs-comment"># Case insensitive globbing</span><br><span class="hljs-built_in">setopt</span> rcexpandparam              <span class="hljs-comment"># Array expansion with parameters</span><br><span class="hljs-built_in">setopt</span> nocheckjobs                <span class="hljs-comment"># Don&#x27;t warn about running processes when exiting</span><br><span class="hljs-built_in">setopt</span> numericglobsort            <span class="hljs-comment"># Sort filenames numerically when it makes sense</span><br><span class="hljs-built_in">setopt</span> nobeep                     <span class="hljs-comment"># No beep</span><br><span class="hljs-built_in">setopt</span> appendhistory              <span class="hljs-comment"># Append history instead of overwriting</span><br><span class="hljs-built_in">setopt</span> histignorealldups          <span class="hljs-comment"># Remove older duplicate commands</span><br><span class="hljs-built_in">setopt</span> histignorespace            <span class="hljs-comment"># Don&#x27;t save commands that start with space</span><br><span class="hljs-built_in">setopt</span> autocd                     <span class="hljs-comment"># cd by entering directory path</span><br><span class="hljs-built_in">setopt</span> inc_append_history         <span class="hljs-comment"># Save commands immediately</span><br><span class="hljs-built_in">setopt</span> prompt_subst               <span class="hljs-comment"># Enable command substitution in prompt</span><br><span class="hljs-built_in">setopt</span> interactivecomments        <span class="hljs-comment"># Allow comments in interactive mode</span><br><span class="hljs-built_in">setopt</span> magicequalsubst            <span class="hljs-comment"># Enable filename expansion for &#x27;anything=expression&#x27;</span><br><span class="hljs-built_in">setopt</span> nonomatch                  <span class="hljs-comment"># Hide error message if no match for pattern</span><br><span class="hljs-built_in">setopt</span> notify                     <span class="hljs-comment"># Report status of background jobs immediately</span><br><span class="hljs-built_in">setopt</span> hist_expire_dups_first     <span class="hljs-comment"># Delete duplicates first when HISTFILE exceeds HISTSIZE</span><br><span class="hljs-built_in">setopt</span> hist_ignore_dups           <span class="hljs-comment"># Ignore duplicated commands</span><br><span class="hljs-built_in">setopt</span> hist_verify                <span class="hljs-comment"># Show command with history expansion before running</span><br><br><span class="hljs-comment"># Directory stack configuration</span><br>DIRSTACKFILE=<span class="hljs-string">&quot;<span class="hljs-variable">$&#123;XDG_CACHE_HOME:-<span class="hljs-variable">$HOME</span>/.cache&#125;</span>/zsh/dirs&quot;</span><br>DIRSTACKSIZE=<span class="hljs-string">&#x27;20&#x27;</span><br><span class="hljs-built_in">setopt</span> AUTO_PUSHD PUSHD_SILENT PUSHD_TO_HOME PUSHD_IGNORE_DUPS PUSHD_MINUS<br><br><span class="hljs-comment"># Enable emacs key bindings</span><br><span class="hljs-built_in">bindkey</span> -e<br><br><span class="hljs-comment"># Key bindings</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[7~&#x27;</span> beginning-of-line              <span class="hljs-comment"># Home key</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[8~&#x27;</span> end-of-line                    <span class="hljs-comment"># End key</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[2~&#x27;</span> overwrite-mode                 <span class="hljs-comment"># Insert key</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[3~&#x27;</span> delete-char                    <span class="hljs-comment"># Delete key</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[5~&#x27;</span> history-beginning-search-backward  <span class="hljs-comment"># Page Up</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[6~&#x27;</span> history-beginning-search-forward   <span class="hljs-comment"># Page Down</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[1;5C&#x27;</span> forward-word                 <span class="hljs-comment"># Ctrl + Right arrow</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[1;5D&#x27;</span> backward-word                <span class="hljs-comment"># Ctrl + Left arrow</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[Z&#x27;</span> undo                            <span class="hljs-comment"># Shift + Tab</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^H&#x27;</span> backward-kill-word                <span class="hljs-comment"># Ctrl + Backspace</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^U&#x27;</span> backward-kill-line                <span class="hljs-comment"># Ctrl + U</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[3;5~&#x27;</span> kill-word                    <span class="hljs-comment"># Ctrl + Delete</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[A&#x27;</span> history-substring-search-up     <span class="hljs-comment"># Up arrow</span><br><span class="hljs-built_in">bindkey</span> <span class="hljs-string">&#x27;^[[B&#x27;</span> history-substring-search-down   <span class="hljs-comment"># Down arrow</span><br><br><span class="hljs-comment"># Completion configuration</span><br><span class="hljs-built_in">autoload</span> -Uz compinit promptinit<br>compinit<br>promptinit<br><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> matcher-list <span class="hljs-string">&#x27;m:&#123;a-zA-Z&#125;=&#123;A-Za-z&#125;&#x27;</span>    <span class="hljs-comment"># Case-insensitive completion</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> list-colors <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;(s.:.)LS_COLORS&#125;</span>&quot;</span>      <span class="hljs-comment"># Use colors</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> <span class="hljs-built_in">rehash</span> <span class="hljs-literal">true</span>                           <span class="hljs-comment"># Rehash for new executables</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> menu <span class="hljs-keyword">select</span>                           <span class="hljs-comment"># Enable menu selection</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> accept-exact <span class="hljs-string">&#x27;*(N)&#x27;</span>                  <span class="hljs-comment"># Accept exact matches</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> use-cache on                          <span class="hljs-comment"># Enable caching</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> cache-path ~/.zsh/cache               <span class="hljs-comment"># Cache path</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> completer _expand _complete           <span class="hljs-comment"># Completion methods</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> format <span class="hljs-string">&#x27;Completing %d&#x27;</span>                <span class="hljs-comment"># Format display</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> group-name <span class="hljs-string">&#x27;&#x27;</span>                         <span class="hljs-comment"># Remove group names</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> use-compctl <span class="hljs-literal">false</span>                     <span class="hljs-comment"># Disable old compctl</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*&#x27;</span> verbose <span class="hljs-literal">true</span>                          <span class="hljs-comment"># Verbose output</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*:kill:*&#x27;</span> <span class="hljs-built_in">command</span> <span class="hljs-string">&#x27;ps -u $USER -o pid,%cpu,tty,cputime,cmd&#x27;</span><br><span class="hljs-built_in">zstyle</span> <span class="hljs-string">&#x27;:completion:*:*:kill:*:processes&#x27;</span> list-colors <span class="hljs-string">&#x27;=(#b) #([0-9]#)*=0=01;31&#x27;</span><br><br><span class="hljs-comment"># Syntax highlighting styles</span><br>ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)<br>ZSH_HIGHLIGHT_STYLES[default]=none<br>ZSH_HIGHLIGHT_STYLES[unknown-token]=underline<br>ZSH_HIGHLIGHT_STYLES[reserved-word]=<span class="hljs-built_in">fg</span>=cyan,bold<br>ZSH_HIGHLIGHT_STYLES[precommand]=<span class="hljs-built_in">fg</span>=green,underline<br>ZSH_HIGHLIGHT_STYLES[commandseparator]=<span class="hljs-built_in">fg</span>=blue,bold<br>ZSH_HIGHLIGHT_STYLES[path]=bold<br>ZSH_HIGHLIGHT_STYLES[globbing]=<span class="hljs-built_in">fg</span>=blue,bold<br>ZSH_HIGHLIGHT_STYLES[history-expansion]=<span class="hljs-built_in">fg</span>=blue,bold<br>ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=<span class="hljs-built_in">fg</span>=green<br>ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=<span class="hljs-built_in">fg</span>=green<br>ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=<span class="hljs-built_in">fg</span>=yellow<br>ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=<span class="hljs-built_in">fg</span>=yellow<br>ZSH_HIGHLIGHT_STYLES[redirection]=<span class="hljs-built_in">fg</span>=blue,bold<br>ZSH_HIGHLIGHT_STYLES[comment]=<span class="hljs-built_in">fg</span>=black,bold<br>ZSH_HIGHLIGHT_STYLES[arg0]=<span class="hljs-built_in">fg</span>=cyan<br>ZSH_HIGHLIGHT_STYLES[bracket-level-1]=<span class="hljs-built_in">fg</span>=blue,bold<br>ZSH_HIGHLIGHT_STYLES[bracket-level-2]=<span class="hljs-built_in">fg</span>=green,bold<br>ZSH_HIGHLIGHT_STYLES[bracket-level-3]=<span class="hljs-built_in">fg</span>=magenta,bold<br><br><span class="hljs-comment"># Editor and useful aliases</span><br>EDITOR=vim<br><span class="hljs-built_in">alias</span> c=<span class="hljs-string">&#x27;clear&#x27;</span><br><span class="hljs-built_in">alias</span> nf=<span class="hljs-string">&#x27;fastfetch&#x27;</span><br><span class="hljs-built_in">alias</span> pf=<span class="hljs-string">&#x27;fastfetch&#x27;</span><br><span class="hljs-built_in">alias</span> ff=<span class="hljs-string">&#x27;fastfetch&#x27;</span><br><span class="hljs-built_in">alias</span> <span class="hljs-built_in">ls</span>=<span class="hljs-string">&#x27;eza -a --icons&#x27;</span><br><span class="hljs-built_in">alias</span> ll=<span class="hljs-string">&#x27;eza -al --icons&#x27;</span><br><span class="hljs-built_in">alias</span> lt=<span class="hljs-string">&#x27;eza -a --tree --level=1 --icons&#x27;</span><br><span class="hljs-built_in">alias</span> v=<span class="hljs-string">&#x27;$EDITOR&#x27;</span><br><span class="hljs-built_in">alias</span> vim=<span class="hljs-string">&#x27;$EDITOR&#x27;</span><br><span class="hljs-built_in">alias</span> wifi=<span class="hljs-string">&#x27;nmtui&#x27;</span><br><span class="hljs-built_in">alias</span> gs=<span class="hljs-string">&quot;git status&quot;</span><br><span class="hljs-built_in">alias</span> ga=<span class="hljs-string">&quot;git add&quot;</span><br><span class="hljs-built_in">alias</span> gc=<span class="hljs-string">&quot;git commit -m&quot;</span><br><span class="hljs-built_in">alias</span> gp=<span class="hljs-string">&quot;git push&quot;</span><br><span class="hljs-built_in">alias</span> gpl=<span class="hljs-string">&quot;git pull&quot;</span><br><span class="hljs-built_in">alias</span> gst=<span class="hljs-string">&quot;git stash&quot;</span><br><span class="hljs-built_in">alias</span> gcheck=<span class="hljs-string">&quot;git checkout&quot;</span><br><span class="hljs-built_in">alias</span> gcredential=<span class="hljs-string">&quot;git config credential.helper store&quot;</span><br><span class="hljs-built_in">alias</span> update-grub=<span class="hljs-string">&#x27;sudo grub-mkconfig -o /boot/grub/grub.cfg&#x27;</span><br><span class="hljs-built_in">alias</span> <span class="hljs-built_in">cp</span>=<span class="hljs-string">&quot;cp -i&quot;</span><br><span class="hljs-built_in">alias</span> <span class="hljs-built_in">df</span>=<span class="hljs-string">&#x27;df -h&#x27;</span><br><span class="hljs-built_in">alias</span> free=<span class="hljs-string">&#x27;free -mh&#x27;</span><br><span class="hljs-built_in">alias</span> gitu=<span class="hljs-string">&#x27;git add . &amp;&amp; git commit &amp;&amp; git push&#x27;</span><br><span class="hljs-built_in">alias</span> grep=<span class="hljs-string">&#x27;grep --color=auto&#x27;</span><br><span class="hljs-built_in">alias</span> fgrep=<span class="hljs-string">&#x27;fgrep --color=auto&#x27;</span><br><span class="hljs-built_in">alias</span> egrep=<span class="hljs-string">&#x27;egrep --color=auto&#x27;</span><br><span class="hljs-built_in">alias</span> diff=<span class="hljs-string">&#x27;diff --color=auto&#x27;</span><br><span class="hljs-built_in">alias</span> <span class="hljs-built_in">rm</span>=<span class="hljs-string">&#x27;rm -i&#x27;</span><br><span class="hljs-built_in">alias</span> ip=<span class="hljs-string">&#x27;ip --color=auto&#x27;</span><br><span class="hljs-built_in">alias</span> la=<span class="hljs-string">&#x27;ls -A&#x27;</span><br><br><span class="hljs-comment"># Color man pages</span><br><span class="hljs-built_in">export</span> LESS_TERMCAP_mb=$<span class="hljs-string">&#x27;\E[1;31m&#x27;</span>     <span class="hljs-comment"># begin blink</span><br><span class="hljs-built_in">export</span> LESS_TERMCAP_md=$<span class="hljs-string">&#x27;\E[1;36m&#x27;</span>     <span class="hljs-comment"># begin bold</span><br><span class="hljs-built_in">export</span> LESS_TERMCAP_me=$<span class="hljs-string">&#x27;\E[0m&#x27;</span>        <span class="hljs-comment"># reset bold/blink</span><br><span class="hljs-built_in">export</span> LESS_TERMCAP_so=$<span class="hljs-string">&#x27;\E[01;33m&#x27;</span>    <span class="hljs-comment"># begin reverse video</span><br><span class="hljs-built_in">export</span> LESS_TERMCAP_se=$<span class="hljs-string">&#x27;\E[0m&#x27;</span>        <span class="hljs-comment"># reset reverse video</span><br><span class="hljs-built_in">export</span> LESS_TERMCAP_us=$<span class="hljs-string">&#x27;\E[1;32m&#x27;</span>     <span class="hljs-comment"># begin underline</span><br><span class="hljs-built_in">export</span> LESS_TERMCAP_ue=$<span class="hljs-string">&#x27;\E[0m&#x27;</span>        <span class="hljs-comment"># reset underline</span><br><br><span class="hljs-comment"># Directory stack functions</span><br><span class="hljs-built_in">autoload</span> -Uz add-zsh-hook<br><br><span class="hljs-keyword">if</span> [[ -f <span class="hljs-string">&quot;<span class="hljs-variable">$DIRSTACKFILE</span>&quot;</span> ]] &amp;&amp; (( <span class="hljs-variable">$&#123;#dirstack&#125;</span> == <span class="hljs-number">0</span> )); <span class="hljs-keyword">then</span><br>    dirstack=(<span class="hljs-string">&quot;<span class="hljs-variable">$&#123;(@f)&quot;$(&lt; &quot;$DIRSTACKFILE&quot;)&quot;&#125;</span>&quot;</span>)<br>    [[ -d <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;dirstack[1]&#125;</span>&quot;</span> ]] &amp;&amp; <span class="hljs-built_in">cd</span> -- <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;dirstack[1]&#125;</span>&quot;</span><br><span class="hljs-keyword">fi</span><br><br><span class="hljs-function"><span class="hljs-title">chpwd_dirstack</span></span>() &#123;<br>    <span class="hljs-built_in">print</span> -l -- <span class="hljs-string">&quot;<span class="hljs-variable">$PWD</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;(u)dirstack[@]&#125;</span>&quot;</span> &gt; <span class="hljs-string">&quot;<span class="hljs-variable">$DIRSTACKFILE</span>&quot;</span><br>&#125;<br>add-zsh-hook -Uz chpwd chpwd_dirstack<br><br><span class="hljs-comment"># Terminal title functions</span><br><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">xterm_title_precmd</span></span> () &#123;<br>    <span class="hljs-built_in">print</span> -Pn -- <span class="hljs-string">&#x27;\e]2;%n@%m %~\a&#x27;</span><br>    [[ <span class="hljs-string">&quot;<span class="hljs-variable">$TERM</span>&quot;</span> == <span class="hljs-string">&#x27;screen&#x27;</span>* ]] &amp;&amp; <span class="hljs-built_in">print</span> -Pn -- <span class="hljs-string">&#x27;\e_\005&#123;2&#125;%n\005&#123;-&#125;@\005&#123;5&#125;%m\005&#123;-&#125; \005&#123;+b 4&#125;%~\005&#123;-&#125;\e\\&#x27;</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">xterm_title_preexec</span></span> () &#123;<br>    <span class="hljs-built_in">print</span> -Pn -- <span class="hljs-string">&#x27;\e]2;%n@%m %~ %# &#x27;</span> &amp;&amp; <span class="hljs-built_in">print</span> -n -- <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;(q)1&#125;</span>\a&quot;</span><br>    [[ <span class="hljs-string">&quot;<span class="hljs-variable">$TERM</span>&quot;</span> == <span class="hljs-string">&#x27;screen&#x27;</span>* ]] &amp;&amp; &#123; <span class="hljs-built_in">print</span> -Pn -- <span class="hljs-string">&#x27;\e_\005&#123;2&#125;%n\005&#123;-&#125;@\005&#123;5&#125;%m\005&#123;-&#125; \005&#123;+b 4&#125;%~\005&#123;-&#125; %# &#x27;</span> &amp;&amp; <span class="hljs-built_in">print</span> -n -- <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;(q)1&#125;</span>\e\\&quot;</span>; &#125;<br>&#125;<br><br><span class="hljs-keyword">if</span> [[ <span class="hljs-string">&quot;<span class="hljs-variable">$TERM</span>&quot;</span> == (Eterm*|alacritty*|aterm*|foot*|gnome*|konsole*|kterm*|putty*|rxvt*|screen*|wezterm*|tmux*|xterm*) ]]; <span class="hljs-keyword">then</span><br>    add-zsh-hook -Uz precmd xterm_title_precmd<br>    add-zsh-hook -Uz preexec xterm_title_preexec<br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="packages"><a href="#packages" class="headerlink" title="packages"></a>packages</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S zsh-autocomplete zsh-autosuggestions zsh-completions zsh-doc zsh-history-substring-search  zsh-lovers zsh-syntax-highlighting zsh-theme-powerlevel10k-git pkgfile eza tree <br><span class="hljs-built_in">sudo</span> pkgfile --update  <br></code></pre></td></tr></table></figure>
+
+<h2 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h2><h3 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S qbittorrent plocate lutris wine winetricks zenity gimp blender flatpak xdg-desktop-portal flatpak-kcm steam npm nodejs base-devel rustup go jdk21-openjdk wechat-universal-bwrap linuxqq wps-office-365 visual-studio-code-bin qbittorrent google-chrome flameshot obs-studio ffmpeg texlive vlc mpv yt-dlp fastfetch octopi bleachbit 7zip vulkan-devel vulkan-headers vulkan-tools imagemagick<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">rustup install stable<br>cargo install cargo-xwin<br>ssh-keygen<br><span class="hljs-built_in">cat</span> ~/.ssh/id_ed25519.pub<br>ssh -T git@github.com<br></code></pre></td></tr></table></figure>
+
+<h3 id="Tips-and-Tricks"><a href="#Tips-and-Tricks" class="headerlink" title="Tips and Tricks"></a>Tips and Tricks</h3><ul>
+<li><code>comm -23 &lt;(pacman -Qq | sort) &lt;(pacman -Sql archlinuxcn core extra multilib | sort)</code></li>
+<li><code>pacman -Sl archlinuxcn | grep 已安装</code></li>
+<li><code>sudo vim /etc/locale.conf</code><br><code>sudo locale-gen</code></li>
+<li><code>echo &#39;vm.max_map_count = 2147483642&#39; | sudo tee /etc/sysctl.d/80-gamecompatibility.conf</code></li>
+<li><code>yay -Qtdq | yay -Rsn -</code></li>
+<li><code>git config --global user.name &quot;Rukkhadevata123&quot;</code></li>
+<li><code>git config --global user.email &quot;3083913301@qq.com&quot;</code></li>
+<li><code>sudo pacman -S ntfsprogs-ntfs3; sudo ntfsfix --clear-dirty /dev/nvme0n1p4</code></li>
+<li><code>timedatectl set-local-rtc 0</code></li>
+<li>Windows: <code>reg add &quot;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation&quot; /v RealTimeIsUniversal /d 1 /t REG_DWORD /f</code></li>
+<li><code>__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia %command%</code></li>
+<li><code>unzip -O gbk file.zip</code></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux-Daily-Use/" class="category-chain-item">Linux Daily Use</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/arch/" class="print-no-link">#arch</a>
+      
+        <a href="/tags/gnome/" class="print-no-link">#gnome</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Arch Linux Post-Install Guide</div>
+      <div>https://rukkhadevata123.github.io/2025/06/03/arch-post-install/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Dawn Chirps</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/01/19/Windows-4/" title="四、Windows最佳实践">
+                        <span class="hidden-mobile">四、Windows最佳实践</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23lil0q2ASY6UVQitS","clientSecret":"1c6a251a126a26c1f6b59cff992adaf9ebdbac98","repo":"Rukkhadevata123.github.io","owner":"Rukkhadevata123","admin":["Rukkhadevata123"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'a5ad8b325cb17f3b69588009cdcd9f8c'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/effect.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
