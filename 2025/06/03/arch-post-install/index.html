@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/river_to_castle_theme_blue.jpg">
 <meta property="article:published_time" content="2025-06-03T06:27:09.000Z">
-<meta property="article:modified_time" content="2025-06-04T11:15:01.446Z">
+<meta property="article:modified_time" content="2025-06-04T13:21:22.174Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="arch">
@@ -473,9 +473,13 @@
 
 <h3 id="Driver-Verification-Commands"><a href="#Driver-Verification-Commands" class="headerlink" title="Driver Verification Commands"></a>Driver Verification Commands</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">lsmod | grep kvm<br><span class="hljs-built_in">cat</span> /proc/driver/nvidia/params | grep PreserveVideoMemoryAllocations<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> /sys/module/nvidia_drm/parameters/fbdev<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> /sys/module/nvidia_drm/parameters/modeset<br><span class="hljs-comment"># echo &#x27;GRUB_CMDLINE_LINUX=&quot;$GRUB_CMDLINE_LINUX nvidia-drm.fbdev=1&quot;&#x27; | sudo tee /etc/default/grub.d/nvidia-fbdev.cfg</span><br><span class="hljs-comment"># echo &#x27;GRUB_CMDLINE_LINUX=&quot;$GRUB_CMDLINE_LINUX nvidia-drm.modeset=1&quot;&#x27; | sudo tee /etc/default/grub.d/nvidia-modeset.cfg</span><br><span class="hljs-comment"># echo &#x27;options nvidia NVreg_PreserveVideoMemoryAllocations=1&#x27; | sudo tee /etc/modprobe.d/nvidia-power-management.conf</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="Desktop-Environment"><a href="#Desktop-Environment" class="headerlink" title="Desktop Environment"></a>Desktop Environment</h2><h3 id="Wayland-Setup"><a href="#Wayland-Setup" class="headerlink" title="Wayland Setup"></a>Wayland Setup</h3><ul>
+<h2 id="Desktop-Environment"><a href="#Desktop-Environment" class="headerlink" title="Desktop Environment"></a>Desktop Environment</h2><h3 id="Desktop-Settings"><a href="#Desktop-Settings" class="headerlink" title="Desktop Settings"></a>Desktop Settings</h3><ul>
 <li>Avatar</li>
 <li>Wallpaper</li>
+<li>Night Color</li>
+<li>Default Applications</li>
+<li>Power Management</li>
+<li>Refresh Rate</li>
 </ul>
 <h3 id="GNOME-Extensions"><a href="#GNOME-Extensions" class="headerlink" title="GNOME Extensions"></a>GNOME Extensions</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S extension-manager gnome-shell-extension-blur-my-shell gnome-shell-extension-dash-to-dock gnome-shell-extension-easyscreencast gnome-shell-extension-gnome-ui-tune-git gnome-shell-extension-gsconnect gnome-shell-extension-just-perfection-desktop gnome-shell-extension-kimpanel-git gnome-shell-extension-extension-list gnome-shell-extension-easyscreencast<br><span class="hljs-built_in">sudo</span> pacman -S gnome-browser-connector gnome-shell-extension-appindicator gnome-shell-extension-desktop-icons-ng gnome-shell-extensions<br>gsettings <span class="hljs-built_in">set</span> org.gnome.mutter experimental-features <span class="hljs-string">&quot;[&#x27;scale-monitor-framebuffer&#x27;, &#x27;kms-modifiers&#x27;, &#x27;autoclose-xwayland&#x27;, &#x27;variable-refresh-rate&#x27;, &#x27;xwayland-native-scaling&#x27;]&quot;</span><br></code></pre></td></tr></table></figure>
 
