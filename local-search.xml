@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Windows配置MSVC环境</title>
+    <link href="/2025/07/09/msvc/"/>
+    <url>/2025/07/09/msvc/</url>
+    
+    <content type="html"><![CDATA[<h2 id="安装-Windows-Terminal-和-PowerShell"><a href="#安装-Windows-Terminal-和-PowerShell" class="headerlink" title="安装 Windows Terminal 和 PowerShell"></a>安装 <code>Windows Terminal</code> 和 <code>PowerShell</code></h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">winget install Microsoft.WindowsTerminal Microsoft.PowerShell<br></code></pre></td></tr></table></figure><h2 id="安装-Visual-Studio"><a href="#安装-Visual-Studio" class="headerlink" title="安装 Visual Studio"></a>安装 <code>Visual Studio</code></h2><blockquote><p>在 <a href="https://visualstudio.microsoft.com/zh-hans/">https://visualstudio.microsoft.com/zh-hans/</a> 下载安装器</p></blockquote><p>打开安装前，选择 <code>使用C++的桌面开发</code></p><h2 id="配置终端"><a href="#配置终端" class="headerlink" title="配置终端"></a>配置终端</h2><p><img src="/2025/07/09/msvc/1.png"></p><p><img src="/2025/07/09/msvc/2.png"></p><blockquote><p>命令行改为 <code>pwsh.exe</code></p></blockquote><p>配置主题和背景，字体等</p><h2 id="编译器使用"><a href="#编译器使用" class="headerlink" title="编译器使用"></a>编译器使用</h2><blockquote><p>参见 <a href="https://learn.microsoft.com/zh-cn/cpp/build/reference/compiler-options-listed-by-category">https://learn.microsoft.com/zh-cn/cpp/build/reference/compiler-options-listed-by-category</a></p></blockquote><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">cl [选项] 源文件 [链接选项]<br></code></pre></td></tr></table></figure><h3 id="主要编译选项"><a href="#主要编译选项" class="headerlink" title="主要编译选项"></a>主要编译选项</h3><h4 id="1-输出类型控制"><a href="#1-输出类型控制" class="headerlink" title="1. 输出类型控制"></a>1. 输出类型控制</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/Fe:filename    # 指定可执行文件名<br>/Fo:filename    # 指定对象文件名  <br>/Fm:filename    # 指定映射文件名<br>/LD             # 编译为DLL (动态链接库)<br>/LDd            # 编译为调试版DLL<br>/<span class="hljs-built_in">MD</span>             # 使用多线程运行时库(DLL版本)<br>/MT             # 使用多线程运行时库(静态版本)<br>/MTd            # 使用多线程调试运行时库(静态版本)<br></code></pre></td></tr></table></figure><h4 id="2-优化选项"><a href="#2-优化选项" class="headerlink" title="2. 优化选项"></a>2. 优化选项</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/O1             # 最小化大小<br>/O2             # 最大化速度 (推荐)<br>/Od             # 禁用优化 (调试时用)<br>/Ox             # 最大优化<br></code></pre></td></tr></table></figure><h4 id="3-调试信息"><a href="#3-调试信息" class="headerlink" title="3. 调试信息"></a>3. 调试信息</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/Zi             # 生成完整调试信息<br>/Z7             # 生成旧格式调试信息<br>/DEBUG          # 生成调试信息到PDB文件<br></code></pre></td></tr></table></figure><h4 id="4-警告控制"><a href="#4-警告控制" class="headerlink" title="4. 警告控制"></a>4. 警告控制</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/W0             # 禁用所有警告<br>/W1             # 显示严重警告<br>/W2             # 显示重要警告  <br>/W3             # 显示大部分警告(默认)<br>/W4             # 显示所有警告<br>/Wall           # 显示所有警告(包括系统头文件)<br>/WX             # 将警告视为错误<br></code></pre></td></tr></table></figure><h4 id="5-C-标准"><a href="#5-C-标准" class="headerlink" title="5. C++标准"></a>5. C++标准</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/std:c++<span class="hljs-number">11</span>      # C++<span class="hljs-number">11</span>标准<br>/std:c++<span class="hljs-number">14</span>      # C++<span class="hljs-number">14</span>标准<br>/std:c++<span class="hljs-number">17</span>      # C++<span class="hljs-number">17</span>标准<br>/std:c++<span class="hljs-number">20</span>      # C++<span class="hljs-number">20</span>标准<br>/std:c++latest  # 最新标准<br></code></pre></td></tr></table></figure><h4 id="6-异常处理"><a href="#6-异常处理" class="headerlink" title="6. 异常处理"></a>6. 异常处理</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/EHsc           # 启用C++异常处理(推荐)<br>/EHs            # 启用同步异常处理<br>/EHa            # 启用异步异常处理<br></code></pre></td></tr></table></figure><h4 id="7-预处理器选项"><a href="#7-预处理器选项" class="headerlink" title="7. 预处理器选项"></a>7. 预处理器选项</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmd">/D macro        # 定义宏<br>/U macro        # 取消定义宏<br>/I directory    # 添加包含目录<br>/E              # 仅预处理到标准输出<br>/EP             # 预处理到标准输出(无#line)<br></code></pre></td></tr></table></figure><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="1-编译DLL"><a href="#1-编译DLL" class="headerlink" title="1. 编译DLL"></a>1. 编译DLL</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">cl /std:c++<span class="hljs-number">17</span> /LD hutao_minhook.cpp /DEF:hutao_dll.def /Fe:hutao_minhook.dll<br></code></pre></td></tr></table></figure><p><strong>说明：</strong></p><ul><li><code>/std:c++17</code> - 使用C++17标准</li><li><code>/LD</code> - 编译为DLL</li><li><code>hutao_minhook.cpp</code> - 源文件</li><li><code>/DEF:hutao_dll.def</code> - 指定模块定义文件(导出函数列表)</li><li><code>/Fe:hutao_minhook.dll</code> - 输出文件名</li></ul><h4 id="2-编译可执行文件"><a href="#2-编译可执行文件" class="headerlink" title="2. 编译可执行文件"></a>2. 编译可执行文件</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">cl /EHsc /O2 /MT /std:c++<span class="hljs-number">17</span> hutao_injector.cpp /Fe:hutao_injector.exe<br></code></pre></td></tr></table></figure><p><strong>说明：</strong></p><ul><li><code>/EHsc</code> - 启用C++异常处理</li><li><code>/O2</code> - 最大化速度优化</li><li><code>/MT</code> - 静态链接运行时库</li><li><code>/std:c++17</code> - C++17标准</li><li><code>hutao_injector.cpp</code> - 源文件</li><li><code>/Fe:hutao_injector.exe</code> - 输出文件名</li></ul><blockquote><p>直接在命令末尾加上某lib可以链接，如 <code>user32.lib</code>，也可以在代码中使用 <code>#pragma comment(lib, &quot;user32.lib&quot;)</code>，就不需要与指定链接文件</p></blockquote><blockquote><p>直接从 <code>Developer PowerShell for VS 2022</code> 启动 <code>code .</code>，再安装微软的 <code>C/C++</code> 和 <code>IntelliCode</code> 插件，即可在vscode上使用MSVC而不需要启动 <code>Visual Studio</code> </p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Windows Daily Use</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>win10</tag>
+      
+      <tag>win11</tag>
+      
+      <tag>cpp</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Arch Linux Post-Install Guide</title>
     <link href="/2025/06/03/arch-post-install/"/>
     <url>/2025/06/03/arch-post-install/</url>
@@ -702,9 +731,9 @@
     
     <tags>
       
-      <tag>Hyper-V</tag>
-      
       <tag>win10</tag>
+      
+      <tag>Hyper-V</tag>
       
     </tags>
     
