@@ -1,0 +1,1012 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Dawn Chirps">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="▶参考链接                                  Gnome(arch_wiki)GnomeExtensionGnomeLookSwap统一Qt和GTK应用程序的外观                       美化示例   换源并补全依赖选择中科大(ustc)或清华(tsinghua)的镜像站使用uname -r命令查看内核版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manjaro Gnome配置及美化指南">
+<meta property="og:url" content="https://rukkhadevata123.github.io/2024/10/08/manjaro/index.html">
+<meta property="og:site_name" content="Yoimiya&#39;s Blog">
+<meta property="og:description" content="▶参考链接                                  Gnome(arch_wiki)GnomeExtensionGnomeLookSwap统一Qt和GTK应用程序的外观                       美化示例   换源并补全依赖选择中科大(ustc)或清华(tsinghua)的镜像站使用uname -r命令查看内核版">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rukkhadevata123.github.io/images/Fantasy-Landscape3.png">
+<meta property="article:published_time" content="2024-10-08T15:06:19.000Z">
+<meta property="article:modified_time" content="2026-02-16T02:17:33.461Z">
+<meta property="article:author" content="Dawn Chirps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="gnome">
+<meta property="article:tag" content="manjaro">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rukkhadevata123.github.io/images/Fantasy-Landscape3.png">
+  
+  
+  
+  <title>Manjaro Gnome配置及美化指南 - Yoimiya&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/effect.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rukkhadevata123.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yoimiya&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-code"></i>
+                <span>小游戏</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/piano-typing-game" target="_self">
+                    
+                    <span>音游模拟器</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/EternalBreakers" target="_self">
+                    
+                    <span>挡板接小球</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/fractals" target="_self">
+                    
+                    <span>分形</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/burn-mnist" target="_self">
+                    
+                    <span>手写数字识别</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.xsot.cn/bing?jump=true') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Manjaro Gnome配置及美化指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-08 23:06" pubdate>
+          2024年10月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux Daily Use"
+        id="heading-73abfeb7b5b4a95fadf47401ed012632" role="tab" data-toggle="collapse" href="#collapse-73abfeb7b5b4a95fadf47401ed012632"
+        aria-expanded="true"
+      >
+        Linux Daily Use
+        <span class="list-group-count">(10)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-73abfeb7b5b4a95fadf47401ed012632"
+           role="tabpanel" aria-labelledby="heading-73abfeb7b5b4a95fadf47401ed012632">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2025/06/03/arch-post-install/" title="Arch Linux Post-Install Guide"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Arch Linux Post-Install Guide</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/17/gentoo/" title="Gentoo 简明安装指南"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Gentoo 简明安装指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/08/11/ovmf/" title="KVM显卡/固态盘直通"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">KVM显卡/固态盘直通</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/08/manjaro/" title="Manjaro Gnome配置及美化指南"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Manjaro Gnome配置及美化指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/13/ubuntu/" title="Ubuntu24.04LTS配置及美化"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Ubuntu24.04LTS配置及美化</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/25/efi/" title="Windows+archlinux分区和引导方案"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows+archlinux分区和引导方案</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/11/08/mpv/" title="mpv播放器+SVP4+Anime4K简单配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mpv播放器+SVP4+Anime4K简单配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/12/11/nvidia/" title="openSUSE/Debian/kali手动安装NVIDIA显卡驱动"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">openSUSE/Debian/kali手动安装NVIDIA显卡驱动</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/26/uki/" title="使用systemd-boot管理统一内核镜像"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">使用systemd-boot管理统一内核镜像</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/15/opensuse/" title="在Hyper-V中配置openSUSE-Tumbleweed"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在Hyper-V中配置openSUSE-Tumbleweed</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Manjaro Gnome配置及美化指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-e88e9ddf" role="button" aria-expanded="false" aria-controls="collapse-e88e9ddf">
+        <div class="fold-arrow">▶</div>参考链接
+      </div>
+      <div class="fold-collapse collapse" id="collapse-e88e9ddf">
+        <div class="fold-content">
+          <p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/GNOME">Gnome(arch_wiki)</a><br><a target="_blank" rel="noopener" href="https://extensions.gnome.org/">GnomeExtension</a><br><a target="_blank" rel="noopener" href="https://www.gnome-look.org/browse/">GnomeLook</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Swap">Swap</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Uniform_look_for_Qt_and_GTK_applications">统一Qt和GTK应用程序的外观</a></p>
+        </div>
+      </div>
+    </div>
+
+<h2 id="美化示例"><a href="#美化示例" class="headerlink" title="美化示例"></a>美化示例</h2><p><img src="/2024/10/08/manjaro/manjaro1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/10/08/manjaro/manjaro2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/10/08/manjaro/manjaro3.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="换源并补全依赖"><a href="#换源并补全依赖" class="headerlink" title="换源并补全依赖"></a>换源并补全依赖</h2><p>选择中科大(ustc)或清华(tsinghua)的镜像站<br>使用<code>uname -r</code>命令查看内核版本, 并选择正确的内核头文件</p>
+<blockquote>
+<p>Bleeding Edge的用户不要换中国源，软件包更新慢</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman-mirrors -i -c China -m rank<br><span class="hljs-built_in">sudo</span> pacman -Syyu base-devel linux-headers power-profiles-daemon gst-libav gst-plugin-pipewire eog vlc xwaylandvideobridge fastfetch gedit locate egl-wayland xdg-desktop-portal xdg-desktop-portal-wlr grim --needed<br></code></pre></td></tr></table></figure>
+
+<h2 id="安装显卡驱动-虚拟机不需要"><a href="#安装显卡驱动-虚拟机不需要" class="headerlink" title="安装显卡驱动(虚拟机不需要)"></a>安装显卡驱动(虚拟机不需要)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> mhwd -a pci nonfree 0300 <br><span class="hljs-built_in">sudo</span> pacman -R libva-vdpau-driver xf86-video-intel xf86-video-nouveau <span class="hljs-comment">#解决VLC闪退</span><br><span class="hljs-built_in">sudo</span> pacman -S libva-nvidia-driver <span class="hljs-comment">#同上 </span><br></code></pre></td></tr></table></figure>
+
+<h2 id="创建并使用交换文件-如果安装时没有交换分区"><a href="#创建并使用交换文件-如果安装时没有交换分区" class="headerlink" title="创建并使用交换文件(如果安装时没有交换分区)"></a>创建并使用交换文件(如果安装时没有交换分区)</h2><p>这里以16G为例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">su<br>mkswap -U clear --size 16G --file /swapfile<br>swapon /swapfile<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;/swapfile none swap defaults 0 0&#x27;</span> &gt;&gt; /etc/fstab<br><span class="hljs-built_in">cat</span> /etc/fstab<br>free -h<br>reboot<br>free -h<br></code></pre></td></tr></table></figure>
+
+<h2 id="添加-archlinuxcn-源-安装yay助手"><a href="#添加-archlinuxcn-源-安装yay助手" class="headerlink" title="添加[archlinuxcn]源, 安装yay助手"></a>添加[archlinuxcn]源, 安装yay助手</h2><p>在<code>etc/pacman.conf</code>文件末尾添加:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs conf">[archlinuxcn]<br>Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch<br></code></pre></td></tr></table></figure>
+
+<p>然后安装密钥并更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -Syy archlinuxcn-keyring<br><span class="hljs-built_in">sudo</span> pacman -Syyu yay<br>yay -S 7-zip octopi bleachbit <span class="hljs-comment"># 软件包缓存清理和垃圾清理工具</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h2><h2 id="简体中文本地化"><a href="#简体中文本地化" class="headerlink" title="简体中文本地化"></a><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96#">简体中文本地化</a></h2><h3 id="安装字体和输入法"><a href="#安装字体和输入法" class="headerlink" title="安装字体和输入法"></a>安装字体和输入法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S adobe-source-han-sans-jp-fonts adobe-source-han-serif-jp-fonts adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts poppler-data noto-fonts-cjk noto-fonts-emoji ttf-roboto noto-fonts man-pages-zh_cn ttf-dejavu ibus ibus-libpinyin<br>yay -S ibus-mozc mozc-ut <span class="hljs-comment"># 日文输入法, 安装后重启, 在设置添加即可, 并编辑~/.config/mozc/ibus_config.textproto修改active_on_launch为True</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="修复字形"><a href="#修复字形" class="headerlink" title="修复字形"></a>修复字形</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">touch</span> /etc/fonts/conf.d/64-language-selector-prefer.conf<br><span class="hljs-built_in">sudo</span> nano /etc/fonts/conf.d/64-language-selector-prefer.conf<br></code></pre></td></tr></table></figure>
+
+<p>写入以下配置:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span>?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">fontconfig</span> <span class="hljs-keyword">SYSTEM</span> <span class="hljs-string">&quot;fonts.dtd&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">fontconfig</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- sans-serif alias --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">alias</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>sans-serif<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">prefer</span>&gt;</span><br>      <span class="hljs-comment">&lt;!-- Noto Sans CJK family --&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK SC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK TC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans CJK JP<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-comment">&lt;!-- Source Han Sans family --&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Source Han Sans SC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Source Han Sans TC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Source Han Sans HW<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Source Han Sans K<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">prefer</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">alias</span>&gt;</span><br>  <br>  <span class="hljs-comment">&lt;!-- monospace alias --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">alias</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>monospace<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">prefer</span>&gt;</span><br>      <span class="hljs-comment">&lt;!-- Noto Sans Mono CJK family --&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK SC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK TC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Noto Sans Mono CJK JP<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-comment">&lt;!-- Source Han Sans family --&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Source Han Sans SC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Source Han Sans TC<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Source Han Sans HW<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">family</span>&gt;</span>Source Han Sans K<span class="hljs-tag">&lt;/<span class="hljs-name">family</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">prefer</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">alias</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">fontconfig</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>刷新字体缓存, 重启</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">fc-cache -fv<br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
+
+<h3 id="配置中文输入法-安装词典"><a href="#配置中文输入法-安装词典" class="headerlink" title="配置中文输入法, 安装词典"></a>配置中文输入法, 安装词典</h3><p>打开云拼音和内置词典</p>
+<p><img src="/2024/10/08/manjaro/1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/10/08/manjaro/2.png" srcset="/img/loading.gif" lazyload></p>
+<p>设置可以导入用户词典, 比如<a target="_blank" rel="noopener" href="https://github.com/broly8/libpinyin-dict">这个仓库</a></p>
+<h3 id="安装windows字体"><a href="#安装windows字体" class="headerlink" title="安装windows字体"></a>安装windows字体</h3><ul>
+<li>方法一: 使用软件仓库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> usermod -aG disk <span class="hljs-variable">$USER</span><br>yay -S httpdirfs<br>yay -S ttf-ms-win11-auto<br><span class="hljs-comment"># yay -S ttf-ms-win10-auto</span><br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>方法二: 使用镜像提取</li>
+</ul>
+<p>把windows的ISO内的<code>source/install.wim</code>复制到主目录, 然后执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~<br>7z e install.wim Windows/&#123;Fonts/<span class="hljs-string">&quot;*&quot;</span>.&#123;ttf,ttc&#125;,System32/Licenses/neutral/<span class="hljs-string">&quot;*&quot;</span>/<span class="hljs-string">&quot;*&quot;</span>/license.rtf&#125; -ofonts/<br><span class="hljs-built_in">mkdir</span> ~/.local/share/fonts<br><span class="hljs-built_in">mv</span> ~/fonts/* ~/.local/share/fonts/<br>fc-cache -fv<br></code></pre></td></tr></table></figure>
+
+<h3 id="安装编程字体"><a href="#安装编程字体" class="headerlink" title="安装编程字体"></a><a target="_blank" rel="noopener" href="https://www.nerdfonts.com/font-downloads">安装编程字体</a></h3><p>以FiraCode为例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span><br>wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip<br>unzip FiraCode.zip -d ~/.local/share/fonts<br><span class="hljs-built_in">rm</span> FiraCode.zip<br>fc-cache -fv<br></code></pre></td></tr></table></figure>
+
+<h2 id="使用Alacritty终端"><a href="#使用Alacritty终端" class="headerlink" title="使用Alacritty终端"></a>使用<code>Alacritty</code>终端</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> pacman -S alacritty<br><span class="hljs-built_in">mkdir</span> ~/.config/alacritty/<br><span class="hljs-built_in">touch</span> ~/.config/alacritty/alacritty.toml<br>gedit ~/.config/alacritty/alacritty.toml<br></code></pre></td></tr></table></figure>
+
+<p>添加以下内容:</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs toml"><span class="hljs-section">[font]</span><br><span class="hljs-attr">size</span> = <span class="hljs-number">12.0</span><br><br><span class="hljs-section">[font.normal]</span><br><span class="hljs-attr">family</span> = <span class="hljs-string">&quot;FiraCode Nerd Font&quot;</span><br><span class="hljs-attr">style</span> = <span class="hljs-string">&quot;Regular&quot;</span><br><br><span class="hljs-section">[window]</span><br><span class="hljs-attr">opacity</span> = <span class="hljs-number">0.9</span><br><span class="hljs-attr">dynamic_padding</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">blur</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-section">[window.padding]</span><br><span class="hljs-attr">x</span> = <span class="hljs-number">15</span><br><span class="hljs-attr">y</span> = <span class="hljs-number">15</span><br><br><span class="hljs-section">[window.dimensions]</span><br><span class="hljs-attr">columns</span> = <span class="hljs-number">120</span><br><span class="hljs-attr">lines</span> = <span class="hljs-number">36</span><br><br><span class="hljs-section">[selection]</span><br><span class="hljs-attr">save_to_clipboard</span> = <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>CachyOS</code>的配置可以在<a target="_blank" rel="noopener" href="https://github.com/CachyOS/cachyos-alacritty-config/blob/master/etc/skel/.config/alacritty/alacritty.toml">这里</a>找到, 源文件内容如下</p>
+</blockquote>
+  <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><code class="hljs toml"><span class="hljs-section">[env]</span><br><span class="hljs-attr">TERM</span> = <span class="hljs-string">&quot;xterm-256color&quot;</span><br><span class="hljs-attr">WINIT_X11_SCALE_FACTOR</span> = <span class="hljs-string">&quot;1&quot;</span><br><br><span class="hljs-section">[window]</span><br><span class="hljs-attr">dynamic_padding</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">decorations</span> = <span class="hljs-string">&quot;full&quot;</span><br><span class="hljs-attr">title</span> = <span class="hljs-string">&quot;Alacritty@CachyOS&quot;</span><br><span class="hljs-attr">opacity</span> = <span class="hljs-number">0.8</span><br><span class="hljs-attr">decorations_theme_variant</span> = <span class="hljs-string">&quot;Dark&quot;</span><br><br><span class="hljs-section">[window.dimensions]</span><br><span class="hljs-attr">columns</span> = <span class="hljs-number">140</span><br><span class="hljs-attr">lines</span> = <span class="hljs-number">40</span><br><br><span class="hljs-section">[window.class]</span><br><span class="hljs-attr">instance</span> = <span class="hljs-string">&quot;Alacritty&quot;</span><br><span class="hljs-attr">general</span> = <span class="hljs-string">&quot;Alacritty&quot;</span><br><br><span class="hljs-section">[scrolling]</span><br><span class="hljs-attr">history</span> = <span class="hljs-number">10000</span><br><span class="hljs-attr">multiplier</span> = <span class="hljs-number">3</span><br><br><span class="hljs-section">[colors]</span><br><span class="hljs-attr">draw_bold_text_with_bright_colors</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-section">[colors.primary]</span><br><span class="hljs-attr">background</span> = <span class="hljs-string">&quot;0x2E3440&quot;</span><br><span class="hljs-attr">foreground</span> = <span class="hljs-string">&quot;0xD8DEE9&quot;</span><br><br><span class="hljs-section">[colors.normal]</span><br><span class="hljs-attr">black</span> = <span class="hljs-string">&quot;0x3B4252&quot;</span><br><span class="hljs-attr">red</span> = <span class="hljs-string">&quot;0xBF616A&quot;</span><br><span class="hljs-attr">green</span> = <span class="hljs-string">&quot;0xA3BE8C&quot;</span><br><span class="hljs-attr">yellow</span> = <span class="hljs-string">&quot;0xEBCB8B&quot;</span><br><span class="hljs-attr">blue</span> = <span class="hljs-string">&quot;0x81A1C1&quot;</span><br><span class="hljs-attr">magenta</span> = <span class="hljs-string">&quot;0xB48EAD&quot;</span><br><span class="hljs-attr">cyan</span> = <span class="hljs-string">&quot;0x88C0D0&quot;</span><br><span class="hljs-attr">white</span> = <span class="hljs-string">&quot;0xE5E9F0&quot;</span><br><br><span class="hljs-section">[colors.bright]</span><br><span class="hljs-attr">black</span> = <span class="hljs-string">&quot;0x4C566A&quot;</span><br><span class="hljs-attr">red</span> = <span class="hljs-string">&quot;0xBF616A&quot;</span><br><span class="hljs-attr">green</span> = <span class="hljs-string">&quot;0xA3BE8C&quot;</span><br><span class="hljs-attr">yellow</span> = <span class="hljs-string">&quot;0xEBCB8B&quot;</span><br><span class="hljs-attr">blue</span> = <span class="hljs-string">&quot;0x81A1C1&quot;</span><br><span class="hljs-attr">magenta</span> = <span class="hljs-string">&quot;0xB48EAD&quot;</span><br><span class="hljs-attr">cyan</span> = <span class="hljs-string">&quot;0x8FBCBB&quot;</span><br><span class="hljs-attr">white</span> = <span class="hljs-string">&quot;0xECEFF4&quot;</span><br><br><span class="hljs-section">[font]</span><br><span class="hljs-attr">size</span> = <span class="hljs-number">12</span><br><br><span class="hljs-section">[font.normal]</span><br><span class="hljs-attr">family</span> = <span class="hljs-string">&quot;FiraCode Nerd Font&quot;</span><br><span class="hljs-attr">style</span> = <span class="hljs-string">&quot;Regular&quot;</span><br><br><span class="hljs-section">[font.bold]</span><br><span class="hljs-attr">family</span> = <span class="hljs-string">&quot;FiraCode Nerd Font&quot;</span><br><span class="hljs-attr">style</span> = <span class="hljs-string">&quot;Bold&quot;</span><br><br><span class="hljs-section">[font.italic]</span><br><span class="hljs-attr">family</span> = <span class="hljs-string">&quot;FiraCode Nerd Font&quot;</span><br><span class="hljs-attr">style</span> = <span class="hljs-string">&quot;Italic&quot;</span><br><br><span class="hljs-section">[font.bold_italic]</span><br><span class="hljs-attr">family</span> = <span class="hljs-string">&quot;FiraCode Nerd Font&quot;</span><br><span class="hljs-attr">style</span> = <span class="hljs-string">&quot;Bold Italic&quot;</span><br><br><span class="hljs-section">[selection]</span><br><span class="hljs-attr">semantic_escape_chars</span> = <span class="hljs-string">&quot;,│`|:\&quot;&#x27; ()[]&#123;&#125;&lt;&gt;\t&quot;</span><br><span class="hljs-attr">save_to_clipboard</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-section">[cursor]</span><br><span class="hljs-attr">style</span> = <span class="hljs-string">&quot;Underline&quot;</span><br><span class="hljs-attr">vi_mode_style</span> = <span class="hljs-string">&quot;None&quot;</span><br><span class="hljs-attr">unfocused_hollow</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">thickness</span> = <span class="hljs-number">0.15</span><br><br><span class="hljs-section">[mouse]</span><br><span class="hljs-attr">hide_when_typing</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-section">[[mouse.bindings]]</span><br><span class="hljs-attr">mouse</span> = <span class="hljs-string">&quot;Middle&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;PasteSelection&quot;</span><br><br><span class="hljs-section">[keyboard]</span><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;Paste&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;Paste&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;Copy&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;Copy&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;L&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Control&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;ClearLogNotice&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;L&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Control&quot;</span><br><span class="hljs-attr">mode</span> = <span class="hljs-string">&quot;~Vi&quot;</span><br><span class="hljs-attr">chars</span> = <span class="hljs-string">&quot;\f&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;PageUp&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Shift&quot;</span><br><span class="hljs-attr">mode</span> = <span class="hljs-string">&quot;~Alt&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;ScrollPageUp&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;PageDown&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Shift&quot;</span><br><span class="hljs-attr">mode</span> = <span class="hljs-string">&quot;~Alt&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;ScrollPageDown&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;Home&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Shift&quot;</span><br><span class="hljs-attr">mode</span> = <span class="hljs-string">&quot;~Alt&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;ScrollToTop&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;End&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Shift&quot;</span><br><span class="hljs-attr">mode</span> = <span class="hljs-string">&quot;~Alt&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;ScrollToBottom&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;V&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Control|Shift&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;Paste&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;C&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Control|Shift&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;Copy&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;F&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Control|Shift&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;SearchForward&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;B&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Control|Shift&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;SearchBackward&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;C&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Control|Shift&quot;</span><br><span class="hljs-attr">mode</span> = <span class="hljs-string">&quot;Vi&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;ClearSelection&quot;</span><br><br><span class="hljs-section">[[keyboard.bindings]]</span><br><span class="hljs-attr">key</span> = <span class="hljs-string">&quot;Key0&quot;</span><br><span class="hljs-attr">mods</span> = <span class="hljs-string">&quot;Control&quot;</span><br><span class="hljs-attr">action</span> = <span class="hljs-string">&quot;ResetFontSize&quot;</span><br><br><span class="hljs-section">[general]</span><br><span class="hljs-attr">live_config_reload</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">working_directory</span> = <span class="hljs-string">&quot;None&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p><code>zsh</code>输入<code>p10k configure</code> 可以重新设置zsh主题</p>
+</blockquote>
+<h2 id="来看看系统设置"><a href="#来看看系统设置" class="headerlink" title="来看看系统设置"></a>来看看系统设置</h2><h3 id="设置合适的分辨率-屏幕刷新率-并打开夜间模式"><a href="#设置合适的分辨率-屏幕刷新率-并打开夜间模式" class="headerlink" title="设置合适的分辨率, 屏幕刷新率, 并打开夜间模式"></a>设置合适的分辨率, 屏幕刷新率, 并打开夜间模式</h3><h3 id="5min熄屏设置为从不"><a href="#5min熄屏设置为从不" class="headerlink" title="5min熄屏设置为从不"></a>5min熄屏设置为<code>从不</code></h3><h3 id="外观-设置喜欢的壁纸"><a href="#外观-设置喜欢的壁纸" class="headerlink" title="外观, 设置喜欢的壁纸"></a>外观, 设置喜欢的壁纸</h3><h3 id="默认应用示例"><a href="#默认应用示例" class="headerlink" title="默认应用示例"></a>默认应用示例</h3><p><img src="/2024/10/08/manjaro/3.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="设置自定义快捷键"><a href="#设置自定义快捷键" class="headerlink" title="设置自定义快捷键"></a>设置自定义快捷键</h3><p>示例设置打开主目录, 浏览器, 终端的快捷键</p>
+<p><img src="/2024/10/08/manjaro/4.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/10/08/manjaro/5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/10/08/manjaro/6.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="关于打印机-Manjaro应该开箱即用-否则查看此链接CUPS"><a href="#关于打印机-Manjaro应该开箱即用-否则查看此链接CUPS" class="headerlink" title="关于打印机, Manjaro应该开箱即用, 否则查看此链接CUPS"></a>关于打印机, Manjaro应该开箱即用, 否则查看此链接<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/CUPS">CUPS</a></h3><h3 id="日期和时间设置"><a href="#日期和时间设置" class="headerlink" title="日期和时间设置"></a>日期和时间设置</h3><p><img src="/2024/10/08/manjaro/7.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="设置用户头像"><a href="#设置用户头像" class="headerlink" title="设置用户头像"></a>设置用户头像</h3><h2 id="设置Nautilus"><a href="#设置Nautilus" class="headerlink" title="设置Nautilus"></a>设置<code>Nautilus</code></h2><p><img src="/2024/10/08/manjaro/8.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="再看看Tweaks"><a href="#再看看Tweaks" class="headerlink" title="再看看Tweaks"></a>再看看<code>Tweaks</code></h2><h3 id="自定义系统字体-并按需改变字体DPI"><a href="#自定义系统字体-并按需改变字体DPI" class="headerlink" title="自定义系统字体, 并按需改变字体DPI"></a>自定义系统字体, 并按需改变字体DPI</h3><h3 id="设置主题和背景"><a href="#设置主题和背景" class="headerlink" title="设置主题和背景"></a>设置主题和背景</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S orchis-theme<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2024/10/08/manjaro/8-1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="添加窗口按钮和居中显示"><a href="#添加窗口按钮和居中显示" class="headerlink" title="添加窗口按钮和居中显示"></a>添加窗口按钮和居中显示</h3><p><img src="/2024/10/08/manjaro/9.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="自定义开机启动的程序"><a href="#自定义开机启动的程序" class="headerlink" title="自定义开机启动的程序"></a>自定义开机启动的程序</h3><h2 id="安装并配置拓展"><a href="#安装并配置拓展" class="headerlink" title="安装并配置拓展"></a>安装并配置拓展</h2><h3 id="安装部分依赖"><a href="#安装部分依赖" class="headerlink" title="安装部分依赖"></a>安装部分依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yay -S gnome-browser-connector touchegg<br></code></pre></td></tr></table></figure>
+
+<p>打开<code>Firefox</code>浏览器, 进入拓展<a target="_blank" rel="noopener" href="https://extensions.gnome.org/">网站</a>, 加入收藏夹, 点击页面上的<code>Click here to install browser extension</code>, 然后刷新页面</p>
+<h3 id="安装农历插件依赖"><a href="#安装农历插件依赖" class="headerlink" title="安装农历插件依赖"></a>安装农历插件依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span><br><span class="hljs-built_in">sudo</span> pacman -S cpio<br>git <span class="hljs-built_in">clone</span> https://gitlab.gnome.org/Nei/ChineseCalendar.git<br><span class="hljs-built_in">cd</span> ChineseCalendar<br><span class="hljs-built_in">chmod</span> +x install.sh<br>./install.sh<br></code></pre></td></tr></table></figure>
+
+<h3 id="示例拓展列表"><a href="#示例拓展列表" class="headerlink" title="示例拓展列表:"></a>示例拓展列表:</h3><p><img src="/2024/10/08/manjaro/10.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/10/08/manjaro/11.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/10/08/manjaro/12.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="简单配置"><a href="#简单配置" class="headerlink" title="简单配置"></a>简单配置</h3><ul>
+<li><code>Dash to Dock</code>使用内置主题</li>
+<li><code>AppIndicator and KStatusNotifierItem Support</code>可以把图标放左边, 缓解200%缩放率导致的右侧图标过挤</li>
+<li>根据需要自定义Dock拦内的应用</li>
+</ul>
+<h2 id="GDM开启所有桌面选项"><a href="#GDM开启所有桌面选项" class="headerlink" title="GDM开启所有桌面选项"></a>GDM开启所有桌面选项</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -s /dev/null /etc/udev/rules.d/61-gdm.rules <br></code></pre></td></tr></table></figure>
+
+<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><ul>
+<li><p>Slow loading of system icons&#x2F;slow GDM login: Problems with the loading of system icons, such the ones in the title bar of Files, might be solved by executing the following command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> gdk-pixbuf-query-loaders --update-cache<br></code></pre></td></tr></table></figure>
+
+<p>Running the aforementioned command may also fix repeated occurrences of the “Oh no! Something has gone wrong!” error screen and&#x2F;or very slow loading and login with GDM as described in the following forum thread. </p>
+</li>
+<li><p>开启Wayland: 可以使用<code>Manjaro</code>自带的<code>Layout Switcher</code></p>
+</li>
+<li><p>spectacle&#x2F;flameshot截图工具</p>
+</li>
+<li><p>对于<code>flameshot</code>无法在<code>wayland</code>下运行, 这样启动: <code>env XDG_SESSION_TYPE= QT_QPA_PLATFORM=wayland flameshot &amp;</code></p>
+</li>
+<li><p>GnomeCalendar可以添加日历订阅链接</p>
+</li>
+<li><p>Enable button and menu icons: <code>gsettings set org.gnome.settings-daemon.plugins.xsettings overrides &quot;&#123;&#39;Gtk/ButtonImages&#39;: &lt;1&gt;, &#39;Gtk/MenuImages&#39;: &lt;1&gt;&#125;&quot;</code></p>
+</li>
+<li><p>对于QEMU&#x2F;KVM虚拟机里的archlinux, 输入<code>sudo pacman -S spice-vdagent xf86-video-qxl qemu-guest-agent</code>, 然后编辑<code>/etc/mkinitcpio.conf</code>文件, 然后修改开头<code>MODULES=(qxl virtio-gpu virtio virtio_scsi virtio_blk virtio_pci virtio_net virtio_ring)</code>, 再<code>sudo mkinitcpio -P</code>重新生成镜像即可</p>
+</li>
+<li><p>中文压缩包乱码, 使用: <code>unzip -O gbk file.zip</code></p>
+</li>
+<li><p>列出特定仓库软件包<code>pacman -Sl archlinuxcn | grep &#39;\[installed\]&#39;</code></p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux-Daily-Use/" class="category-chain-item">Linux Daily Use</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/gnome/" class="print-no-link">#gnome</a>
+      
+        <a href="/tags/manjaro/" class="print-no-link">#manjaro</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Manjaro Gnome配置及美化指南</div>
+      <div>https://rukkhadevata123.github.io/2024/10/08/manjaro/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Dawn Chirps</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/13/ubuntu/" title="Ubuntu24.04LTS配置及美化">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Ubuntu24.04LTS配置及美化</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/07/oh-my-posh/" title="使用oh-my-posh美化Windows和WSL终端">
+                        <span class="hidden-mobile">使用oh-my-posh美化Windows和WSL终端</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23lil0q2ASY6UVQitS","clientSecret":"1c6a251a126a26c1f6b59cff992adaf9ebdbac98","repo":"Rukkhadevata123.github.io","owner":"Rukkhadevata123","admin":["Rukkhadevata123"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '1c8b46275bfa2bda382df29687c1219f'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/effect.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

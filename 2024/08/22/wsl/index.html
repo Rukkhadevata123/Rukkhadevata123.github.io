@@ -1,0 +1,1101 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Dawn Chirps">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="▶参考链接                                  OI-Wiki微软文档NVIDIA文档kali-linuxDeepLearningconda官方网站                       安装kali-linux并简单配置                     ▶选择kali-linux的原因">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WSL开发环境搭建(kali-linux篇)">
+<meta property="og:url" content="https://rukkhadevata123.github.io/2024/08/22/wsl/index.html">
+<meta property="og:site_name" content="Yoimiya&#39;s Blog">
+<meta property="og:description" content="▶参考链接                                  OI-Wiki微软文档NVIDIA文档kali-linuxDeepLearningconda官方网站                       安装kali-linux并简单配置                     ▶选择kali-linux的原因">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rukkhadevata123.github.io/images/Lofi-Room.png">
+<meta property="article:published_time" content="2024-08-22T09:56:30.000Z">
+<meta property="article:modified_time" content="2026-02-16T02:17:33.519Z">
+<meta property="article:author" content="Dawn Chirps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="WSL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rukkhadevata123.github.io/images/Lofi-Room.png">
+  
+  
+  
+  <title>WSL开发环境搭建(kali-linux篇) - Yoimiya&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/effect.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rukkhadevata123.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yoimiya&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-code"></i>
+                <span>小游戏</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/piano-typing-game" target="_self">
+                    
+                    <span>音游模拟器</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/EternalBreakers" target="_self">
+                    
+                    <span>挡板接小球</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/fractals" target="_self">
+                    
+                    <span>分形</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/burn-mnist" target="_self">
+                    
+                    <span>手写数字识别</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.xsot.cn/bing?jump=true') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="WSL开发环境搭建(kali-linux篇)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-22 17:56" pubdate>
+          2024年8月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux Development Environment"
+        id="heading-0d2d0e60b3802ff593278abb0f90605e" role="tab" data-toggle="collapse" href="#collapse-0d2d0e60b3802ff593278abb0f90605e"
+        aria-expanded="true"
+      >
+        Linux Development Environment
+        <span class="list-group-count">(5)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-0d2d0e60b3802ff593278abb0f90605e"
+           role="tabpanel" aria-labelledby="heading-0d2d0e60b3802ff593278abb0f90605e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2024/10/25/nixos/" title="NixOS(KDE)安装及配置指南"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">NixOS(KDE)安装及配置指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/22/wsl/" title="WSL开发环境搭建(kali-linux篇)"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">WSL开发环境搭建(kali-linux篇)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/20/opensuse-wsl/" title="WSL开发环境搭建(openSUSE-Tumbleweed篇)"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">WSL开发环境搭建(openSUSE-Tumbleweed篇)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/06/win11-cpp/" title="Win11LTSC(24H2)配置C++开发环境"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Win11LTSC(24H2)配置C++开发环境</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/22/arch/" title="Windows+archlinux双系统指导"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows+archlinux双系统指导</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">WSL开发环境搭建(kali-linux篇)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-4ff133eb" role="button" aria-expanded="false" aria-controls="collapse-4ff133eb">
+        <div class="fold-arrow">▶</div>参考链接
+      </div>
+      <div class="fold-collapse collapse" id="collapse-4ff133eb">
+        <div class="fold-content">
+          <p><a target="_blank" rel="noopener" href="https://oi-wiki.org/tools/wsl/">OI-Wiki</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/install">微软文档</a><br><a target="_blank" rel="noopener" href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html">NVIDIA文档</a><br><a target="_blank" rel="noopener" href="https://www.kali.org/docs/wsl/wsl-preparations/">kali-linux</a><br><a target="_blank" rel="noopener" href="https://zh.d2l.ai/chapter_installation/index.html">DeepLearning</a><br><a target="_blank" rel="noopener" href="https://docs.anaconda.com/miniconda/">conda官方网站</a></p>
+        </div>
+      </div>
+    </div>
+
+<h2 id="安装kali-linux并简单配置"><a href="#安装kali-linux并简单配置" class="headerlink" title="安装kali-linux并简单配置"></a>安装kali-linux并简单配置</h2>
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-3870e1f6" role="button" aria-expanded="false" aria-controls="collapse-3870e1f6">
+        <div class="fold-arrow">▶</div>选择kali-linux的原因
+      </div>
+      <div class="fold-collapse collapse" id="collapse-3870e1f6">
+        <div class="fold-content">
+          <p>基于Debian的发行版，软件包丰富，且滚动更新，软件包较新，能够获得最新的编程语言特性。同时kali有Win-KeX会话，可以很方便的进入桌面环境而不需要借助第三方软件(如VcXsrv)</p>
+        </div>
+      </div>
+    </div>
+
+<ol>
+<li>打开管理员终端，输入</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">dism.exe /online /<span class="hljs-built_in">enable-feature</span> /featurename:VirtualMachinePlatform /all /norestart<br>dism.exe /online /<span class="hljs-built_in">enable-feature</span> /featurename:Microsoft<span class="hljs-literal">-Windows-Subsystem-Linux</span> /all<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>重启电脑</p>
+</li>
+<li><p>下载<a target="_blank" rel="noopener" href="https://aka.ms/wsl2kernel">内核更新包</a></p>
+</li>
+<li><p>安装内核更新包后重启</p>
+</li>
+<li><p>打开管理员终端，输入</p>
+</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">wsl <span class="hljs-literal">--set-default-version</span> <span class="hljs-number">2</span><br>wsl <span class="hljs-literal">--update</span><br></code></pre></td></tr></table></figure>
+
+<ol start="6">
+<li><p>从微软应用商店安装<a target="_blank" rel="noopener" href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07">kali-linux</a></p>
+</li>
+<li><p>从开始菜单打开kali-linux，输入全小写英文字母用户名，设置好密码</p>
+</li>
+</ol>
+<blockquote>
+<p>若发生错误，请检查系统设置<code>保存新内容的地方</code>为C盘</p>
+</blockquote>
+<ol start="8">
+<li>进入系统后，输入</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">touch</span> ~/.zsh_history<br>chsh -s /usr/bin/zsh<br></code></pre></td></tr></table></figure>
+
+<p>之后关闭kali-linux，在Windows终端输入</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">wsl.exe <span class="hljs-literal">--shutdown</span><br></code></pre></td></tr></table></figure>
+
+<p>之后再次打开kali-linux即可使用zsh</p>
+<ol start="9">
+<li>修改root密码</li>
+</ol>
+<p>输入<code>sudo su</code>, 并输入刚刚设置的(管理员)密码, 进入<code>root</code>用户, 接着输入<code>passwd</code>修改<code>root</code>密码即可</p>
+<ol start="10">
+<li>换源</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/help/kali.html">参考链接</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> /etc/apt/sources.list /etc/apt/sources.list.bak<br><span class="hljs-built_in">sudo</span> nano /etc/apt/sources.list<br></code></pre></td></tr></table></figure>
+
+<p>编辑 <code>/etc/apt/sources.list</code> 文件， 在文件最前面添加以下条目：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c">deb https<span class="hljs-punctuation">:</span><span class="hljs-comment">//mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib</span><br>deb<span class="hljs-punctuation">-</span>src https<span class="hljs-punctuation">:</span><span class="hljs-comment">//mirrors.ustc.edu.cn/kali kali-rolling main non-free non-free-firmware contrib</span><br></code></pre></td></tr></table></figure>
+
+<p>保存退出</p>
+<ol start="11">
+<li>更新系统</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y<br></code></pre></td></tr></table></figure>
+
+
+    <div class="fold">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-90f6fc4a" role="button" aria-expanded="false" aria-controls="collapse-90f6fc4a">
+        <div class="fold-arrow">▶</div>注意
+      </div>
+      <div class="fold-collapse collapse" id="collapse-90f6fc4a">
+        <div class="fold-content">
+          <p>WSL上的kali-linux为最小安装版本，没有预安装<del>入狱</del>所需的工具，如有需要，请参考启动kali后的提示信息</p>
+        </div>
+      </div>
+    </div>
+
+<h2 id="高级配置"><a href="#高级配置" class="headerlink" title="高级配置"></a>高级配置</h2>
+    <div class="fold">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-ca09ab28" role="button" aria-expanded="false" aria-controls="collapse-ca09ab28">
+        <div class="fold-arrow">▶</div>注意
+      </div>
+      <div class="fold-collapse collapse" id="collapse-ca09ab28">
+        <div class="fold-content">
+          <p>此配置可能仅适用于Windows11</p>
+        </div>
+      </div>
+    </div>
+
+<p>打开Windows终端，导航到Windows家目录，新建<code>.wslconfig</code>文件，输入以下内容：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[wsl2]</span><br><span class="hljs-attr">networkingMode</span>=mirrored<br><span class="hljs-attr">autoProxy</span>=<span class="hljs-literal">true</span><br><span class="hljs-attr">dnsTunneling</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[experimental]</span><br><span class="hljs-attr">autoMemoryReclaim</span>=gradual<br><span class="hljs-attr">hostAddressLoopback</span>=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<p><code>networkingMode=mirrored</code>为<code>镜像网络模式</code>，可以直接使用Windows本地代理<br><code>autoMemoryReclaim=gradual</code>意思是检测空闲CPU使用率后，自动缓慢释放缓存的内存</p>
+<h2 id="运行GUI应用"><a href="#运行GUI应用" class="headerlink" title="运行GUI应用"></a>运行GUI应用</h2><p>Windows安装完显卡驱动程序后，此选项应该开箱即用。<br>可以先使用<code>wsl.exe --update</code>更新再启动<br>可以尝试安装以下软件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install x11-apps gedit mesa-utils -y<br><span class="hljs-comment"># sudo apt install nautilus -y </span><br></code></pre></td></tr></table></figure>
+
+<p>出现错误可以参考<a target="_blank" rel="noopener" href="https://github.com/microsoft/wslg/wiki/Diagnosing-%22cannot-open-display%22-type-issues-with-WSLg">微软文档</a></p>
+<p>安装完成后，终端输入<code>xcalc</code>或<code>nautilus</code>回车即可开启这些GUI应用</p>
+<h2 id="配置kali-linux-Win-KeX会话"><a href="#配置kali-linux-Win-KeX会话" class="headerlink" title="配置kali-linux Win-KeX会话"></a>配置kali-linux Win-KeX会话</h2>
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-4f015009" role="button" aria-expanded="false" aria-controls="collapse-4f015009">
+        <div class="fold-arrow">▶</div>官方介绍
+      </div>
+      <div class="fold-collapse collapse" id="collapse-4f015009">
+        <div class="fold-content">
+          <blockquote><p>Win-KeX provides a GUI desktop experience for kali Linux in Windows Subsystem for Linux (WSL 2) with the following features:</p><blockquote><ul><li>Window mode: start a kali Linux desktop in a dedicated window</li><li>Seamless mode: share the Windows desktop between Windows and kali application and menus</li><li>Enhanced session mode: Similar to Hyper-V, uses RDP for a more feature rich experience</li><li>Sound support</li><li>Shared clipboard for cut and paste support between kali Linux and Windows</li><li>Root &amp; unprivileged session support</li><li>Multi-session support: root window &amp; non-privileged window &amp; seamless sessions concurrently</li><li>Fully compatible with WSLg</li></ul></blockquote></blockquote>
+        </div>
+      </div>
+    </div>
+
+<p>打开kali终端，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y<br><span class="hljs-built_in">sudo</span> apt install kali-win-kex -y<br></code></pre></td></tr></table></figure>
+
+<p>有三种模式运行窗口化界面：</p>
+<ul>
+<li>Window Mode<ul>
+<li>Inside of kali WSL: <code>kex --win -s</code></li>
+<li>On Window’s command prompt: <code>wsl -d kali-linux kex --win -s</code></li>
+</ul>
+</li>
+<li>Enhanced Session Mode<ul>
+<li>Inside of kali WSL: <code>kex --esm --ip -s</code></li>
+<li>On Window’s command prompt: <code>wsl -d kali-linux kex --esm --ip -s</code></li>
+</ul>
+</li>
+<li>Seamless Mode<ul>
+<li>Inside of kali WSL: <code>kex --sl -s</code></li>
+<li>On Window’s command prompt: <code>wsl -d kali-linux kex --sl -s</code></li>
+</ul>
+</li>
+</ul>
+<p>更多信息参阅开头参考链接</p>
+<h2 id="配置中文环境"><a href="#配置中文环境" class="headerlink" title="配置中文环境"></a>配置中文环境</h2><p>输入下列命令安装字体</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install fontconfig fonts-noto-cjk fonts-wqy-microhei fonts-wqy-zenhei  -y<br><span class="hljs-built_in">sudo</span> apt install locales -y<br></code></pre></td></tr></table></figure>
+
+<p>接着打开字符集配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dpkg-reconfigure locales<br></code></pre></td></tr></table></figure>
+
+<p>空格选中<code>es_US.UTF-8 UTF-8</code>以及<code>zh_CN.UTF-8 UTF-8</code></p>
+<p>按下OK后选择默认字符集<code>zh_CN.UTF-8 UTF-8</code></p>
+<p>保存退出，重启wsl</p>
+<p>输入<code>sudo apt update</code>可以查看效果</p>
+<p>接下来可以把man手册页换成中文：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install manpages-zh -y<br><span class="hljs-built_in">sudo</span> sed -i <span class="hljs-string">&#x27;s|/usr/share/man|/usr/share/man/zh_CN|g&#x27;</span> /etc/manpath.config<br></code></pre></td></tr></table></figure>
+
+<p>输入<code>man printf</code>查看效果</p>
+<h2 id="安装编译环境，配置VScode"><a href="#安装编译环境，配置VScode" class="headerlink" title="安装编译环境，配置VScode"></a>安装编译环境，配置VScode</h2><p>先安装以下软件包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install build-essential vim ddd gdb fpc emacs gedit lazarus unzip -y<br><span class="hljs-comment"># sudo apt install python3 openjdk-21-jdk rustup golang -y</span><br></code></pre></td></tr></table></figure>
+
+<p>在Windows上安装<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">vscode</a></p>
+<p>重启电脑使<code>Path</code>环境变量生效</p>
+<p>安装必要的插件，比如中文，clangd，Java，python，GitHub Copilot，<strong>Remote Development</strong>等等，按需安装</p>
+<p>在kali的终端输入<code>code .</code></p>
+<p>打开vscode后，按需安装插件，主题等</p>
+<p>更多信息参考<a target="_blank" rel="noopener" href="https://oi-wiki.org/tools/editor/vscode/">OI-Wiki</a></p>
+<h2 id="Docker开发"><a href="#Docker开发" class="headerlink" title="Docker开发"></a>Docker开发</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/wsl-containers">WSL 2 上的 Docker 远程容器入门</a></p>
+<h2 id="Latex写作"><a href="#Latex写作" class="headerlink" title="Latex写作"></a>Latex写作</h2><p>首先在kali的终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y<br><span class="hljs-built_in">sudo</span> apt install texlive-full<br></code></pre></td></tr></table></figure>
+
+<p>然后在vscode里安装<code>LaTeX Workshop</code>插件即可</p>
+<h2 id="在WSL上配置深度学习框架"><a href="#在WSL上配置深度学习框架" class="headerlink" title="在WSL上配置深度学习框架"></a>在WSL上配置深度学习框架</h2><h3 id="安装CUDA"><a href="#安装CUDA" class="headerlink" title="安装CUDA"></a>安装CUDA</h3>
+    <div class="fold">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-db561458" role="button" aria-expanded="false" aria-controls="collapse-db561458">
+        <div class="fold-arrow">▶</div>警告
+      </div>
+      <div class="fold-collapse collapse" id="collapse-db561458">
+        <div class="fold-content">
+          <p>这一步不适用于AMDGPU以及嵌套虚拟化的WSL<br>不能在WSL上安装Linux上的显卡驱动程序<br>更多信息，请查看开头参考链接</p>
+        </div>
+      </div>
+    </div>
+
+<ol>
+<li>先删除旧GPG密钥</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-key del 7fa2af80<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>进入<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_network">网站</a>，检查以下配置是否正确<code>target_os=Linux</code> <code>target_arch=x86_64</code> <code>Distribution=WSL-Ubuntu</code> <code>target_version=2.0</code> <code>target_type=deb_network</code></p>
+</li>
+<li><p>根据提示输入</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-keyring_1.1-1_all.deb<br><span class="hljs-built_in">sudo</span> dpkg -i cuda-keyring_1.1-1_all.deb<br><span class="hljs-built_in">sudo</span> apt-get update<br><span class="hljs-built_in">sudo</span> apt-get -y install cuda-toolkit-12-6<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>安装完成后，终端输入<code>nvidia-smi</code>检查驱动程序和<code>cuda</code>版本</li>
+</ol>
+<h3 id="配置深度学习环境"><a href="#配置深度学习环境" class="headerlink" title="配置深度学习环境"></a>配置深度学习环境</h3><p>更多信息请参考开头所示链接</p>
+<ol>
+<li>安装miniconda</li>
+</ol>
+<p>直接在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p ~/miniconda3<br>wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh<br>bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3<br><span class="hljs-built_in">rm</span> -rf ~/miniconda3/miniconda.sh<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>初始化终端</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/miniconda3/bin/conda init bash<br>~/miniconda3/bin/conda init zsh<br><span class="hljs-comment"># ~/miniconda3/bin/conda init fish</span><br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>关闭终端重新打开，会看到<code>base</code>字样，代表处于<code>base</code>环境</p>
+</li>
+<li><p>创建一个新环境</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda create --name d2l python=3.9 -y<br></code></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>激活新环境</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda activate d2l<br></code></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>安装PyTorch的CPU或GPU版本</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install torch==1.12.0<br>pip install torchvision==0.13.0<br></code></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>安装d2l包</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install d2l==0.17.6<br></code></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>下载 D2L Notebook</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> d2l-zh &amp;&amp; <span class="hljs-built_in">cd</span> d2l-zh<br>curl https://zh-v2.d2l.ai/d2l-zh-2.0.0.zip -o d2l-zh.zip<br>unzip d2l-zh.zip &amp;&amp; <span class="hljs-built_in">rm</span> d2l-zh.zip<br><span class="hljs-built_in">cd</span> pytorch<br></code></pre></td></tr></table></figure>
+
+<ol start="9">
+<li><p>最后可以通过<code>jupyter notebook</code>运行Jupyter笔记本，（需要在pytorch文件夹下）浏览器打开<a target="_blank" rel="noopener" href="http://localhost:8888/">http://localhost:8888</a>即可学习</p>
+</li>
+<li><p>在运行书籍代码、更新深度学习框架或d2l软件包之前，请始终执行<code>conda activate d2l</code>以激活运行时环境。 要退出环境，请运行<code>conda deactivate</code></p>
+</li>
+</ol>
+<h2 id="迁移WSL"><a href="#迁移WSL" class="headerlink" title="迁移WSL"></a>迁移WSL</h2><p>打开Windows终端，输入下列命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs PowerShell">wsl <span class="hljs-literal">--shutdown</span><br>mkdir D:\wsl<br>mkdir D:\wsl\kali<br>wsl <span class="hljs-literal">--export</span> kali<span class="hljs-literal">-linux</span> D:\wsl\kali.tar  <span class="hljs-comment"># 导出kali</span><br>wsl <span class="hljs-literal">--unregister</span> kali<span class="hljs-literal">-linux</span>   <span class="hljs-comment"># 注销原来的发行版</span><br>wsl <span class="hljs-literal">--import</span> kali<span class="hljs-literal">-linux</span> D:\wsl\kali D:\wsl\kali.tar <span class="hljs-literal">--version</span> <span class="hljs-number">2</span>  <span class="hljs-comment"># 导入kali</span><br><span class="hljs-built_in">rm</span> D:\wsl\kali.tar  <span class="hljs-comment"># 删除tar文件</span><br>wsl <span class="hljs-literal">-d</span> kali<span class="hljs-literal">-linux</span>  <span class="hljs-comment"># 进入kali</span><br></code></pre></td></tr></table></figure>
+
+<p>迁移后默认以<code>root</code>身份进入，接下来进入WSL编辑<code>/etc/wsl.conf</code>文件。假设<code>yoimiya</code>是之前的默认用户名：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[boot]</span><br><span class="hljs-attr">systemd</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[user]</span><br><span class="hljs-attr">default</span>=yoimiya<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：上述配置可能仅适用于win11</p>
+</blockquote>
+<blockquote>
+<p>开启systemd后，如果WSLg无法启动，请手动执行<code>sudo rm -r /tmp/.X11-unix &amp;&amp; ln -s /mnt/wslg/.X11-unix /tmp/.X11-unix</code>命令</p>
+</blockquote>
+<p>之后保存退出，重启kali即可</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux-Development-Environment/" class="category-chain-item">Linux Development Environment</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/WSL/" class="print-no-link">#WSL</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>WSL开发环境搭建(kali-linux篇)</div>
+      <div>https://rukkhadevata123.github.io/2024/08/22/wsl/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Dawn Chirps</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/22/arch/" title="Windows+archlinux双系统指导">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Windows+archlinux双系统指导</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/22/Windows-3/" title="三、win10安装系统组件以及基本软件">
+                        <span class="hidden-mobile">三、win10安装系统组件以及基本软件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23lil0q2ASY6UVQitS","clientSecret":"1c6a251a126a26c1f6b59cff992adaf9ebdbac98","repo":"Rukkhadevata123.github.io","owner":"Rukkhadevata123","admin":["Rukkhadevata123"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '2056f383683f63c0c871fcfc041b1f43'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/effect.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,967 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Dawn Chirps">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="▶参考链接                                  UKIsystemd-boot                                            ▶警告                                  本教程使用mkinitcpio，EndeavourOS用户默认使用Dracut，请自行参">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用systemd-boot管理统一内核镜像">
+<meta property="og:url" content="https://rukkhadevata123.github.io/2024/08/26/uki/index.html">
+<meta property="og:site_name" content="Yoimiya&#39;s Blog">
+<meta property="og:description" content="▶参考链接                                  UKIsystemd-boot                                            ▶警告                                  本教程使用mkinitcpio，EndeavourOS用户默认使用Dracut，请自行参">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rukkhadevata123.github.io/images/Fantasy-Lake3.png">
+<meta property="article:published_time" content="2024-08-26T05:58:40.000Z">
+<meta property="article:modified_time" content="2026-02-16T02:17:33.505Z">
+<meta property="article:author" content="Dawn Chirps">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="arch">
+<meta property="article:tag" content="efi">
+<meta property="article:tag" content="uefi">
+<meta property="article:tag" content="uki">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rukkhadevata123.github.io/images/Fantasy-Lake3.png">
+  
+  
+  
+  <title>使用systemd-boot管理统一内核镜像 - Yoimiya&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/effect.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rukkhadevata123.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Yoimiya&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-code"></i>
+                <span>小游戏</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/piano-typing-game" target="_self">
+                    
+                    <span>音游模拟器</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/EternalBreakers" target="_self">
+                    
+                    <span>挡板接小球</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/fractals" target="_self">
+                    
+                    <span>分形</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/burn-mnist" target="_self">
+                    
+                    <span>手写数字识别</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.xsot.cn/bing?jump=true') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="使用systemd-boot管理统一内核镜像"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-26 13:58" pubdate>
+          2024年8月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          555 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Linux Daily Use"
+        id="heading-73abfeb7b5b4a95fadf47401ed012632" role="tab" data-toggle="collapse" href="#collapse-73abfeb7b5b4a95fadf47401ed012632"
+        aria-expanded="true"
+      >
+        Linux Daily Use
+        <span class="list-group-count">(10)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-73abfeb7b5b4a95fadf47401ed012632"
+           role="tabpanel" aria-labelledby="heading-73abfeb7b5b4a95fadf47401ed012632">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/2025/06/03/arch-post-install/" title="Arch Linux Post-Install Guide"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Arch Linux Post-Install Guide</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/10/17/gentoo/" title="Gentoo 简明安装指南"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Gentoo 简明安装指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2025/08/11/ovmf/" title="KVM显卡/固态盘直通"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">KVM显卡/固态盘直通</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/08/manjaro/" title="Manjaro Gnome配置及美化指南"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Manjaro Gnome配置及美化指南</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/10/13/ubuntu/" title="Ubuntu24.04LTS配置及美化"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Ubuntu24.04LTS配置及美化</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/25/efi/" title="Windows+archlinux分区和引导方案"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows+archlinux分区和引导方案</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/11/08/mpv/" title="mpv播放器+SVP4+Anime4K简单配置"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">mpv播放器+SVP4+Anime4K简单配置</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/12/11/nvidia/" title="openSUSE/Debian/kali手动安装NVIDIA显卡驱动"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">openSUSE/Debian/kali手动安装NVIDIA显卡驱动</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/08/26/uki/" title="使用systemd-boot管理统一内核镜像"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">使用systemd-boot管理统一内核镜像</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2024/09/15/opensuse/" title="在Hyper-V中配置openSUSE-Tumbleweed"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在Hyper-V中配置openSUSE-Tumbleweed</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">使用systemd-boot管理统一内核镜像</h1>
+            
+            
+              <div class="markdown-body">
+                
+                
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-83a3424a" role="button" aria-expanded="false" aria-controls="collapse-83a3424a">
+        <div class="fold-arrow">▶</div>参考链接
+      </div>
+      <div class="fold-collapse collapse" id="collapse-83a3424a">
+        <div class="fold-content">
+          <p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Unified_kernel_image#">UKI</a><br><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Systemd-boot#">systemd-boot</a></p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="fold">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-91f23d81" role="button" aria-expanded="false" aria-controls="collapse-91f23d81">
+        <div class="fold-arrow">▶</div>警告
+      </div>
+      <div class="fold-collapse collapse" id="collapse-91f23d81">
+        <div class="fold-content">
+          <p>本教程使用<code>mkinitcpio</code>，EndeavourOS用户默认使用<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Dracut">Dracut</a>，请自行参阅wiki</p>
+        </div>
+      </div>
+    </div>
+
+<h2 id="情况一：两系统在不同硬盘，使用systemd-boot引导"><a href="#情况一：两系统在不同硬盘，使用systemd-boot引导" class="headerlink" title="情况一：两系统在不同硬盘，使用systemd-boot引导"></a>情况一：两系统在不同硬盘，使用systemd-boot引导</h2><h3 id="添加启动参数"><a href="#添加启动参数" class="headerlink" title="添加启动参数"></a>添加启动参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">su<br><span class="hljs-built_in">mkdir</span> /etc/cmdline.d<br><span class="hljs-built_in">touch</span> /etc/cmdline.d/root.conf<br><span class="hljs-built_in">echo</span> root=$(<span class="hljs-built_in">cat</span> /etc/fstab | grep ext4 | awk <span class="hljs-string">&#x27;&#123; print $1 &#125;&#x27;</span>) rw &gt;&gt; /etc/cmdline.d/root.conf<br><span class="hljs-built_in">cat</span> /etc/cmdline.d/root.conf<br></code></pre></td></tr></table></figure>
+
+<p>文件内容如下所示</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">root</span>=UUID=<span class="hljs-number">0</span>a3407de-<span class="hljs-number">014</span>b-<span class="hljs-number">458</span>b-b5c1-<span class="hljs-number">848</span>e92a327a3 rw<br></code></pre></td></tr></table></figure>
+
+<h3 id="修改-preset文件"><a href="#修改-preset文件" class="headerlink" title="修改.preset文件"></a>修改<code>.preset</code>文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">su<br>vim /etc/mkinitcpio.d/linux.preset <span class="hljs-comment">#zen内核则为/etc/mkinitcpio.d/linux-zen.preset</span><br></code></pre></td></tr></table></figure>
+
+<p>注释掉<code>image</code>字样的行，取消注释<code>uki</code>字样的行，示例文件如下所示<br>splash是启动时闪过的图片，默认是archlinux的logo</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># mkinitcpio preset file for the &#x27;linux&#x27; package</span><br><br><span class="hljs-comment">#ALL_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-attr">ALL_kver</span>=<span class="hljs-string">&quot;/boot/vmlinuz-linux&quot;</span><br><br><span class="hljs-attr">PRESETS</span>=(<span class="hljs-string">&#x27;default&#x27;</span> <span class="hljs-string">&#x27;fallback&#x27;</span>)<br><br><span class="hljs-comment">#default_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#default_image=&quot;/boot/initramfs-linux.img&quot;</span><br><span class="hljs-attr">default_uki</span>=<span class="hljs-string">&quot;/efi/EFI/Linux/arch-linux.efi&quot;</span><br><span class="hljs-attr">default_options</span>=<span class="hljs-string">&quot;--splash=/usr/share/systemd/bootctl/splash-arch.bmp&quot;</span><br><br><span class="hljs-comment">#fallback_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#fallback_image=&quot;/boot/initramfs-linux-fallback.img&quot;</span><br><span class="hljs-attr">fallback_uki</span>=<span class="hljs-string">&quot;/efi/EFI/Linux/arch-linux-fallback.efi&quot;</span><br><span class="hljs-attr">fallback_options</span>=<span class="hljs-string">&quot;-S autodetect&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="构建UKI镜像"><a href="#构建UKI镜像" class="headerlink" title="构建UKI镜像"></a>构建UKI镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /efi/EFI/Linux<br>mkinitcpio -p linux <span class="hljs-comment">#zen内核则为linux-zen</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="简单清理"><a href="#简单清理" class="headerlink" title="简单清理"></a>简单清理</h3>
+    <div class="fold">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-6aeb2756" role="button" aria-expanded="false" aria-controls="collapse-6aeb2756">
+        <div class="fold-arrow">▶</div>警告
+      </div>
+      <div class="fold-collapse collapse" id="collapse-6aeb2756">
+        <div class="fold-content">
+          <p>最好<code>手打</code>下面的命令，用<code>tab</code>补全文件路径</p>
+        </div>
+      </div>
+    </div>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /efi/initramfs-linux.img <br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /efi/initramfs-linux-fallback.img<br><span class="hljs-comment"># sudo rm -rf /boot/initramfs-linux.img</span><br><span class="hljs-comment"># sudo rm -rf /boot/initramfs-linux-fallback.img</span><br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /efi/loader/entries/arch.conf<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /efi/loader/entries/arch-fallback.conf<br></code></pre></td></tr></table></figure>
+
+<h2 id="情况二：两系统在同一块硬盘，使用systemd-boot引导"><a href="#情况二：两系统在同一块硬盘，使用systemd-boot引导" class="headerlink" title="情况二：两系统在同一块硬盘，使用systemd-boot引导"></a>情况二：两系统在同一块硬盘，使用systemd-boot引导</h2><h3 id="添加启动参数-1"><a href="#添加启动参数-1" class="headerlink" title="添加启动参数"></a>添加启动参数</h3><p>与情况一相同</p>
+<h3 id="修改-preset文件-1"><a href="#修改-preset文件-1" class="headerlink" title="修改.preset文件"></a>修改<code>.preset</code>文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">su<br>vim /etc/mkinitcpio.d/linux.preset <span class="hljs-comment">#zen内核则为/etc/mkinitcpio.d/linux-zen.preset</span><br></code></pre></td></tr></table></figure>
+
+<p>注释掉<code>image</code>字样的行，取消注释<code>uki</code>字样的行，示例文件如下所示<br>splash是启动时闪过的图片，默认是archlinux的logo</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># mkinitcpio preset file for the &#x27;linux&#x27; package</span><br><br><span class="hljs-comment">#ALL_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-attr">ALL_kver</span>=<span class="hljs-string">&quot;/boot/vmlinuz-linux&quot;</span><br><br><span class="hljs-attr">PRESETS</span>=(<span class="hljs-string">&#x27;default&#x27;</span> <span class="hljs-string">&#x27;fallback&#x27;</span>)<br><br><span class="hljs-comment">#default_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#default_image=&quot;/boot/initramfs-linux.img&quot;</span><br><span class="hljs-attr">default_uki</span>=<span class="hljs-string">&quot;/boot/EFI/Linux/arch-linux.efi&quot;</span><br><span class="hljs-attr">default_options</span>=<span class="hljs-string">&quot;--splash=/usr/share/systemd/bootctl/splash-arch.bmp&quot;</span><br><br><span class="hljs-comment">#fallback_config=&quot;/etc/mkinitcpio.conf&quot;</span><br><span class="hljs-comment">#fallback_image=&quot;/boot/initramfs-linux-fallback.img&quot;</span><br><span class="hljs-attr">fallback_uki</span>=<span class="hljs-string">&quot;/boot/EFI/Linux/arch-linux-fallback.efi&quot;</span><br><span class="hljs-attr">fallback_options</span>=<span class="hljs-string">&quot;-S autodetect&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="构建UKI镜像-1"><a href="#构建UKI镜像-1" class="headerlink" title="构建UKI镜像"></a>构建UKI镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /boot/EFI/Linux<br>mkinitcpio -p linux <span class="hljs-comment">#zen内核则为linux-zen</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="简单清理-1"><a href="#简单清理-1" class="headerlink" title="简单清理"></a>简单清理</h3>
+    <div class="fold">
+      <div class="fold-title fold-warning collapsed" data-toggle="collapse" href="#collapse-6aeb2756" role="button" aria-expanded="false" aria-controls="collapse-6aeb2756">
+        <div class="fold-arrow">▶</div>警告
+      </div>
+      <div class="fold-collapse collapse" id="collapse-6aeb2756">
+        <div class="fold-content">
+          <p>最好<code>手打</code>下面的命令，用<code>tab</code>补全文件路径</p>
+        </div>
+      </div>
+    </div>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /boot/initramfs-linux.img<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /boot/initramfs-linux-fallback.img<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /boot/loader/entries/arch.conf<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /boot/loader/entries/arch-fallback.conf<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux-Daily-Use/" class="category-chain-item">Linux Daily Use</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/arch/" class="print-no-link">#arch</a>
+      
+        <a href="/tags/efi/" class="print-no-link">#efi</a>
+      
+        <a href="/tags/uefi/" class="print-no-link">#uefi</a>
+      
+        <a href="/tags/uki/" class="print-no-link">#uki</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>使用systemd-boot管理统一内核镜像</div>
+      <div>https://rukkhadevata123.github.io/2024/08/26/uki/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Dawn Chirps</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/15/opensuse/" title="在Hyper-V中配置openSUSE-Tumbleweed">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">在Hyper-V中配置openSUSE-Tumbleweed</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/25/efi/" title="Windows+archlinux分区和引导方案">
+                        <span class="hidden-mobile">Windows+archlinux分区和引导方案</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"Ov23lil0q2ASY6UVQitS","clientSecret":"1c6a251a126a26c1f6b59cff992adaf9ebdbac98","repo":"Rukkhadevata123.github.io","owner":"Rukkhadevata123","admin":["Rukkhadevata123"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'bddf6afa95624bf28ab513bccc21fd7d'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/effect.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
