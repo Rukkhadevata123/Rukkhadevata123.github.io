@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/evening-landscape.jpg">
 <meta property="article:published_time" content="2026-05-13T07:28:29.000Z">
-<meta property="article:modified_time" content="2026-05-13T11:03:42.421Z">
+<meta property="article:modified_time" content="2026-05-13T11:09:05.205Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ubuntu">
@@ -297,7 +297,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.6k 字
+          9.7k 字
         
       </span>
     
@@ -308,7 +308,7 @@
         
         
         
-          80 分钟
+          81 分钟
         
       </span>
     
@@ -498,6 +498,9 @@
 <hr>
 <h2 id="一、到底哪些包被替换了？历史时间线"><a href="#一、到底哪些包被替换了？历史时间线" class="headerlink" title="一、到底哪些包被替换了？历史时间线"></a>一、到底哪些包被替换了？历史时间线</h2><h3 id="1-1-第一个过渡包：Chromium（2019-年-10-月）"><a href="#1-1-第一个过渡包：Chromium（2019-年-10-月）" class="headerlink" title="1.1 第一个过渡包：Chromium（2019 年 10 月）"></a>1.1 第一个过渡包：Chromium（2019 年 10 月）</h3><p>Snap 本身的概念最早于 2014 年提出，2016 年随 Ubuntu 16.04 LTS 正式引入系统。但”通过 <code>apt install</code> 静默安装 Snap 版本”的这个过渡包机制，是从更晚的时间点才开始的。</p>
 <p>第一个被改动的不是 Firefox，而是 Chromium。2019 年 10 月 10 日，Canonical 正式宣布 Ubuntu 19.10 中的 <code>chromium-browser</code> deb 包变为过渡包，安装时实际拉取 Snap 版本。直接原因非常具体：Chromium 是一个更新极其频繁、依赖关系复杂、安全补丁密度极高的项目。在 Ubuntu 每个稳定版里对 Chromium 做向后移植，几乎要耗尽一个全职维护者的精力。Canonical 选择自己编译 Chromium 来制作 Snap 包（Chromium 不像 Firefox 有 Mozilla 这样的上游主动维护跨发行版的包），这样只需要维护一个通用版本，就可以同时推送到所有支持 Snap 的 Ubuntu 系统。</p>
+<blockquote>
+<p>顺便看看 Debian 在 2026 年的现状：Chromium 的安全更新横跨 oldoldstable（120.x）、oldstable（143.x → 148.x）、stable（145.x → 148.x）到 unstable（148.x），四个分支的后向移植全部由同一位维护者 Andres Salomon 承担。Debian 硬着头皮做到了——但这份维护日志本身就是”为什么 Canonical 选择用 Snap 打包 Chromium”的最好注脚。</p>
+</blockquote>
 <h3 id="1-2-最受关注的过渡包：Firefox（2022-年-4-月）"><a href="#1-2-最受关注的过渡包：Firefox（2022-年-4-月）" class="headerlink" title="1.2 最受关注的过渡包：Firefox（2022 年 4 月）"></a>1.2 最受关注的过渡包：Firefox（2022 年 4 月）</h3><p>Firefox 的转换比 Chromium 晚了两年多。2021 年，Canonical 与 Mozilla 达成正式合作协议——<strong>这一转换实际上是由 Mozilla 主动推动的</strong>（参考文献自己查），Mozilla 希望绕过为每个 Ubuntu 版本单独维护 .deb 的延迟，直接向所有支持 snapd 的发行版推送安全补丁和新功能。在 Snap Store 中，Firefox snap 带有 Verified 标识，确认它由原始开发者（Mozilla）而非第三方直接发布和维护；Canonical 工程师的角色是与 Mozilla 协作优化 snap 在 Ubuntu 上的性能表现和沙箱隔离策略。从 Ubuntu 22.04 LTS 开始，新安装系统的用户默认获得 Snap 版 Firefox。也就是说，当用户在终端输入 <code>apt install firefox</code> 时，系统执行的不是安装 deb 包，而是安装由 Mozilla 官方维护的 Firefox Snap。这正是大量用户开始产生<strong>困惑</strong>和<strong>争议</strong>的节点——因为它触碰了桌面用户对”浏览器安装”这个行为的直觉预期。</p>
 <h3 id="1-3-第三个过渡包：Thunderbird"><a href="#1-3-第三个过渡包：Thunderbird" class="headerlink" title="1.3 第三个过渡包：Thunderbird"></a>1.3 第三个过渡包：Thunderbird</h3><p>Thunderbird 同样是由 Mozilla 官方打包的 Snap。逻辑与 Firefox 一致：Mozilla 直接负责构建和维护，Canonical 不再需要为每个 Ubuntu 版本单独维护 Thunderbird 的 deb 包。</p>
 <h3 id="1-4-六年，三个（类）包"><a href="#1-4-六年，三个（类）包" class="headerlink" title="1.4 六年，三个（类）包"></a>1.4 六年，三个（类）包</h3><p>除此之外，没有第四类。这个数字本身就足以让”全面 Snap 化”的说法站不住脚。你需要用 <code>gcc</code> 编译代码，<code>apt install gcc</code> 装的是 deb。你需要 Podman，<code>apt install podman</code> 装的也是 deb。Ubuntu 官方仓库中依然提供数万个传统 deb 包，并且没有任何计划把它们全部替换成 Snap。</p>
