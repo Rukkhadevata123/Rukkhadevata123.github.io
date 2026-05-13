@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/evening-landscape.jpg">
 <meta property="article:published_time" content="2026-05-13T07:28:29.000Z">
-<meta property="article:modified_time" content="2026-05-13T16:31:25.894Z">
+<meta property="article:modified_time" content="2026-05-13T16:38:30.634Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ubuntu">
@@ -548,7 +548,7 @@
 <h3 id="4-3-对开发者的价值：一键环境，零依赖冲突"><a href="#4-3-对开发者的价值：一键环境，零依赖冲突" class="headerlink" title="4.3 对开发者的价值：一键环境，零依赖冲突"></a>4.3 对开发者的价值：一键环境，零依赖冲突</h3><p>在实际工作中，Snap 版开发工具正在让环境配置变得更简单。<code>snap install zig</code> 提供一个沙盒化的 Zig 环境，与系统库完全隔离（<strong>这是另一个锁版本问题，官方仓库的 Zig 落后于 Snapcraft上的版本</strong>）。顺便一提， Ghostty 也是官方仓库落后于 Snap 版本。<code>snap install code</code> 一行命令装好 VSCode，不需要操作系统的库版本配合或者微软的第三方源（事实上需要 Wayland 的话我建议用微软源的）。Canonical 在 2026 年进一步推出 Devpacks 计划，把 GCC、LLVM 等编译器也纳入这个”一键开发环境”范畴（之前已经有 Go 了）。（<strong>以为这又是在造轮子的去看 Phoronix 和官方博客，这跟 Podman&#x2F;Docker 路线有明显区别</strong>）</p>
 <p>Flatpak 通过 Freedesktop SDK 理论上也能搭建开发环境，但那些运行时动辄数 GB、Platform&#x2F;SDK&#x2F;Extension 的分层概念对新手并不直观；Snap 的单个应用自包含模型在这点上更简单直接。当然，话说回来：对于大多数纯 GUI 用户而言，如果一个应用在 Flatpak 和 Snap 上都有，Flatpak 在 Wayland 支持、主题集成、Portal 适配方面有时确实做得更好。两者各有优势场景——Snap 强在 CLI&#x2F;开发&#x2F;系统级集成，Flatpak 强在纯桌面 GUI 体验。</p>
 <p>但对于 IDE 这类开发工具，Snap 还有一个 Flatpak 不具备的关键特性：<code>--classic</code> 约束模式。Classic snap 不设沙箱隔离，行为等同于原生应用，可以直接访问宿主编译器、Git、Docker、SSH Agent，以及整个 <code>/home</code> 和 <code>/usr</code> 下的工具链。JetBrains 全系 IDE（IntelliJ、PyCharm、CLion 等）和 VSCode 都有各自厂商官方维护的 Snap 包——正因为厂商希望你用 IDE 写代码，而不是与沙盒斗智斗勇。</p>
-<p>对比一下就知道差距：Flatpak 版 VSCodium 想执行宿主编译器得手动配 <code>flatpak-spawn --host</code>，想支持 dotnet&#x2F;golang 得单独安装 SDK Extension 并设环境变量，连 Git LFS 都要额外装一个 addon；而 <code>sudo snap install code --classic</code> 一行命令，和原生 deb 体验完全一致。连 Universal Blue（Bazzite 背后的团队）都明确不建议用户通过 Flatpak 安装 JetBrains IDE 和 VSCode——这些工具天生不适合沙箱。</p>
+<p>对比一下就知道差距：Flatpak 版 VSCodium 想执行宿主编译器得手动配 <code>flatpak-spawn --host</code>，想支持 dotnet&#x2F;golang 得单独安装 SDK Extension 并设环境变量，连 Git LFS 都要额外装一个 addon；而 <code>sudo snap install code/clion --classic</code> 一行命令，和原生 deb 或 tar.gz 体验完全一致（当然，硬要说 VSCode 这个包的话 Wayland 还是有些问题）。连 Universal Blue（Bazzite 背后的团队）都明确不建议用户通过 Flatpak 安装 JetBrains IDE 和 VSCode——这些工具天生不适合沙箱。</p>
 <blockquote>
 <p>Classic 模式也并非专门为 IDE 设计的——Blender（需要 GPU 渲染直通）和 Yazi（终端文件浏览器，需要直接操作文件系统）等非 IDE 工具同样从中受益，不受沙箱限制。</p>
 </blockquote>
