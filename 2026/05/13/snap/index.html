@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/evening-landscape.jpg">
 <meta property="article:published_time" content="2026-05-13T07:28:29.000Z">
-<meta property="article:modified_time" content="2026-05-13T11:09:05.205Z">
+<meta property="article:modified_time" content="2026-05-13T11:46:46.005Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ubuntu">
@@ -308,7 +308,7 @@
         
         
         
-          81 分钟
+          82 分钟
         
       </span>
     
@@ -545,6 +545,7 @@
 <p>权限管理确实不如 <code>Flatseal</code> 直观</p>
 </blockquote>
 <h3 id="4-3-对开发者的价值：一键环境，零依赖冲突"><a href="#4-3-对开发者的价值：一键环境，零依赖冲突" class="headerlink" title="4.3 对开发者的价值：一键环境，零依赖冲突"></a>4.3 对开发者的价值：一键环境，零依赖冲突</h3><p>在实际工作中，Snap 版开发工具正在让环境配置变得更简单。<code>snap install zig</code> 提供一个沙盒化的 Zig 环境，与系统库完全隔离（<strong>这是另一个锁版本问题，官方仓库的 Zig 落后于 Snapcraft上的版本</strong>）。顺便一提， Ghostty 也是官方仓库落后于 Snap 版本。<code>snap install code</code> 一行命令装好 VSCode，不需要操作系统的库版本配合或者微软的第三方源（事实上需要 Wayland 的话我建议用微软源的）。Canonical 在 2026 年进一步推出 Devpacks 计划，把 GCC、LLVM 等编译器也纳入这个”一键开发环境”范畴（之前已经有 Go 了）。（<strong>以为这又是在造轮子的去看 Phoronix 和官方博客，这跟 Podman&#x2F;Docker 路线有明显区别</strong>）</p>
+<p>Flatpak 通过 Freedesktop SDK 理论上也能搭建开发环境，但那些运行时动辄数 GB、Platform&#x2F;SDK&#x2F;Extension 的分层概念对新手并不直观；Snap 的单个应用自包含模型在这点上更简单直接。当然，话说回来：对于大多数纯 GUI 用户而言，如果一个应用在 Flatpak 和 Snap 上都有，Flatpak 在 Wayland 支持、主题集成、Portal 适配方面有时确实做得更好。两者各有优势场景——Snap 强在 CLI&#x2F;开发&#x2F;系统级集成，Flatpak 强在纯桌面 GUI 体验。</p>
 <h3 id="4-4-对新手用户：它只管工作（实用主义）"><a href="#4-4-对新手用户：它只管工作（实用主义）" class="headerlink" title="4.4 对新手用户：它只管工作（实用主义）"></a>4.4 对新手用户：它只管工作（实用主义）</h3><p>对刚接触 Linux 的用户来说，Snap 有一个非常直白的优势：装得上，跑得动。普通用户不需要知道这个包是 deb 还是 snap，他们只需要浏览器能打开网页，软件能正常工作。<code>snap install telegram-desktop/steam</code> 一行命令，依赖全解决，不操心发行版版本、不缺库、没有依赖冲突。Ubuntu 不是只给高级桌面用户做的发行版，它的桌面产品也必须服务更普通的群体。工程上的权衡需要把这一块人群也纳入考量，而不是只从打包者的视角出发。</p>
 <blockquote>
 <p>顺便一提：Ubuntu 的 Secure Boot 和 NVIDIA 专有驱动模块都是开箱即用的——无需 MOK 手动注册密钥，因为微软信任 Canonical 的签名。从 UEFI 到桌面一路绿灯，单就”开机就能用”这一点，确实是对新手最友好的发行版之一。</p>
@@ -552,10 +553,10 @@
 <blockquote>
 <p>别问为什么不用 Flatpak ，首先<strong>没人让你不用</strong>，然后就是又没看上文</p>
 </blockquote>
-<h3 id="4-5-桌面端的客观短板：需要批评，也需要贡献"><a href="#4-5-桌面端的客观短板：需要批评，也需要贡献" class="headerlink" title="4.5 桌面端的客观短板：需要批评，也需要贡献"></a>4.5 桌面端的客观短板：需要批评，也需要贡献</h3><p>说了这么多 Snap 的进步，不代表它在桌面上已经完美。和专注于桌面 GUI 的 Flatpak 相比，Snap 在桌面端确实有实实在在的短板需要改善。比如 VSCode 的 Snap 版至今仍只支持 XWayland，无法原生运行在 Wayland 下；非 Yaru 主题的适配不够完善，切换系统主题后部分 Snap 应用的界面会显得格格不入；Intel Xe 核显的 VA-API 硬件解码在部分 Snap 应用中也存在问题。</p>
-<p>但反过来，有些被忽视的方面 Snap 做得比 Flatpak 更好。典型的例子是图形驱动集成。Flatpak 用户通常需要额外安装对应版本的 NVIDIA 驱动 runtime（如 <code>org.freedesktop.Platform.GL.nvidia</code>），当系统更新了驱动而 Flatpak runtime 没跟上时，就会出现版本不匹配导致的黑屏或崩溃。(参考文献是 Arch Wiki，自己查)</p>
+<h3 id="4-5-Snap-胜过-Flatpak-的地方：图形驱动集成"><a href="#4-5-Snap-胜过-Flatpak-的地方：图形驱动集成" class="headerlink" title="4.5 Snap 胜过 Flatpak 的地方：图形驱动集成"></a>4.5 Snap 胜过 Flatpak 的地方：图形驱动集成</h3><p>有些被忽视的方面 Snap 做得比 Flatpak 更好。典型的例子是图形驱动集成。Flatpak 用户通常需要额外安装对应版本的 NVIDIA 驱动 runtime（如 <code>org.freedesktop.Platform.GL.nvidia</code>），当系统更新了驱动而 Flatpak runtime 没跟上时，就会出现版本不匹配导致的黑屏或崩溃。(参考文献是 Arch Wiki，自己查)</p>
 <p>Snap 的机制不同。它通过 content interface 让应用 snap 共享图形栈提供者（如 <code>mesa-2404</code>）。其工作原理是：mesa content snap 向应用 snap 提供 DRI 驱动、VA-API 后端、Vulkan 驱动等一整套图形接口，同时对 NVIDIA 专有驱动采取 host 端直通而非沙箱内捆绑的方式，因此不会出现”沙箱里塞了一份和宿主不同步的驱动”的割裂问题。多个 snap 应用通过 <code>gpu-2404</code> 接口共享同一份图形栈，snapd 在 Ubuntu 上自动处理连接，用户几乎无感。最终效果是：系统更新驱动后，snap 应用自动跟随宿主环境，不需要像 Flatpak 那样手动对齐版本。</p>
-<p>此外，另一个绕不开的争议是 Snap Store 本身。与 Flathub 由社区共同维护不同，snapcraft 的后端服务目前完全由 Canonical 控制，代码也不开放。这意味着 Snap 的分发渠道本质上是中心化的——对习惯了传统 Linux 包管理去中心化模型的用户来说，这和”Linux 版 App Store”十分接近，引发控制权担忧是完全可以理解的。这是 Canonical 作为商业公司的决策，此处不替它辩护。但需要指出的是，snapd 本身是开源的，社区在客户端层面仍有贡献和改进的空间——如果桌面用户希望 Snap 变得更好，这里就是可以下手的地方。</p>
+<h3 id="4-6-桌面端仍需改善-绕不开的-Store-争议"><a href="#4-6-桌面端仍需改善-绕不开的-Store-争议" class="headerlink" title="4.6 桌面端仍需改善 + 绕不开的 Store 争议"></a>4.6 桌面端仍需改善 + 绕不开的 Store 争议</h3><p>说了这么多进步，不代表 Snap 在桌面上已经完美。和专注于桌面 GUI 的 Flatpak 相比，Snap 在桌面端确实有实实在在的短板：比如 VSCode 的 Snap 版至今仍只支持 XWayland，无法原生运行在 Wayland 下；非 Yaru 主题的适配不够完善；Intel Xe 核显的 VA-API 硬件解码在部分应用中也存在问题。</p>
+<p>此外，另一个绕不开的争议是 Snap Store 本身。与 Flathub 由社区共同维护不同，snapcraft 的后端服务目前完全由 Canonical 控制，代码也不开放——对习惯了传统 Linux 包管理去中心化模型的用户来说，这和”Linux 版 App Store”十分接近，引发控制权担忧完全可以理解。这是 Canonical 作为商业公司的决策，此处不替它辩护。但需要指出的是，snapd 本身是开源的，社区在客户端层面仍有贡献和改进的空间。</p>
 <p><strong>客观地说，两个方案各有优劣。Snap 在桌面上确实需要社区——尤其是我们这些占 Linux 不到 5% 的桌面用户——去提 issue、做测试、甚至是贡献代码，实实在在改善 Wayland 支持、主题适配、硬件加速等问题，而不是丢一句 “snap 就是垃圾” 就关掉终端。批评是为了推动改善，不是为了让批评本身变成身份标签。</strong></p>
 <hr>
 <h2 id="五、”apt-静默重定向”应该批评，但不应无限上纲"><a href="#五、”apt-静默重定向”应该批评，但不应无限上纲" class="headerlink" title="五、”apt 静默重定向”应该批评，但不应无限上纲"></a>五、”apt 静默重定向”应该批评，但不应无限上纲</h2><h3 id="5-1-一个合理且值得被批评的问题"><a href="#5-1-一个合理且值得被批评的问题" class="headerlink" title="5.1 一个合理且值得被批评的问题"></a>5.1 一个合理且值得被批评的问题</h3><p>在这三个包的具体实现中，<code>apt install firefox</code> 静默安装 Snap 版本，这个行为确实有问题。它打破了老用户对 <code>apt</code> 的预期。”<code>apt</code> 是 Debian&#x2F;Ubuntu 生态的基石，用 <code>apt install</code> 就应该装 deb 包”——这个心理契约被打破了。更具体的困扰在于行为不一致：用户输入 <code>apt install firefox</code>，系统装了一个 Snap。用户执行 <code>apt remove firefox</code>，这个 Snap 不会真正被卸载，因为它装在 <code>/snap</code> 下而不在 apt 的追踪范围内。这种操作的不一致性给用户造成了实实在在的困惑和挫败感。</p>
