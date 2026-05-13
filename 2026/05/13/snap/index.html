@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/evening-landscape.jpg">
 <meta property="article:published_time" content="2026-05-13T07:28:29.000Z">
-<meta property="article:modified_time" content="2026-05-13T16:38:30.634Z">
+<meta property="article:modified_time" content="2026-05-13T16:55:59.542Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ubuntu">
@@ -297,7 +297,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          11k 字
         
       </span>
     
@@ -308,7 +308,7 @@
         
         
         
-          87 分钟
+          89 分钟
         
       </span>
     
@@ -524,6 +524,7 @@
 <hr>
 <h2 id="三、为什么不是-Flatpak？Snap-的目标本就不止桌面"><a href="#三、为什么不是-Flatpak？Snap-的目标本就不止桌面" class="headerlink" title="三、为什么不是 Flatpak？Snap 的目标本就不止桌面"></a>三、为什么不是 Flatpak？Snap 的目标本就不止桌面</h2><h3 id="3-1-设计目标的根本差异"><a href="#3-1-设计目标的根本差异" class="headerlink" title="3.1 设计目标的根本差异"></a>3.1 设计目标的根本差异</h3><p>对 Snap 的另一大常见批评是”重复造轮子”——社区已经有 Flatpak 了，Canonical 为什么还要另搞一套？这个问题的答案在于两者的设计目标从一开始就完全不同。</p>
 <p>Flatpak 是为桌面 GUI 应用设计的。<strong>它的社区明确限制纯命令行应用的提交</strong>，系统服务、守护进程更是超出它的范围。你没法用 Flatpak 去管理 Docker 容器、运行 LXD 系统服务或者部署内核模块。</p>
+<p>即便不谈这些硬限制，Flatpak 对 CLI 应用的体验也相当劝退：<code>flatpak run io.github.sxyazi.yazi</code> 这种长度对日常频繁调用来说完全不可接受。别说什么 alias 或手动软链接——如果一个打包格式连”给用户一个简短可执行名”都要靠 hack 来解决，那它从一开始就不是为 CLI 设计的。Flatpak 官方文档也自行列举了不适合的使用场景：无法运行 SUID 二进制、不能访问宿主 <code>/proc</code> 或进行无过滤的进程操作、seccomp 会拦截创建子命名空间等系统调用、内核模块和驱动不在支持范围内、udev 规则和 systemd 服务需手动配置才能导出沙箱。除此之外，一个简单的 CLI 工具打包成 Flatpak 也得挂上动辄数 GB 的 Freedesktop SDK 运行时——为了一个几百 KB 的二进制拖一整套桌面栈，实在是臃肿得不讲道理。</p>
 <p>Snap 的设计定位是全场景通用方案。命令行工具可以打包成 Snap（<code>snap install zig</code>、<code>snap install rustup</code>、<code>snap install yazi</code>），图形应用可以打包成 Snap（Firefox、VSCode、<strong>Steam</strong>、Telegram Desktop），后台服务可以打包成 Snap（Docker、LXD、Multipass），甚至系统级组件也可以打包成 Snap。<strong>Ubuntu Core</strong> 就是一个完全由 Snap 组件构建的不可变操作系统。</p>
 <h3 id="3-2-Snap-早于-Flatpak-1-0"><a href="#3-2-Snap-早于-Flatpak-1-0" class="headerlink" title="3.2 Snap 早于 Flatpak 1.0"></a>3.2 Snap 早于 Flatpak 1.0</h3><p>还有一点常被忽略的时间线事实：Snap 的概念提出和早期实现都早于 Flatpak 1.0 的正式发布。它并非 Canonical 看到 Flatpak 之后故意要”制造分裂”，而是一条从更早启动、面向更广泛场景的技术路线。</p>
 <h3 id="3-3-不可变基础设施：全行业都在往同一个方向走"><a href="#3-3-不可变基础设施：全行业都在往同一个方向走" class="headerlink" title="3.3 不可变基础设施：全行业都在往同一个方向走"></a>3.3 不可变基础设施：全行业都在往同一个方向走</h3><p>跳出桌面看，整个基础设施领域正在趋向同一个方向：不可变系统、原子更新、自动回滚。</p>
