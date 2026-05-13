@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/evening-landscape.jpg">
 <meta property="article:published_time" content="2026-05-13T07:28:29.000Z">
-<meta property="article:modified_time" content="2026-05-13T11:46:46.005Z">
+<meta property="article:modified_time" content="2026-05-13T15:42:44.610Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ubuntu">
@@ -297,7 +297,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.7k 字
+          10k 字
         
       </span>
     
@@ -308,7 +308,7 @@
         
         
         
-          82 分钟
+          84 分钟
         
       </span>
     
@@ -534,6 +534,7 @@
 <li>SUSE 有 MicroOS，基于事务性更新做同样的事。</li>
 </ul>
 <p>这些方案的技术路线不同，但目标一致：让系统状态可预测、可重现、可回滚。Snap 在 Ubuntu 生态里就是这条路的载体。<strong>把一个全场景基础设施方案纯粹用桌面应用打包工具的视角去衡量，是在不同的维度上强行做比较</strong>。</p>
+<p>一个桌面用户看不见的例子：Ubuntu LTS 的 Livepatch 服务——内核安全更新无需重启、零停机修复高危漏洞——底层依赖的正是 Snap 的组件化交付机制。2026 年 5 月爆出的 Dirty Frag（CVE-2026-43500&#x2F;43284）和 4 月的 Copy Fail（CVE-2026-31431）等内核提权漏洞，开启了 Livepatch 的 LTS 系统可以在不中断业务的情况下立即修复，而传统的 <code>apt upgrade</code> + 重启方案在当时意味着数分钟甚至更长时间的服务中断。对跑着数据库和 Web 服务的生产环境来说，”不重启就能修内核”是一线运维的救命稻草。桌面用户可能对内核漏洞不太敏感，但这也恰恰说明：<strong>有些决策的动机在服务器机房里，不在桌面上</strong>。</p>
 <h3 id="3-4-“造轮子”的前科与知错能改的-Canonical"><a href="#3-4-“造轮子”的前科与知错能改的-Canonical" class="headerlink" title="3.4 “造轮子”的前科与知错能改的 Canonical"></a>3.4 “造轮子”的前科与知错能改的 Canonical</h3><p>社区对 Canonical 的信任赤字并非空穴来风。回顾历史，Canonical 确实有过三次著名的”造轮子然后放弃”的记录：<strong>Mir 显示服务器在 Wayland 成为行业共识后退场，Upstart 初始化系统在 systemd 胜出后放弃，Unity 桌面环境最终让位于 GNOME</strong>。这些尝试对当时的用户和生态确实造成了分裂和困惑，社区的不信任由此而来。</p>
 <p>但这恰恰说明 Canonical 并非顽固不化。它试过，争过，输了之后也认了——Mir 的后续技术积累已转向为 Wayland 合成器提供底层支持，Unity 的设计遗产也在 Ubuntu 的 GNOME 定制中延续（Unity 已经独立出来了另外维护，即 Ubuntu 风味版）。这些失败不能作为”邪恶”的证据，而是一家公司在探索差异化路径时付出的代价和精力。Google 关掉的产品不比谁少，Microsoft 推过的 Windows Phone 和 Zune 甚至是 WSA 早已成为互联网记忆，Red Hat 在 Linux 领域的尝试也并非一帆风顺（想一下 Centos 的历史）——哪家活得久的科技公司没有几段”黑历史”？</p>
 <p><strong>如今 Canonical 已经找到了适合自己的路：RHEL 向下扎根，聚焦基础设施的极致稳定；Canonical 向上生长，用 Snap 等容器化方案拥抱应用和开发者场景（物联网、云原生、机器人）。两者是 Linux 生态里互补的两端而不是对手。拿十几年前的 Mir 和 Unity 来否定今天 Canonical 做的每一件事，既不公允，也无助于推动任何实质性改进。批评应该对准具体的问题和具体的做法，而不是对着公司名字条件反射式地开火。</strong></p>
@@ -556,6 +557,9 @@
 <h3 id="4-5-Snap-胜过-Flatpak-的地方：图形驱动集成"><a href="#4-5-Snap-胜过-Flatpak-的地方：图形驱动集成" class="headerlink" title="4.5 Snap 胜过 Flatpak 的地方：图形驱动集成"></a>4.5 Snap 胜过 Flatpak 的地方：图形驱动集成</h3><p>有些被忽视的方面 Snap 做得比 Flatpak 更好。典型的例子是图形驱动集成。Flatpak 用户通常需要额外安装对应版本的 NVIDIA 驱动 runtime（如 <code>org.freedesktop.Platform.GL.nvidia</code>），当系统更新了驱动而 Flatpak runtime 没跟上时，就会出现版本不匹配导致的黑屏或崩溃。(参考文献是 Arch Wiki，自己查)</p>
 <p>Snap 的机制不同。它通过 content interface 让应用 snap 共享图形栈提供者（如 <code>mesa-2404</code>）。其工作原理是：mesa content snap 向应用 snap 提供 DRI 驱动、VA-API 后端、Vulkan 驱动等一整套图形接口，同时对 NVIDIA 专有驱动采取 host 端直通而非沙箱内捆绑的方式，因此不会出现”沙箱里塞了一份和宿主不同步的驱动”的割裂问题。多个 snap 应用通过 <code>gpu-2404</code> 接口共享同一份图形栈，snapd 在 Ubuntu 上自动处理连接，用户几乎无感。最终效果是：系统更新驱动后，snap 应用自动跟随宿主环境，不需要像 Flatpak 那样手动对齐版本。</p>
 <h3 id="4-6-桌面端仍需改善-绕不开的-Store-争议"><a href="#4-6-桌面端仍需改善-绕不开的-Store-争议" class="headerlink" title="4.6 桌面端仍需改善 + 绕不开的 Store 争议"></a>4.6 桌面端仍需改善 + 绕不开的 Store 争议</h3><p>说了这么多进步，不代表 Snap 在桌面上已经完美。和专注于桌面 GUI 的 Flatpak 相比，Snap 在桌面端确实有实实在在的短板：比如 VSCode 的 Snap 版至今仍只支持 XWayland，无法原生运行在 Wayland 下；非 Yaru 主题的适配不够完善；Intel Xe 核显的 VA-API 硬件解码在部分应用中也存在问题。</p>
+<blockquote>
+<p>对国内用户而言还有一个额外的痛点：网络。Snap 的后端走 Cloudflare CDN，但 Canonical 没有启用国内节点，下载速度全看运气——IPv6 偶尔能跑满千兆，时常又龟速到令人崩溃。Flatpak 好歹有 USTC 等镜像站可以换源，snap 却换不了源，只能硬扛。移动宽带用户尤其难受，开透明代理能缓解但总归不方便。如果 Canonical 能开启 Cloudflare CDN 的国内节点，这个问题就能大幅改善。</p>
+</blockquote>
 <p>此外，另一个绕不开的争议是 Snap Store 本身。与 Flathub 由社区共同维护不同，snapcraft 的后端服务目前完全由 Canonical 控制，代码也不开放——对习惯了传统 Linux 包管理去中心化模型的用户来说，这和”Linux 版 App Store”十分接近，引发控制权担忧完全可以理解。这是 Canonical 作为商业公司的决策，此处不替它辩护。但需要指出的是，snapd 本身是开源的，社区在客户端层面仍有贡献和改进的空间。</p>
 <p><strong>客观地说，两个方案各有优劣。Snap 在桌面上确实需要社区——尤其是我们这些占 Linux 不到 5% 的桌面用户——去提 issue、做测试、甚至是贡献代码，实实在在改善 Wayland 支持、主题适配、硬件加速等问题，而不是丢一句 “snap 就是垃圾” 就关掉终端。批评是为了推动改善，不是为了让批评本身变成身份标签。</strong></p>
 <hr>
