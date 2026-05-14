@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://rukkhadevata123.github.io/images/evening-landscape.jpg">
 <meta property="article:published_time" content="2026-05-13T07:28:29.000Z">
-<meta property="article:modified_time" content="2026-05-14T07:57:03.740Z">
+<meta property="article:modified_time" content="2026-05-14T09:47:08.400Z">
 <meta property="article:author" content="Dawn Chirps">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ubuntu">
@@ -297,7 +297,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          11k 字
         
       </span>
     
@@ -308,7 +308,7 @@
         
         
         
-          97 分钟
+          94 分钟
         
       </span>
     
@@ -517,7 +517,7 @@
 <blockquote>
 <p>如果还问为什么不用 apt 源，说明没认真看上面</p>
 </blockquote>
-<p>Snap 在这个局面下提供了一条出路：把浏览器从系统核心解耦。Firefox Snap 运行在沙箱里，独立于发行版生命周期滚动更新，行为变更被限制在容器内部，不影响系统其他部分。这本质上是一个多方共同受益的工程方案：Canonical 免去了为每个 LTS 分支回溯浏览器补丁的人力压力，<strong>可以把有限的精力集中在更关键的基础设施上——内核维护、安全更新、Ubuntu Pro 的长期支持、云镜像优化、AI&#x2F;ML 与物联网平台的建设——这些才是 Ubuntu 真正的基本盘（桌面用户在整个 Linux 生态中占比不到 5%）</strong>。Mozilla 获得了统一的跨发行版分发渠道，Ubuntu 用户拿到了与上游同步的最新浏览器。如果你确实无法接受这种取舍，<strong>Arch、Fedora</strong> 等滚动发行版打包最新浏览器的维护压力要小得多，它们的存在本身就是 Linux 多元生态的价值体现。这个方案不是”更好”或者”更纯粹”，而是”在给定的约束下可行”。</p>
+<p>Snap 在这个局面下提供了一条出路：把浏览器从系统核心解耦。Firefox Snap 运行在沙箱里，独立于发行版生命周期滚动更新，行为变更被限制在容器内部，不影响系统其他部分。这本质上是一个多方共同受益的工程方案：Canonical 免去了为每个 LTS 分支回溯浏览器补丁的人力压力，<strong>可以把有限的精力集中在更关键的基础设施上——内核维护、安全更新、Ubuntu Pro 的长期支持、云镜像优化、AI&#x2F;ML 与物联网平台的建设——这些才是 Ubuntu 真正的基本盘（桌面用户在整个 Linux 生态中占比不到 5%）</strong>。Mozilla 获得了统一的跨发行版分发渠道，Ubuntu 用户拿到了与上游同步的最新浏览器。这个方案不是”更好”或者”更纯粹”，而是”在给定的约束下可行”。</p>
 <h3 id="2-5-浏览器之外：锁版本对桌面工具的广泛影响"><a href="#2-5-浏览器之外：锁版本对桌面工具的广泛影响" class="headerlink" title="2.5 浏览器之外：锁版本对桌面工具的广泛影响"></a>2.5 浏览器之外：锁版本对桌面工具的广泛影响</h3><p>Firefox 和 Chromium 只是最显眼的例子，锁版本策略的影响远不止于此。对于桌面用户常用的开发工具和效率软件，Ubuntu 官方源的版本经常落后上游一大截。比如 PrismLauncher，Ubuntu 26.04 LTS 官方源还锁在 10.0.5，而 Snap 版已经更新到了 11.x（如 11.0.2）；Neovim 在 Ubuntu 24.04 LTS 官方源停留在 0.9.x，最新稳定版早已是 0.12.x 以上，Lua 配置生态的巨大版本差让用户非常难受。类似的情况也出现在 fish、fastfetch、ripgrep 等工具上——上游迭代飞快，官方源纹丝不动。</p>
 <p>解决方案是多样化的，但各有利弊：PPA 能拿到最新甚至开发版，但可能引入依赖冲突；Snap 和 Flatpak 沙箱隔离不破坏系统，但有额外开销（特别是 flatpak 对 CLI 支持不友好）；Homebrew on Linux 专为用户空间设计、不侵入系统目录，特别适合命令行工具（如 <code>brew install neovim ripgrep eza</code>）；对于 Hyprland、Niri、Quickshell 这类更新极度频繁的窗口管理器和桌面组件，往往只能自己编译或使用社区维护的 PPA。</p>
 <p>Canonical 没有精力去维护一个”服务器分支”和一个”桌面分支”——它的核心价值在于用同一套 base 服务所有场景，让绝大多数使用情况受益。如果你追求每一个包都是最新版本，换到 Arch、Fedora 等滚动发行版本身就是合理的选择。<strong>没有一个发行版能在所有维度上”既要又要”，多元并存的生态本身就是用户用脚投票的自由</strong>。</p>
@@ -550,10 +550,10 @@
 <blockquote>
 <p>权限管理确实不如 <code>Flatseal</code> 直观</p>
 </blockquote>
-<h3 id="4-3-对开发者的价值：一键环境，零依赖冲突"><a href="#4-3-对开发者的价值：一键环境，零依赖冲突" class="headerlink" title="4.3 对开发者的价值：一键环境，零依赖冲突"></a>4.3 对开发者的价值：一键环境，零依赖冲突</h3><p>在实际工作中，Snap 版开发工具正在让环境配置变得更简单。<code>snap install zig</code> 提供一个沙盒化的 Zig 环境，与系统库完全隔离（<strong>这是另一个锁版本问题，官方仓库的 Zig 落后于 Snapcraft上的版本</strong>）。顺便一提， Ghostty 也是官方仓库落后于 Snap 版本。<code>snap install code</code> 一行命令装好 VSCode，不需要操作系统的库版本配合或者微软的第三方源（事实上需要 Wayland 的话我建议用微软源的）。Canonical 在 2026 年进一步推出 Devpacks 计划，把 GCC、LLVM 等编译器也纳入这个”一键开发环境”范畴（之前已经有 Go 了）。（<strong>以为这又是在造轮子的去看 Phoronix 和官方博客，这跟 Podman&#x2F;Docker 路线有明显区别</strong>）</p>
+<h3 id="4-3-对开发者的价值：一键环境，零依赖冲突"><a href="#4-3-对开发者的价值：一键环境，零依赖冲突" class="headerlink" title="4.3 对开发者的价值：一键环境，零依赖冲突"></a>4.3 对开发者的价值：一键环境，零依赖冲突</h3><p>在实际工作中，Snap 版开发工具正在让环境配置变得更简单。<code>snap install zig</code> 提供一个沙盒化的 Zig 环境，与系统库完全隔离（<strong>这是另一个锁版本问题，官方仓库的 Zig 落后于 Snapcraft上的版本</strong>）。顺便一提， Ghostty 也是官方仓库落后于 Snap 版本。<code>snap install code</code> 一行命令装好 VSCode，不需要操作系统的库版本配合或者微软的第三方源。Canonical 在 2026 年进一步推出 Devpacks 计划，把 GCC、LLVM 等编译器也纳入这个”一键开发环境”范畴（之前已经有 Go 了）。（<strong>以为这又是在造轮子的去看 Phoronix 和官方博客，这跟 Podman&#x2F;Docker 路线有明显区别</strong>）</p>
 <p>Flatpak 通过 Freedesktop SDK 理论上也能搭建开发环境，但那些运行时动辄数 GB、Platform&#x2F;SDK&#x2F;Extension 的分层概念对新手并不直观；Snap 的单个应用自包含模型在这点上更简单直接。当然，话说回来：对于大多数纯 GUI 用户而言，如果一个应用在 Flatpak 和 Snap 上都有，Flatpak 在 Wayland 支持、主题集成、Portal 适配方面有时确实做得更好。两者各有优势场景——Snap 强在 CLI&#x2F;开发&#x2F;系统级集成，Flatpak 强在纯桌面 GUI 体验。</p>
 <p>但对于 IDE 这类开发工具，Snap 还有一个 Flatpak 不具备的关键特性：<code>--classic</code> 约束模式。Classic snap 不设沙箱隔离，行为等同于原生应用，可以直接访问宿主编译器、Git、Docker、SSH Agent，以及整个 <code>/home</code> 和 <code>/usr</code> 下的工具链。JetBrains 全系 IDE（IntelliJ、PyCharm、CLion 等）和 VSCode 都有各自厂商官方维护的 Snap 包——正因为厂商希望你用 IDE 写代码，而不是与沙盒斗智斗勇。</p>
-<p>对比一下就知道差距：Flatpak 版 VSCodium 想执行宿主编译器得手动配 <code>flatpak-spawn --host</code>，想支持 dotnet&#x2F;golang 得单独安装 SDK Extension 并设环境变量，连 Git LFS 都要额外装一个 addon；而 <code>sudo snap install code/clion --classic</code> 一行命令，和原生 deb 或 tar.gz 体验完全一致（当然，硬要说 VSCode 这个包的话 Wayland 还是有些问题）。连 Universal Blue（Bazzite 背后的团队）都明确不建议用户通过 Flatpak 安装 JetBrains IDE 和 VSCode——这些工具天生不适合沙箱。</p>
+<p>对比一下就知道差距：Flatpak 版 VSCodium 想执行宿主编译器得手动配 <code>flatpak-spawn --host</code>，想支持 dotnet&#x2F;golang 得单独安装 SDK Extension 并设环境变量，连 Git LFS 都要额外装一个 addon；而 <code>sudo snap install code/clion --classic</code> 一行命令，和原生 deb 或 tar.gz 体验完全一致。连 Universal Blue（Bazzite 背后的团队）都明确不建议用户通过 Flatpak 安装 JetBrains IDE 和 VSCode——这些工具天生不适合沙箱。</p>
 <blockquote>
 <p>Classic 模式也并非专门为 IDE 设计的——Blender（需要 GPU 渲染直通）和 Yazi（终端文件浏览器，需要直接操作文件系统）等非 IDE 工具同样从中受益，不受沙箱限制。</p>
 </blockquote>
@@ -604,13 +604,13 @@
 <h3 id="8-2-国家层面：从基础设施到数字主权"><a href="#8-2-国家层面：从基础设施到数字主权" class="headerlink" title="8.2 国家层面：从基础设施到数字主权"></a>8.2 国家层面：从基础设施到数字主权</h3><p>一个更宏观的趋势是，越来越多的国家开始将关键开源项目视为公共基础设施，通过政府采购和定向拨款来确保其长期稳定。开源的发展路径正在从志愿者驱动，到商业参与，再走向政府和公共资金的支撑。这是在现实压力下正在发生的事情，不是理想主义的愿景。</p>
 <h3 id="8-3-Canonical-是这套逻辑中的一环"><a href="#8-3-Canonical-是这套逻辑中的一环" class="headerlink" title="8.3 Canonical 是这套逻辑中的一环"></a>8.3 Canonical 是这套逻辑中的一环</h3><p>把 Canonical 放回这个框架里看，它的角色是提供企业级稳定支持并从中获得收入，然后用这些收入来维持 Ubuntu 的开发和维护。选择 Snap 来分摊浏览器的维护成本，是这个商业模式中的一个具体决策。<strong>你可以批评这个决策的具体实现，但不应该因为它来自一家公司就全盘否定。</strong></p>
 <hr>
-<h2 id="九、结语：基于事实、成本与选择的边界"><a href="#九、结语：基于事实、成本与选择的边界" class="headerlink" title="九、结语：基于事实、成本与选择的边界"></a>九、结语：基于事实、成本与选择的边界</h2><h3 id="9-1-事实层面"><a href="#9-1-事实层面" class="headerlink" title="9.1 事实层面"></a>9.1 事实层面</h3><p>六年来通过 postinst 脚本重定向到 Snap 的包只有 Firefox、Chromium、Thunderbird 三个。Firefox 和 Thunderbird 的 Snap 由 Mozilla 官方发布和维护，不是 Canonical 的自作主张。所谓”Ubuntu 全面 Snap 化”是一个被反复复读到失去了事实基础的标签。</p>
-<h3 id="9-2-工程层面"><a href="#9-2-工程层面" class="headerlink" title="9.2 工程层面"></a>9.2 工程层面</h3><p>把这三个包做成 Snap，是锁版本发行版在人力有限的情况下，解决高频更新软件与系统稳定性之间矛盾的一个具体方案。这个矛盾不限于浏览器——从 Neovim 到 PrismLauncher，桌面用户能列出无数个”官方源版本太旧”的例子，而 Canonical 没有精力、也不可能维护一个”服务器分支”和一个”桌面分支”。更深一层看，Snap 的意义也不只是应用分发：Livepatch 内核热补丁、<code>--classic</code> 模式下 IDE 免沙箱的原生开发体验，都依赖 Snap 的组件化架构才能成立。解决方案不完美，但动因明确，收益也远不止浏览器这一个点：同样的隔离模型让 <code>lxd</code> 和 <code>microk8s</code> 等服务端工具以容器化方式独立交付——对桌面用户只是”启动慢了点”，对服务器却是安全底线。</p>
-<h3 id="9-3-可以批评的地方"><a href="#9-3-可以批评的地方" class="headerlink" title="9.3 可以批评的地方"></a>9.3 可以批评的地方</h3><p><code>apt install</code> 静默重定向透明度不足、卸载行为不一致；Snap Store 后端闭源、分发渠道中心化引发控制权担忧；桌面端 Wayland 支持、主题适配仍有欠缺；对国内用户而言 CDN 没有大陆节点、下载速度全看运气。这些都是值得持续反馈的批评。</p>
-<h3 id="9-4-需要理解的地方"><a href="#9-4-需要理解的地方" class="headerlink" title="9.4 需要理解的地方"></a>9.4 需要理解的地方</h3><p>Canonical 是一家在资源约束下做工程选择的公司。它试错过（Mir、Upstart、Unity），也认输过，并最终在 RHEL 向下扎根的基础设施与自身向上生长的应用场景之间找到了互补的位置。Ubuntu 的目标人群既包括桌面新手，也包括服务器管理员和物联网厂商，没有一个方案能让所有人满意。</p>
-<h3 id="9-5-选择的自由一直都在"><a href="#9-5-选择的自由一直都在" class="headerlink" title="9.5 选择的自由一直都在"></a>9.5 选择的自由一直都在</h3><p>不喜欢 Snap？<code>sudo apt remove snapd</code>，然后加 Mozilla 的 apt 源装 deb 版 Firefox。或者用 Flatpak 替换。或者换个发行版——Arch、Fedora、openSUSE、Linux Mint，任选一个。Linux 生态的核心价值之一就是用脚投票的自由。但请把不一样的选择和”邪恶”分开，也请把六年来只有三个包的事实，和”整个 Ubuntu 都沦陷了”的夸张叙事分开。<strong>更不要为了抬高自己喜欢的发行版而刻意拉踩另一个——每个发行版都有自己面向的人群和场景，用自己的需求去审判别人的选择，既不体面，也没有建设性。</strong></p>
-<h3 id="9-6-对社区的一点期待"><a href="#9-6-对社区的一点期待" class="headerlink" title="9.6 对社区的一点期待"></a>9.6 对社区的一点期待</h3><p>一个有生命力的技术社区，应当能同时容纳两件事：<strong>一是批评具体实现中的不足；二是在理解工程约束的前提下承认方案背后的合理性。不问事实直接贴标签、用桌面用户的使用场景以偏概全地丈量一切、把工程取舍曲解为道德问题、把情绪宣泄包装成正义发声——这些做法既不能解决实际问题，也不能让软件变得更好，只会持续消耗社区有限的讨论空间。</strong></p>
-<p>真正有效的批评，是先核实事实，再评估成本，然后针对具体的点提出具体的改进意见。Flatpak 强在桌面 GUI、Snap 覆盖全场景、滚动发行版适合追新——不同方案面向不同用户群，这本是 Linux 生态多元化的体现，不是非要分出谁对谁错。一个健康的开源生态，需要的不是更多的站队和复读，而是更多愿意停下来问一句”事实到底是什么”的人。</p>
+<h2 id="九、结语：基于事实、成本与选择的边界"><a href="#九、结语：基于事实、成本与选择的边界" class="headerlink" title="九、结语：基于事实、成本与选择的边界"></a>九、结语：基于事实、成本与选择的边界</h2><h3 id="9-1-事实层面"><a href="#9-1-事实层面" class="headerlink" title="9.1 事实层面"></a>9.1 事实层面</h3><p>把”三个包”夸大为”全盘 Snap 化”，是对事实的情绪化扭曲。Firefox 和 Thunderbird 的 Snap 由 Mozilla 官方维护，与”Canonical 私自替换”完全是两回事。</p>
+<h3 id="9-2-工程层面"><a href="#9-2-工程层面" class="headerlink" title="9.2 工程层面"></a>9.2 工程层面</h3><p>锁版本策略是 Ubuntu 服务于生产环境的基本契约，不是技术保守。Snap 将高频更新的软件从系统核心解耦，本质上是有限资源下的务实分工——这个逻辑不仅适用于浏览器，也适用于所有与 LTS 冻结周期冲突的桌面工具和系统组件。Livepatch、沙箱隔离、<code>--classic</code> 模式，都是同一套组件化架构在不同场景下的自然延伸。</p>
+<h3 id="9-3-可以批评的地方"><a href="#9-3-可以批评的地方" class="headerlink" title="9.3 可以批评的地方"></a>9.3 可以批评的地方</h3><p><code>apt</code> 静默重定向的透明度、卸载行为的不一致、Store 后端的闭源中心化、桌面端 GUI 体验的差距、国内网络不可控——这些都是实实在在的问题，值得持续提 issue、做反馈。</p>
+<h3 id="9-4-需要理解的地方"><a href="#9-4-需要理解的地方" class="headerlink" title="9.4 需要理解的地方"></a>9.4 需要理解的地方</h3><p>Canonical 不是完美的，也不是恶魔。它试错过，也认输过，最终在 RHEL 的基础设施与自身的应用场景之间找到了互补位置。一家在资源约束下做决策的公司，不可能让所有人满意。理解约束不等于原谅错误——但可以避免把每个错误都当成道德审判的素材。</p>
+<h3 id="9-5-选择的自由一直都在"><a href="#9-5-选择的自由一直都在" class="headerlink" title="9.5 选择的自由一直都在"></a>9.5 选择的自由一直都在</h3><p>不喜欢 Snap？卸载。想用 Flatpak？装。想换发行版？Arch、Fedora、openSUSE、Mint 任选。用脚投票是 Linux 最核心的价值之一。把不一样的选择等同于”邪恶”，既不体面也没有建设性。</p>
+<h3 id="9-6-对社区的一点期待"><a href="#9-6-对社区的一点期待" class="headerlink" title="9.6 对社区的一点期待"></a>9.6 对社区的一点期待</h3><p>一个健康的社区，应当能同时容纳批评和理解——批评具体实现中的不足，理解工程约束下的取舍。不问事实直接贴标签、用桌面用户的使用场景以偏概全地丈量一切、把工程决策曲解为道德问题、把情绪宣泄包装成正义发声——这些做法不会让任何软件变得更好，只会让不到 5% 的桌面社区在无尽的内耗中变得越来越小。</p>
+<p>真正有效的批评，是先核实事实，再评估成本，然后针对具体的点提出改进意见。Flatpak 强在 GUI、Snap 覆盖全场景、滚动发行版适合追新——不同方案面向不同用户群，这是多元化的价值，不是站队的理由。社区需要的不是更多的复读和拉踩，而是更多愿意停下来问一句”事实到底是什么”的人。</p>
 <hr>
 <p><em>如果你有批评，请落在具体问题上。如果你有精力，snapd 是开源的，可以去提交 issue 或贡献代码。如果你实在不喜欢，就换掉。社区的前进不靠骂退某一方，而是靠在事实基础上，用理性的方式推动每一方都做得比昨天更好。</em></p>
 
