@@ -1,0 +1,4 @@
+User-agent:*
+Disallow:
+
+Sitemap: https://Rukkhadevata123.github.io/sitemap.xml
