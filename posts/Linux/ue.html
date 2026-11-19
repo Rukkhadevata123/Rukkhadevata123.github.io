@@ -1,0 +1,1506 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Linux/ue.html">
+            <meta property="og:title" content="Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Linux/ue.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="All Sword and No Play Makes March a Dull Girl.">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.bb1aee13f1a46506.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html" aria-current="page">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html" aria-current="page">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</h1>
+                    <p class="article-date"><time datetime="2026-10-19">2026-10-19</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-14">2026-11-14</time></p>
+                    <p class="article-date article-reading-time">预计阅读 21 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-4c696e757820e4bdbfe794a8">Linux &#x4F7F;&#x7528;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/4828e60247c1636f57b7446a314e7f599c12b53d40061cc851a1442004354fed.html">#Linux</a></li>
+                            <li><a href="../../tags/ebd1337f549061bee8b04b53fc3cdd2791e262cab5126c6c79d9f53f423d98a1.html">#Unreal Engine</a></li>
+                            <li><a href="../../tags/f1deb75fa21d3c47a6e7a45967b79fad2d053947066dc95322c5bcee1e9fe21c.html">#C&#x2B;&#x2B;</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x4E00;&#x3001;&#x73AF;&#x5883;&#x4E0E;&#x5DE5;&#x5177;&#x5206;&#x5DE5;</a>
+        <a class="level-2" href="#ue-fab">&#x4E8C;&#x3001;&#x4E0B;&#x8F7D; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#x548C; Fab &#x63D2;&#x4EF6;</a>
+        <a class="level-2" href="#arch">&#x4E09;&#x3001;&#x5B89;&#x88C5; Arch &#x5DE5;&#x5177;&#x5E76;&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x73AF;&#x5883;</a>
+        <a class="level-2" href="#fab">&#x56DB;&#x3001;&#x89E3;&#x538B;&#x5F15;&#x64CE;&#x548C; Fab</a>
+        <a class="level-3" href="#section-1">4.1 &#x7EA6;&#x5B9A;&#x76EE;&#x5F55;&#x53D8;&#x91CF;</a>
+        <a class="level-3" href="#section-2">4.2 &#x89E3;&#x538B;&#x5F15;&#x64CE;</a>
+        <a class="level-3" href="#fab-1">4.3 &#x89E3;&#x538B; Fab &#x63D2;&#x4EF6;</a>
+        <a class="level-3" href="#buildid">4.4 &#x6838;&#x5BF9;&#x63D2;&#x4EF6;&#x4E0E;&#x5F15;&#x64CE;&#x7684; BuildId</a>
+        <a class="level-2" href="#fab-2">&#x4E94;&#x3001;&#x542F;&#x52A8;&#x7F16;&#x8F91;&#x5668;&#x5E76;&#x4F7F;&#x7528; Fab</a>
+        <a class="level-3" href="#wayland-xwayland">5.1 Wayland &#x684C;&#x9762;&#x4E0B;&#x4F7F;&#x7528; XWayland</a>
+        <a class="level-3" href="#wayland">5.2 &#x5C1D;&#x8BD5;&#x539F;&#x751F; Wayland</a>
+        <a class="level-3" href="#fab-3">5.3 &#x542F;&#x7528; Fab &#x5E76;&#x6DFB;&#x52A0;&#x8D44;&#x6E90;</a>
+        <a class="level-2" href="#c">&#x516D;&#x3001;&#x521B;&#x5EFA; C&#x2B;&#x2B; &#x9879;&#x76EE;&#x4E0E;&#x5E38;&#x7528;&#x6784;&#x5EFA;&#x547D;&#x4EE4;</a>
+        <a class="level-3" href="#editor">6.1 &#x6784;&#x5EFA;&#x65E5;&#x5E38;&#x4F7F;&#x7528;&#x7684; Editor &#x76EE;&#x6807;</a>
+        <a class="level-3" href="#section-3">6.2 &#x6253;&#x5F00;&#x5DF2;&#x7ECF;&#x6784;&#x5EFA;&#x7684;&#x9879;&#x76EE;</a>
+        <a class="level-3" href="#debuggame-game">6.3 DebugGame &#x4E0E; Game &#x76EE;&#x6807;</a>
+        <a class="level-3" href="#section-4">6.4 &#x6E05;&#x7406;&#x9879;&#x76EE;&#x76EE;&#x6807;</a>
+        <a class="level-2" href="#runuat">&#x4E03;&#x3001;&#x4F7F;&#x7528; RunUAT &#x6784;&#x5EFA;&#x548C;&#x6253;&#x5305;</a>
+        <a class="level-2" href="#vs-code-clangd">&#x516B;&#x3001;&#x914D;&#x7F6E; VS Code &#x548C; clangd</a>
+        <a class="level-3" href="#section-5">8.1 &#x5B89;&#x88C5;&#x6269;&#x5C55;</a>
+        <a class="level-3" href="#vs-code">8.2 &#x751F;&#x6210; VS Code &#x5DE5;&#x4F5C;&#x533A;</a>
+        <a class="level-3" href="#ubt">8.3 &#x7528; UBT &#x751F;&#x6210;&#x771F;&#x6B63;&#x7684;&#x7F16;&#x8BD1;&#x6570;&#x636E;&#x5E93;</a>
+        <a class="level-3" href="#section-6">8.4 &#x5728;&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;&#x653E;&#x4E00;&#x4E2A;&#x76F8;&#x5BF9;&#x94FE;&#x63A5;</a>
+        <a class="level-3" href="#ue-clangd">8.5 &#x6307;&#x5B9A; UE &#x7F16;&#x8BD1;&#x5668;&#x4F9B; clangd &#x67E5;&#x8BE2;</a>
+        <a class="level-2" href="#codelldb">&#x4E5D;&#x3001;&#x914D;&#x7F6E; CodeLLDB &#x4E0E;&#x5F15;&#x64CE;&#x6E90;&#x7801;&#x6620;&#x5C04;</a>
+        <a class="level-3" href="#section-7">9.1 &#x6269;&#x5C55;&#x81EA;&#x5E26;&#x7684;&#x540E;&#x7AEF;</a>
+        <a class="level-3" href="#lldb">9.2 &#x5C06;&#x542F;&#x52A8;&#x7C7B;&#x578B;&#x6539;&#x6210; lldb</a>
+        <a class="level-3" href="#ue">9.3 &#x52A0;&#x8F7D; UE &#x7C7B;&#x578B;&#x683C;&#x5F0F;&#x5316;&#x811A;&#x672C;</a>
+        <a class="level-3" href="#section-8">9.4 &#x5C06;&#x5B98;&#x65B9;&#x6784;&#x5EFA;&#x673A;&#x8DEF;&#x5F84;&#x6620;&#x5C04;&#x5230;&#x672C;&#x673A;&#x6E90;&#x7801;</a>
+        <a class="level-2" href="#linuxtest.code-workspace">&#x5341;&#x3001;&#x5B8C;&#x6574;&#x7684; LinuxTest.code-workspace &#x793A;&#x4F8B;</a>
+        <a class="level-2" href="#editor-1">&#x5341;&#x4E00;&#x3001;&#x70B9;&#x51FB;&#x7EFF;&#x8272;&#x4E09;&#x89D2;&#x5F62;&#x542F;&#x52A8; Editor</a>
+        <a class="level-3" href="#section-9">&#x65E5;&#x5E38;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x64CD;&#x4F5C;</a>
+        <a class="level-2" href="#section-10">&#x5341;&#x4E8C;&#x3001;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x4E0E;&#x672C;&#x6B21;&#x9A8C;&#x8BC1;&#x8303;&#x56F4;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><p>本文记录在 Arch Linux 上使用 Unreal Engine 官方预编译版的过程：下载和解压引擎、安装 Fab 插件、构建 C++ 项目、使用 RunUAT 打包，以及配置 VS Code 的 clangd 和 CodeLLDB。</p>
+<p>使用预编译引擎时，日常开发主要编译自己的项目和源码插件。阅读安装包附带的引擎源码、调试现成编辑器，都可以先从这套环境开始。</p>
+<aside class="custom-container tip">
+<p class="custom-container-title">参考</p>
+<ul>
+<li><a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/linux-development-quickstart-for-unreal-engine">Epic：Linux 开发快速入门</a></li>
+<li><a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/linux-development-requirements-for-unreal-engine">Epic：Linux 开发要求与工具链</a></li>
+<li><a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/build-operations-cooking-packaging-deploying-and-running-projects-in-unreal-engine">Epic：构建、Cook、打包和部署</a></li>
+<li><a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/fab-window-in-unreal-engine">Epic：在编辑器中使用 Fab</a></li>
+<li><a href="https://clangd.llvm.org/config">clangd 配置文档</a></li>
+<li><a href="https://github.com/vadimcn/codelldb/blob/master/MANUAL.md">CodeLLDB 使用手册</a></li>
+</ul>
+</aside>
+<h2 id="section">一、环境与工具分工 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<p>这次使用的环境：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>版本或位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统</td>
+<td>Arch Linux x86_64，Wayland 桌面</td>
+</tr>
+<tr>
+<td>显卡</td>
+<td>Intel 核显 + NVIDIA RTX 4050 Laptop GPU</td>
+</tr>
+<tr>
+<td>UE</td>
+<td>官方 Linux 预编译版 5.8.3</td>
+</tr>
+<tr>
+<td>Fab</td>
+<td>Linux 插件 0.0.13，下载包标注 UE 5.8.0</td>
+</tr>
+<tr>
+<td>引擎目录</td>
+<td><code>~/Applications/UnrealEngine-5.8.3</code></td>
+</tr>
+<tr>
+<td>C++ 项目</td>
+<td><code>~/Documents/Unreal Projects/LinuxTest</code></td>
+</tr>
+<tr>
+<td>UE 自带编译器</td>
+<td>v26，Clang 20.1.8</td>
+</tr>
+<tr>
+<td>UE 自带 .NET</td>
+<td><code>Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64</code></td>
+</tr>
+<tr>
+<td>系统 clangd</td>
+<td>23.1.3，由 Arch 的 <code>clang</code> 包提供</td>
+</tr>
+<tr>
+<td>VS Code 调试扩展</td>
+<td>CodeLLDB 1.12.3，<code>vadimcn.vscode-lldb</code></td>
+</tr>
+</tbody>
+</table>
+<p>几个名字容易混淆：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>负责什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UE Editor</td>
+<td>关卡、蓝图、资源编辑与 Play In Editor 测试</td>
+</tr>
+<tr>
+<td>UnrealBuildTool，简称 UBT</td>
+<td>管理目标、模块依赖，调用代码生成工具和编译器</td>
+</tr>
+<tr>
+<td><code>Build.sh</code></td>
+<td>调用 UBT，构建或清理具体目标</td>
+</tr>
+<tr>
+<td>Unreal Automation Tool，简称 UAT</td>
+<td>自动化构建、Cook、暂存、打包等流程</td>
+</tr>
+<tr>
+<td><code>RunUAT.sh</code></td>
+<td>Linux 上的 UAT 入口</td>
+</tr>
+<tr>
+<td>clangd</td>
+<td>VS Code 的 C/C++ 补全、诊断、跳转和索引</td>
+</tr>
+<tr>
+<td>CodeLLDB</td>
+<td>VS Code 的原生代码调试，包括断点、调用栈和变量查看</td>
+</tr>
+</tbody>
+</table>
+<p><strong>系统 clangd 与 UE 编译器分别使用自己的版本。</strong> 安装 Arch 的 <code>clang</code> 包是为了获得语言服务器；项目的实际编译仍交给 UBT 和引擎自带的 Clang 20.1.8。</p>
+<h2 id="ue-fab">二、下载 UE 二进制版和 Fab 插件 <a class="heading-anchor" href="#ue-fab" aria-label="链接到本节">#</a></h2>
+<p>登录 <a href="https://www.unrealengine.com/en-US/linux">Unreal Engine 的 Linux 下载页</a>，下载需要的引擎版本，以及与它对应的 Linux Fab 插件。</p>
+<p>本次下载的文件：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">~/Downloads/Linux_Unreal_Engine_5.8.3.zip
+~/Downloads/Linux_Fab_5.8.0_0.0.13.zip
+</code></pre>
+</div>
+<p>下载页需要 Epic 账号登录。具体可用文件名以登录后的列表为准，其他版本要同时调整本文的路径和工具链名称。</p>
+<p>UE 压缩包约 37.1 GiB，包内文件的未压缩大小约 71.7 GiB。后续项目、中间文件、着色器缓存和打包输出还会继续占用空间。</p>
+<h2 id="arch">三、安装 Arch 工具并检查运行环境 <a class="heading-anchor" href="#arch" aria-label="链接到本节">#</a></h2>
+<p>安装系统 clangd、解压和 Vulkan 检查工具：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">sudo pacman -Syu clang 7zip vulkan-tools
+</code></pre>
+</div>
+<p>这里使用 <code>pacman -Syu clang</code> 的完整升级方式，同时安装另外两个工具。</p>
+<p>确认 clangd：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">clangd --version
+pacman -Qo /usr/bin/clangd
+</code></pre>
+</div>
+<p>本机的 <code>/usr/bin/clangd</code> 属于 <code>clang</code> 包。之后 VS Code 使用它提供语言服务。</p>
+<p>检查磁盘、Vulkan 和 NVIDIA 驱动：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">df -h &quot;$HOME/Downloads&quot;
+vulkaninfo --summary
+nvidia-smi
+</code></pre>
+</div>
+<p><code>nvidia-smi</code> 只适用于 NVIDIA。本机已安装 <code>nvidia-open</code>、<code>nvidia-utils</code> 和 <code>vulkan-icd-loader</code>；其他显卡应配置各自对应的驱动与 Vulkan 实现。</p>
+<p>这份 UE 安装包已经带有编译工具链和 .NET SDK，所以通常无需再为项目构建单独安装系统 <code>dotnet-sdk</code>、<code>lld</code> 或 <code>cmake</code>。第三方插件如果有额外构建依赖，再根据插件说明处理。</p>
+<h2 id="fab">四、解压引擎和 Fab <a class="heading-anchor" href="#fab" aria-label="链接到本节">#</a></h2>
+<h3 id="section-1">4.1 约定目录变量 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h3>
+<p>下文的终端命令使用这些变量。新开终端后需要重新设置：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">UE_ROOT=&quot;$HOME/Applications/UnrealEngine-5.8.3&quot;
+PROJECT_DIR=&quot;$HOME/Documents/Unreal Projects/LinuxTest&quot;
+UE_PROJECT=&quot;$PROJECT_DIR/LinuxTest.uproject&quot;
+UE_CXX=&quot;$UE_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++&quot;
+</code></pre>
+</div>
+<p>项目路径含有空格，传给命令时始终使用双引号。</p>
+<h3 id="section-2">4.2 解压引擎 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h3>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">mkdir -p &quot;$UE_ROOT&quot;
+
+7z x &quot;$HOME/Downloads/Linux_Unreal_Engine_5.8.3.zip&quot; \
+  &quot;-o$UE_ROOT&quot;
+</code></pre>
+</div>
+<p>这个包的顶层已经包含 <code>Engine</code>、<code>Templates</code> 等目录。解压后编辑器应位于：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">~/Applications/UnrealEngine-5.8.3/Engine/Binaries/Linux/UnrealEditor
+</code></pre>
+</div>
+<p>检查执行权限：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">test -x &quot;$UE_ROOT/Engine/Binaries/Linux/UnrealEditor&quot; \
+  &amp;&amp; echo &quot;UnrealEditor is executable&quot;
+</code></pre>
+</div>
+<p>本次使用 7-Zip 解压后，<code>UnrealEditor</code> 和 <code>ShaderCompileWorker</code> 都保留了 <code>755</code> 权限，不需要递归修改整个引擎目录的权限。</p>
+<p>安装在自己的家目录下，后续项目构建和缓存写入也更方便。</p>
+<h3 id="fab-1">4.3 解压 Fab 插件 <a class="heading-anchor" href="#fab-1" aria-label="链接到本节">#</a></h3>
+<p>先查看压缩包结构：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">7z l &quot;$HOME/Downloads/Linux_Fab_5.8.0_0.0.13.zip&quot;
+</code></pre>
+</div>
+<p>本次插件包包含：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Engine/Plugins/Fab/Fab.uplugin
+Engine/Plugins/Fab/Binaries/Linux/UnrealEditor.modules
+Engine/Plugins/Fab/Binaries/Linux/libUnrealEditor-Fab.so
+</code></pre>
+</div>
+<p>因此，输出目录同样选择引擎根目录：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">7z x &quot;$HOME/Downloads/Linux_Fab_5.8.0_0.0.13.zip&quot; \
+  &quot;-o$UE_ROOT&quot;
+</code></pre>
+</div>
+<p>最后应得到：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">~/Applications/UnrealEngine-5.8.3/Engine/Plugins/Fab/Fab.uplugin
+</code></pre>
+</div>
+<p>如果把这个带有 <code>Engine/Plugins</code> 层级的压缩包直接解到 <code>Engine/Plugins</code>，就会多套一层错误目录。</p>
+<h3 id="buildid">4.4 核对插件与引擎的 BuildId <a class="heading-anchor" href="#buildid" aria-label="链接到本节">#</a></h3>
+<p>插件下载包标注 5.8.0，而引擎是 5.8.3。除了版本号，还可以核对两个模块清单的 <code>BuildId</code>：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">python - &quot;$UE_ROOT&quot; &lt;&lt;'PY'
+from pathlib import Path
+import json
+import sys
+
+root = Path(sys.argv[1])
+engine_file = root / &quot;Engine/Binaries/Linux/UnrealEditor.modules&quot;
+plugin_file = root / &quot;Engine/Plugins/Fab/Binaries/Linux/UnrealEditor.modules&quot;
+
+engine_id = json.loads(engine_file.read_text())[&quot;BuildId&quot;]
+plugin_id = json.loads(plugin_file.read_text())[&quot;BuildId&quot;]
+
+print(&quot;Engine BuildId:&quot;, engine_id)
+print(&quot;Fab BuildId:   &quot;, plugin_id)
+
+if engine_id != plugin_id:
+    raise SystemExit(&quot;BuildId 不一致，请检查插件是否匹配当前引擎。&quot;)
+PY
+</code></pre>
+</div>
+<p>本次两个值均为 <code>55116800</code>，插件包里的 190 个文件也通过了大小和 CRC 校验。</p>
+<h2 id="fab-2">五、启动编辑器并使用 Fab <a class="heading-anchor" href="#fab-2" aria-label="链接到本节">#</a></h2>
+<h3 id="wayland-xwayland">5.1 Wayland 桌面下使用 XWayland <a class="heading-anchor" href="#wayland-xwayland" aria-label="链接到本节">#</a></h3>
+<p>本机采用双显卡，以下命令使用 XWayland，并通过 NVIDIA PRIME 配置让独显优先参与设备选择：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">SDL_VIDEODRIVER=x11 \
+__NV_PRIME_RENDER_OFFLOAD=1 \
+__VK_LAYER_NV_optimus=NVIDIA_only \
+&quot;$UE_ROOT/Engine/Binaries/Linux/UnrealEditor&quot;
+</code></pre>
+</div>
+<p>NVIDIA 的两个变量用于 PRIME render offload。单显卡或其他厂商显卡可以按自己的环境调整。<a href="https://download.nvidia.com/XFree86/Linux-x86_64/570.181/README/primerenderoffload.html">NVIDIA PRIME 文档</a></p>
+<h3 id="wayland">5.2 尝试原生 Wayland <a class="heading-anchor" href="#wayland" aria-label="链接到本节">#</a></h3>
+<p>把 SDL 后端改为 <code>wayland</code>：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">SDL_VIDEODRIVER=wayland \
+__NV_PRIME_RENDER_OFFLOAD=1 \
+__VK_LAYER_NV_optimus=NVIDIA_only \
+&quot;$UE_ROOT/Engine/Binaries/Linux/UnrealEditor&quot;
+</code></pre>
+</div>
+<p>Epic 的 SDL3 说明仍列出了原生 Wayland 的鼠标和焦点问题。日常配置默认使用 XWayland，原生 Wayland 留作单独测试。<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/updating-unreal-engine-on-linux-to-sdl3">Epic SDL3 说明</a></p>
+<h3 id="fab-3">5.3 启用 Fab 并添加资源 <a class="heading-anchor" href="#fab-3" aria-label="链接到本节">#</a></h3>
+<ol>
+<li>在 <code>Edit → Plugins</code> 中搜索 Fab，确认启用，按提示重启编辑器。</li>
+<li>打开 <code>Window → Fab</code>，或者 Content Drawer 中的 Fab 按钮。</li>
+<li>登录 Epic 账号。</li>
+<li>将需要的资源加入 <code>My Library</code>，在库中点击资源卡片上的 <code>＋</code> 添加到当前项目。</li>
+</ol>
+<p>Fab 插件在这份包中默认启用。UE 格式资源通常通过编辑器集成或 Launcher 导入；FBX、GLB、贴图等通用格式，则可以在网页下载相应文件后手动导入。<a href="https://dev.epicgames.com/documentation/en-us/fab/purchasing-and-downloading-assets-in-fab">Fab 下载说明</a></p>
+<p>代码插件还需要确认 UE 版本和 Linux 支持情况，只有 Win64 二进制的插件无法直接在 Linux 编辑器中加载。</p>
+<h2 id="c">六、创建 C++ 项目与常用构建命令 <a class="heading-anchor" href="#c" aria-label="链接到本节">#</a></h2>
+<p>在编辑器中创建名为 <code>LinuxTest</code> 的 C++ 项目，本文使用的位置是：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">/home/yoimiya/Documents/Unreal Projects/LinuxTest/LinuxTest.uproject
+</code></pre>
+</div>
+<p>项目包含 <code>Source/LinuxTestEditor.Target.cs</code> 时，对应的编辑器目标名就是 <code>LinuxTestEditor</code>。换成其他项目后，应同时修改下文目标名与 <code>.uproject</code> 路径。</p>
+<h3 id="editor">6.1 构建日常使用的 Editor 目标 <a class="heading-anchor" href="#editor" aria-label="链接到本节">#</a></h3>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">&quot;$UE_ROOT/Engine/Build/BatchFiles/Linux/Build.sh&quot; \
+  LinuxTestEditor Linux Development \
+  &quot;-Project=$UE_PROJECT&quot; -WaitMutex
+</code></pre>
+</div>
+<p>三个主要参数依次是目标、平台和配置。<code>-WaitMutex</code> 用于等待其他 UBT 构建实例结束。</p>
+<p>这会构建编辑器需要加载的项目模块，例如：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Binaries/Linux/libUnrealEditor-LinuxTest.so
+</code></pre>
+</div>
+<p>UBT 也会按需运行 UnrealHeaderTool，生成反射相关文件。初次构建之后，只改少量源码时通常走增量构建。</p>
+<p>修改反射声明、类结构或构造逻辑时，可以采用“保存资源并关闭编辑器 → 构建 → 重新打开项目”的流程。</p>
+<h3 id="section-3">6.2 打开已经构建的项目 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h3>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">SDL_VIDEODRIVER=x11 \
+__NV_PRIME_RENDER_OFFLOAD=1 \
+__VK_LAYER_NV_optimus=NVIDIA_only \
+&quot;$UE_ROOT/Engine/Binaries/Linux/UnrealEditor&quot; &quot;$UE_PROJECT&quot;
+</code></pre>
+</div>
+<h3 id="debuggame-game">6.3 DebugGame 与 Game 目标 <a class="heading-anchor" href="#debuggame-game" aria-label="链接到本节">#</a></h3>
+<p>需要更方便地调试自己的 C++ 逻辑时，可以构建 Editor 的 DebugGame 配置：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">&quot;$UE_ROOT/Engine/Build/BatchFiles/Linux/Build.sh&quot; \
+  LinuxTestEditor Linux DebugGame \
+  &quot;-Project=$UE_PROJECT&quot; -WaitMutex
+</code></pre>
+</div>
+<p>启动时也要选择匹配 DebugGame 的启动配置。本文后面的完整工作区以日常使用的 Development Editor 为默认配置。</p>
+<p>构建独立游戏目标：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">&quot;$UE_ROOT/Engine/Build/BatchFiles/Linux/Build.sh&quot; \
+  LinuxTest Linux Development \
+  &quot;-Project=$UE_PROJECT&quot; -WaitMutex
+</code></pre>
+</div>
+<p>Game 目标的代码构建与资源打包是不同阶段。需要可分发目录时，继续使用 RunUAT 执行 Cook、Stage 和打包流程。</p>
+<h3 id="section-4">6.4 清理项目目标 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h3>
+<p>确实需要清理项目构建产物时：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">&quot;$UE_ROOT/Engine/Build/BatchFiles/Linux/Build.sh&quot; \
+  LinuxTestEditor Linux Development \
+  &quot;-Project=$UE_PROJECT&quot; -WaitMutex -clean
+</code></pre>
+</div>
+<p>日常直接增量构建即可，无需每次先清理。</p>
+<h2 id="runuat">七、使用 RunUAT 构建和打包 <a class="heading-anchor" href="#runuat" aria-label="链接到本节">#</a></h2>
+<p>Linux 上使用：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Engine/Build/BatchFiles/RunUAT.sh
+</code></pre>
+</div>
+<p>Windows 对应的是 <code>RunUAT.bat</code>。常用的 <code>BuildCookRun</code> 把多个阶段串起来：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build</td>
+<td>编译目标平台的项目代码和插件</td>
+</tr>
+<tr>
+<td>Cook</td>
+<td>将资源转换成目标平台可用的数据</td>
+</tr>
+<tr>
+<td>Stage</td>
+<td>把程序、资源和依赖收集到暂存目录</td>
+</tr>
+<tr>
+<td>Pak</td>
+<td>将资源组织成 Pak 容器，具体输出也受项目设置影响</td>
+</tr>
+<tr>
+<td>Package</td>
+<td>执行目标平台的打包步骤</td>
+</tr>
+<tr>
+<td>Archive</td>
+<td>将构建结果归档到指定目录</td>
+</tr>
+</tbody>
+</table>
+<p>例如，生成 Linux Development 包：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">&quot;$UE_ROOT/Engine/Build/BatchFiles/RunUAT.sh&quot; BuildCookRun \
+  &quot;-project=$UE_PROJECT&quot; \
+  -nop4 \
+  -platform=Linux \
+  -clientconfig=Development \
+  -build -cook -stage -pak -package -archive \
+  &quot;-archivedirectory=$HOME/Builds/LinuxTest-Linux&quot; \
+  -utf8output
+</code></pre>
+</div>
+<p>准备发布时，可将 <code>-clientconfig=Development</code> 改成 <code>-clientconfig=Shipping</code>。</p>
+<p>常用参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-project=...</code></td>
+<td>项目文件的完整路径</td>
+</tr>
+<tr>
+<td><code>-platform=Linux</code></td>
+<td>目标平台</td>
+</tr>
+<tr>
+<td><code>-clientconfig=Development</code></td>
+<td>游戏目标的构建配置</td>
+</tr>
+<tr>
+<td><code>-nop4</code></td>
+<td>不使用 Perforce 集成</td>
+</tr>
+<tr>
+<td><code>-archivedirectory=...</code></td>
+<td>归档输出目录</td>
+</tr>
+<tr>
+<td><code>-utf8output</code></td>
+<td>使用 UTF-8 输出日志</td>
+</tr>
+</tbody>
+</table>
+<p>这些是常用命令模板。具体地图、插件和打包选项，应先在项目的 Packaging 设置里配置。<a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/build-operations-cooking-packaging-deploying-and-running-projects-in-unreal-engine">Epic 构建流程说明</a></p>
+<p><code>-platform</code> 也受宿主系统和工具链支持限制。Windows 可以安装官方 Linux 交叉编译 SDK；本机这份 Linux UE 没有开箱即用的 Windows 项目打包流程。要生成 Windows 版本，可以把同一份项目交给 Windows 构建环境。</p>
+<h2 id="vs-code-clangd">八、配置 VS Code 和 clangd <a class="heading-anchor" href="#vs-code-clangd" aria-label="链接到本节">#</a></h2>
+<h3 id="section-5">8.1 安装扩展 <a class="heading-anchor" href="#section-5" aria-label="链接到本节">#</a></h3>
+<p>安装 clangd 和 CodeLLDB：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">code --install-extension llvm-vs-code-extensions.vscode-clangd
+code --install-extension vadimcn.vscode-lldb
+</code></pre>
+</div>
+<p>需要编辑 <code>.Build.cs</code>、<code>.Target.cs</code> 等构建规则时，还可以安装 C# 扩展：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">code --install-extension ms-dotnettools.csharp
+</code></pre>
+</div>
+<p>本文选择：</p>
+<ul>
+<li>clangd 提供 C/C++ 语言服务。</li>
+<li>CodeLLDB 提供 F5 调试。</li>
+<li>C# 扩展辅助阅读和编辑构建规则。</li>
+</ul>
+<p>这套组合不要求安装微软的 <code>ms-vscode.cpptools</code>。如果已经安装了 cpptools，选择 clangd 作为语言服务时，可以关闭 cpptools 的 IntelliSense，避免两套诊断同时工作。</p>
+<h3 id="vs-code">8.2 生成 VS Code 工作区 <a class="heading-anchor" href="#vs-code" aria-label="链接到本节">#</a></h3>
+<p>在 UE 的 <code>Edit → Editor Preferences → General → Source Code</code> 中选择 Visual Studio Code。</p>
+<p>也可以直接用安装包里的脚本生成工作区：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">&quot;$UE_ROOT/Engine/Build/BatchFiles/Linux/GenerateProjectFiles.sh&quot; \
+  &quot;-project=$UE_PROJECT&quot; -game -engine -vscode
+
+code &quot;$PROJECT_DIR/LinuxTest.code-workspace&quot;
+</code></pre>
+</div>
+<p>二进制版的脚本位于 <code>Engine/Build/BatchFiles/Linux</code>。</p>
+<p>生成器默认推荐 cpptools，并写入 <code>.vscode/c_cpp_properties.json</code>。但 clangd 不会读取这个文件。</p>
+<p>本次遇到的日志就是：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Failed to find compilation database
+'CoreMinimal.h' file not found
+</code></pre>
+</div>
+<h3 id="ubt">8.3 用 UBT 生成真正的编译数据库 <a class="heading-anchor" href="#ubt" aria-label="链接到本节">#</a></h3>
+<p>先完成一次 <code>LinuxTestEditor Linux Development</code> 正常构建，确保反射头、模块定义和其他生成文件已经存在，再运行：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">mkdir -p &quot;$PROJECT_DIR/.vscode&quot;
+
+&quot;$UE_ROOT/Engine/Build/BatchFiles/Linux/Build.sh&quot; \
+  -Mode=GenerateClangDatabase \
+  LinuxTestEditor Linux Development \
+  &quot;-Project=$UE_PROJECT&quot; \
+  &quot;-OutputDir=$PROJECT_DIR/.vscode&quot; \
+  -NoExecCodeGenActions
+</code></pre>
+</div>
+<p>输出文件是：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">LinuxTest/.vscode/compile_commands.json
+</code></pre>
+</div>
+<p>这一步生成编译信息，不会把整个引擎重新编译一遍。<code>-NoExecCodeGenActions</code> 跳过该模式中的额外代码生成动作，因此前面正常构建生成的文件仍然重要。</p>
+<p>UBT 生成的数据库包含编译器、响应文件、宏定义、标准库与 sysroot 等真实参数。</p>
+<p>本次数据库包含 25 条项目源码和生成代码记录；数量会随项目和构建方式变化。</p>
+<h3 id="section-6">8.4 在项目根目录放一个相对链接 <a class="heading-anchor" href="#section-6" aria-label="链接到本节">#</a></h3>
+<p>首次配置、且根目录尚无 <code>compile_commands.json</code> 时：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">ln -s .vscode/compile_commands.json \
+  &quot;$PROJECT_DIR/compile_commands.json&quot;
+</code></pre>
+</div>
+<p>得到：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">LinuxTest/compile_commands.json -&gt; .vscode/compile_commands.json
+</code></pre>
+</div>
+<p>已有数据库或链接时，先确认它指向哪里，不要直接覆盖。</p>
+<p>这个链接便于 clangd 和其他 Clang 工具从源码的父目录自动发现数据库。工作区配置还会显式指定数据库目录。<a href="https://clangd.llvm.org/config#compilationdatabase">clangd 编译数据库说明</a></p>
+<h3 id="ue-clangd">8.5 指定 UE 编译器供 clangd 查询 <a class="heading-anchor" href="#ue-clangd" aria-label="链接到本节">#</a></h3>
+<p>后面的完整配置包含：</p>
+<ul>
+<li><code>clangd.path</code>：使用 <code>/usr/bin/clangd</code>。</li>
+<li><code>--compile-commands-dir=...</code>：指向项目 <code>.vscode</code> 目录。</li>
+<li><code>--query-driver=.../clang++</code>：允许 clangd 查询 UE 编译器的目标和系统头文件目录。</li>
+<li><code>--background-index</code>：开启后台索引。</li>
+</ul>
+<p>这里的 <code>--query-driver</code> 指向 <code>UE_CXX</code> 对应的那个实际可执行文件，不是系统的 <code>/usr/bin/clang++</code>。<a href="https://clangd.llvm.org/guides/system-headers">clangd 系统头文件说明</a></p>
+<p>可以先在终端独立验证：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">clangd \
+  &quot;--check=$PROJECT_DIR/Source/LinuxTest/LinuxTest.cpp&quot; \
+  &quot;--compile-commands-dir=$PROJECT_DIR/.vscode&quot; \
+  &quot;--query-driver=$UE_CXX&quot;
+</code></pre>
+</div>
+<p>本次检查 <code>LinuxTest.cpp</code>、<code>LinuxTestCharacter.cpp</code> 和引擎 <code>CoreMinimal.h</code> 时，解析均得到 <code>0 errors</code>。</p>
+<p>项目数据库覆盖项目源码及其引用的引擎头文件。使用预编译引擎时，数据库缺少整套 UE 私有 <code>.cpp</code> 的完整编译信息，全引擎跨文件引用和实现索引因此仍有范围限制。</p>
+<h2 id="codelldb">九、配置 CodeLLDB 与引擎源码映射 <a class="heading-anchor" href="#codelldb" aria-label="链接到本节">#</a></h2>
+<h3 id="section-7">9.1 扩展自带的后端 <a class="heading-anchor" href="#section-7" aria-label="链接到本节">#</a></h3>
+<p>安装 <code>vadimcn.vscode-lldb</code> 后，平台包可能已经包含原生组件；缺少时，扩展会自动获取对应的平台包。</p>
+<p>本机最终得到：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">~/.vscode/extensions/vadimcn.vscode-lldb-1.12.3/
+├── platform.ok
+├── adapter/codelldb
+└── lldb/
+    ├── bin/lldb
+    └── lib/liblldb.so
+</code></pre>
+</div>
+<p>本次使用扩展自己的后端，没有额外安装 AUR 的 <code>codelldb</code>。</p>
+<p>语言服务和调试器相互独立：clangd 可以与 GDB 配合使用；本文采用 CodeLLDB，是为了在 VS Code 中提供断点和 F5 调试界面。</p>
+<h3 id="lldb">9.2 将启动类型改成 lldb <a class="heading-anchor" href="#lldb" aria-label="链接到本节">#</a></h3>
+<p>UE 默认生成的原生调试配置通常是：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;cppdbg&quot;
+}
+</code></pre>
+</div>
+<p>这个类型由 cpptools 提供。使用 CodeLLDB 时需要改为：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;lldb&quot;,
+  &quot;request&quot;: &quot;launch&quot;
+}
+</code></pre>
+</div>
+<p>转换时同时移除 cpptools 的 <code>visualizerFile</code>、<code>showDisplayString</code> 等专用字段，改用 LLDB 的 UE 类型格式化脚本。</p>
+<h3 id="ue">9.3 加载 UE 类型格式化脚本 <a class="heading-anchor" href="#ue" aria-label="链接到本节">#</a></h3>
+<p>安装包中提供了：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Engine/Extras/LLDBDataFormatters/UEDataFormatters_2ByteChars.py
+</code></pre>
+</div>
+<p>工作区会在初始化时执行：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">settings set target.inline-breakpoint-strategy always
+command script import &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Extras/LLDBDataFormatters/UEDataFormatters_2ByteChars.py&quot;
+</code></pre>
+</div>
+<p>脚本为 FString、FName、TArray 等 UE 类型注册 LLDB 格式化支持。</p>
+<h3 id="section-8">9.4 将官方构建机路径映射到本机源码 <a class="heading-anchor" href="#section-8" aria-label="链接到本节">#</a></h3>
+<p>预编译编辑器的调试符号里可能记录了 Epic 构建机上的路径。本次读到的编译目录包括：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">/mnt/horde/++UE5/Sync/Engine/Source
+</code></pre>
+</div>
+<p>因此配置映射：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;lldb.launch.sourceMap&quot;: {
+    &quot;/mnt/horde/++UE5/Sync&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3&quot;
+  }
+}
+</code></pre>
+</div>
+<p>这样调试器可以将构建机上的引擎源码路径关联到本机安装目录。</p>
+<p>可以用 <code>readelf</code> 查看调试符号中的编译目录：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">readelf --debug-dump=info --dwarf-depth=1 \
+  &quot;$UE_ROOT/Engine/Binaries/Linux/UnrealEditor.debug&quot; \
+  | sed -n '/DW_AT_comp_dir/p'
+</code></pre>
+</div>
+<p>CodeLLDB 的 <code>lldb.launch.*</code> 设置会作为各启动项的默认配置，与具体启动项合并。因此可以把环境变量和源码映射集中放在工作区里，再让 Wayland 启动项只覆盖 SDL 后端。<a href="https://github.com/vadimcn/codelldb/blob/master/MANUAL.md#launch-configurations-settings">CodeLLDB 配置说明</a></p>
+<h2 id="linuxtest.code-workspace">十、完整的 LinuxTest.code-workspace 示例 <a class="heading-anchor" href="#linuxtest.code-workspace" aria-label="链接到本节">#</a></h2>
+<p>以下是从本次实际工作区提取的精简完整配置，包含两个启动项和两个任务。保留现有个人配置时，可以只合并需要的字段；整份替换前先备份原工作区。</p>
+<p>JSON 中的绝对路径要按实际环境修改。它们不会自动展开前文终端里的 <code>$UE_ROOT</code>、<code>$UE_PROJECT</code> 等 shell 变量。</p>
+<details class="custom-container details">
+<summary>`LinuxTest.code-workspace`</summary>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;folders&quot;: [
+    {
+      &quot;name&quot;: &quot;LinuxTest&quot;,
+      &quot;path&quot;: &quot;.&quot;
+    },
+    {
+      &quot;name&quot;: &quot;UE5&quot;,
+      &quot;path&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3&quot;
+    }
+  ],
+  &quot;settings&quot;: {
+    &quot;clangd.path&quot;: &quot;/usr/bin/clangd&quot;,
+    &quot;clangd.arguments&quot;: [
+      &quot;--compile-commands-dir=/home/yoimiya/Documents/Unreal Projects/LinuxTest/.vscode&quot;,
+      &quot;--query-driver=/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++&quot;,
+      &quot;--background-index&quot;
+    ],
+    &quot;terminal.integrated.env.linux&quot;: {
+      &quot;PATH&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64:${env:PATH}&quot;,
+      &quot;DOTNET_ROOT&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64&quot;,
+      &quot;DOTNET_HOST_PATH&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64/dotnet&quot;,
+      &quot;DOTNET_MULTILEVEL_LOOKUP&quot;: &quot;0&quot;,
+      &quot;DOTNET_ROLL_FORWARD&quot;: &quot;LatestMajor&quot;
+    },
+    &quot;lldb.launch.initCommands&quot;: [
+      &quot;settings set target.inline-breakpoint-strategy always&quot;,
+      &quot;command script import \&quot;/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Extras/LLDBDataFormatters/UEDataFormatters_2ByteChars.py\&quot;&quot;
+    ],
+    &quot;lldb.launch.sourceMap&quot;: {
+      &quot;/mnt/horde/++UE5/Sync&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3&quot;
+    },
+    &quot;lldb.launch.env&quot;: {
+      &quot;SDL_VIDEODRIVER&quot;: &quot;x11&quot;,
+      &quot;__NV_PRIME_RENDER_OFFLOAD&quot;: &quot;1&quot;,
+      &quot;__VK_LAYER_NV_optimus&quot;: &quot;NVIDIA_only&quot;
+    }
+  },
+  &quot;extensions&quot;: {
+    &quot;recommendations&quot;: [
+      &quot;llvm-vs-code-extensions.vscode-clangd&quot;,
+      &quot;ms-dotnettools.csharp&quot;,
+      &quot;vadimcn.vscode-lldb&quot;
+    ]
+  },
+  &quot;tasks&quot;: {
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;tasks&quot;: [
+      {
+        &quot;label&quot;: &quot;LinuxTestEditor Linux Development Build&quot;,
+        &quot;group&quot;: &quot;build&quot;,
+        &quot;command&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Build/BatchFiles/Linux/Build.sh&quot;,
+        &quot;args&quot;: [
+          &quot;LinuxTestEditor&quot;,
+          &quot;Linux&quot;,
+          &quot;Development&quot;,
+          &quot;-Project=/home/yoimiya/Documents/Unreal Projects/LinuxTest/LinuxTest.uproject&quot;,
+          &quot;-WaitMutex&quot;
+        ],
+        &quot;problemMatcher&quot;: &quot;$gcc&quot;,
+        &quot;type&quot;: &quot;process&quot;,
+        &quot;options&quot;: {
+          &quot;cwd&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3&quot;
+        }
+      },
+      {
+        &quot;label&quot;: &quot;Refresh clangd compilation database&quot;,
+        &quot;type&quot;: &quot;process&quot;,
+        &quot;command&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Build/BatchFiles/Linux/Build.sh&quot;,
+        &quot;args&quot;: [
+          &quot;-Mode=GenerateClangDatabase&quot;,
+          &quot;LinuxTestEditor&quot;,
+          &quot;Linux&quot;,
+          &quot;Development&quot;,
+          &quot;-Project=/home/yoimiya/Documents/Unreal Projects/LinuxTest/LinuxTest.uproject&quot;,
+          &quot;-OutputDir=/home/yoimiya/Documents/Unreal Projects/LinuxTest/.vscode&quot;,
+          &quot;-NoExecCodeGenActions&quot;
+        ],
+        &quot;options&quot;: {
+          &quot;cwd&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3&quot;
+        },
+        &quot;problemMatcher&quot;: []
+      }
+    ]
+  },
+  &quot;launch&quot;: {
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+      {
+        &quot;name&quot;: &quot;Launch LinuxTestEditor (Development)&quot;,
+        &quot;request&quot;: &quot;launch&quot;,
+        &quot;program&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Binaries/Linux/UnrealEditor&quot;,
+        &quot;preLaunchTask&quot;: &quot;LinuxTestEditor Linux Development Build&quot;,
+        &quot;args&quot;: [
+          &quot;/home/yoimiya/Documents/Unreal Projects/LinuxTest/LinuxTest.uproject&quot;
+        ],
+        &quot;cwd&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3&quot;,
+        &quot;type&quot;: &quot;lldb&quot;,
+        &quot;stopOnEntry&quot;: false
+      },
+      {
+        &quot;name&quot;: &quot;Launch LinuxTestEditor (Development, Wayland)&quot;,
+        &quot;request&quot;: &quot;launch&quot;,
+        &quot;program&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3/Engine/Binaries/Linux/UnrealEditor&quot;,
+        &quot;preLaunchTask&quot;: &quot;LinuxTestEditor Linux Development Build&quot;,
+        &quot;args&quot;: [
+          &quot;/home/yoimiya/Documents/Unreal Projects/LinuxTest/LinuxTest.uproject&quot;
+        ],
+        &quot;cwd&quot;: &quot;/home/yoimiya/Applications/UnrealEngine-5.8.3&quot;,
+        &quot;type&quot;: &quot;lldb&quot;,
+        &quot;stopOnEntry&quot;: false,
+        &quot;env&quot;: {
+          &quot;SDL_VIDEODRIVER&quot;: &quot;wayland&quot;
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</div>
+</details>
+<p>其中：</p>
+<ul>
+<li><code>LinuxTest</code> 是项目目录，<code>UE5</code> 是引擎目录。</li>
+<li>构建任务使用 <code>type: process</code>，路径和参数分别传递，项目目录含空格也能正确处理。</li>
+<li><code>preLaunchTask</code> 与构建任务名称完全一致。</li>
+<li><code>program</code> 指向引擎的 <code>UnrealEditor</code>，<code>args</code> 则传入具体项目。</li>
+<li>默认 SDL 后端是 <code>x11</code>；Wayland 启动项覆盖成 <code>wayland</code>，仍继承 NVIDIA 环境变量。</li>
+<li><code>terminal.integrated.env.linux</code> 让集成终端可以直接找到 UE 的 .NET。<code>Build.sh</code> 自己也会准备其所需的 .NET 环境。</li>
+<li>刷新数据库任务对应前面的 <code>GenerateClangDatabase</code> 命令。</li>
+</ul>
+<p>这份配置的 F5 启动项是 Development Editor。它不会启动 <code>LinuxTest</code> 的独立游戏目标，也不依赖系统里另装一份 LLDB。</p>
+<h2 id="editor-1">十一、点击绿色三角形启动 Editor <a class="heading-anchor" href="#editor-1" aria-label="链接到本节">#</a></h2>
+<p>保存工作区后：</p>
+<ol>
+<li>按 <code>Ctrl+Shift+P</code>，执行 <code>Developer: Reload Window</code>。</li>
+<li>打开一个项目 <code>.cpp</code>，等待 clangd 索引。</li>
+<li>按 <code>Ctrl+Shift+D</code>，打开“运行和调试”。</li>
+<li>在顶部下拉框选择 <code>Launch LinuxTestEditor (Development)</code>。</li>
+<li>点击下拉框旁边的绿色三角形，或者按 <code>F5</code>。</li>
+</ol>
+<p>预期流程：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">构建 LinuxTestEditor Linux Development
+  → CodeLLDB 加载 UnrealEditor
+  → 传入 LinuxTest.uproject
+  → 打开项目编辑器
+</code></pre>
+</div>
+<p>要单独试原生 Wayland，选择 <code>Launch LinuxTestEditor (Development, Wayland)</code>。</p>
+<p>启动后，在项目 C++ 中下断点，再通过 Play In Editor 触发对应逻辑。需要观察引擎主循环时，也可以添加函数断点 <code>FEngineLoop::Tick</code>；它每帧都会执行，适合短时间观察调用栈。</p>
+<h3 id="section-9">日常修改后的操作 <a class="heading-anchor" href="#section-9" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>修改普通 C++ 实现后，构建项目并重新运行。</li>
+<li>新增反射类时，先正常构建，确保对应 <code>.generated.h</code> 已生成。</li>
+<li>新增源码、调整模块或插件后，在“终端 → 运行任务”中执行 <code>Refresh clangd compilation database</code>。</li>
+<li>需要完整重新生成 VS Code 工程时再运行 <code>GenerateProjectFiles.sh</code>，并保留自定义 clangd、CodeLLDB 设置。</li>
+</ul>
+<aside class="custom-container tip">
+<p class="custom-container-title">工作区重新生成</p>
+<p>UE 的工程生成脚本可能覆盖 <code>.code-workspace</code>。只想刷新 clangd 的编译信息时，使用单独的数据库刷新任务，可以保留当前工作区里的自定义调试设置。</p>
+</aside>
+<h2 id="section-10">十二、常见问题与本次验证范围 <a class="heading-anchor" href="#section-10" aria-label="链接到本节">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>检查位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CoreMinimal.h</code> 找不到</td>
+<td>clangd 是否加载了正确的 <code>compile_commands.json</code></td>
+</tr>
+<tr>
+<td>生成头文件找不到</td>
+<td>是否先正常构建了 Editor 目标，数据库是否仍对应当前模块</td>
+</tr>
+<tr>
+<td>提示不支持 <code>cppdbg</code></td>
+<td>当前选中的是否还是旧启动项，是否已经改成 CodeLLDB 的 <code>lldb</code></td>
+</tr>
+<tr>
+<td>点击运行却没有进入编辑器</td>
+<td>是否选择了 <code>LinuxTestEditor</code> 启动项，<code>program</code> 和 <code>args</code> 是否正确</td>
+</tr>
+<tr>
+<td>引擎断点无法定位本机源码</td>
+<td><code>.debug</code> 文件、源码版本、<code>sourceMap</code> 是否匹配</td>
+</tr>
+<tr>
+<td>原生 Wayland 的点击或焦点异常</td>
+<td>切回 <code>SDL_VIDEODRIVER=x11</code> 的启动项验证</td>
+</tr>
+</tbody>
+</table>
+<p>本次已经完成的检查：</p>
+<table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UE 解压与执行权限抽样</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>Fab 190 个文件的大小与 CRC 校验</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>Fab 与引擎模块 BuildId</td>
+<td>均为 <code>55116800</code></td>
+</tr>
+<tr>
+<td><code>LinuxTestEditor Linux Development</code> 构建</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>两个项目 <code>.cpp</code> 与引擎 <code>CoreMinimal.h</code> 的 clangd 解析</td>
+<td><code>0 errors</code></td>
+</tr>
+<tr>
+<td>CodeLLDB 原生后端与 UE 类型格式化脚本加载</td>
+<td>通过</td>
+</tr>
+<tr>
+<td><code>FEngineLoop::Tick</code> 符号与本机源码行断点解析</td>
+<td>通过</td>
+</tr>
+<tr>
+<td>VS Code 图形界面中 F5 启动 Editor</td>
+<td>配置已就绪，实际窗口启动结果以桌面端验证为准</td>
+</tr>
+<tr>
+<td>RunUAT 完整 Cook、Package、Archive</td>
+<td>本文提供命令模板，未执行实测</td>
+</tr>
+</tbody>
+</table>
+<p>安装包里的 <code>Engine/Source</code> 已经包含大量引擎 <code>.cpp</code>，并附带对应的调试符号。后续学习主循环、对象生命周期、任务系统或 RDG 时，可以先使用这份预编译引擎阅读和调试，再按具体实验决定是否需要完整源码构建。</p>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="./podman.html">&#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;</a>
+                        </li>
+                        <li>
+                            <a href="./genshin.html">Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;</a>
+                        </li>
+                        <li>
+                            <a href="./wsl.html">Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="../AI/mcp.html" rel="prev"><span>上一篇</span>MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;</a>
+                    <a href="./genshin.html" rel="next"><span>下一篇</span>Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x4E00;&#x3001;&#x73AF;&#x5883;&#x4E0E;&#x5DE5;&#x5177;&#x5206;&#x5DE5;</a>
+        <a class="level-2" href="#ue-fab">&#x4E8C;&#x3001;&#x4E0B;&#x8F7D; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#x548C; Fab &#x63D2;&#x4EF6;</a>
+        <a class="level-2" href="#arch">&#x4E09;&#x3001;&#x5B89;&#x88C5; Arch &#x5DE5;&#x5177;&#x5E76;&#x68C0;&#x67E5;&#x8FD0;&#x884C;&#x73AF;&#x5883;</a>
+        <a class="level-2" href="#fab">&#x56DB;&#x3001;&#x89E3;&#x538B;&#x5F15;&#x64CE;&#x548C; Fab</a>
+        <a class="level-3" href="#section-1">4.1 &#x7EA6;&#x5B9A;&#x76EE;&#x5F55;&#x53D8;&#x91CF;</a>
+        <a class="level-3" href="#section-2">4.2 &#x89E3;&#x538B;&#x5F15;&#x64CE;</a>
+        <a class="level-3" href="#fab-1">4.3 &#x89E3;&#x538B; Fab &#x63D2;&#x4EF6;</a>
+        <a class="level-3" href="#buildid">4.4 &#x6838;&#x5BF9;&#x63D2;&#x4EF6;&#x4E0E;&#x5F15;&#x64CE;&#x7684; BuildId</a>
+        <a class="level-2" href="#fab-2">&#x4E94;&#x3001;&#x542F;&#x52A8;&#x7F16;&#x8F91;&#x5668;&#x5E76;&#x4F7F;&#x7528; Fab</a>
+        <a class="level-3" href="#wayland-xwayland">5.1 Wayland &#x684C;&#x9762;&#x4E0B;&#x4F7F;&#x7528; XWayland</a>
+        <a class="level-3" href="#wayland">5.2 &#x5C1D;&#x8BD5;&#x539F;&#x751F; Wayland</a>
+        <a class="level-3" href="#fab-3">5.3 &#x542F;&#x7528; Fab &#x5E76;&#x6DFB;&#x52A0;&#x8D44;&#x6E90;</a>
+        <a class="level-2" href="#c">&#x516D;&#x3001;&#x521B;&#x5EFA; C&#x2B;&#x2B; &#x9879;&#x76EE;&#x4E0E;&#x5E38;&#x7528;&#x6784;&#x5EFA;&#x547D;&#x4EE4;</a>
+        <a class="level-3" href="#editor">6.1 &#x6784;&#x5EFA;&#x65E5;&#x5E38;&#x4F7F;&#x7528;&#x7684; Editor &#x76EE;&#x6807;</a>
+        <a class="level-3" href="#section-3">6.2 &#x6253;&#x5F00;&#x5DF2;&#x7ECF;&#x6784;&#x5EFA;&#x7684;&#x9879;&#x76EE;</a>
+        <a class="level-3" href="#debuggame-game">6.3 DebugGame &#x4E0E; Game &#x76EE;&#x6807;</a>
+        <a class="level-3" href="#section-4">6.4 &#x6E05;&#x7406;&#x9879;&#x76EE;&#x76EE;&#x6807;</a>
+        <a class="level-2" href="#runuat">&#x4E03;&#x3001;&#x4F7F;&#x7528; RunUAT &#x6784;&#x5EFA;&#x548C;&#x6253;&#x5305;</a>
+        <a class="level-2" href="#vs-code-clangd">&#x516B;&#x3001;&#x914D;&#x7F6E; VS Code &#x548C; clangd</a>
+        <a class="level-3" href="#section-5">8.1 &#x5B89;&#x88C5;&#x6269;&#x5C55;</a>
+        <a class="level-3" href="#vs-code">8.2 &#x751F;&#x6210; VS Code &#x5DE5;&#x4F5C;&#x533A;</a>
+        <a class="level-3" href="#ubt">8.3 &#x7528; UBT &#x751F;&#x6210;&#x771F;&#x6B63;&#x7684;&#x7F16;&#x8BD1;&#x6570;&#x636E;&#x5E93;</a>
+        <a class="level-3" href="#section-6">8.4 &#x5728;&#x9879;&#x76EE;&#x6839;&#x76EE;&#x5F55;&#x653E;&#x4E00;&#x4E2A;&#x76F8;&#x5BF9;&#x94FE;&#x63A5;</a>
+        <a class="level-3" href="#ue-clangd">8.5 &#x6307;&#x5B9A; UE &#x7F16;&#x8BD1;&#x5668;&#x4F9B; clangd &#x67E5;&#x8BE2;</a>
+        <a class="level-2" href="#codelldb">&#x4E5D;&#x3001;&#x914D;&#x7F6E; CodeLLDB &#x4E0E;&#x5F15;&#x64CE;&#x6E90;&#x7801;&#x6620;&#x5C04;</a>
+        <a class="level-3" href="#section-7">9.1 &#x6269;&#x5C55;&#x81EA;&#x5E26;&#x7684;&#x540E;&#x7AEF;</a>
+        <a class="level-3" href="#lldb">9.2 &#x5C06;&#x542F;&#x52A8;&#x7C7B;&#x578B;&#x6539;&#x6210; lldb</a>
+        <a class="level-3" href="#ue">9.3 &#x52A0;&#x8F7D; UE &#x7C7B;&#x578B;&#x683C;&#x5F0F;&#x5316;&#x811A;&#x672C;</a>
+        <a class="level-3" href="#section-8">9.4 &#x5C06;&#x5B98;&#x65B9;&#x6784;&#x5EFA;&#x673A;&#x8DEF;&#x5F84;&#x6620;&#x5C04;&#x5230;&#x672C;&#x673A;&#x6E90;&#x7801;</a>
+        <a class="level-2" href="#linuxtest.code-workspace">&#x5341;&#x3001;&#x5B8C;&#x6574;&#x7684; LinuxTest.code-workspace &#x793A;&#x4F8B;</a>
+        <a class="level-2" href="#editor-1">&#x5341;&#x4E00;&#x3001;&#x70B9;&#x51FB;&#x7EFF;&#x8272;&#x4E09;&#x89D2;&#x5F62;&#x542F;&#x52A8; Editor</a>
+        <a class="level-3" href="#section-9">&#x65E5;&#x5E38;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x64CD;&#x4F5C;</a>
+        <a class="level-2" href="#section-10">&#x5341;&#x4E8C;&#x3001;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x4E0E;&#x672C;&#x6B21;&#x9A8C;&#x8BC1;&#x8303;&#x56F4;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1247 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>&#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B; &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <meta name="description" content="&#x8BB0;&#x5F55; Windows &#x4E0B; clang-cl&#x3001;vcpkg&#x3001;CMake Presets &#x4E0E; clangd &#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x7528; Slang &#x751F;&#x6210; SPIR-V&#xFF0C;&#x5E76;&#x6392;&#x67E5; shell &#x7248;&#x672C;&#x53D8;&#x5316;&#x9020;&#x6210;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x7F13;&#x5B58;&#x672A;&#x547D;&#x4E2D;&#x3002;">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Windows/clang-cl-vcpkg.html">
+            <meta property="og:title" content="&#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Windows/clang-cl-vcpkg.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="&#x8BB0;&#x5F55; Windows &#x4E0B; clang-cl&#x3001;vcpkg&#x3001;CMake Presets &#x4E0E; clangd &#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x7528; Slang &#x751F;&#x6210; SPIR-V&#xFF0C;&#x5E76;&#x6392;&#x67E5; shell &#x7248;&#x672C;&#x53D8;&#x5316;&#x9020;&#x6210;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x7F13;&#x5B58;&#x672A;&#x547D;&#x4E2D;&#x3002;">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.bb1aee13f1a46506.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./clang-cl-vcpkg.html" aria-current="page">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./clang-cl-vcpkg.html" aria-current="page">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>&#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;</h1>
+                    <p class="article-date"><time datetime="2026-11-15">2026-11-15</time></p>
+                    <p class="article-date article-reading-time">预计阅读 21 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-57696e646f777320e4bdbfe794a8">Windows &#x4F7F;&#x7528;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/f1deb75fa21d3c47a6e7a45967b79fad2d053947066dc95322c5bcee1e9fe21c.html">#C&#x2B;&#x2B;</a></li>
+                            <li><a href="../../tags/6c02a32197aec3078daf7a2d3c5b09c764f471466a290647ee30d9dd0c749792.html">#LLVM</a></li>
+                            <li><a href="../../tags/ca4b9abdd99374b1e975427f9c9162f723d8125473a06ca29059630d347474b3.html">#vcpkg</a></li>
+                            <li><a href="../../tags/e7efda826b6d097e47d7cb2cd6b1cf126084197d7834e7b022048183509c774b.html">#CMake</a></li>
+                            <li><a href="../../tags/af437cf8caed3e5176af028c40a62af1291c7969025a1c14b064c6730e162c1d.html">#VS Code</a></li>
+                            <li><a href="../../tags/bf5b68779c39a1f9aefca3d62e9263d1712d35003241e4c027e6db6c860bea61.html">#Slang</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#windows">1 &#x51C6;&#x5907; Windows &#x5DE5;&#x5177;&#x94FE;</a>
+        <a class="level-3" href="#build-tools-llvm">1.1 &#x7528; Build Tools &#x81EA;&#x5E26;&#x7684; LLVM</a>
+        <a class="level-3" href="#build-tools-cmakeninja-vcpkg">1.2 &#x4F7F;&#x7528; Build Tools &#x81EA;&#x5E26;&#x7684; CMake&#x3001;Ninja &#x548C; vcpkg</a>
+        <a class="level-2" href="#section">2 &#x7528;&#x4E09;&#x4E2A;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x5DE5;&#x7A0B;</a>
+        <a class="level-3" href="#manifest-features">2.1 &#x5728; manifest &#x4E2D;&#x9009;&#x62E9;&#x4F9D;&#x8D56;&#x548C; features</a>
+        <a class="level-3" href="#cmake">2.2 &#x5728; CMake &#x4E2D;&#x94FE;&#x63A5;&#x5E93;&#x5E76;&#x7F16;&#x8BD1;&#x7740;&#x8272;&#x5668;</a>
+        <a class="level-3" href="#preset">2.3 &#x7528; preset &#x56FA;&#x5B9A;&#x7F16;&#x8BD1;&#x5668;&#x548C;&#x6784;&#x5EFA;&#x76EE;&#x5F55;</a>
+        <a class="level-2" href="#section-1">3 &#x914D;&#x7F6E;&#x3001;&#x6784;&#x5EFA;&#x4E0E;&#x7F16;&#x8F91;&#x5668;&#x63A5;&#x5165;</a>
+        <a class="level-3" href="#configure">3.1 configure &#x9636;&#x6BB5;&#x5C31;&#x4F1A;&#x51C6;&#x5907;&#x4F9D;&#x8D56;</a>
+        <a class="level-3" href="#c23-stdprintln">3.2 &#x7528; C&#x2B;&#x2B;23 &#x7684; std::println &#x68C0;&#x67E5;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#slang-spir-v">3.3 &#x68C0;&#x67E5; Slang &#x751F;&#x6210;&#x7684; SPIR-V</a>
+        <a class="level-3" href="#c">3.4 &#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x547D;&#x4EE4;&#x751F;&#x6210; C&#x2B;&#x2B; &#x6A21;&#x5757;&#x6587;&#x4EF6;</a>
+        <a class="level-3" href="#cmake-tools-preset">3.5 CMake Tools &#x6CBF;&#x7528;&#x5DF2;&#x6709; preset</a>
+        <a class="level-3" href="#clangd-debug">3.6 clangd &#x56FA;&#x5B9A;&#x8BFB;&#x53D6; Debug &#x7F16;&#x8BD1;&#x6570;&#x636E;&#x5E93;</a>
+        <a class="level-2" href="#powershell">4 PowerShell &#x7248;&#x672C;&#x53D8;&#x5316;&#x8BA9;&#x7F13;&#x5B58;&#x5931;&#x6548;</a>
+        <a class="level-3" href="#section-2">4.1 &#x540C;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#xFF0C;&#x7B2C;&#x4E8C;&#x6B21;&#x5374;&#x6062;&#x590D;&#x4E86; 0 &#x4E2A;&#x5305;</a>
+        <a class="level-3" href="#section-3">4.2 &#x6838;&#x5BF9;&#x5DE5;&#x5177;&#x8DEF;&#x5F84;&#xFF0C;&#x518D;&#x91CD;&#x8BD5;</a>
+        <a class="level-2" href="#section-4">5 &#x7F13;&#x5B58;&#x5728;&#x54EA;&#x91CC;&#xFF0C;&#x600E;&#x6837;&#x6E05;&#x7406;</a>
+        <a class="level-3" href="#vs-vcpkg">5.1 VS &#x81EA;&#x5E26; vcpkg &#x4F7F;&#x7528;&#x53EA;&#x8BFB;&#x5B89;&#x88C5;&#x5E03;&#x5C40;</a>
+        <a class="level-3" href="#section-5">5.2 &#x5148;&#x6E05;&#x4E2D;&#x95F4;&#x4EA7;&#x7269;&#xFF0C;&#x4FDD;&#x7559;&#x53EF;&#x590D;&#x7528;&#x7684;&#x5305;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><p>之前在 <a href="../Linux/podman.html">Podman 和 Dev Containers 配置记录</a>里，把编译器和大型依赖放进 Linux 开发镜像。这次回到 Windows，准备一个使用 OCCT、SDL3、Dear ImGui 和 Vulkan 的 C++ 项目，选择在本机用 vcpkg 管理依赖。</p>
+<p>我希望项目只维护少量配置：<code>vcpkg.json</code> 声明依赖，<code>CMakeLists.txt</code> 描述编译和链接，<code>CMakePresets.json</code> 保存构建类型和路径。VS Code 直接使用同一份 preset，clangd 从构建目录读取编译参数。</p>
+<p>主项目使用 clang-cl 和 C++23，vcpkg 依赖使用 <code>x64-windows</code>。Vulkan 头文件、loader 和着色器编译器 <code>slangc</code> 都由 vcpkg 提供。Debug 和 Release 分目录构建，各自生成可执行文件和 SPIR-V。</p>
+<h2 id="windows">1 准备 Windows 工具链 <a class="heading-anchor" href="#windows" aria-label="链接到本节">#</a></h2>
+<h3 id="build-tools-llvm">1.1 用 Build Tools 自带的 LLVM <a class="heading-anchor" href="#build-tools-llvm" aria-label="链接到本节">#</a></h3>
+<p>这次使用的环境如下。版本用于记录本次构建，安装路径需要按自己的机器调整。</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>本次版本或配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visual Studio Build Tools 2026</td>
+<td>18.12.0</td>
+</tr>
+<tr>
+<td>MSVC 工具集</td>
+<td>14.52.37025，x64/x86</td>
+</tr>
+<tr>
+<td>Windows SDK</td>
+<td>10.0.26100.0</td>
+</tr>
+<tr>
+<td>LLVM / clang-cl / clangd / clang-tidy / clang-format</td>
+<td>22.1.3，Build Tools 自带</td>
+</tr>
+<tr>
+<td>主项目入口 CMake</td>
+<td>4.3.1-msvc1，来自 Build Tools</td>
+</tr>
+<tr>
+<td>Ninja、vcpkg</td>
+<td>使用 Build Tools 自带版本</td>
+</tr>
+</tbody>
+</table>
+<p><code>clang-cl</code> 接受 MSVC 风格的编译参数，配合微软的 C++ 标准库、运行库开发文件和 Windows SDK 使用。LLVM 工具由 Build Tools 的 <code>C++ Clang tools for Windows</code> 可选组件提供，位于 <code>VC\Tools\Llvm\x64\bin</code>。本机目录中有 <code>clang-cl</code>、<code>clangd</code>、<code>clang-tidy</code>、<code>clang-format</code>、<code>clang-scan-deps</code>、<code>lld-link</code> 和 LLVM 的归档、分析、符号工具。参见 <a href="https://clang.llvm.org/docs/UsersManual.html#clang-cl">Clang 的 Windows 使用说明</a>。</p>
+<p>没有必要为了这套配置安装完整 Visual Studio IDE。已有 Build Tools 时，在 Visual Studio Installer 的「单个组件」中勾选 <code>C++ Clang tools for Windows</code> 即可安装 LLVM 编译工具和相关工具。这个组件会随 Build Tools 更新。</p>
+<p>本文使用的 LLVM 目录和版本如下：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">$llvmBin = 'C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\VC\Tools\Llvm\x64\bin'
+Get-ChildItem $llvmBin -Filter 'clang*.exe' | Select-Object -ExpandProperty Name
+&amp; &quot;$llvmBin\clang-cl.exe&quot; --version
+&amp; &quot;$llvmBin\clangd.exe&quot; --version
+</code></pre>
+</div>
+<p>这次显示 <code>clang-cl</code> 和 <code>clangd</code> 都是 22.1.3。CMake Presets 和 VS Code clangd 设置使用完整路径，不依赖 PATH 顺序。</p>
+<h3 id="build-tools-cmakeninja-vcpkg">1.2 使用 Build Tools 自带的 CMake、Ninja 和 vcpkg <a class="heading-anchor" href="#build-tools-cmakeninja-vcpkg" aria-label="链接到本节">#</a></h3>
+<p>本机 Build Tools 安装在：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools
+</code></pre>
+</div>
+<p>以下路径均相对于该目录：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vcpkg</td>
+<td><code>VC\vcpkg\vcpkg.exe</code></td>
+</tr>
+<tr>
+<td>vcpkg 的 CMake 集成</td>
+<td><code>VC\vcpkg\scripts\buildsystems\vcpkg.cmake</code></td>
+</tr>
+<tr>
+<td>CMake</td>
+<td><code>Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe</code></td>
+</tr>
+<tr>
+<td>Ninja</td>
+<td><code>Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja\ninja.exe</code></td>
+</tr>
+</tbody>
+</table>
+<p>可以在 PowerShell 中先保存 CMake 路径：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">$cmake = 'C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe'
+&amp; $cmake --version
+</code></pre>
+</div>
+<p>如果 <code>cmake</code> 已在 PATH 中，也可以直接调用。使用完整路径便于区分机器上不同来源的版本。</p>
+<h2 id="section">2 用三个文件描述工程 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<h3 id="manifest-features">2.1 在 manifest 中选择依赖和 features <a class="heading-anchor" href="#manifest-features" aria-label="链接到本节">#</a></h3>
+<p>项目放在 <code>C:\Users\Yoimiya\occt-lab</code>。源码、构建配置和生成目录按下面组织：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">occt-lab/
+├── vcpkg.json
+├── CMakeLists.txt
+├── CMakePresets.json
+├── .clangd
+├── src/
+│   └── main.cpp
+├── shaders/
+│   └── triangle.slang
+├── build-debug/
+└── build-release/
+</code></pre>
+</div>
+<p><code>vcpkg.json</code>：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;occt-lab&quot;,
+  &quot;version-string&quot;: &quot;0.1.0&quot;,
+  &quot;builtin-baseline&quot;: &quot;4702e381dbbd9b54d3f7e1eb565cd8981c1814cd&quot;,
+  &quot;dependencies&quot;: [
+    &quot;opencascade&quot;,
+    {
+      &quot;name&quot;: &quot;sdl3&quot;,
+      &quot;features&quot;: [&quot;vulkan&quot;]
+    },
+    {
+      &quot;name&quot;: &quot;imgui&quot;,
+      &quot;features&quot;: [&quot;sdl3-binding&quot;, &quot;vulkan-binding&quot;, &quot;docking-experimental&quot;]
+    },
+    &quot;vulkan&quot;,
+    {
+      &quot;name&quot;: &quot;shader-slang&quot;,
+      &quot;host&quot;: true
+    }
+  ]
+}
+</code></pre>
+</div>
+<p>OCCT 的包名是 <code>opencascade</code>。SDL3 启用 Vulkan 支持，ImGui 则选择 SDL3 平台后端、Vulkan 渲染后端和 docking。后端由 vcpkg 构建并接入其导出的 <code>imgui::imgui</code> target，应用不需要再把同一份后端 <code>.cpp</code> 重复加入编译。</p>
+<p>项目直接包含 Vulkan 头文件并链接 loader，所以在 manifest 里显式列出 <code>vulkan</code>。ImGui 的 Vulkan 后端也依赖这个包，两条依赖会解析到同一个 <code>vulkan:x64-windows</code>。这个包带入 <code>vulkan-headers</code> 和 <code>vulkan-loader</code>。<a href="https://github.com/microsoft/vcpkg/blob/4702e381dbbd9b54d3f7e1eb565cd8981c1814cd/ports/vulkan/vcpkg.json">Vulkan port 的依赖声明</a></p>
+<p><code>shader-slang</code> 使用 <code>&quot;host&quot;: true</code>，因为 <code>slangc</code> 是构建时运行的工具。这个 baseline 下的 port 下载 Slang 2026.22 的官方预编译包，并将 <code>slangc</code> 放到安装树的 <code>tools/shader-slang</code> 目录。<a href="https://github.com/microsoft/vcpkg/tree/4702e381dbbd9b54d3f7e1eb565cd8981c1814cd/ports/shader-slang">shader-slang port</a></p>
+<p><code>builtin-baseline</code> 记录包注册表的版本基准。这次使用的提交是 <a href="https://github.com/microsoft/vcpkg/commit/4702e381dbbd9b54d3f7e1eb565cd8981c1814cd"><code>4702e381…</code></a>，提交时间为北京时间 2026 年 11 月 14 日。将 hash 写进 manifest 后，更新 vcpkg 工具本身不会直接改变这项声明；需要升级依赖时，再调整 baseline 并重新配置。参见 <a href="https://learn.microsoft.com/en-us/vcpkg/users/versioning">vcpkg 版本管理</a>。</p>
+<h3 id="cmake">2.2 在 CMake 中链接库并编译着色器 <a class="heading-anchor" href="#cmake" aria-label="链接到本节">#</a></h3>
+<p><code>CMakeLists.txt</code>：</p>
+<div class="code-block" data-language="cmake">
+<div class="code-toolbar"><span class="code-language">cmake</span></div>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.21)
+project(occt_lab LANGUAGES C CXX)
+
+find_package(OpenCASCADE CONFIG REQUIRED)
+find_package(SDL3 CONFIG REQUIRED)
+find_package(imgui CONFIG REQUIRED)
+find_package(Vulkan REQUIRED)
+find_package(slang CONFIG REQUIRED)
+
+add_library(occt_lab_dependencies INTERFACE)
+target_compile_features(occt_lab_dependencies INTERFACE cxx_std_23)
+target_include_directories(occt_lab_dependencies SYSTEM INTERFACE
+    &quot;${OpenCASCADE_INCLUDE_DIR}&quot;
+)
+target_link_libraries(occt_lab_dependencies INTERFACE
+    ${OpenCASCADE_LIBRARIES}
+    SDL3::SDL3
+    imgui::imgui
+    Vulkan::Vulkan
+)
+
+add_executable(occt_lab src/main.cpp)
+target_link_libraries(occt_lab PRIVATE occt_lab_dependencies)
+set_target_properties(occt_lab PROPERTIES CXX_EXTENSIONS OFF)
+
+set(triangle_shader &quot;${CMAKE_CURRENT_SOURCE_DIR}/shaders/triangle.slang&quot;)
+set(shader_output_dir &quot;${CMAKE_CURRENT_BINARY_DIR}/shaders&quot;)
+set(triangle_spv &quot;${shader_output_dir}/triangle.vert.spv&quot;)
+
+add_custom_command(
+    OUTPUT &quot;${triangle_spv}&quot;
+    COMMAND &quot;${CMAKE_COMMAND}&quot; -E make_directory &quot;${shader_output_dir}&quot;
+    COMMAND &quot;${SLANG_EXECUTABLE}&quot; &quot;${triangle_shader}&quot;
+        -entry vertexMain -target spirv -o &quot;${triangle_spv}&quot;
+    DEPENDS &quot;${triangle_shader}&quot; &quot;${SLANG_EXECUTABLE}&quot;
+    COMMENT &quot;Compiling triangle.slang to SPIR-V&quot;
+    VERBATIM
+)
+
+add_custom_target(occt_lab_shaders DEPENDS &quot;${triangle_spv}&quot;)
+add_dependencies(occt_lab occt_lab_shaders)
+</code></pre>
+</div>
+<p>这里用一个 interface target 汇总依赖和 C++23 要求，程序目标只链接它。OCCT 暂时使用配置包导出的库列表；后续明确需要哪些模块，再缩小链接范围。</p>
+<p><code>cxx_std_23</code> 作用于消费这个 target 的主项目源码。第三方库仍按各自 port 的规则构建。</p>
+<p><code>find_package(slang CONFIG REQUIRED)</code> 从 vcpkg 安装树找到 <code>slangc</code>，把路径写入 <code>SLANG_EXECUTABLE</code>。Ninja 按 <code>OUTPUT</code> 和 <code>DEPENDS</code> 跟踪 <code>triangle.vert.spv</code>，在产物缺失或输入更新时执行编译。也可以单独构建 <code>occt_lab_shaders</code> 来检查着色器。<a href="https://docs.shader-slang.org/en/stable/external/slang/docs/user-guide/08-compiling.html">Slang 命令行编译说明</a></p>
+<h3 id="preset">2.3 用 preset 固定编译器和构建目录 <a class="heading-anchor" href="#preset" aria-label="链接到本节">#</a></h3>
+<p><code>CMakePresets.json</code>：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;version&quot;: 3,
+  &quot;cmakeMinimumRequired&quot;: {
+    &quot;major&quot;: 3,
+    &quot;minor&quot;: 21,
+    &quot;patch&quot;: 0
+  },
+  &quot;configurePresets&quot;: [
+    {
+      &quot;name&quot;: &quot;base&quot;,
+      &quot;hidden&quot;: true,
+      &quot;generator&quot;: &quot;Ninja&quot;,
+      &quot;binaryDir&quot;: &quot;${sourceDir}/build-${presetName}&quot;,
+      &quot;cmakeExecutable&quot;: &quot;C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe&quot;,
+      &quot;architecture&quot;: { &quot;value&quot;: &quot;x64&quot;, &quot;strategy&quot;: &quot;external&quot; },
+      &quot;toolset&quot;: { &quot;value&quot;: &quot;host=x64&quot;, &quot;strategy&quot;: &quot;external&quot; },
+      &quot;toolchainFile&quot;: &quot;C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/vcpkg/scripts/buildsystems/vcpkg.cmake&quot;,
+      &quot;cacheVariables&quot;: {
+        &quot;CMAKE_C_COMPILER&quot;: &quot;C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/Llvm/x64/bin/clang-cl.exe&quot;,
+        &quot;CMAKE_CXX_COMPILER&quot;: &quot;C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/Llvm/x64/bin/clang-cl.exe&quot;,
+        &quot;CMAKE_MAKE_PROGRAM&quot;: &quot;C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe&quot;,
+        &quot;CMAKE_EXPORT_COMPILE_COMMANDS&quot;: true,
+        &quot;VCPKG_TARGET_TRIPLET&quot;: &quot;x64-windows&quot;,
+        &quot;VCPKG_HOST_TRIPLET&quot;: &quot;x64-windows&quot;
+      }
+    },
+    {
+      &quot;name&quot;: &quot;release&quot;,
+      &quot;displayName&quot;: &quot;Release (clang-cl x64)&quot;,
+      &quot;inherits&quot;: &quot;base&quot;,
+      &quot;cacheVariables&quot;: {
+        &quot;CMAKE_BUILD_TYPE&quot;: &quot;Release&quot;
+      }
+    },
+    {
+      &quot;name&quot;: &quot;debug&quot;,
+      &quot;displayName&quot;: &quot;Debug (clang-cl x64)&quot;,
+      &quot;inherits&quot;: &quot;base&quot;,
+      &quot;cacheVariables&quot;: {
+        &quot;CMAKE_BUILD_TYPE&quot;: &quot;Debug&quot;
+      }
+    }
+  ],
+  &quot;buildPresets&quot;: [
+    {
+      &quot;name&quot;: &quot;release&quot;,
+      &quot;configurePreset&quot;: &quot;release&quot;
+    },
+    {
+      &quot;name&quot;: &quot;debug&quot;,
+      &quot;configurePreset&quot;: &quot;debug&quot;
+    }
+  ]
+}
+</code></pre>
+</div>
+<p>隐藏的 <code>base</code> 保存公共配置，<code>release</code> 和 <code>debug</code> 只覆盖 <code>CMAKE_BUILD_TYPE</code>。<code>${presetName}</code> 在继承后按当前 preset 展开，分别得到 <code>build-release</code> 和 <code>build-debug</code>。</p>
+<p>这份配置记录了我的本机工具路径，换机器时检查对应位置即可。如果多人共用工程，可以把路径覆盖移到 <code>CMakeUserPresets.json</code>；个人实验项目先集中保存在一份文件里。<code>cmakeExecutable</code> 供支持它的 IDE 使用，命令行中的 CMake 仍由实际调用路径决定。<a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">CMake Presets 文档</a></p>
+<p>这里有两个编译器选择：主项目的 <code>CMAKE_CXX_COMPILER</code> 是 Build Tools 自带的 clang-cl 22.1.3；vcpkg 的 <code>x64-windows</code> 依赖仍由 MSVC 构建。两套工具使用相同架构和 MSVC 运行库，省去了自定义 triplet 与工具链文件。</p>
+<p><code>architecture</code> 和 <code>toolset</code> 使用 <code>external</code>，供编辑器识别所需的 VS 开发环境。命令行 CMake 不会根据这两个字段自动运行环境初始化脚本；若出现 Windows SDK 或 CRT 查找失败，应在 x64 开发者命令行中重试并核对环境。</p>
+<h2 id="section-1">3 配置、构建与编辑器接入 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h2>
+<h3 id="configure">3.1 configure 阶段就会准备依赖 <a class="heading-anchor" href="#configure" aria-label="链接到本节">#</a></h3>
+<p>在项目目录运行：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">cd C:\Users\Yoimiya\occt-lab
+
+&amp; $cmake --preset release
+&amp; $cmake --build --preset release
+
+&amp; $cmake --preset debug
+&amp; $cmake --build --preset debug
+</code></pre>
+</div>
+<p>vcpkg 工具链会在 CMake 配置阶段读取 manifest 并安装依赖。因此，第一次 <code>cmake --preset release</code> 可能已经开始下载、解压和编译 OCCT；主项目的 build 命令还没执行，终端也可能忙很久。<a href="https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration">vcpkg CMake 集成说明</a></p>
+<p>依赖构建时出现：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+</code></pre>
+</div>
+<p>这是默认 triplet 同时构建 Debug 和 Release 依赖。主项目选择 Release，并不会让依赖只生成 Release。考虑到后面也需要调试，我保留了默认行为。<a href="https://learn.microsoft.com/en-us/vcpkg/users/triplets#vcpkg_build_type">Triplet 变量说明</a></p>
+<p>更新 baseline 后，还遇到了工具版本提示：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">A suitable version of cmake was not found (required v4.4.3).
+Downloading ... cmake-4.4.3-windows-x86_64.zip
+</code></pre>
+</div>
+<p>当时主入口 CMake 是 <code>4.3.1-msvc1</code>，vcpkg 自动下载 <code>4.4.3</code> 用于依赖构建。该版本保存在 vcpkg 下载缓存中，由 vcpkg 按路径调用，不覆盖 Build Tools 的 CMake，也不修改系统 PATH。</p>
+<h3 id="c23-stdprintln">3.2 用 C++23 的 <code>std::println</code> 检查环境 <a class="heading-anchor" href="#c23-stdprintln" aria-label="链接到本节">#</a></h3>
+<p>最初的 <code>src/main.cpp</code> 只打印库的头文件版本：</p>
+<div class="code-block" data-language="cpp">
+<div class="code-toolbar"><span class="code-language">cpp</span></div>
+<pre><code class="language-cpp">#include &lt;Standard_Version.hxx&gt;
+#include &lt;SDL3/SDL_version.h&gt;
+#include &lt;imgui.h&gt;
+#include &lt;vulkan/vulkan_core.h&gt;
+
+#include &lt;print&gt;
+
+auto main() -&gt; int
+{
+    std::println(&quot;Library header versions&quot;);
+    std::println(&quot;OCCT: {}&quot;, OCC_VERSION_COMPLETE);
+    std::println(&quot;SDL3: {}.{}.{}&quot;, SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_MICRO_VERSION);
+    std::println(&quot;Dear ImGui: {}&quot;, IMGUI_VERSION);
+    std::println(&quot;Vulkan: {}.{}.{}&quot;,
+                 VK_API_VERSION_MAJOR(VK_HEADER_VERSION_COMPLETE),
+                 VK_API_VERSION_MINOR(VK_HEADER_VERSION_COMPLETE),
+                 VK_API_VERSION_PATCH(VK_HEADER_VERSION_COMPLETE));
+
+    return 0;
+}
+</code></pre>
+</div>
+<p>构建完成后分别运行：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">.\build-release\occt_lab.exe
+.\build-debug\occt_lab.exe
+</code></pre>
+</div>
+<p>两份程序都成功输出：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Library header versions
+OCCT: 8.0.1
+SDL3: 3.4.20
+Dear ImGui: 1.93.0
+Vulkan: 1.4.363
+</code></pre>
+</div>
+<p>到这里，项目已经可以开始添加正式源码，日常修改后执行对应的 build 命令即可。</p>
+<p>分别使用 <code>cmake --fresh --preset debug</code> 和 <code>cmake --fresh --preset release</code> 配置并构建两套 preset。两个 CMakeCache 都指向 <code>VC/Tools/Llvm/x64/bin/clang-cl.exe</code>，<code>compile_commands.json</code> 中也包含对应的 <code>std.pcm</code> 和 <code>vulkan.pcm</code> 路径。Debug 和 Release 各自生成 39 MB 左右的 <code>std.pcm</code>、56 MB 左右的 <code>vulkan.pcm</code>，并链接对应的模块 <code>.obj</code>。</p>
+<p>Debug 和 Release 程序都成功运行，输出 OCCT、SDL3、Dear ImGui 和 Vulkan 的头文件版本。两种配置都生成了 752 字节的 <code>triangle.vert.spv</code>，SPIR-V 文件头有效。CMakeCache 和编译数据库都记录了这套工具链与 PCM 路径。</p>
+<h3 id="slang-spir-v">3.3 检查 Slang 生成的 SPIR-V <a class="heading-anchor" href="#slang-spir-v" aria-label="链接到本节">#</a></h3>
+<p><code>shaders/triangle.slang</code> 用顶点编号选出三角形的三个坐标。</p>
+<div class="code-block" data-language="hlsl">
+<div class="code-toolbar"><span class="code-language">hlsl</span></div>
+<pre><code class="language-hlsl">static const float2 positions[3] = {
+    float2(0.0, -0.5),
+    float2(0.5, 0.5),
+    float2(-0.5, 0.5),
+};
+
+[shader(&quot;vertex&quot;)]
+float4 vertexMain(uint vertexIndex : SV_VertexID) : SV_Position
+{
+    return float4(positions[vertexIndex], 0.0, 1.0);
+}
+</code></pre>
+</div>
+<p>构建后检查两个输出文件。</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">Get-Item .\build-debug\shaders\triangle.vert.spv, .\build-release\shaders\triangle.vert.spv |
+    Select-Object FullName, Length
+</code></pre>
+</div>
+<p>这次两个文件都是 752 字节，SPIR-V 版本为 1.5，SHA-256 相同。CMake 缓存中的 Vulkan 头文件、<code>vulkan-1.lib</code> 和 <code>slangc.exe</code> 都来自各自的 <code>vcpkg_installed</code>。</p>
+<h3 id="c">3.4 用自定义命令生成 C++ 模块文件 <a class="heading-anchor" href="#c" aria-label="链接到本节">#</a></h3>
+<p>Build Tools 的 MSVC 标准库提供 <code>modules/std.ixx</code>，vcpkg 安装的 Vulkan-Headers 提供 <code>include/vulkan/vulkan.cppm</code>。CMake 4.3.1 不负责扫描这组 <code>clang-cl</code> 模块依赖，因此我在 <code>CMakeLists.txt</code> 中为两个模块各加一条自定义命令。</p>
+<div class="code-block" data-language="cmake">
+<div class="code-toolbar"><span class="code-language">cmake</span></div>
+<pre><code class="language-cmake">set(MSVC_STD_IXX &quot;&quot; CACHE FILEPATH &quot;Path to the MSVC STL std.ixx&quot;)
+if(NOT EXISTS &quot;${MSVC_STD_IXX}&quot;)
+    message(FATAL_ERROR &quot;Set MSVC_STD_IXX to the MSVC STL std.ixx file&quot;)
+endif()
+
+set(std_pcm &quot;${CMAKE_CURRENT_BINARY_DIR}/modules/std.pcm&quot;)
+set(std_obj &quot;${CMAKE_CURRENT_BINARY_DIR}/modules/std.obj&quot;)
+set(vulkan_pcm &quot;${CMAKE_CURRENT_BINARY_DIR}/modules/vulkan.pcm&quot;)
+set(vulkan_obj &quot;${CMAKE_CURRENT_BINARY_DIR}/modules/vulkan.obj&quot;)
+set(module_output_dir &quot;${CMAKE_CURRENT_BINARY_DIR}/modules&quot;)
+
+add_custom_command(
+    OUTPUT &quot;${std_pcm}&quot; &quot;${std_obj}&quot;
+    COMMAND &quot;${CMAKE_COMMAND}&quot; -E make_directory &quot;${module_output_dir}&quot;
+    COMMAND &quot;${CMAKE_CXX_COMPILER}&quot; /nologo /c /EHsc
+        &quot;$&lt;IF:$&lt;CONFIG:Debug&gt;,/MDd,/MD&gt;&quot;
+        -clang:-std=c++23
+        -clang:-Wno-include-angled-in-module-purview
+        -clang:-Wno-reserved-module-identifier
+        &quot;-clang:-fmodule-output=${std_pcm}&quot; &quot;/Fo${std_obj}&quot;
+        -xc++-module &quot;${MSVC_STD_IXX}&quot;
+    DEPENDS &quot;${MSVC_STD_IXX}&quot; &quot;${CMAKE_CXX_COMPILER}&quot;
+    COMMENT &quot;Compiling MSVC STL std module&quot;
+    VERBATIM
+)
+
+add_custom_command(
+    OUTPUT &quot;${vulkan_pcm}&quot; &quot;${vulkan_obj}&quot;
+    COMMAND &quot;${CMAKE_CXX_COMPILER}&quot; /nologo /c /EHsc
+        &quot;$&lt;IF:$&lt;CONFIG:Debug&gt;,/MDd,/MD&gt;&quot;
+        -clang:-std=c++23
+        &quot;-clang:-fmodule-file=std=${std_pcm}&quot;
+        &quot;-clang:-fmodule-output=${vulkan_pcm}&quot; &quot;/Fo${vulkan_obj}&quot;
+        &quot;/I${Vulkan_INCLUDE_DIR}&quot;
+        &quot;${Vulkan_INCLUDE_DIR}/vulkan/vulkan.cppm&quot;
+    DEPENDS &quot;${std_pcm}&quot; &quot;${MSVC_STD_IXX}&quot; &quot;${CMAKE_CXX_COMPILER}&quot;
+    COMMENT &quot;Compiling Vulkan-Hpp module&quot;
+    VERBATIM
+)
+
+set_source_files_properties(
+    &quot;${std_obj}&quot; &quot;${vulkan_obj}&quot;
+    PROPERTIES GENERATED TRUE EXTERNAL_OBJECT TRUE
+)
+target_sources(occt_lab PRIVATE &quot;${std_obj}&quot; &quot;${vulkan_obj}&quot;)
+target_compile_options(occt_lab PRIVATE
+    &quot;-clang:-fmodule-file=std=${std_pcm}&quot;
+    &quot;-clang:-fmodule-file=vulkan=${vulkan_pcm}&quot;
+)
+set_property(SOURCE src/main.cpp APPEND PROPERTY OBJECT_DEPENDS &quot;${std_pcm};${vulkan_pcm}&quot;)
+</code></pre>
+</div>
+<p><code>std.ixx</code> 先生成 <code>std.pcm</code> 和 <code>std.obj</code>。Vulkan-Hpp 的 <code>vulkan.cppm</code> 自己也写了 <code>import std;</code>，所以第二条命令依赖 <code>std.pcm</code>，并通过 <code>-fmodule-file</code> 告诉 clang-cl 在哪里读取它。主程序同样接收两个 PCM 路径；<code>OBJECT_DEPENDS</code> 让 Ninja 在编译 <code>main.cpp</code> 前先生成模块。模块对象文件也加入可执行目标，链接时提供模块定义。</p>
+<p>标准库模块要和程序使用相同的 MSVC 运行库。配置命令里的生成器表达式为 Debug 选择 <code>/MDd</code>，其余配置选择 <code>/MD</code>。<code>CMakePresets.json</code> 将 <code>MSVC_STD_IXX</code> 指向 Build Tools 内的标准库模块接口文件。MSVC 升级后若该路径变化，要同步更新 preset。</p>
+<p><code>main.cpp</code> 保留 ImGui 和 Vulkan C 头文件，再导入模块：</p>
+<div class="code-block" data-language="cpp">
+<div class="code-toolbar"><span class="code-language">cpp</span></div>
+<pre><code class="language-cpp">#include &lt;Standard_Version.hxx&gt;
+#include &lt;SDL3/SDL_version.h&gt;
+#include &lt;imgui.h&gt;
+#include &lt;vulkan/vulkan_core.h&gt;
+
+import std;
+import vulkan;
+</code></pre>
+</div>
+<p><code>&lt;print&gt;</code> 可以删除，因为 <code>std::println</code> 由 <code>import std;</code> 提供。这里仍保留 <code>vulkan_core.h</code>，因为下面打印 Vulkan 头文件版本时使用了预处理宏。C++ 模块不会导出这些宏。</p>
+<p>这份 Vulkan-Headers 版本会在编译模块时打印两条警告。一条说明 Vulkan-Hpp 目前将模块实现标为实验性；另一条说明头文件采用了 Clang 提示的非标准模块实现方式。这是头文件自身发出的提示，不影响本次生成模块和链接。需要压掉实验性提示时，可以按头文件建议，在编译 <code>vulkan.cppm</code> 前定义 <code>VULKAN_HPP_CXX_MODULE_EXPERIMENTAL_WARNING</code>，但我保留默认信息以便之后留意实现变化。<a href="https://github.com/KhronosGroup/Vulkan-Hpp/blob/main/vulkan/vulkan.cppm">Vulkan-Hpp 模块接口</a></p>
+<p>构建后，Debug 和 Release 的 <code>modules</code> 目录中各有 <code>std.pcm</code>、<code>std.obj</code>、<code>vulkan.pcm</code> 和 <code>vulkan.obj</code>。两个配置使用不同的运行库设置，PCM 文件因此也分别生成。clangd 从 <code>build-debug/compile_commands.json</code> 读取 <code>-fmodule-file</code> 参数，直接打开对应 PCM；VS Code 中的跳转和诊断由用户检查。</p>
+<h3 id="cmake-tools-preset">3.5 CMake Tools 沿用已有 preset <a class="heading-anchor" href="#cmake-tools-preset" aria-label="链接到本节">#</a></h3>
+<p>安装扩展：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">code --install-extension ms-vscode.cmake-tools
+code --install-extension llvm-vs-code-extensions.vscode-clangd
+</code></pre>
+</div>
+<p>打开项目后，在命令面板执行 <code>CMake: Select Configure Preset</code>，选择 <code>debug</code> 或 <code>release</code>，再选择对应的 Build Preset。后续使用 <code>CMake: Configure</code> 和 <code>CMake: Build</code>。</p>
+<p>CMake Tools 的 <code>cmake.useCMakePresets</code> 默认值为 <code>auto</code>，根目录存在 <code>CMakePresets.json</code> 时会使用它，不需要再让扩展生成 kits 或另一套构建目录。若用户设置中曾禁用 presets，可以改回 <code>auto</code> 或 <code>always</code>。<a href="https://github.com/microsoft/vscode-cmake-tools/blob/main/docs/cmake-presets.md">CMake Tools 文档</a></p>
+<p>Build Tools 内置的 CMake、Ninja 不一定在普通终端 PATH 中。本文已经写明工具路径；若扩展仍找不到 VS 工具环境，可执行 <code>CMake: Scan for Compilers</code>，或从开发者命令行启动 VS Code。</p>
+<h3 id="clangd-debug">3.6 clangd 固定读取 Debug 编译数据库 <a class="heading-anchor" href="#clangd-debug" aria-label="链接到本节">#</a></h3>
+<p>在 VS Code 用户设置中指定已安装的 clangd：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;clangd.path&quot;: &quot;C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\Llvm\\x64\\bin\\clangd.exe&quot;,
+  &quot;clangd.arguments&quot;: [&quot;--background-index&quot;, &quot;--clang-tidy&quot;]
+}
+</code></pre>
+</div>
+<p><code>clangd.path</code> 要手动填写 <code>clangd.exe</code> 的完整路径。这里指向 Build Tools 内的 <code>VC\Tools\Llvm\x64\bin\clangd.exe</code>，VS Code 扩展不会因为 CMake Presets 指定了 clang-cl 就自动选择这个 clangd。</p>
+<p>preset 中的 <code>CMAKE_EXPORT_COMPILE_COMMANDS</code> 会让 Ninja 生成器输出 <code>compile_commands.json</code>。它记录每个源文件的语言标准、头文件路径、宏定义和编译命令，clangd 据此解析代码，不必手工维护 include 路径。</p>
+<p>clangd 默认向源码的上级目录查找数据库，也会检查名为 <code>build</code> 的子目录。本文使用 <code>build-debug</code> 和 <code>build-release</code>，在项目根目录的 <code>.clangd</code> 中指定 Debug 目录。</p>
+<div class="code-block" data-language="yaml">
+<div class="code-toolbar"><span class="code-language">yaml</span></div>
+<pre><code class="language-yaml">CompileFlags:
+  CompilationDatabase: build-debug
+</code></pre>
+</div>
+<p>路径相对于 <code>.clangd</code> 文件。日常补全固定使用 Debug 参数；切换 CMake Tools 的 preset 不会自动切换这项配置。需要检查 Release 特有宏分支时，再改成 <code>build-release</code>。<a href="https://clangd.llvm.org/config#compilationdatabase">clangd 配置文档</a></p>
+<p>完成 <code>cmake --preset debug</code> 的配置和生成后，数据库就已存在。若编辑器仍提示找不到依赖，先检查 <code>build-debug/compile_commands.json</code>，再执行 <code>clangd: Restart language server</code>。</p>
+<h2 id="powershell">4 PowerShell 版本变化让缓存失效 <a class="heading-anchor" href="#powershell" aria-label="链接到本节">#</a></h2>
+<h3 id="section-2">4.1 同一个项目，第二次却恢复了 0 个包 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h3>
+<p>Release 依赖准备完成后，我让 agent 接着配置 Debug。两边使用相同 baseline、相同 <code>x64-windows</code>，预期能够复用已经生成的二进制缓存，但日志显示：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Restored 0 package(s) from C:\Users\Yoimiya\AppData\Local\vcpkg\archives
+</code></pre>
+</div>
+<p>随后 vcpkg 开始重新构建依赖。检查 <code>vcpkg-cmake</code> 的 ABI 信息文件，发现其中一项不同：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text"># Existing Release build
+cmake 4.4.3
+powershell 7.7.0
+triplet x64-windows
+
+# First Debug attempt
+cmake 4.4.3
+powershell 7.6.9
+triplet x64-windows
+</code></pre>
+</div>
+<p>原来的终端使用 PowerShell 7.7.0；agent 的执行环境把自带的 7.6.9 放在 PATH 前面，vcpkg 找到的是后者。</p>
+<p>vcpkg 的二进制缓存根据 ABI hash 匹配。参与计算的不只有源码版本和编译器，还包括 port 脚本、依赖、triplet 及部分构建工具版本，Windows 上的 PowerShell 也在其中。<a href="https://learn.microsoft.com/en-us/vcpkg/users/binarycaching-troubleshooting">官方缓存排错文档</a></p>
+<h3 id="section-3">4.2 核对工具路径，再重试 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h3>
+<p>从项目根目录可以查看两次构建记录中的工具版本：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">$abiRelativePath = 'vcpkg_installed\vcpkg\blds\vcpkg-cmake\x64-windows.vcpkg_abi_info.txt'
+
+Get-Content (Join-Path '.\build-release' $abiRelativePath) |
+    Select-String '^(cmake|powershell|triplet) '
+
+Get-Content (Join-Path '.\build-debug' $abiRelativePath) |
+    Select-String '^(cmake|powershell|triplet) '
+</code></pre>
+</div>
+<p>这个路径对应本文使用的 VS 自带 vcpkg。检查当前终端和 PATH 中的 PowerShell：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">$PSVersionTable.PSVersion
+Get-Command pwsh -All | Select-Object Source
+pwsh -NoProfile -Command '$PSVersionTable.PSVersion.ToString(); $PSHOME'
+</code></pre>
+</div>
+<p>当前 Shell 的版本与子进程通过 PATH 找到的 <code>pwsh</code> 需要分别看。IDE、agent 或其他工具可以给子进程设置不同的 PATH。</p>
+<p>停止那次重复构建后，只在重试进程的 PATH 前面加入本机 PowerShell 7.7.0 所在目录：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">$savedPath = $env:Path
+try {
+    $env:Path = 'C:\Program Files\WindowsApps\Microsoft.PowerShell_7.7.0.0_x64__8wekyb3d8bbwe;' + $savedPath
+    &amp; $cmake --preset debug
+}
+finally {
+    $env:Path = $savedPath
+}
+</code></pre>
+</div>
+<p>路径来自本机实际的 <code>$PSHOME</code>，其他安装方式和版本需要替换。这里不修改用户或系统 PATH。</p>
+<p>重试后，日志变为：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Restored 16 package(s) from C:\Users\Yoimiya\AppData\Local\vcpkg\archives in 15 s.
+...
+All requested installations completed successfully in: 3.9 s
+</code></pre>
+</div>
+<p>全部 16 个包从缓存恢复，后续完成安装；包含编译器检测在内，Debug 配置总耗时约 50.5 秒。接着构建并运行 Debug 程序，输出与 Release 一致。</p>
+<p>以后遇到同样的重编现象，可以先比较 ABI 信息和实际工具路径。保留现有缓存有助于验证原因，直接清空缓存反而失去了可以恢复的包。</p>
+<h2 id="section-4">5 缓存在哪里，怎样清理 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h2>
+<h3 id="vs-vcpkg">5.1 VS 自带 vcpkg 使用只读安装布局 <a class="heading-anchor" href="#vs-vcpkg" aria-label="链接到本节">#</a></h3>
+<p>这次使用的 vcpkg 位于 <code>Program Files (x86)</code>，其 bundle 配置标记为只读。它把下载缓存放在用户目录，将依赖构建临时文件放在项目安装树中。独立克隆的普通 vcpkg 通常把 <code>downloads</code>、<code>buildtrees</code>、<code>packages</code> 放在自己的根目录，不能直接套用同一张路径表。<a href="https://github.com/microsoft/vcpkg-tool/blob/main/src/vcpkg/vcpkgpaths.cpp">vcpkg 路径实现</a></p>
+<p>本项目没有设置缓存位置覆盖，默认路径如下：</p>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>保存内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%LOCALAPPDATA%\vcpkg\downloads</code></td>
+<td>下载的源码归档和其他资源</td>
+</tr>
+<tr>
+<td><code>%LOCALAPPDATA%\vcpkg\downloads\tools</code></td>
+<td>解压后的辅助工具，如 vcpkg 下载的 CMake</td>
+</tr>
+<tr>
+<td><code>%LOCALAPPDATA%\vcpkg\archives</code></td>
+<td>已构建的二进制包缓存</td>
+</tr>
+<tr>
+<td><code>%LOCALAPPDATA%\vcpkg\registries</code></td>
+<td>包注册表、port 和版本信息缓存</td>
+</tr>
+<tr>
+<td><code>build-debug\vcpkg_installed\x64-windows</code></td>
+<td>Debug 构建目录使用的依赖安装树，包含两套库</td>
+</tr>
+<tr>
+<td><code>build-debug\vcpkg_installed\vcpkg\blds</code></td>
+<td>依赖源码、中间产物、日志和 ABI 信息</td>
+</tr>
+<tr>
+<td><code>build-debug\vcpkg_installed\vcpkg\pkgs</code></td>
+<td>打包暂存目录</td>
+</tr>
+</tbody>
+</table>
+<p>Release 使用同样的布局，将 <code>build-debug</code> 换成 <code>build-release</code>。两份构建目录各自安装依赖，但共享用户级二进制缓存。默认缓存位置及可用配置见 <a href="https://learn.microsoft.com/en-us/vcpkg/consume/binary-caching-default">vcpkg 二进制缓存文档</a>。</p>
+<h3 id="section-5">5.2 先清中间产物，保留可复用的包 <a class="heading-anchor" href="#section-5" aria-label="链接到本节">#</a></h3>
+<p>依赖编译结束后，<code>blds</code> 和 <code>pkgs</code> 是优先检查的清理对象。排错时先保留日志，尤其是编译失败或缓存不命中的情况。<code>archives</code> 值得保留，后面重新配置目录时，OCCT 这类大型库能直接恢复。</p>
+<p>清理范围可以按需要选择：</p>
+<table>
+<thead>
+<tr>
+<th>清理对象</th>
+<th>下次使用时的成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>blds</code>、<code>pkgs</code></td>
+<td>需要重新构建时，再生成源码工作目录和中间文件</td>
+</tr>
+<tr>
+<td><code>downloads</code></td>
+<td>对应源码和工具可能需要重新下载</td>
+</tr>
+<tr>
+<td><code>archives</code></td>
+<td>缺少已安装依赖时，可能需要重新编译</td>
+</tr>
+<tr>
+<td>整个 <code>build-debug</code> 或 <code>build-release</code></td>
+<td>重新配置、恢复依赖、构建主项目</td>
+</tr>
+</tbody>
+</table>
+<p>安装树里的 <code>vcpkg/info</code> 等文件记录包的安装状态，不要单独删除。清理时先结束相关构建进程，再确认目录属于当前项目。</p>
+<p>源码和配置提交到仓库，生成目录可以加入 <code>.gitignore</code>：</p>
+<div class="code-block" data-language="gitignore">
+<div class="code-toolbar"><span class="code-language">gitignore</span></div>
+<pre><code class="language-gitignore">/build-debug/
+/build-release/
+/.cache/
+</code></pre>
+</div>
+<p>日常开发使用已有 preset 构建；调整依赖或工具链时重新 configure；缓存未命中时先查工具版本和 ABI 信息。clangd 则固定读取 Debug 编译数据库，编辑器和命令行都沿用同一套工程配置。</p>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="./msvc.html">Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;</a>
+                        </li>
+                        <li>
+                            <a href="../Linux/podman.html">&#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;</a>
+                        </li>
+                        <li>
+                            <a href="../Linux/ue.html">Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="../Linux/podman.html" rel="next"><span>下一篇</span>&#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#windows">1 &#x51C6;&#x5907; Windows &#x5DE5;&#x5177;&#x94FE;</a>
+        <a class="level-3" href="#build-tools-llvm">1.1 &#x7528; Build Tools &#x81EA;&#x5E26;&#x7684; LLVM</a>
+        <a class="level-3" href="#build-tools-cmakeninja-vcpkg">1.2 &#x4F7F;&#x7528; Build Tools &#x81EA;&#x5E26;&#x7684; CMake&#x3001;Ninja &#x548C; vcpkg</a>
+        <a class="level-2" href="#section">2 &#x7528;&#x4E09;&#x4E2A;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x5DE5;&#x7A0B;</a>
+        <a class="level-3" href="#manifest-features">2.1 &#x5728; manifest &#x4E2D;&#x9009;&#x62E9;&#x4F9D;&#x8D56;&#x548C; features</a>
+        <a class="level-3" href="#cmake">2.2 &#x5728; CMake &#x4E2D;&#x94FE;&#x63A5;&#x5E93;&#x5E76;&#x7F16;&#x8BD1;&#x7740;&#x8272;&#x5668;</a>
+        <a class="level-3" href="#preset">2.3 &#x7528; preset &#x56FA;&#x5B9A;&#x7F16;&#x8BD1;&#x5668;&#x548C;&#x6784;&#x5EFA;&#x76EE;&#x5F55;</a>
+        <a class="level-2" href="#section-1">3 &#x914D;&#x7F6E;&#x3001;&#x6784;&#x5EFA;&#x4E0E;&#x7F16;&#x8F91;&#x5668;&#x63A5;&#x5165;</a>
+        <a class="level-3" href="#configure">3.1 configure &#x9636;&#x6BB5;&#x5C31;&#x4F1A;&#x51C6;&#x5907;&#x4F9D;&#x8D56;</a>
+        <a class="level-3" href="#c23-stdprintln">3.2 &#x7528; C&#x2B;&#x2B;23 &#x7684; std::println &#x68C0;&#x67E5;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#slang-spir-v">3.3 &#x68C0;&#x67E5; Slang &#x751F;&#x6210;&#x7684; SPIR-V</a>
+        <a class="level-3" href="#c">3.4 &#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x547D;&#x4EE4;&#x751F;&#x6210; C&#x2B;&#x2B; &#x6A21;&#x5757;&#x6587;&#x4EF6;</a>
+        <a class="level-3" href="#cmake-tools-preset">3.5 CMake Tools &#x6CBF;&#x7528;&#x5DF2;&#x6709; preset</a>
+        <a class="level-3" href="#clangd-debug">3.6 clangd &#x56FA;&#x5B9A;&#x8BFB;&#x53D6; Debug &#x7F16;&#x8BD1;&#x6570;&#x636E;&#x5E93;</a>
+        <a class="level-2" href="#powershell">4 PowerShell &#x7248;&#x672C;&#x53D8;&#x5316;&#x8BA9;&#x7F13;&#x5B58;&#x5931;&#x6548;</a>
+        <a class="level-3" href="#section-2">4.1 &#x540C;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#xFF0C;&#x7B2C;&#x4E8C;&#x6B21;&#x5374;&#x6062;&#x590D;&#x4E86; 0 &#x4E2A;&#x5305;</a>
+        <a class="level-3" href="#section-3">4.2 &#x6838;&#x5BF9;&#x5DE5;&#x5177;&#x8DEF;&#x5F84;&#xFF0C;&#x518D;&#x91CD;&#x8BD5;</a>
+        <a class="level-2" href="#section-4">5 &#x7F13;&#x5B58;&#x5728;&#x54EA;&#x91CC;&#xFF0C;&#x600E;&#x6837;&#x6E05;&#x7406;</a>
+        <a class="level-3" href="#vs-vcpkg">5.1 VS &#x81EA;&#x5E26; vcpkg &#x4F7F;&#x7528;&#x53EA;&#x8BFB;&#x5B89;&#x88C5;&#x5E03;&#x5C40;</a>
+        <a class="level-3" href="#section-5">5.2 &#x5148;&#x6E05;&#x4E2D;&#x95F4;&#x4EA7;&#x7269;&#xFF0C;&#x4FDD;&#x7559;&#x53EF;&#x590D;&#x7528;&#x7684;&#x5305;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

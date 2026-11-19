@@ -1,0 +1,1913 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177; &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <meta name="description" content="&#x8BB0;&#x5F55; MiniMcp &#x7684;&#x8BF7;&#x6C42;&#x94FE;&#x8DEF;&#x3001;MCP &#x534F;&#x8BAE;&#x3001;Access JWT &#x6821;&#x9A8C;&#xFF0C;&#x4EE5;&#x53CA; read_file&#x3001;apply_patch &#x548C;&#x4E00;&#x6B21;&#x6027; Bash &#x7684;&#x5B9E;&#x73B0;&#x3002;">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/AI/mcp.html">
+            <meta property="og:title" content="MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/AI/mcp.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="&#x8BB0;&#x5F55; MiniMcp &#x7684;&#x8BF7;&#x6C42;&#x94FE;&#x8DEF;&#x3001;MCP &#x534F;&#x8BAE;&#x3001;Access JWT &#x6821;&#x9A8C;&#xFF0C;&#x4EE5;&#x53CA; read_file&#x3001;apply_patch &#x548C;&#x4E00;&#x6B21;&#x6027; Bash &#x7684;&#x5B9E;&#x73B0;&#x3002;">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.bb1aee13f1a46506.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./mcp.html" aria-current="page">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./mcp.html" aria-current="page">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;</h1>
+                    <p class="article-date"><time datetime="2026-10-19">2026-10-19</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-14">2026-11-14</time></p>
+                    <p class="article-date article-reading-time">预计阅读 37 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-414920e5ae9ee8b7b5">AI &#x5B9E;&#x8DF5;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/11fb682be0a0233d5fb899721ecfc1827d20f0d2ff2e093310efa61efca8af1c.html">#AI</a></li>
+                            <li><a href="../../tags/53f13ae99ed53bd346eb8e1c8cefb7ef8260683b50401caf101360967ea052aa.html">#MCP</a></li>
+                            <li><a href="../../tags/357e7188a643a3f15aa4c5829ab5dc22a0c4d8391d399e1ec0b9f225858c2581.html">#.NET</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">1 &#x4E00;&#x6B21;&#x5DE5;&#x5177;&#x8C03;&#x7528;&#x7684;&#x5B8C;&#x6574;&#x8DEF;&#x7EBF;</a>
+        <a class="level-3" href="#section-1">1.1 &#x7528;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;&#x7EC4;&#x5408;&#x5F00;&#x53D1;&#x64CD;&#x4F5C;</a>
+        <a class="level-3" href="#section-2">1.2 &#x8BF7;&#x6C42;&#x7ECF;&#x8FC7;&#x54EA;&#x4E9B;&#x5C42;</a>
+        <a class="level-3" href="#section-3">1.3 &#x4ECE;&#x8BF7;&#x6C42;&#x94FE;&#x8DEF;&#x5B9A;&#x4F4D;&#x6E90;&#x7801;</a>
+        <a class="level-2" href="#section-4">2 &#x8BF7;&#x6C42;&#x5982;&#x4F55;&#x5230;&#x8FBE;&#x672C;&#x673A;&#x5E76;&#x901A;&#x8FC7;&#x8BA4;&#x8BC1;</a>
+        <a class="level-3" href="#urldns-tunnel">2.1 URL&#x3001;DNS &#x4E0E; Tunnel &#x8DEF;&#x7531;</a>
+        <a class="level-3" href="#nat">2.2 NAT&#x3001;&#x51FA;&#x7AD9;&#x96A7;&#x9053;&#x4E0E;&#x56DE;&#x73AF;&#x76D1;&#x542C;</a>
+        <a class="level-3" href="#managed-oauth">2.3 Managed OAuth&#xFF1A;&#x8BA9;&#x5BA2;&#x6237;&#x7AEF;&#x83B7;&#x5F97;&#x8BBF;&#x95EE;&#x6388;&#x6743;</a>
+        <a class="level-3" href="#jwt">2.4 &#x4E24;&#x79CD;&#x4EE4;&#x724C;&#x4E0E;&#x540E;&#x7AEF; JWT &#x6821;&#x9A8C;</a>
+        <a class="level-2" href="#mcp-c">3 MCP &#x8BF7;&#x6C42;&#x5982;&#x4F55;&#x6210;&#x4E3A; C# &#x65B9;&#x6CD5;&#x8C03;&#x7528;</a>
+        <a class="level-3" href="#httpjson-rpc-mcp">3.1 HTTP&#x3001;JSON-RPC &#x4E0E; MCP &#x7684;&#x5206;&#x5DE5;</a>
+        <a class="level-3" href="#section-5">3.2 &#x534F;&#x8BAE;&#x4FEE;&#x8BA2;&#x4E0E;&#x65E7;&#x7248;&#x517C;&#x5BB9;</a>
+        <a class="level-3" href="#program.cs">3.3 Program.cs&#xFF1A;&#x7EC4;&#x88C5;&#x6846;&#x67B6;&#x548C;&#x4E1A;&#x52A1;&#x670D;&#x52A1;</a>
+        <a class="level-3" href="#section-6">3.4 &#x65E0;&#x72B6;&#x6001;&#x8BF7;&#x6C42;&#x4E0E;&#x72B6;&#x6001;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;</a>
+        <a class="level-2" href="#section-7">4 &#x6587;&#x4EF6;&#x4E0E;&#x8FDB;&#x7A0B;&#x64CD;&#x4F5C;&#x600E;&#x6837;&#x5B9E;&#x73B0;</a>
+        <a class="level-3" href="#read_file">4.1 read_file&#xFF1A;&#x5148;&#x786E;&#x8BA4;&#x8DEF;&#x5F84;&#x6307;&#x5411;&#x54EA;&#x91CC;</a>
+        <a class="level-3" href="#read_file-1">4.2 read_file&#xFF1A;&#x4ECE;&#x5B57;&#x8282;&#x5FEB;&#x7167;&#x5230;&#x6309;&#x884C;&#x6587;&#x672C;</a>
+        <a class="level-3" href="#apply_patch">4.3 apply_patch&#xFF1A;&#x628A;&#x4FEE;&#x6539;&#x610F;&#x56FE;&#x4E0E;&#x5F53;&#x524D;&#x539F;&#x6587;&#x5339;&#x914D;</a>
+        <a class="level-3" href="#apply_patch-1">4.4 apply_patch&#xFF1A;&#x9884;&#x6F14;&#x3001;&#x63D0;&#x4EA4;&#x4E0E;&#x5F02;&#x5E38;&#x6062;&#x590D;</a>
+        <a class="level-3" href="#bash">4.5 bash&#xFF1A;&#x521B;&#x5EFA;&#x4E00;&#x6B21;&#x6027;&#x8FDB;&#x7A0B;</a>
+        <a class="level-3" href="#bash-stdout-stderr">4.6 bash&#xFF1A;&#x540C;&#x65F6;&#x8BFB;&#x53D6; stdout &#x4E0E; stderr</a>
+        <a class="level-3" href="#bash-1">4.7 bash&#xFF1A;&#x53D6;&#x6D88;&#x3001;&#x8D85;&#x65F6;&#x4E0E;&#x540E;&#x4EE3;&#x8FDB;&#x7A0B;&#x6E05;&#x7406;</a>
+        <a class="level-3" href="#section-8">4.8 &#x5171;&#x4EAB;&#x4FEE;&#x6539;&#x9501;&#x4E0E;&#x5B9E;&#x9645;&#x6743;&#x9650;</a>
+        <a class="level-2" href="#section-9">5 &#x8FD0;&#x884C;&#x73AF;&#x5883;&#x3001;&#x9A8C;&#x8BC1;&#x4E0E;&#x6545;&#x969C;&#x5B9A;&#x4F4D;</a>
+        <a class="level-3" href="#net">5.1 &#x914D;&#x7F6E;&#x600E;&#x6837;&#x8FDB;&#x5165; .NET &#x8FDB;&#x7A0B;</a>
+        <a class="level-3" href="#systemd-windows">5.2 &#x524D;&#x53F0;&#x3001;systemd &#x4E0E; Windows &#x7684;&#x73AF;&#x5883;&#x5DEE;&#x5F02;</a>
+        <a class="level-3" href="#section-10">5.3 &#x6309;&#x5C42;&#x6B21;&#x7406;&#x89E3;&#x9A8C;&#x8BC1;&#x7ED3;&#x679C;</a>
+        <a class="level-3" href="#section-11">5.4 &#x4ECE;&#x9519;&#x8BEF;&#x6765;&#x6E90;&#x53CD;&#x63A8;&#x6545;&#x969C;&#x4F4D;&#x7F6E;</a>
+        <a class="level-3" href="#section-12">5.5 &#x66F4;&#x6362;&#x516C;&#x7F51;&#x5165;&#x53E3;&#x65F6;&#x9700;&#x8981;&#x66FF;&#x6362;&#x4EC0;&#x4E48;</a>
+        <a class="level-2" href="#section-13">&#x7ED3;&#x8BED;</a>
+        <a class="level-2" href="#section-14">&#x9644;&#x5F55;&#xFF1A;&#x9605;&#x8BFB;&#x6E90;&#x7801;&#x65F6;&#x5E38;&#x89C1;&#x7684;&#x672F;&#x8BED;</a>
+        <a class="level-3" href="#c.net">C# &#x4E0E; .NET</a>
+        <a class="level-3" href="#section-15">&#x7F51;&#x7EDC;&#x3001;&#x534F;&#x8BAE;&#x4E0E;&#x8FDB;&#x7A0B;</a>
+        <a class="level-2" href="#section-16">&#x53C2;&#x8003;&#x8D44;&#x6599;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><p>让 ChatGPT 读取本机的 <code>Program.cs</code>、修改一个方法，再运行 <code>dotnet build</code>，需要把模型的工具调用转换成文件和进程操作。MiniMcp 使用 .NET 10、ASP.NET Core 和 MCP C# SDK 实现这条链路，对外提供 <code>read_file</code>、<code>apply_patch</code>、<code>bash</code> 三个工具；Cloudflare Tunnel 提供公网入口，Cloudflare Access Managed OAuth 处理登录与访问授权。</p>
+<p>这个项目同时涉及网络、协议、C# 和操作系统。理解它们的关系，可以沿着一次请求追问：请求怎样到达内网电脑，后端怎样确认访问身份，MCP 消息怎样成为 C# 方法调用，文件修改和命令执行又能提供哪些保证。本文按这个顺序展开，再讨论运行环境、验证与故障定位。</p>
+<p>以下以 2026-10-19 的提交 <code>73b380e</code> 为代码快照，使用 MCP C# SDK <code>2.2.0</code>。协议按 <code>2026-07-28</code> 修订说明，同时保留 <code>2025-11-25</code> 的兼容说明。安装、Dashboard 配置和自启动命令见 <a href="https://github.com/Rukkhadevata123/MiniMcp">MiniMcp 仓库 README</a>，本文侧重实现原理。</p>
+<!-- more -->
+<h2 id="section">1 一次工具调用的完整路线 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<h3 id="section-1">1.1 用三个工具组合开发操作 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h3>
+<p>MiniMcp 公开三个工具：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>主要参数</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read_file</code></td>
+<td><code>path</code>、<code>start_line</code>、<code>end_line</code></td>
+<td>读取 UTF-8 文本的指定行，返回行范围、总行数和截断信息</td>
+</tr>
+<tr>
+<td><code>apply_patch</code></td>
+<td><code>patch</code>、<code>dry_run</code></td>
+<td>按上下文新增、更新、移动或删除文件，支持预演与失败恢复</td>
+</tr>
+<tr>
+<td><code>bash</code></td>
+<td><code>command</code>、<code>workdir</code>、<code>timeout_seconds</code></td>
+<td>启动一次性 Bash，复用搜索、Git、构建等命令行能力</td>
+</tr>
+</tbody>
+</table>
+<p>例如，修改一个 C# 方法时，模型先用 <code>read_file</code> 获取原文，再用 <code>apply_patch</code> 表达修改，最后通过 <code>bash</code> 执行 <code>git diff</code> 或 <code>dotnet build</code>。目录浏览可以使用 <code>ls</code>，文本搜索可以使用 <code>rg</code>，服务无需为每一种命令另写一个工具。这些能力仍依赖本机安装的程序及服务进程的 PATH。</p>
+<p>整个流程中，模型提交 <code>{&quot;path&quot;:&quot;Program.cs&quot;}</code> 这样的工具参数，MiniMcp 校验后调用文件与进程接口，操作系统完成实际的磁盘读写和进程调度。MiniMcp 本身不调用模型 API，无需 OpenAI API Key。</p>
+<h3 id="section-2">1.2 请求经过哪些层 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h3>
+<p>以读取 <code>Program.cs</code> 为例，业务请求依次经过以下组件：</p>
+<div class="code-block" data-language="mermaid">
+<div class="code-toolbar"><span class="code-language">mermaid</span></div>
+<pre><code class="language-mermaid">flowchart TB
+  U[用户提出需求] --&gt; M[模型选择工具与参数]
+  M --&gt; C[ChatGPT 的 MCP 客户端]
+  C --&gt;|HTTPS 与 OAuth 令牌| E[Cloudflare Access]
+  E --&gt;|加密隧道与身份断言| D[本机 cloudflared]
+  D --&gt;|回环 HTTP| H[Kestrel 与认证中间件]
+  H --&gt; P[MCP SDK 分发请求]
+  P --&gt; T[WorkspaceTools]
+  T --&gt; R[read_file]
+  T --&gt; A[apply_patch]
+  T --&gt; B[bash]
+  R --&gt; F[文件系统]
+  A --&gt; F
+  B --&gt; O[操作系统进程]
+</code></pre>
+</div>
+<p>图中箭头表示业务请求流向。文件内容封装为工具结果后，沿原请求返回客户端，再交给模型处理。隧道连接由本机 <code>cloudflared</code> 主动向 Cloudflare 建立，连接建立方向与外部请求流向不同。</p>
+<p>可以把这条链路分成六层：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>组件</th>
+<th>要解决的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型与工具选择</td>
+<td>ChatGPT</td>
+<td>选择什么工具，传入什么参数，怎样处理结果</td>
+</tr>
+<tr>
+<td>公网与传输</td>
+<td>DNS、HTTPS、Tunnel</td>
+<td>请求怎样找到入口并到达内网服务，传输怎样加密</td>
+</tr>
+<tr>
+<td>身份与准入</td>
+<td>OAuth、Access Policy、JWT</td>
+<td>客户端代表谁访问，是否允许访问，身份断言是否可信</td>
+</tr>
+<tr>
+<td>协议与框架</td>
+<td>HTTP、Kestrel、ASP.NET Core、MCP SDK</td>
+<td>怎样接收消息并分发到 C# 方法</td>
+</tr>
+<tr>
+<td>应用逻辑</td>
+<td>Workspace、Patch、Bash 服务</td>
+<td>怎样校验路径、修改文本、管理命令执行</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>文件系统、进程、账号权限</td>
+<td>实际允许访问什么文件、创建和终止什么进程</td>
+</tr>
+</tbody>
+</table>
+<p>Tunnel 建立网络通道后，请求还要经过身份校验、协议解析和业务参数检查，才能执行工具。</p>
+<h3 id="section-3">1.3 从请求链路定位源码 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h3>
+<p>服务注册、协议入口和业务逻辑分别位于以下文件：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Program.cs</code></td>
+<td>监听地址、依赖注入、认证和 MCP 路由</td>
+</tr>
+<tr>
+<td><code>Configuration/MiniMcpOptions.cs</code></td>
+<td>读取配置并检查必填项</td>
+</tr>
+<tr>
+<td><code>Security/CloudflareAccessAuthentication.cs</code></td>
+<td>提取 Access JWT、获取公钥并配置令牌校验</td>
+</tr>
+<tr>
+<td><code>Tools/WorkspaceTools.cs</code></td>
+<td>三个工具的名称、参数、描述与调用入口</td>
+</tr>
+<tr>
+<td><code>Services/ProjectWorkspace.cs</code></td>
+<td>路径检查、文本快照、按行读取和共享修改锁</td>
+</tr>
+<tr>
+<td><code>Services/PatchService.cs</code></td>
+<td>补丁解析、匹配、预演、提交和异常恢复</td>
+</tr>
+<tr>
+<td><code>Services/BashRunner.cs</code></td>
+<td>启动 Bash、读取输出、处理超时与取消</td>
+</tr>
+<tr>
+<td><code>Services/ProcessLifetime.cs</code></td>
+<td>Linux 进程组和 Windows Job Object 清理</td>
+</tr>
+</tbody>
+</table>
+<p><code>WorkspaceTools</code> 是协议入口，文件与进程逻辑放在独立服务中，因此本地检查可以直接调用业务服务。公网请求则先经过 Cloudflare 的网络入口与身份校验。</p>
+<h2 id="section-4">2 请求如何到达本机并通过认证 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h2>
+<h3 id="urldns-tunnel">2.1 URL、DNS 与 Tunnel 路由 <a class="heading-anchor" href="#urldns-tunnel" aria-label="链接到本节">#</a></h3>
+<p>以下使用示例地址：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">https://mcp.example.com/mcp
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>https</code></td>
+<td>通过 TLS 保护 HTTP 通信</td>
+</tr>
+<tr>
+<td><code>mcp.example.com</code></td>
+<td>需要 DNS 解析的公网主机名</td>
+</tr>
+<tr>
+<td>隐含的 <code>443</code></td>
+<td>HTTPS 默认端口</td>
+</tr>
+<tr>
+<td><code>/mcp</code></td>
+<td>交给应用匹配的 HTTP 路径</td>
+</tr>
+</tbody>
+</table>
+<p>客户端通过 DNS 解析主机名，找到公网入口并建立连接，再通过 HTTP 发送 <code>/mcp</code> 路径。MiniMcp 使用以下代码注册对应的应用路由：</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">app.MapMcp(&quot;/mcp&quot;);
+</code></pre>
+</div>
+<p>修改路由后，客户端 URL 的路径也要同步修改。文件工具使用的根目录由 <code>MCP_ROOT</code> 单独指定。</p>
+<p>把 Nameserver 改成 Cloudflare 的名称服务器，完成的是 DNS 委派。常见记录中，<code>A</code> 对应 IPv4，<code>AAAA</code> 对应 IPv6，<code>CNAME</code> 表达别名，<code>NS</code> 指定权威名称服务器，<code>TXT</code> 可用于域名验证。</p>
+<p>Tunnel 的域名关联通常表现为：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">mcp.example.com. CNAME &lt;Tunnel-UUID&gt;.cfargotunnel.com.
+</code></pre>
+</div>
+<p>这条记录把主机名关联到隧道入口，无需公布本机 IP。启用代理后，外部查询通常返回 Cloudflare 边缘地址；连接器是否在线，还要另外检查。Proxied（橙云）表示流量经过代理，DNS Only（灰云）只提供解析，DNS 托管与 Tunnel 可以分别配置。参见 <a href="https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/dns/">Cloudflare 的 Tunnel DNS 说明</a>。</p>
+<p>Dashboard 中各项配置的职责如下：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>控制什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nameservers</td>
+<td>域名的权威 DNS 委派</td>
+</tr>
+<tr>
+<td>Tunnel</td>
+<td>一个逻辑隧道及其身份</td>
+</tr>
+<tr>
+<td>Connector</td>
+<td>正在运行、主动连接 Cloudflare 的 <code>cloudflared</code> 实例</td>
+</tr>
+<tr>
+<td>Tunnel Token</td>
+<td>Connector 加入指定 Tunnel 的凭据</td>
+</tr>
+<tr>
+<td>Published Application</td>
+<td>公网 hostname 到本地源站（origin）的转发关系</td>
+</tr>
+<tr>
+<td>Zero Trust Team</td>
+<td>身份与访问策略的配置空间</td>
+</tr>
+<tr>
+<td>Identity Provider</td>
+<td>用户通过什么方式登录</td>
+</tr>
+<tr>
+<td>Access Policy</td>
+<td>哪些身份可以访问应用</td>
+</tr>
+<tr>
+<td>Managed OAuth</td>
+<td>非浏览器客户端怎样获得用户授权的访问令牌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nat">2.2 NAT、出站隧道与回环监听 <a class="heading-anchor" href="#nat" aria-label="链接到本节">#</a></h3>
+<p>内网电脑主动连接外部服务时，NAT 设备记录地址和端口的转换关系，允许匹配的返回流量进入。公网机器直接连接路由器上的某个端口时，通常没有现成的转发关系；直接部署服务还需要公网可达地址、路由、防火墙与端口转发配合。运营商级 NAT 可能让用户无法控制最外层映射。</p>
+<p>Tunnel 让 <code>cloudflared</code> 先主动连接 Cloudflare，再通过已建立的通道传送外部请求：</p>
+<div class="code-block" data-language="mermaid">
+<div class="code-toolbar"><span class="code-language">mermaid</span></div>
+<pre><code class="language-mermaid">sequenceDiagram
+  participant C as cloudflared
+  participant N as 路由器或 NAT
+  participant E as Cloudflare 边缘
+  participant A as 公网客户端
+  participant S as MiniMcp
+  C-&gt;&gt;N: 主动建立出站连接
+  N-&gt;&gt;E: 转发出站流量
+  E--&gt;&gt;N: 隧道握手响应
+  N--&gt;&gt;C: 根据已有转换状态转发
+  A-&gt;&gt;E: HTTPS 请求
+  E-&gt;&gt;C: 在已有隧道上传送请求
+  C-&gt;&gt;S: HTTP 请求到 127.0.0.1:8000
+  S--&gt;&gt;C: 返回结果
+  C--&gt;&gt;E: 隧道传回结果
+  E--&gt;&gt;A: HTTPS 响应
+</code></pre>
+</div>
+<p>Cloudflare Tunnel 使用 UDP <code>7844</code> 上的 QUIC 或 TCP <code>7844</code> 上的 HTTP/2。具体网络要求见 <a href="https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/tunnel-with-firewall/">Tunnel with firewall</a>。</p>
+<p>本地 Kestrel 的监听代码是：</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">options.Listen(IPAddress.Loopback, settings.Port);
+</code></pre>
+</div>
+<p>默认得到 <code>127.0.0.1:8000</code>。处于同一网络环境的 <code>cloudflared</code> 可以访问它，其他电脑无法通过这台机器的局域网 IP 直接访问该端点。容器、WSL 和虚拟机可能有不同的网络环境。</p>
+<p>整条链路的传输保护分为三段：</p>
+<table>
+<thead>
+<tr>
+<th>网络段</th>
+<th>传输</th>
+<th>依赖的保护</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCP 客户端 → Cloudflare</td>
+<td>HTTPS / TLS</td>
+<td>域名证书验证、传输加密与完整性</td>
+</tr>
+<tr>
+<td>Cloudflare → cloudflared</td>
+<td>加密 Tunnel</td>
+<td>隧道传输保护</td>
+</tr>
+<tr>
+<td>cloudflared → MiniMcp</td>
+<td>同机回环 HTTP</td>
+<td>回环可达范围与后端认证</td>
+</tr>
+</tbody>
+</table>
+<p>公网 TLS 在 Cloudflare 边缘终止，本地 Kestrel 因此不必配置这个域名的 HTTPS 证书。Cloudflare 需要处理 HTTP、认证和转发，能够接触应用流量，是这套部署中的受信任中间方。</p>
+<p>回环监听只限制网络可达范围。本机进程仍可能连接这个端口，<code>cloudflared</code> 也能把外部请求送进去，所以后端还需要验证访问身份。</p>
+<h3 id="managed-oauth">2.3 Managed OAuth：让客户端获得访问授权 <a class="heading-anchor" href="#managed-oauth" aria-label="链接到本节">#</a></h3>
+<p>Authentication 确认身份，Authorization 判断该身份可以访问什么。身份提供方帮助用户登录，Access Policy 根据邮箱等条件决定是否允许进入 MiniMcp。</p>
+<p>浏览器可以处理登录跳转，但 MCP 客户端需要机器可识别的授权流程。Managed OAuth 为非浏览器客户端返回 <code>401</code> 和 OAuth 发现信息，用户在浏览器完成登录与授权后，客户端再用访问令牌发起请求。MiniMcp 无需自己实现 OAuth 授权服务器。参见 <a href="https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/managed-oauth/">Cloudflare Managed OAuth</a>。</p>
+<div class="code-block" data-language="mermaid">
+<div class="code-toolbar"><span class="code-language">mermaid</span></div>
+<pre><code class="language-mermaid">sequenceDiagram
+  actor U as 用户
+  participant C as MCP 客户端
+  participant A as Cloudflare Access
+  participant I as 身份提供方
+  participant S as MiniMcp
+  C-&gt;&gt;A: 请求受保护的 MCP 地址
+  A--&gt;&gt;C: 401 与 OAuth 发现信息
+  C-&gt;&gt;A: 查询元数据，启动授权流程
+  U-&gt;&gt;A: 在浏览器进入登录与授权
+  A-&gt;&gt;I: 验证用户身份
+  I--&gt;&gt;A: 返回身份结果
+  A-&gt;&gt;A: 判断 Access Policy
+  A--&gt;&gt;C: 经回调与令牌交换完成授权
+  C-&gt;&gt;A: Bearer 不透明访问令牌
+  A-&gt;&gt;S: 转发请求并附带 Access JWT
+  S-&gt;&gt;S: 验签、校验 issuer、audience 与时间
+  S--&gt;&gt;A: 返回工具结果
+  A--&gt;&gt;C: 沿原请求返回响应
+</code></pre>
+</div>
+<p>图中合并了回调与令牌交换步骤。授权码、回调 URI、PKCE、资源标识和令牌更新由相应协议及实现处理；浏览器完成用户登录，MCP 客户端负责后续工具请求。</p>
+<p>Access 按策略控制应用准入，所有获准身份共用三个工具和同一个 <code>MCP_ROOT</code>。</p>
+<h3 id="jwt">2.4 两种令牌与后端 JWT 校验 <a class="heading-anchor" href="#jwt" aria-label="链接到本节">#</a></h3>
+<p>Managed OAuth 发给客户端的是不透明访问令牌，客户端在请求 Cloudflare 时携带：</p>
+<div class="code-block" data-language="http">
+<div class="code-toolbar"><span class="code-language">http</span></div>
+<pre><code class="language-http">Authorization: Bearer &lt;OAuth access token&gt;
+</code></pre>
+</div>
+<p>Cloudflare 将该令牌解析为对应身份，再向源站转发签名断言：</p>
+<div class="code-block" data-language="http">
+<div class="code-toolbar"><span class="code-language">http</span></div>
+<pre><code class="language-http">Cf-Access-Jwt-Assertion: &lt;Access signed JWT&gt;
+</code></pre>
+</div>
+<p>客户端持有的访问令牌供 Cloudflare 识别授权，源站收到的 JWT 供 MiniMcp 校验身份。令牌格式见 <a href="https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/managed-oauth/#token-format">Managed OAuth 文档</a>。</p>
+<p>本项目在 <code>AddJwtBearer</code> 的 <code>OnMessageReceived</code> 中，从请求头提取 Access JWT：</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">var assertion = context.Request.Headers[&quot;Cf-Access-Jwt-Assertion&quot;];
+if (assertion.Count != 1 || string.IsNullOrWhiteSpace(assertion[0]))
+    context.NoResult();
+else
+    context.Token = assertion[0];
+</code></pre>
+</div>
+<p>签名 JWT 通常表现为 <code>Header.Payload.Signature</code>，其声明可以通过 Base64URL 解码读取。要确认 <code>email</code> 等声明可信，后端需要验证签名和以下约束：</p>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>当前实现</th>
+<th>解决的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>签名与算法</td>
+<td>使用可信公钥，限制为 RS256</td>
+<td>确认签发方可信、内容未被修改</td>
+</tr>
+<tr>
+<td><code>iss</code>（Issuer）</td>
+<td>匹配配置的团队签发者</td>
+<td>拒绝其他签发者的声明</td>
+</tr>
+<tr>
+<td><code>aud</code>（Audience）</td>
+<td>匹配当前 Access 应用</td>
+<td>拒绝签给其他应用的令牌</td>
+</tr>
+<tr>
+<td>有效期</td>
+<td>要求过期时间，允许 30 秒时钟偏差</td>
+<td>限制令牌的时间适用范围</td>
+</tr>
+</tbody>
+</table>
+<p><code>CF_ACCESS_TEAM</code> 用来构造 <code>https://&lt;TEAM&gt;.cloudflareaccess.com</code>，<code>CF_ACCESS_AUD</code> 标识预期的 Access 应用，分别用于定位签发者和检查令牌受众。</p>
+<p>Cloudflare 用私钥签名，MiniMcp 从团队的 <code>/cdn-cgi/access/certs</code> 获取公钥集合（JWKS），根据 JWT 中的密钥标识 <code>kid</code> 选择对应公钥。实现使用 <code>ConfigurationManager</code> 缓存公钥配置，设置自动与受限刷新，并允许未知 <code>kid</code> 触发更新。验证机制参见 <a href="https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/authorization-cookie/validating-json/">Cloudflare Validate JWTs</a>。</p>
+<p>网络入口解决了可达性，Access 和后端校验解决了准入。请求通过这些检查以后，MCP SDK 才能把消息交给具体工具。</p>
+<h2 id="mcp-c">3 MCP 请求如何成为 C# 方法调用 <a class="heading-anchor" href="#mcp-c" aria-label="链接到本节">#</a></h2>
+<h3 id="httpjson-rpc-mcp">3.1 HTTP、JSON-RPC 与 MCP 的分工 <a class="heading-anchor" href="#httpjson-rpc-mcp" aria-label="链接到本节">#</a></h3>
+<p>到达 <code>http://127.0.0.1:8000/mcp</code> 的请求，仍需经过协议解析。HTTP、JSON-RPC 和 MCP 在这里负责不同的事：</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP</td>
+<td>在客户端和服务器之间传送请求与响应</td>
+</tr>
+<tr>
+<td>JSON-RPC 2.0</td>
+<td>规定方法名、参数、请求 ID、结果与错误的消息格式</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>规定工具发现、调用和上下文交换等交互语义</td>
+</tr>
+</tbody>
+</table>
+<p>MCP 使用 JSON-RPC 表达消息，本项目通过 HTTP 传输。JSON-RPC 可以用于其他远程调用场景，MCP 也有 HTTP 以外的传输方式。</p>
+<p>客户端通过 <code>tools/list</code> 获取工具名称、描述、输入 schema 和行为提示，再通过 <code>tools/call</code> 调用某个工具。以读取 <code>Program.cs</code> 为例，一次 <code>2026-07-28</code> 请求的正文可以是：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 2,
+  &quot;method&quot;: &quot;tools/call&quot;,
+  &quot;params&quot;: {
+    &quot;name&quot;: &quot;read_file&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;Program.cs&quot;,
+      &quot;start_line&quot;: 1,
+      &quot;end_line&quot;: 35
+    },
+    &quot;_meta&quot;: {
+      &quot;io.modelcontextprotocol/protocolVersion&quot;: &quot;2026-07-28&quot;,
+      &quot;io.modelcontextprotocol/clientCapabilities&quot;: {}
+    }
+  }
+}
+</code></pre>
+</div>
+<p><code>id</code> 用于把响应对应到这次请求。<code>method</code> 是 MCP 协议方法 <code>tools/call</code>，业务工具名位于 <code>params.name</code>，实际参数放在 <code>arguments</code> 中。所有工具共用 <code>/mcp</code> 端点。</p>
+<p><code>_meta</code> 携带协议上下文。通过 HTTP 发送上述正文时，还需要匹配的头：</p>
+<div class="code-block" data-language="http">
+<div class="code-toolbar"><span class="code-language">http</span></div>
+<pre><code class="language-http">Content-Type: application/json
+Accept: application/json, text/event-stream
+MCP-Protocol-Version: 2026-07-28
+Mcp-Method: tools/call
+Mcp-Name: read_file
+</code></pre>
+</div>
+<p>升级请求格式时，要同时处理协议日期、逐请求元数据和 HTTP 头。使用 SDK 客户端时，这些协议字段由 SDK 处理，模型只提供业务参数。具体格式见 <a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http">MCP Streamable HTTP</a>。</p>
+<h3 id="section-5">3.2 协议修订与旧版兼容 <a class="heading-anchor" href="#section-5" aria-label="链接到本节">#</a></h3>
+<p>上面的请求直接携带了版本和客户端能力，这是 <code>2026-07-28</code> 修订的重要变化：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>2025-11-25</code> 及以前</th>
+<th><code>2026-07-28</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始化</td>
+<td><code>initialize</code> 和初始化完成通知</td>
+<td>移除该握手</td>
+</tr>
+<tr>
+<td>版本与客户端能力</td>
+<td>在初始化中交换</td>
+<td>在每个请求的元数据中表达</td>
+</tr>
+<tr>
+<td>HTTP 协议会话</td>
+<td>可以使用 session ID</td>
+<td>移除 <code>MCP-Session-Id</code> 机制</td>
+</tr>
+<tr>
+<td>版本与能力查询</td>
+<td>通过旧版初始化流程</td>
+<td>可以先调用 <code>server/discover</code></td>
+</tr>
+</tbody>
+</table>
+<div class="code-block" data-language="mermaid">
+<div class="code-toolbar"><span class="code-language">mermaid</span></div>
+<pre><code class="language-mermaid">flowchart TB
+  subgraph LEGACY[旧版兼容线路]
+    L1[initialize] --&gt; L2[初始化完成通知]
+    L2 --&gt; L3[tools/list]
+    L3 --&gt; L4[tools/call]
+  end
+  subgraph MODERN[2026-07-28 请求模型]
+    N1[可选的 server/discover] -.-&gt; N2[tools/list 与逐请求元数据]
+    N2 --&gt; N3[tools/call 与逐请求元数据]
+  end
+</code></pre>
+</div>
+<p><code>server/discover</code> 是可选查询，新版允许客户端直接发送工具请求。服务器根据每个请求独立接受或拒绝其协议版本。每次请求必须在 <code>_meta</code> 中包含 <code>io.modelcontextprotocol/protocolVersion</code> 和 <code>io.modelcontextprotocol/clientCapabilities</code>，客户端名称与版本可另由 <code>clientInfo</code> 表达。参见 <a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning">Versioning and Compatibility</a> 与 <a href="https://modelcontextprotocol.io/specification/2026-07-28/basic">Base Protocol</a>。</p>
+<p>C# SDK 2.x 同时保留旧版兼容路径，仍能处理旧客户端的初始化流程。SDK 的兼容约定见 <a href="https://github.com/modelcontextprotocol/csharp-sdk/blob/v2.2.0/docs/versioning.md">C# SDK v2.2.0：Versioning</a>。</p>
+<p>还要区分三套独立的版本号：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>表示什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON-RPC <code>2.0</code></td>
+<td>消息格式版本</td>
+</tr>
+<tr>
+<td>MCP <code>2026-07-28</code></td>
+<td>协议修订版本</td>
+</tr>
+<tr>
+<td>MCP C# SDK <code>2.2.0</code></td>
+<td>NuGet 包版本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="program.cs">3.3 Program.cs：组装框架和业务服务 <a class="heading-anchor" href="#program.cs" aria-label="链接到本节">#</a></h3>
+<p>协议消息到达后，Kestrel 接收 HTTP，ASP.NET Core 提供路由、认证、日志和依赖注入，MCP C# SDK 再解析消息、绑定参数并调用工具。</p>
+<p><code>Program.cs</code> 的启动过程可以概括为：<code>WebApplication.CreateBuilder(args)</code> 准备配置和主机环境，<code>builder.Services</code> 收集服务注册信息，<code>Build()</code> 构造应用，再映射路由，最后由 <code>Run()</code> 启动 Web 主机。以下是服务注册部分：</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">builder.Services.AddSingleton(settings);
+builder.Services.AddSingleton&lt;ProjectWorkspace&gt;();
+builder.Services.AddSingleton&lt;PatchService&gt;();
+builder.Services.AddSingleton&lt;BashRunner&gt;();
+
+builder.Services.AddMcpServer()
+    .WithHttpTransport(options =&gt;
+        options.SessionMode = HttpServerSessionMode.Stateless)
+    .WithTools&lt;WorkspaceTools&gt;();
+</code></pre>
+</div>
+<p><code>WorkspaceTools</code> 的构造函数接收 <code>ProjectWorkspace</code>、<code>PatchService</code> 和 <code>BashRunner</code>。DI（Dependency Injection，依赖注入）容器根据注册关系创建并传入依赖；当 <code>PatchService</code> 也需要 <code>ProjectWorkspace</code> 时，容器继续解析它的构造函数。</p>
+<p><code>AddSingleton</code> 让同一个容器复用一个实例，所以补丁与 Bash 使用同一个 <code>ProjectWorkspace</code>，通过其中的修改锁协调并发（见 4.8 节）。服务生命周期的定义见 <a href="https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection/service-lifetimes">Microsoft 文档</a>。</p>
+<p>构建应用后，程序立即解析工作区与 Bash 服务：</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">_ = app.Services.GetRequiredService&lt;ProjectWorkspace&gt;();
+_ = app.Services.GetRequiredService&lt;BashRunner&gt;();
+</code></pre>
+</div>
+<p>这会提前检查根目录、Bash 路径和 Linux 的 <code>setsid</code> 依赖。配置无效时终止启动，避免等到第一次工具调用才暴露问题。</p>
+<p>工具类与方法上的 Attribute 为 SDK 提供元数据。<code>WorkspaceTools</code> 使用 <code>McpServerToolType</code> 标记，读取方法则声明：</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">[McpServerTool(Name = &quot;read_file&quot;, ReadOnly = true,
+    Destructive = false, OpenWorld = false, UseStructuredContent = true)]
+public Task&lt;ReadResult&gt; ReadFile(
+    string path,
+    CancellationToken cancellationToken,
+    int start_line = 1,
+    int? end_line = null) =&gt;
+    Run(() =&gt; workspace.ReadFileAsync(
+        path, start_line, end_line, cancellationToken));
+</code></pre>
+</div>
+<p><code>ReadFile</code> 是 C# 方法名，<code>read_file</code> 是协议中公开的工具名。SDK 根据方法签名、描述和 Attribute 建立工具定义及参数 schema：<code>path</code> 是字符串，<code>start_line</code> 是可选整数；<code>CancellationToken</code> 由请求执行环境提供，模型不用填写。</p>
+<p>Schema 描述输入结构，读取文件和检查路径仍由 <code>ProjectWorkspace</code> 完成。<code>WorkspaceTools.Run</code> 将工作区、权限和 I/O 异常转换为 MCP 工具错误，使协议入口与业务逻辑分开。</p>
+<p><code>ReadOnly</code>、<code>Destructive</code>、<code>OpenWorld</code> 等 annotations 是客户端行为提示，分别描述只读、破坏性影响和外部交互等特征。<code>bash</code> 被标记为可能产生破坏性影响且属于 OpenWorld，因为它能执行命令、访问网络。工具提示与实际权限的关系见 4.8 节。</p>
+<h3 id="section-6">3.4 无状态请求与状态的生命周期 <a class="heading-anchor" href="#section-6" aria-label="链接到本节">#</a></h3>
+<p>注册代码使用了 <code>HttpServerSessionMode.Stateless</code>，协议上下文由每次请求显式携带，具体字段见 3.2 节。</p>
+<p>应用仍可持有 Singleton 对象、公钥缓存和信号量，磁盘文件也会持续存在。不同状态由不同组件管理：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>生命周期与管理者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP 连接</td>
+<td>承担传输与连接复用</td>
+</tr>
+<tr>
+<td>MCP 请求上下文</td>
+<td>当前请求携带的版本、能力与元数据</td>
+</tr>
+<tr>
+<td>OAuth 授权状态</td>
+<td>由令牌及授权关系管理</td>
+</tr>
+<tr>
+<td>ChatGPT 对话</td>
+<td>保存历史消息与客户端已知的工具信息</td>
+</tr>
+<tr>
+<td>应用进程</td>
+<td>持有 DI 服务、公钥缓存和并发协调对象</td>
+</tr>
+<tr>
+<td>Bash 子进程</td>
+<td>保存本次命令的变量、当前目录和进程状态</td>
+</tr>
+<tr>
+<td>磁盘文件</td>
+<td>在请求和子进程结束后继续存在</td>
+</tr>
+</tbody>
+</table>
+<p>需要跨请求关联的操作，应使用显式参数或句柄。HTTP 响应可以是 JSON，也可以是当前请求范围内的 SSE 流。新版还通过 MRTR（多轮往返请求）表达需要客户端补充输入的交互，用 <code>subscriptions/listen</code> 承载订阅通知，当前三个工具主要使用普通请求与结果。</p>
+<p>客户端可能缓存 <code>tools/list</code> 返回的工具定义。服务端工具列表变化后，旧对话仍可能调用已下线的工具并收到 <code>Unknown tool</code>。此时需要刷新工具列表，必要时开启新对话，具体步骤见 README。</p>
+<p>MCP SDK 将参数绑定到工具方法后，由业务服务检查路径、修改文件并管理命令进程。</p>
+<h2 id="section-7">4 文件与进程操作怎样实现 <a class="heading-anchor" href="#section-7" aria-label="链接到本节">#</a></h2>
+<h3 id="read_file">4.1 read_file：先确认路径指向哪里 <a class="heading-anchor" href="#read_file" aria-label="链接到本节">#</a></h3>
+<p>模型传入 <code>Program.cs</code> 时，服务需要先把相对路径转换为根目录下的实际路径。假设 <code>MCP_ROOT</code> 是 <code>/home/user/project</code>，<code>Tools/../Program.cs</code> 规范化后仍在项目内，<code>../secret.txt</code> 则会越界。</p>
+<p>当前实现先求完整路径，再检查它相对根目录的位置。以下节选省略了前置参数检查和后续链接检查：</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">var full = Path.GetFullPath(Path.Combine(Root, path));
+var relative = Path.GetRelativePath(Root, full);
+if (relative == &quot;..&quot; ||
+    relative.StartsWith(&quot;..&quot; + Path.DirectorySeparatorChar, StringComparison.Ordinal) ||
+    Path.IsPathRooted(relative))
+    throw new WorkspaceException(&quot;The path is outside MCP_ROOT.&quot;);
+</code></pre>
+</div>
+<p>计算相对路径是为了避免字符串前缀误判。只检查 <code>full.StartsWith(Root)</code>，可能把 <code>/home/user/project2</code> 也当作 <code>/home/user/project</code> 内部的路径。</p>
+<p>接口统一使用 <code>/</code> 分隔的相对路径，拒绝绝对路径、冒号、反斜杠和 NUL。实现还逐级检查路径分量及根目录祖先，拒绝符号链接与 Windows junction。例如，项目内的 <code>linked -&gt; ~/.ssh</code> 也会因链接检查被拒绝。</p>
+<p>文件接口还过滤 <code>.git</code>、<code>.env*</code> 和部分凭据、私钥及配置目录。<code>.gitignore</code> 不决定文件工具是否允许访问。</p>
+<p>这些检查作用于文件接口。检查与打开之间，其他进程仍可能替换路径；硬链接等情况也需要额外防护。服务账号的访问范围见 4.8 节。</p>
+<h3 id="read_file-1">4.2 read_file：从字节快照到按行文本 <a class="heading-anchor" href="#read_file-1" aria-label="链接到本节">#</a></h3>
+<p>路径合法以后，服务还要判断文件能否按文本读取。磁盘保存的是字节，C# <code>string</code> 使用 UTF-16，模型 token 又有独立的计量方式：</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>UTF-8 字节数</th>
+<th>UTF-16 代码单元数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>A</code></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>中</code></td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>😀</code></td>
+<td>4</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p><code>string.Length</code> 统计 UTF-16 代码单元，MiniMcp 的单文件大小限制则按字节计算，上限为 256 KiB，即 262144 字节。<code>SnapshotAsync</code> 最多读取 <code>256 KiB + 1</code> 字节，多读一个字节，就能区分文件恰好达到上限还是已经超限。</p>
+<p>之后，服务检查 NUL、识别可选 UTF-8 BOM，并严格解码 UTF-8。<code>new UTF8Encoding(false, true)</code> 的第二个参数表示遇到非法 UTF-8 时抛出异常；第一个参数控制编码器是否生成 BOM。读取时是否识别已有 BOM，需要由读取逻辑单独处理。UTF-8 BOM 是开头的 <code>EF BB BF</code> 三个字节，补丁快照会记录它，以便更新时保留。</p>
+<p>读取限制分别作用于文件和输出：</p>
+<table>
+<thead>
+<tr>
+<th>限制或单位</th>
+<th>当前含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单文件 256 KiB</td>
+<td>按文件字节计算，包含 BOM</td>
+</tr>
+<tr>
+<td>单次输出 16000</td>
+<td>按 UTF-16 代码单元计算，避免截断代理对</td>
+</tr>
+<tr>
+<td>行号</td>
+<td>从 1 开始，包含结束行</td>
+</tr>
+<tr>
+<td>模型 token</td>
+<td>由分词方式决定</td>
+</tr>
+</tbody>
+</table>
+<p>文件大小检查在截取行范围之前完成，因此只请求第一行也会拒绝超过 256 KiB 的文件。</p>
+<p>假设文件内容为 <code>alpha\nbeta\n</code>，读取第二行得到的业务数据是：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;path&quot;: &quot;sample.txt&quot;,
+  &quot;startLine&quot;: 2,
+  &quot;endLine&quot;: 2,
+  &quot;totalLines&quot;: 2,
+  &quot;truncated&quot;: false,
+  &quot;content&quot;: &quot;beta\n&quot;
+}
+</code></pre>
+</div>
+<p><code>content</code> 不额外添加行号，保留所读部分原有的 LF 或 CRLF，便于后续作为补丁上下文。结束行超过文件末尾时，按实际末行返回，非法范围会报错；空文件的 <code>totalLines</code> 为 0，末尾换行不会凭空增加一行。</p>
+<p><code>truncated=true</code> 表示所选内容受到输出上限截断，最后一行可能只有一部分。继续读取时可以缩小行范围；超长单行或大文件则可通过 Bash 显式提取片段。</p>
+<p>SDK 再把业务对象包装成 MCP 工具结果，新版成功完成的结果在协议外层带有 <code>resultType=&quot;complete&quot;</code>。拿到原文后，模型才有依据生成符合当前文件的补丁。</p>
+<h3 id="apply_patch">4.3 apply_patch：把修改意图与当前原文匹配 <a class="heading-anchor" href="#apply_patch" aria-label="链接到本节">#</a></h3>
+<p>修改一个方法时，补丁只需要描述原文、上下文和替换内容，避免让模型重新输出整份文件。下面把 <code>hello</code> 改成 <code>Hello</code>，并要求下一行仍为 <code>world</code>：</p>
+<div class="code-block" data-language="diff">
+<div class="code-toolbar"><span class="code-language">diff</span></div>
+<pre><code class="language-diff">*** Begin Patch
+*** Update File: notes/example.txt
+@@
+-hello
++Hello
+ world
+*** End Patch
+</code></pre>
+</div>
+<p>空格前缀表示保留的上下文，<code>-</code> 表示删除，<code>+</code> 表示插入；空白上下文行也必须带前缀空格。<code>@@</code> 开始一个修改块。</p>
+<p>引擎把删除行和上下文行组合成“预期旧文本”，再在原文件中查找连续匹配。这个例子查找的是 <code>hello</code>、<code>world</code> 两行：</p>
+<table>
+<thead>
+<tr>
+<th>匹配结果</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>没有找到</td>
+<td>拒绝修改，要求重新读取当前内容</td>
+</tr>
+<tr>
+<td>找到多处</td>
+<td>拒绝修改，要求补充上下文以消除歧义</td>
+</tr>
+<tr>
+<td>恰好一处</td>
+<td>按该位置生成新内容</td>
+</tr>
+</tbody>
+</table>
+<p>匹配要求行内容精确一致，包括空格与大小写。实现还使用前缀匹配算法处理重复文本搜索，避免大量重复行导致低效的逐位置比较。</p>
+<p>多个修改块按原文件中的顺序匹配，范围不能重叠；精确锚点可以缩小后续搜索范围，<code>*** End of File</code> 可以限定末尾匹配。补丁语法参考 <a href="https://github.com/openai/codex/blob/main/codex-rs/apply-patch/src/parser.rs">OpenAI Codex 的 apply-patch parser</a>（Apache-2.0），由 C# 独立实现，不接受标准 <code>git diff</code> 的 <code>diff --git</code>、<code>---</code>、<code>+++</code> 和带行号的 <code>@@</code> 头。</p>
+<p>支持的文件操作及约束如下：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>表达方式</th>
+<th>主要条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增</td>
+<td><code>*** Add File: path</code>，正文每行带 <code>+</code></td>
+<td>目标必须不存在</td>
+</tr>
+<tr>
+<td>更新</td>
+<td><code>*** Update File: path</code> 与修改块</td>
+<td>原文需符合上下文</td>
+</tr>
+<tr>
+<td>移动</td>
+<td>Update 后加 <code>*** Move to: path</code></td>
+<td>目标必须不存在，可同时更新</td>
+</tr>
+<tr>
+<td>删除</td>
+<td><code>*** Delete File: path</code></td>
+<td>已有文件符合文本与大小约束</td>
+</tr>
+</tbody>
+</table>
+<p>一份补丁最多 1 MiB、64 个文件操作，单文件最多 256 KiB；不支持任意二进制操作。同一规范化路径只能涉及一次，因此一份补丁不处理复杂移动链。</p>
+<h3 id="apply_patch-1">4.4 apply_patch：预演、提交与异常恢复 <a class="heading-anchor" href="#apply_patch-1" aria-label="链接到本节">#</a></h3>
+<p>解析和匹配完成后，<code>PatchService</code> 先形成变更计划，再决定是否落盘。<code>dry_run=true</code> 会检查路径、上下文及内容大小，返回 <code>dryRun</code> 与文件级 <code>changes</code>，包括操作类型和修改前后字节数，不创建目录或写入目标。</p>
+<p>预演与正式提交是两次独立调用，期间另一个编辑器可能修改文件，所以正式执行仍会重新读取并验证。</p>
+<div class="code-block" data-language="mermaid">
+<div class="code-toolbar"><span class="code-language">mermaid</span></div>
+<pre><code class="language-mermaid">flowchart TB
+  P[解析补丁并获取修改锁] --&gt; V[校验全部操作并计算新内容]
+  V --&gt; D{是否 dry_run}
+  D --&gt;|是| PLAN[返回文件级计划]
+  D --&gt;|否| S[暂存全部新内容]
+  S --&gt; C[复核原文字节与目标路径]
+  C --&gt; B[把原文件移到备份路径]
+  B --&gt; I[把暂存文件移到目标路径]
+  I --&gt; K[成功后清理备份]
+  S -. 异常 .-&gt; R[清理暂存并尝试逆序恢复]
+  C -. 异常 .-&gt; R
+  B -. 异常 .-&gt; R
+  I -. 异常 .-&gt; R
+</code></pre>
+</div>
+<p>实际提交先完成整批校验并暂存新内容，再复核原文字节与目标路径，随后按文件执行备份和安装。快照记录 BOM、原换行与 Unix 模式；未改行保留换行，新插入行采用原文第一个换行样式，末尾换行也按实现规则保留。新文件使用无 BOM 的 UTF-8 和 LF。Unix 文件属性保留模式位，所有者、ACL 和扩展属性不在保留范围内。</p>
+<p>已有目标的提交包含两个重命名步骤：先把旧文件移到备份路径，再把暂存文件移到目标路径。两步之间，目标可能短暂不存在；多个文件也按顺序逐个替换，期间可能只有部分修改完成。</p>
+<p>发生异常时，程序尝试逆序恢复之前的修改。回滚失败会报错并保留 <code>.minimcp-*.bak</code>。恢复与清理在进程内执行，突然断电或强制结束进程可能打断这些步骤。</p>
+<p><code>read_file</code> 读取时不获取修改锁，因此可能看到部分文件已提交的中间状态。外部编辑器也不参与这把锁，提交前的字节复核可以发现部分冲突，但复核后仍可能发生变化。</p>
+<h3 id="bash">4.5 bash：创建一次性进程 <a class="heading-anchor" href="#bash" aria-label="链接到本节">#</a></h3>
+<p>补丁工具提供结构明确的文本修改，Bash 则复用本机命令行能力。其一次性 Shell 接口参考 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/shell/tool-bash/README.md">DeepSeek Harness 的 tool-bash 文档</a>（MIT），执行逻辑用 .NET <code>Process</code> 独立实现。</p>
+<p>一次调用可以是：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;command&quot;: &quot;git status --short; git diff -- Program.cs&quot;,
+  &quot;workdir&quot;: &quot;.&quot;,
+  &quot;timeout_seconds&quot;: 30
+}
+</code></pre>
+</div>
+<p>每次调用创建全新的 Bash。前一次的 <code>cd</code>、<code>export</code>、函数和别名不会延续到下一次，因为子进程对自身环境与工作目录的修改不会反向修改 MiniMcp 父进程；已经写入磁盘的文件则会保留。需要共享 Shell 状态的连续操作，应放在同一个 <code>command</code> 中。</p>
+<p><code>UseShellExecute=false</code> 让 .NET 直接启动指定程序，随后命令正文仍交给 <code>bash -c</code> 解释。<code>ArgumentList</code> 保留外层参数边界，命令里的管道、变量、重定向和 <code>&amp;&amp;</code> 仍按 Bash 语法执行。</p>
+<p>Linux 先运行 <code>/usr/bin/setsid</code>，Windows 直接启动配置的 Bash。服务在运行期间持续收集输出，等待命令结束并清理相关进程。</p>
+<h3 id="bash-stdout-stderr">4.6 bash：同时读取 stdout 与 stderr <a class="heading-anchor" href="#bash-stdout-stderr" aria-label="链接到本节">#</a></h3>
+<p>stdout 和 stderr 是两条独立且有容量限制的管道。如果子进程写满 stderr，而父进程只等 stdout 或进程退出，子进程可能因管道无法继续写入而阻塞，父进程又在等子进程完成，形成相互等待。</p>
+<p><code>BashRunner</code> 因此同时异步排空两条流，各保留前 16000 个 UTF-16 代码单元。达到保留上限后继续读取并丢弃多余内容，避免管道堵塞。</p>
+<p>两条流分开返回，没有保存精确的交错时序。<code>outputTruncated</code> 除了表示达到字符上限，还可能表示清理后仍未读到管道 EOF、等待超过 5 秒后停止收集；此时即使保留内容不足 16000，也可能不完整。</p>
+<p>输出统一按 UTF-8 解码。Windows 本机程序使用其他代码页时，需要处理编码差异。</p>
+<h3 id="bash-1">4.7 bash：取消、超时与后代进程清理 <a class="heading-anchor" href="#bash-1" aria-label="链接到本节">#</a></h3>
+<p><code>CancellationToken</code> 传递协作式取消信号。<code>WaitForExitAsync</code> 响应取消后结束等待，操作系统中的 Bash 及其后代则由后续清理流程处理。</p>
+<div class="code-block" data-language="mermaid">
+<div class="code-toolbar"><span class="code-language">mermaid</span></div>
+<pre><code class="language-mermaid">flowchart TB
+  Q[等待项目修改锁] --&gt; P[准备工作目录与进程参数]
+  P --&gt; S[启动 Bash 并建立进程生命周期管理]
+  S --&gt; G[发送内部就绪信号并关闭 stdin]
+  G --&gt; E[执行命令并同时排空两条输出管道]
+  E --&gt; N[主进程正常退出]
+  E --&gt; T[执行超时]
+  E --&gt; C[客户端取消]
+  N --&gt; K[清理普通子进程]
+  T --&gt; K
+  C --&gt; K
+  K --&gt; D[限时等待读取结束并释放修改锁]
+  D --&gt; R[返回结果或传播取消]
+</code></pre>
+</div>
+<p>正常退出也需要清理。对于 <code>sleep 300 &amp; exit 0</code>，主 Bash 的退出码是 0，后台 <code>sleep</code> 仍可能继续运行，甚至持有管道写入端，使读取端无法得到 EOF。一次性工具会在命令结束后清理这类后台子进程。</p>
+<p>Linux 用 <code>setsid</code> 创建新会话和进程组，结合进程树与进程组清理；Windows 使用带 <code>KILL_ON_JOB_CLOSE</code> 的 Job Object。两种机制分别见 <a href="https://man7.org/linux/man-pages/man1/setsid.1.html">setsid 手册</a> 和 <a href="https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects">Microsoft Job Objects</a>。</p>
+<p>Windows 需要先把 Bash 加入 Job Object，再执行可能派生子进程的用户命令。为此，初始 Bash 等待 stdin 上的 <code>run</code> 信号，直到 <code>ProcessLifetime</code> 初始化完成后才开始执行。</p>
+<p><code>BashRunner.RunAsync</code> 在启动进程后执行：</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">outputTask = stdout.ReadAsync(process.StandardOutput, reading.Token);
+errorTask = stderr.ReadAsync(process.StandardError, reading.Token);
+lifetime = new ProcessLifetime(process);
+deadline.Token.ThrowIfCancellationRequested();
+await process.StandardInput.WriteLineAsync(&quot;run&quot;.AsMemory(), deadline.Token);
+process.StandardInput.Close();
+await process.WaitForExitAsync(deadline.Token);
+exitCode = process.ExitCode;
+</code></pre>
+</div>
+<p>两条输出流在放行前就开始读取，退出后的清理位于外围 <code>finally</code> 中。内部信号发送后关闭 stdin，用户命令得到 EOF。当前工具没有 PTY、持久终端会话或 <code>write_stdin</code> 接口。</p>
+<p>命令超时范围为 1～600 秒，默认 30 秒。计时在获取修改锁并准备进程后开始；整次调用还包括锁的排队、进程清理和输出收集时间，网络与客户端也可能另有超时。</p>
+<p>返回字段包括 <code>exitCode</code>、<code>stdout</code>、<code>stderr</code>、<code>timedOut</code> 和 <code>outputTruncated</code>：</p>
+<table>
+<thead>
+<tr>
+<th>结束方式</th>
+<th>当前结果语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命令正常结束</td>
+<td>返回退出码，包括 <code>exit 7</code> 这样的非零值</td>
+</tr>
+<tr>
+<td>执行超时</td>
+<td><code>exitCode=null</code>，<code>timedOut=true</code></td>
+</tr>
+<tr>
+<td>客户端取消</td>
+<td>清理后传播取消，不承诺返回完整业务结果</td>
+</tr>
+</tbody>
+</table>
+<p>超时、取消和正常结束都执行进程清理，命令已写入磁盘的修改会保留。Linux 上主动脱离原进程组的程序仍可能避开这套清理逻辑。</p>
+<h3 id="section-8">4.8 共享修改锁与实际权限 <a class="heading-anchor" href="#section-8" aria-label="链接到本节">#</a></h3>
+<p><code>apply_patch</code> 和 <code>bash</code> 都可能修改项目。如果一个在提交补丁，另一个同时运行 <code>sed</code> 修改同一文件，就可能产生覆盖或竞态。因此，二者共用 <code>ProjectWorkspace</code> 中的 <code>SemaphoreSlim(1,1)</code>，即 <code>Mutations</code>：</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">await workspace.Mutations.WaitAsync(cancellationToken);
+try
+{
+    // Apply a patch or run a Bash command.
+}
+finally
+{
+    workspace.Mutations.Release();
+}
+</code></pre>
+</div>
+<p><code>WaitAsync</code> 允许异步等待进入，<code>finally</code> 在普通异常或取消时仍释放信号量。这把锁只协调当前 MiniMcp 进程中的补丁与 Bash；读取、外部编辑器和另一个 MiniMcp 进程不共享它。即使 Bash 只运行只读命令，当前实现也会串行执行。</p>
+<p>并发协调之外，还要区分工具提示、路径限制和操作系统权限：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>当前控制方式</th>
+<th>实际影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工具提示</td>
+<td>annotations 与客户端确认设置</td>
+<td>描述行为，帮助客户端决定交互</td>
+</tr>
+<tr>
+<td>文件接口</td>
+<td>相对路径、根目录与私有路径检查</td>
+<td>约束 <code>read_file</code>、<code>apply_patch</code> 和 Bash 的起始 <code>workdir</code></td>
+</tr>
+<tr>
+<td>操作系统执行</td>
+<td>服务账号、文件权限、systemd 等限制</td>
+<td>决定 Bash 真正能访问和执行什么</td>
+</tr>
+</tbody>
+</table>
+<p><code>bash</code> 的 <code>workdir</code> 通过 <code>ProjectWorkspace.Resolve</code> 检查，必须是项目内部的已有目录。它设置的是起始工作目录，命令启动后仍可以 <code>cd</code>、使用绝对路径，访问服务账号有权读取的文件和网络。例如，文件工具拒绝读取 <code>.env</code>，Bash 仍可能通过 <code>cat .env</code> 读取它。</p>
+<p>子进程只继承 PATH、用户目录、语言、临时目录、部分系统目录和代理等基础变量，并使用 <code>--noprofile --norc</code>，不自动继承整份应用配置或 <code>BASH_ENV</code>。若要进一步限制命令的文件访问，需要单独的低权限账号、容器或系统沙箱等操作系统层隔离。</p>
+<p>服务以哪个账号运行、从哪里加载配置，会影响 Bash 能找到哪些命令、访问哪些文件。</p>
+<h2 id="section-9">5 运行环境、验证与故障定位 <a class="heading-anchor" href="#section-9" aria-label="链接到本节">#</a></h2>
+<h3 id="net">5.1 配置怎样进入 .NET 进程 <a class="heading-anchor" href="#net" aria-label="链接到本节">#</a></h3>
+<p>.NET SDK 提供还原、构建和发布工具，运行时负责执行应用，ASP.NET Core 共享框架提供 Web 组件。本项目目标为 <code>net10.0</code>，开发时可以使用 <code>dotnet run</code>，发布后可以直接执行 <code>dotnet MiniMcp.dll</code>。</p>
+<p>手动启动时，项目的 <code>.env</code> 由 Shell 读取并导出为环境变量：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">set -a
+source .env
+set +a
+dotnet run --no-launch-profile
+</code></pre>
+</div>
+<p><code>source</code> 在当前 Shell 中执行文件，<code>set -a</code> 使赋值自动导出，随后启动的 dotnet 继承这些环境变量。<code>MiniMcpOptions.Load</code> 在启动时读取配置，因此修改 <code>.env</code> 后需要重新导入变量并重启进程。</p>
+<p>主要配置项及用途如下：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MCP_PUBLIC_URL</code></td>
+<td>公网 origin，用于配置允许的 Host；不含 <code>/mcp</code></td>
+</tr>
+<tr>
+<td><code>MCP_ROOT</code></td>
+<td>文件工具根目录和 Bash 默认工作目录</td>
+</tr>
+<tr>
+<td><code>MCP_BASH_PATH</code></td>
+<td>Bash 可执行文件路径</td>
+</tr>
+<tr>
+<td><code>CF_ACCESS_TEAM</code></td>
+<td>Access 团队域名前缀，用于定位签发者与公钥</td>
+</tr>
+<tr>
+<td><code>CF_ACCESS_AUD</code></td>
+<td>后端预期的 Access 应用 Audience</td>
+</tr>
+</tbody>
+</table>
+<p>应用进程配置与 Dashboard 中的 DNS、Access、Tunnel 配置分别维护。更换公网入口时，需要同步相关配置并重启应用。</p>
+<h3 id="systemd-windows">5.2 前台、systemd 与 Windows 的环境差异 <a class="heading-anchor" href="#systemd-windows" aria-label="链接到本节">#</a></h3>
+<p>后台服务可能使用不同的账号、PATH、工作目录和配置来源。systemd 模板从 <code>EnvironmentFile</code> 读取配置，<code>WorkingDirectory</code> 指向发布目录，<code>%h</code> 由 systemd 展开为用户 home。服务环境文件与项目 <code>.env</code> 分别维护。</p>
+<p><code>UMask=0077</code>、<code>NoNewPrivileges=true</code>、<code>PrivateTmp=true</code> 也会影响 Bash 子进程。服务不会自动加载交互式 Shell 的别名、函数和环境，前台可用的命令在后台可能因 PATH 不同而无法找到。</p>
+<p><code>Wants</code> 和 <code>After</code> 表达拉起关系及启动顺序。<code>enable</code> 配置自启动关系，<code>start</code> 立即启动服务；用户管理器要在无人登录时运行，还涉及 linger。命令语义见 <a href="https://www.freedesktop.org/software/systemd/man/latest/systemctl.html">systemctl</a> 与 <a href="https://www.freedesktop.org/software/systemd/man/latest/loginctl.html">loginctl</a>，安装和验收步骤见仓库 README。</p>
+<p>Windows 使用 Git for Windows 的 Bash，由 <code>MCP_BASH_PATH</code> 指定路径。工具文件参数继续使用 <code>/</code> 分隔的相对路径，<code>command</code> 使用 Bash 语法。Windows 路径转换、输出编码及 Job Object 清理需要在实机上验证。</p>
+<h3 id="section-10">5.3 按层次理解验证结果 <a class="heading-anchor" href="#section-10" aria-label="链接到本节">#</a></h3>
+<p>验证业务服务、协议接口和公网部署，需要经过不同的组件。仓库提供两组本地检查：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">dotnet run --project tests/MiniMcp.Checks
+dotnet run --project tests/MiniMcp.ProtocolChecks
+</code></pre>
+</div>
+<p>第一组直接调用业务服务，在临时工作区测试路径、文本读取、补丁和真实 Bash 进程，已有记录为 27 项通过。第二组使用 MCP SDK 的内存流客户端，检查工具发现、参数 schema、结构化结果、工具错误及协议版本兼容。</p>
+<p>各层验证能说明的范围如下：</p>
+<table>
+<thead>
+<tr>
+<th>验证方式</th>
+<th>能提供的证据</th>
+<th>没有覆盖的部分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直接调用业务服务</td>
+<td>路径、补丁算法、输出收集和进程清理等实现行为</td>
+<td>MCP 参数绑定、HTTP、OAuth、Tunnel</td>
+</tr>
+<tr>
+<td>SDK 内存流客户端</td>
+<td>工具发现、协议消息、schema 与结果包装</td>
+<td>Kestrel、Cloudflare 和公网认证</td>
+</tr>
+<tr>
+<td>本机 HTTP 与健康路由</td>
+<td>应用启动、监听与相应路由可达</td>
+<td>完整公网链路、全部授权和工具行为</td>
+</tr>
+<tr>
+<td>ChatGPT 远程调用</td>
+<td>当次客户端、授权、转发与工具调用成功</td>
+<td>未执行的失败分支、其他平台和自启动场景</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-11">5.4 从错误来源反推故障位置 <a class="heading-anchor" href="#section-11" aria-label="链接到本节">#</a></h3>
+<p>第 1 部分的分层也可以用于排障。先确定错误由哪一层返回，再检查该层的输入与依赖：</p>
+<table>
+<thead>
+<tr>
+<th>观察</th>
+<th>优先检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>域名无法解析</td>
+<td>DNS 委派、记录和 hostname</td>
+</tr>
+<tr>
+<td>Cloudflare 1033</td>
+<td>Tunnel 是否存在可用连接器</td>
+</tr>
+<tr>
+<td>502 Bad Gateway</td>
+<td><code>cloudflared</code> 到本地 origin 的可达性、监听地址和端口</td>
+</tr>
+<tr>
+<td>Tunnel 已注册，公网仍不可用</td>
+<td>公网 hostname 路由、连接器所在机器和后端地址</td>
+</tr>
+<tr>
+<td><code>Provided Tunnel token is not valid</code></td>
+<td>是否误填 Tunnel UUID、整条安装命令或带 BOM 的文本</td>
+</tr>
+<tr>
+<td>OAuth 登录失败</td>
+<td>Access 应用、身份提供方、回调 URI 与访问策略</td>
+</tr>
+<tr>
+<td>401 / 403</td>
+<td>先确认来自 Cloudflare 还是后端，再检查 OAuth、Access JWT、TEAM、AUD 和时钟</td>
+</tr>
+<tr>
+<td><code>/healthz</code> 成功，工具仍失败</td>
+<td>继续检查认证、MCP 请求格式与业务参数</td>
+</tr>
+<tr>
+<td><code>Unknown tool: write_file</code></td>
+<td>客户端是否仍缓存已删除工具，刷新工具列表</td>
+</tr>
+<tr>
+<td><code>read_file</code> 拒绝路径</td>
+<td>根目录、相对路径和私有路径规则</td>
+</tr>
+<tr>
+<td>补丁上下文不匹配或歧义</td>
+<td>重新读取文件，使用当前内容补充精确上下文</td>
+</tr>
+<tr>
+<td>Bash 返回非零退出码</td>
+<td>stderr、命令依赖、PATH 与工作目录</td>
+</tr>
+<tr>
+<td>Bash 超时</td>
+<td>命令耗时、后代进程、清理和相关超时设置</td>
+</tr>
+<tr>
+<td>前台成功、后台失败</td>
+<td>配置副本、服务账号、环境、工作目录和网络依赖</td>
+</tr>
+</tbody>
+</table>
+<p><code>IsError=False</code> 表示这次调用没有作为 MCP 工具错误返回。判断执行结果时，<code>apply_patch</code> 要检查 <code>dryRun</code> 并回读实际文件，<code>bash</code> 要检查 <code>exitCode</code>、<code>timedOut</code> 和输出。例如 <code>exitCode=7</code> 可以被正常封装为工具结果，但命令自身并未成功。</p>
+<p>检查修改时，<code>git diff</code> 不显示未跟踪文件的内容。新增文件应通过 <code>read_file</code> 回读。</p>
+<h3 id="section-12">5.5 更换公网入口时需要替换什么 <a class="heading-anchor" href="#section-12" aria-label="链接到本节">#</a></h3>
+<p>更换公网入口时，文件、补丁和 Bash 服务可以复用；公网可达性、TLS、认证和转发需要按新入口配置。</p>
+<p>例如，Caddy 的局部反向代理配置可以写成：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">mcp.example.com {
+    reverse_proxy 127.0.0.1:8000
+}
+</code></pre>
+</div>
+<p>Caddy 可以通过 ACME 管理证书。HTTP-01、TLS-ALPN-01 和 DNS-01 分别通过 HTTP、TLS 或 DNS TXT 证明域名控制权；DNS-01 可以在没有公网入站访问的环境申请证书，但后端的网络可达性仍需另外解决。参见 <a href="https://caddyserver.com/docs/automatic-https">Caddy Automatic HTTPS</a>。</p>
+<p><code>CloudflareAccessAuthentication</code> 依赖 <code>Cf-Access-Jwt-Assertion</code>，因此迁移时需要替换这部分认证实现，并验证新的授权方案。<code>Local</code> 模式会关闭现有认证，只用于本机联调。</p>
+<h2 id="section-13">结语 <a class="heading-anchor" href="#section-13" aria-label="链接到本节">#</a></h2>
+<p>MiniMcp 把模型生成的工具参数逐步转换为本机文件和进程操作：DNS 与 Tunnel 提供网络入口，Managed OAuth 与 Access JWT 完成准入，ASP.NET Core 和 MCP SDK 分发请求，业务服务负责执行。文件接口检查路径，补丁通过提交前验证和尽力回滚处理失败，进程管理负责清理后代进程，Bash 的访问范围由服务账号权限决定。</p>
+<p>精读源码时，可以从 <code>Program.cs</code> 进入 <code>WorkspaceTools.cs</code>，再依次看 <code>ProjectWorkspace.cs</code>、<code>PatchService.cs</code>、<code>BashRunner.cs</code> 和 <code>ProcessLifetime.cs</code>，最后回看认证代码与配置。<code>PatchService</code> 适合研究上下文匹配和文件提交的失败恢复，<code>BashRunner</code> 与 <code>ProcessLifetime</code> 则把异步 I/O、取消机制及跨平台进程管理连接起来。</p>
+<h2 id="section-14">附录：阅读源码时常见的术语 <a class="heading-anchor" href="#section-14" aria-label="链接到本节">#</a></h2>
+<h3 id="c.net">C# 与 .NET <a class="heading-anchor" href="#c.net" aria-label="链接到本节">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>在项目中怎样理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary Constructor</td>
+<td>在类声明中接收构造参数，例如 <code>WorkspaceTools(...)</code>，这里用于接收依赖</td>
+</tr>
+<tr>
+<td>Dependency Injection</td>
+<td>容器根据注册和构造函数关系创建、组装对象</td>
+</tr>
+<tr>
+<td>Singleton</td>
+<td>同一容器复用一个实例，线程同步仍需单独实现</td>
+</tr>
+<tr>
+<td>Attribute</td>
+<td>附着在类或方法上的元数据，供 SDK 建立工具定义</td>
+</tr>
+<tr>
+<td>Record</td>
+<td>适合表达结果数据，支持值相等，不自动保证深度不可变</td>
+</tr>
+<tr>
+<td><code>Task&lt;T&gt;</code></td>
+<td>表示可能成功、失败或取消的异步操作</td>
+</tr>
+<tr>
+<td><code>async / await</code></td>
+<td>异步等待并恢复执行</td>
+</tr>
+<tr>
+<td><code>CancellationToken</code></td>
+<td>传递取消意图，操作需要响应它</td>
+</tr>
+<tr>
+<td><code>SemaphoreSlim</code></td>
+<td>限制并发进入者数量，支持异步等待</td>
+</tr>
+<tr>
+<td><code>FileStream</code></td>
+<td>从 .NET 访问文件字节流</td>
+</tr>
+<tr>
+<td><code>Span / Memory</code></td>
+<td>表示连续数据及其切片，减少不必要的复制</td>
+</tr>
+<tr>
+<td>LINQ</td>
+<td>用 <code>Where</code>、<code>Select</code> 等表达集合查询和转换</td>
+</tr>
+<tr>
+<td>Lambda</td>
+<td>将行为作为值传递，例如 <code>() =&gt; DoWork()</code></td>
+</tr>
+<tr>
+<td><code>Func&lt;Task&lt;T&gt;&gt;</code></td>
+<td>调用后返回异步结果的委托</td>
+</tr>
+<tr>
+<td>P/Invoke</td>
+<td>从 C# 调用操作系统或原生库的非托管函数</td>
+</tr>
+<tr>
+<td><code>IDisposable</code></td>
+<td>显式释放资源，通常配合 <code>using</code></td>
+</tr>
+<tr>
+<td><code>IAsyncDisposable</code></td>
+<td>异步释放资源，通常配合 <code>await using</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-15">网络、协议与进程 <a class="heading-anchor" href="#section-15" aria-label="链接到本节">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>在本文中的含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Origin</td>
+<td>实际提供 HTTP 服务的源站，本例是本机 Kestrel</td>
+</tr>
+<tr>
+<td>Reverse Proxy</td>
+<td>代表后端接收并转发客户端请求</td>
+</tr>
+<tr>
+<td>Tunnel</td>
+<td>通过已建立的通道，把外部请求送到原本无法直接入站访问的服务</td>
+</tr>
+<tr>
+<td>OAuth</td>
+<td>客户端获得访问授权的框架</td>
+</tr>
+<tr>
+<td>JWT</td>
+<td>携带声明的令牌格式，本文使用签名 JWT</td>
+</tr>
+<tr>
+<td>JWKS</td>
+<td>JSON Web Key 集合，本例用于提供验证签名的公钥</td>
+</tr>
+<tr>
+<td>Issuer / Audience</td>
+<td>分别标识签发者与令牌的预期使用对象</td>
+</tr>
+<tr>
+<td>JSON-RPC</td>
+<td>用结构化消息表达远程方法调用</td>
+</tr>
+<tr>
+<td>MCP Tool</td>
+<td>供 AI 客户端发现和调用的功能接口</td>
+</tr>
+<tr>
+<td>Stateless</td>
+<td>请求携带必要协议上下文，应用与磁盘仍可保存状态</td>
+</tr>
+<tr>
+<td>Process Group / Job Object</td>
+<td>操作系统用于协调或管理相关进程的机制</td>
+</tr>
+<tr>
+<td>PTY</td>
+<td>提供交互终端语义的伪终端，当前 MiniMcp 未提供</td>
+</tr>
+</tbody>
+</table>
+<h2 id="section-16">参考资料 <a class="heading-anchor" href="#section-16" aria-label="链接到本节">#</a></h2>
+<aside class="custom-container tip">
+<p class="custom-container-title">参考</p>
+<ul>
+<li><a href="https://github.com/Rukkhadevata123/MiniMcp">MiniMcp：源码与部署指南</a></li>
+<li><a href="https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/routing-to-tunnel/dns/">Cloudflare：Tunnel DNS records</a></li>
+<li><a href="https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/tunnel-with-firewall/">Cloudflare：Tunnel with firewall</a></li>
+<li><a href="https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/managed-oauth/">Cloudflare：Managed OAuth</a></li>
+<li><a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization">MCP 2026-07-28：Authorization</a></li>
+<li><a href="https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/authorization-cookie/validating-json/">Cloudflare：Validate JWTs</a></li>
+<li><a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning">MCP 2026-07-28：Versioning and Compatibility</a></li>
+<li><a href="https://github.com/modelcontextprotocol/csharp-sdk/blob/v2.2.0/docs/versioning.md">MCP C# SDK v2.2.0：Versioning</a></li>
+<li><a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http">MCP 2026-07-28：Streamable HTTP</a></li>
+<li><a href="https://modelcontextprotocol.io/specification/2026-07-28/basic">MCP 2026-07-28：Base Protocol</a></li>
+<li><a href="https://developers.openai.com/plugins/deploy/connect-chatgpt#refresh-metadata">OpenAI：Connect and test your plugin / Refresh metadata</a></li>
+<li><a href="https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection/service-lifetimes">Microsoft：Service lifetimes</a></li>
+<li><a href="https://man7.org/linux/man-pages/man1/setsid.1.html">Linux 手册：setsid</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects">Microsoft：Job Objects</a></li>
+<li><a href="https://www.freedesktop.org/software/systemd/man/latest/systemctl.html">systemd：systemctl</a></li>
+<li><a href="https://www.freedesktop.org/software/systemd/man/latest/loginctl.html">systemd：loginctl</a></li>
+<li><a href="https://caddyserver.com/docs/automatic-https">Caddy：Automatic HTTPS</a></li>
+<li><a href="https://github.com/openai/codex/blob/main/codex-rs/apply-patch/src/parser.rs">OpenAI Codex：apply-patch parser</a></li>
+<li><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/shell/tool-bash/README.md">DeepSeek Harness：tool-bash</a></li>
+</ul>
+</aside>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="../Windows/agent.html">&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="../Android/8gen2.html" rel="prev"><span>上一篇</span>&#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU</a>
+                    <a href="../Linux/ue.html" rel="next"><span>下一篇</span>Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">1 &#x4E00;&#x6B21;&#x5DE5;&#x5177;&#x8C03;&#x7528;&#x7684;&#x5B8C;&#x6574;&#x8DEF;&#x7EBF;</a>
+        <a class="level-3" href="#section-1">1.1 &#x7528;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;&#x7EC4;&#x5408;&#x5F00;&#x53D1;&#x64CD;&#x4F5C;</a>
+        <a class="level-3" href="#section-2">1.2 &#x8BF7;&#x6C42;&#x7ECF;&#x8FC7;&#x54EA;&#x4E9B;&#x5C42;</a>
+        <a class="level-3" href="#section-3">1.3 &#x4ECE;&#x8BF7;&#x6C42;&#x94FE;&#x8DEF;&#x5B9A;&#x4F4D;&#x6E90;&#x7801;</a>
+        <a class="level-2" href="#section-4">2 &#x8BF7;&#x6C42;&#x5982;&#x4F55;&#x5230;&#x8FBE;&#x672C;&#x673A;&#x5E76;&#x901A;&#x8FC7;&#x8BA4;&#x8BC1;</a>
+        <a class="level-3" href="#urldns-tunnel">2.1 URL&#x3001;DNS &#x4E0E; Tunnel &#x8DEF;&#x7531;</a>
+        <a class="level-3" href="#nat">2.2 NAT&#x3001;&#x51FA;&#x7AD9;&#x96A7;&#x9053;&#x4E0E;&#x56DE;&#x73AF;&#x76D1;&#x542C;</a>
+        <a class="level-3" href="#managed-oauth">2.3 Managed OAuth&#xFF1A;&#x8BA9;&#x5BA2;&#x6237;&#x7AEF;&#x83B7;&#x5F97;&#x8BBF;&#x95EE;&#x6388;&#x6743;</a>
+        <a class="level-3" href="#jwt">2.4 &#x4E24;&#x79CD;&#x4EE4;&#x724C;&#x4E0E;&#x540E;&#x7AEF; JWT &#x6821;&#x9A8C;</a>
+        <a class="level-2" href="#mcp-c">3 MCP &#x8BF7;&#x6C42;&#x5982;&#x4F55;&#x6210;&#x4E3A; C# &#x65B9;&#x6CD5;&#x8C03;&#x7528;</a>
+        <a class="level-3" href="#httpjson-rpc-mcp">3.1 HTTP&#x3001;JSON-RPC &#x4E0E; MCP &#x7684;&#x5206;&#x5DE5;</a>
+        <a class="level-3" href="#section-5">3.2 &#x534F;&#x8BAE;&#x4FEE;&#x8BA2;&#x4E0E;&#x65E7;&#x7248;&#x517C;&#x5BB9;</a>
+        <a class="level-3" href="#program.cs">3.3 Program.cs&#xFF1A;&#x7EC4;&#x88C5;&#x6846;&#x67B6;&#x548C;&#x4E1A;&#x52A1;&#x670D;&#x52A1;</a>
+        <a class="level-3" href="#section-6">3.4 &#x65E0;&#x72B6;&#x6001;&#x8BF7;&#x6C42;&#x4E0E;&#x72B6;&#x6001;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;</a>
+        <a class="level-2" href="#section-7">4 &#x6587;&#x4EF6;&#x4E0E;&#x8FDB;&#x7A0B;&#x64CD;&#x4F5C;&#x600E;&#x6837;&#x5B9E;&#x73B0;</a>
+        <a class="level-3" href="#read_file">4.1 read_file&#xFF1A;&#x5148;&#x786E;&#x8BA4;&#x8DEF;&#x5F84;&#x6307;&#x5411;&#x54EA;&#x91CC;</a>
+        <a class="level-3" href="#read_file-1">4.2 read_file&#xFF1A;&#x4ECE;&#x5B57;&#x8282;&#x5FEB;&#x7167;&#x5230;&#x6309;&#x884C;&#x6587;&#x672C;</a>
+        <a class="level-3" href="#apply_patch">4.3 apply_patch&#xFF1A;&#x628A;&#x4FEE;&#x6539;&#x610F;&#x56FE;&#x4E0E;&#x5F53;&#x524D;&#x539F;&#x6587;&#x5339;&#x914D;</a>
+        <a class="level-3" href="#apply_patch-1">4.4 apply_patch&#xFF1A;&#x9884;&#x6F14;&#x3001;&#x63D0;&#x4EA4;&#x4E0E;&#x5F02;&#x5E38;&#x6062;&#x590D;</a>
+        <a class="level-3" href="#bash">4.5 bash&#xFF1A;&#x521B;&#x5EFA;&#x4E00;&#x6B21;&#x6027;&#x8FDB;&#x7A0B;</a>
+        <a class="level-3" href="#bash-stdout-stderr">4.6 bash&#xFF1A;&#x540C;&#x65F6;&#x8BFB;&#x53D6; stdout &#x4E0E; stderr</a>
+        <a class="level-3" href="#bash-1">4.7 bash&#xFF1A;&#x53D6;&#x6D88;&#x3001;&#x8D85;&#x65F6;&#x4E0E;&#x540E;&#x4EE3;&#x8FDB;&#x7A0B;&#x6E05;&#x7406;</a>
+        <a class="level-3" href="#section-8">4.8 &#x5171;&#x4EAB;&#x4FEE;&#x6539;&#x9501;&#x4E0E;&#x5B9E;&#x9645;&#x6743;&#x9650;</a>
+        <a class="level-2" href="#section-9">5 &#x8FD0;&#x884C;&#x73AF;&#x5883;&#x3001;&#x9A8C;&#x8BC1;&#x4E0E;&#x6545;&#x969C;&#x5B9A;&#x4F4D;</a>
+        <a class="level-3" href="#net">5.1 &#x914D;&#x7F6E;&#x600E;&#x6837;&#x8FDB;&#x5165; .NET &#x8FDB;&#x7A0B;</a>
+        <a class="level-3" href="#systemd-windows">5.2 &#x524D;&#x53F0;&#x3001;systemd &#x4E0E; Windows &#x7684;&#x73AF;&#x5883;&#x5DEE;&#x5F02;</a>
+        <a class="level-3" href="#section-10">5.3 &#x6309;&#x5C42;&#x6B21;&#x7406;&#x89E3;&#x9A8C;&#x8BC1;&#x7ED3;&#x679C;</a>
+        <a class="level-3" href="#section-11">5.4 &#x4ECE;&#x9519;&#x8BEF;&#x6765;&#x6E90;&#x53CD;&#x63A8;&#x6545;&#x969C;&#x4F4D;&#x7F6E;</a>
+        <a class="level-3" href="#section-12">5.5 &#x66F4;&#x6362;&#x516C;&#x7F51;&#x5165;&#x53E3;&#x65F6;&#x9700;&#x8981;&#x66FF;&#x6362;&#x4EC0;&#x4E48;</a>
+        <a class="level-2" href="#section-13">&#x7ED3;&#x8BED;</a>
+        <a class="level-2" href="#section-14">&#x9644;&#x5F55;&#xFF1A;&#x9605;&#x8BFB;&#x6E90;&#x7801;&#x65F6;&#x5E38;&#x89C1;&#x7684;&#x672F;&#x8BED;</a>
+        <a class="level-3" href="#c.net">C# &#x4E0E; .NET</a>
+        <a class="level-3" href="#section-15">&#x7F51;&#x7EDC;&#x3001;&#x534F;&#x8BAE;&#x4E0E;&#x8FDB;&#x7A0B;</a>
+        <a class="level-2" href="#section-16">&#x53C2;&#x8003;&#x8D44;&#x6599;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

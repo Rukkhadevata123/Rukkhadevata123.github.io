@@ -1,0 +1,2039 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765; &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Linux/snap.html">
+            <meta property="og:title" content="Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Linux/snap.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="All Sword and No Play Makes March a Dull Girl.">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.bb1aee13f1a46506.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html" aria-current="page">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html" aria-current="page">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html" aria-current="page">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html" aria-current="page">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;</h1>
+                    <p class="article-date"><time datetime="2026-05-13">2026-05-13</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-14">2026-11-14</time></p>
+                    <p class="article-date article-reading-time">预计阅读 122 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-4c696e757820e4bdbfe794a8">Linux &#x4F7F;&#x7528;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/59145f72dcea7c63500c6a061c5df013e9ce04794b5281217543a0eb66f78215.html">#&#x8F6F;&#x4EF6;&#x5206;&#x53D1;</a></li>
+                            <li><a href="../../tags/98df9a59f0641d0c4409c495b8f890581d4fa8a5b180e3358a691097c8ba8af7.html">#Snap</a></li>
+                            <li><a href="../../tags/df02b407664ee320b14b974336a85be674d195246329b53e78e3a6aca51034c9.html">#Flatpak</a></li>
+                            <li><a href="../../tags/0f5d0b67f66bb2742ac271ca3753705797389e03749d00b58d27a9c977252c61.html">#Nix</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#apt-install-firefox">&#x5BFC;&#x8BFB;&#xFF1A;&#x4ECE; apt install firefox &#x8BF4;&#x8D77;</a>
+        <a class="level-2" href="#snap">1 &#x5165;&#x53E3;&#x4E0E;&#x6280;&#x672F;&#x65B9;&#x6848;&#xFF1A;Snap &#x89E3;&#x51B3;&#x4E86;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF1F;</a>
+        <a class="level-3" href="#ubuntu-snap">1.1 Ubuntu &#x5230;&#x5E95;&#x628A;&#x4EC0;&#x4E48;&#x6362;&#x6210;&#x4E86; Snap</a>
+        <a class="level-4" href="#chromium">Chromium&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x8FC7;&#x6E21;&#x5305;</a>
+        <a class="level-4" href="#firefox-thunderbird">Firefox &#x4E0E; Thunderbird&#xFF1A;&#x4E0A;&#x6E38;&#x5382;&#x5546;&#x76F4;&#x63A5;&#x53D1;&#x5E03;</a>
+        <a class="level-3" href="#os">1.2 &#x7ED3;&#x6784;&#x6027;&#x77DB;&#x76FE;&#xFF1A;&#x7A33;&#x5B9A; OS &#x4E0E;&#x5FEB;&#x901F;&#x5E94;&#x7528;</a>
+        <a class="level-4" href="#section">&#x7A33;&#x5B9A;&#x53D1;&#x884C;&#x7248;&#x5982;&#x4F55;&#x7EF4;&#x6301;&#x517C;&#x5BB9;&#x57FA;&#x7EBF;</a>
+        <a class="level-4" href="#section-1">&#x6D4F;&#x89C8;&#x5668;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x9002;&#x5408;&#x8DDF;&#x968F;&#x4F20;&#x7EDF;&#x53D1;&#x884C;&#x5468;&#x671F;</a>
+        <a class="level-4" href="#section-2">&#x56DB;&#x79CD;&#x53EF;&#x80FD;&#x65B9;&#x6848;&#x53CA;&#x5176;&#x6210;&#x672C;</a>
+        <a class="level-4" href="#section-3">&#x4E3A;&#x4EC0;&#x4E48;&#x6EDA;&#x52A8;&#x53D1;&#x884C;&#x7248;&#x4E0D;&#x662F;&#x666E;&#x904D;&#x7B54;&#x6848;</a>
+        <a class="level-4" href="#section-4">&#x6D4F;&#x89C8;&#x5668;&#x4E4B;&#x5916;</a>
+        <a class="level-3" href="#snap-flatpak">1.3 Snap &#x4E0E; Flatpak&#xFF1A;&#x4E0D;&#x540C;&#x573A;&#x666F;&#x7684;&#x6280;&#x672F;&#x53D6;&#x820D;</a>
+        <a class="level-4" href="#section-5">&#x5E94;&#x7528;&#x3001;&#x7CFB;&#x7EDF;&#x7EC4;&#x4EF6;&#x4E0E;&#x7CFB;&#x7EDF;&#x955C;&#x50CF;</a>
+        <a class="level-4" href="#section-6">&#x6D4F;&#x89C8;&#x5668;&#x6C99;&#x7BB1;&#x4E0E;&#x5D4C;&#x5957;&#x9694;&#x79BB;</a>
+        <a class="level-4" href="#nvidia">Nvidia &#x95ED;&#x6E90;&#x9A71;&#x52A8;</a>
+        <a class="level-4" href="#flatpak">Flatpak &#x7684;&#x5F3A;&#x9879;</a>
+        <a class="level-4" href="#snap-1">Snap &#x7684;&#x5F3A;&#x9879;</a>
+        <a class="level-4" href="#section-7">&#x573A;&#x666F;&#x5316;&#x5BF9;&#x6BD4;</a>
+        <a class="level-3" href="#snap-2">1.4 Snap &#x5B9E;&#x73B0;&#x4E2D;&#x7684;&#x5177;&#x4F53;&#x95EE;&#x9898;</a>
+        <a class="level-4" href="#apt">apt &#x9759;&#x9ED8;&#x91CD;&#x5B9A;&#x5411;</a>
+        <a class="level-4" href="#snap-store">Snap Store &#x95ED;&#x6E90;&#x4E0E;&#x4E2D;&#x5FC3;&#x5316;</a>
+        <a class="level-4" href="#section-8">&#x684C;&#x9762;&#x4F53;&#x9A8C;&#x77ED;&#x677F;</a>
+        <a class="level-4" href="#section-9">&#x56FD;&#x5185;&#x7F51;&#x7EDC;&#x4E0E;&#x53EF;&#x8FBE;&#x6027;</a>
+        <a class="level-3" href="#section-10">1.5 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#canonical">2 &#x884C;&#x4E1A;&#x5BF9;&#x7167;&#xFF1A;Canonical &#x4E4B;&#x5916;&#x7684;&#x89E3;&#x8026;&#x8DEF;&#x7EBF;</a>
+        <a class="level-3" href="#rhel">2.1 RHEL&#xFF1A;&#x516D;&#x5E74;&#x6E10;&#x8FDB;&#x5F0F;&#x89E3;&#x8026;</a>
+        <a class="level-4" href="#section-11">&#x65F6;&#x95F4;&#x7EBF;</a>
+        <a class="level-4" href="#red-hat-flatpak">Red Hat &#x9009;&#x62E9; Flatpak &#x7684;&#x539F;&#x56E0;</a>
+        <a class="level-4" href="#ubuntu">&#x4E0E; Ubuntu &#x7684;&#x5DEE;&#x5F02;</a>
+        <a class="level-3" href="#debian">2.2 Debian&#xFF1A;&#x4F20;&#x7EDF;&#x6253;&#x5305;&#x6A21;&#x5F0F;&#x7684;&#x4EBA;&#x529B;&#x6210;&#x672C;</a>
+        <a class="level-4" href="#section-12">&#x7EF4;&#x62A4;&#x89C4;&#x6A21;&#x4E0E;&#x8D21;&#x732E;&#x8005;&#x53D8;&#x5316;</a>
+        <a class="level-4" href="#section-13">&#x6D4F;&#x89C8;&#x5668;&#x4E0E;&#x591A;&#x7A33;&#x5B9A;&#x5206;&#x652F;&#x7EF4;&#x62A4;</a>
+        <a class="level-4" href="#section-14">&#x5173;&#x952E;&#x56E2;&#x961F;&#x3001;&#x5BA1;&#x6838;&#x548C;&#x65B0;&#x4EBA;&#x5165;&#x53E3;</a>
+        <a class="level-4" href="#section-15">&#x94B1;&#x4E3A;&#x4F55;&#x4E0D;&#x662F;&#x552F;&#x4E00;&#x7B54;&#x6848;</a>
+        <a class="level-3" href="#universal-blue">2.3 Universal Blue&#xFF1A;&#x4E0D;&#x53EF;&#x53D8;&#x684C;&#x9762;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;</a>
+        <a class="level-4" href="#section-16">&#x57FA;&#x672C;&#x6A21;&#x578B;</a>
+        <a class="level-4" href="#section-17">&#x539F;&#x5B50;&#x66F4;&#x65B0;&#x4E0E;&#x56DE;&#x6EDA;</a>
+        <a class="level-4" href="#section-18">&#x4EA7;&#x54C1;&#x5316;&#x4EF7;&#x503C;</a>
+        <a class="level-4" href="#section-19">&#x5C40;&#x9650;</a>
+        <a class="level-3" href="#deepin">2.4 deepin &#x4E0E;&#x5982;&#x610F;&#x73B2;&#x73D1;&#xFF1A;&#x672C;&#x571F;&#x751F;&#x6001;&#x7684;&#x56DE;&#x7B54;</a>
+        <a class="level-4" href="#section-20">&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;</a>
+        <a class="level-4" href="#section-21">&#x6280;&#x672F;&#x4E0E;&#x6CBB;&#x7406;</a>
+        <a class="level-4" href="#section-22">&#x6210;&#x719F;&#x5EA6;&#x8FB9;&#x754C;</a>
+        <a class="level-3" href="#section-23">2.5 &#x56DB;&#x6761;&#x8DEF;&#x7EBF;&#x7684;&#x6C47;&#x805A;&#x4E0E;&#x8FB9;&#x754C;</a>
+        <a class="level-4" href="#section-24">&#x53EF;&#x4EE5;&#x5F52;&#x7EB3;&#x7684;&#x5171;&#x540C;&#x8D8B;&#x52BF;</a>
+        <a class="level-4" href="#section-25">&#x4E0D;&#x80FD;&#x6DF7;&#x4E3A;&#x4E00;&#x8C08;&#x7684;&#x5DEE;&#x5F02;</a>
+        <a class="level-3" href="#section-26">2.6 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#section-27">3 &#x7528;&#x6237;&#x4E0E;&#x4EA7;&#x54C1;&#xFF1A;&#x6280;&#x672F;&#x9009;&#x62E9;&#x6700;&#x7EC8;&#x66FF;&#x8C01;&#x8282;&#x7701;&#x65F6;&#x95F4;&#xFF1F;</a>
+        <a class="level-3" href="#ubuntu-1">3.1 Ubuntu &#x4E3A;&#x4EC0;&#x4E48;&#x5F3A;&#x8C03;&#x5F00;&#x7BB1;&#x5373;&#x7528;</a>
+        <a class="level-4" href="#ubuntu-2">Ubuntu &#x540C;&#x65F6;&#x670D;&#x52A1;&#x670D;&#x52A1;&#x5668;&#x4E0E;&#x684C;&#x9762;</a>
+        <a class="level-4" href="#section-28">&#x4EA7;&#x54C1;&#x6574;&#x5408;&#x7684;&#x5177;&#x4F53;&#x5185;&#x5BB9;</a>
+        <a class="level-4" href="#section-29">&#x9ED8;&#x8BA4;&#x503C;&#x4E0E;&#x9009;&#x62E9;&#x81EA;&#x7531;</a>
+        <a class="level-3" href="#ltt">3.2 LTT&#xFF1A;&#x666E;&#x901A;&#x7528;&#x6237;&#x4E0D;&#x60F3;&#x628A;&#x4FEE;&#x7CFB;&#x7EDF;&#x5F53;&#x7231;&#x597D;</a>
+        <a class="level-4" href="#section-30">&#x6848;&#x4F8B;&#x7ECF;&#x8FC7;</a>
+        <a class="level-4" href="#section-31">&#x641C;&#x7D22;&#x4E0E;&#x8D23;&#x4EFB;&#x8FB9;&#x754C;</a>
+        <a class="level-4" href="#section-32">&#x6848;&#x4F8B;&#x7684;&#x8FB9;&#x754C;</a>
+        <a class="level-3" href="#linux">3.3 Linux &#x514D;&#x8D39;&#xFF0C;&#x4F46;&#x7528;&#x6237;&#x65F6;&#x95F4;&#x5E76;&#x4E0D;&#x514D;&#x8D39;</a>
+        <a class="level-4" href="#section-33">&#x5F00;&#x7BB1;&#x5373;&#x7528;&#x4E0E;&#x6298;&#x817E;&#x4E0D;&#x77DB;&#x76FE;</a>
+        <a class="level-4" href="#section-34">&#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x5982;&#x4F55;&#x6539;&#x53D8;&#x65F6;&#x95F4;&#x6210;&#x672C;</a>
+        <a class="level-4" href="#section-35">&#x7EF4;&#x62A4;&#x8D23;&#x4EFB;&#x662F;&#x5426;&#x6E05;&#x6670;</a>
+        <a class="level-3" href="#windows-wsl">3.4 Windows &#x2B; WSL &#x7684;&#x52A1;&#x5B9E;&#x4F4D;&#x7F6E;</a>
+        <a class="level-4" href="#section-36">&#x9002;&#x5408;&#x7684;&#x7528;&#x6237;</a>
+        <a class="level-4" href="#wsl-containers-windows">WSL containers&#xFF1A;&#x628A;&#x5BB9;&#x5668;&#x63A5;&#x5165; Windows &#x5DE5;&#x4F5C;&#x6D41;</a>
+        <a class="level-4" href="#linux-1">&#x66F4;&#x9002;&#x5408;&#x539F;&#x751F; Linux &#x7684;&#x573A;&#x666F;</a>
+        <a class="level-4" href="#section-37">&#x4E0E;&#x5168;&#x6587;&#x7684;&#x5173;&#x7CFB;</a>
+        <a class="level-3" href="#archubuntu-mint">3.5 Arch&#x3001;Ubuntu &#x4E0E; Mint&#xFF1A;&#x9009;&#x62E9;&#x7684;&#x662F;&#x8D23;&#x4EFB;&#x6A21;&#x578B;</a>
+        <a class="level-4" href="#arch">Arch</a>
+        <a class="level-4" href="#ubuntu-3">Ubuntu</a>
+        <a class="level-4" href="#mint">Mint</a>
+        <a class="level-4" href="#section-38">&#x9009;&#x62E9;&#x95EE;&#x9898;</a>
+        <a class="level-3" href="#steamos">3.6 SteamOS &#x7684;&#x4EA7;&#x54C1;&#x6761;&#x4EF6;&#x4E0E;&#x8FB9;&#x754C;</a>
+        <a class="level-4" href="#steamos-1">SteamOS &#x7684;&#x6210;&#x529F;&#x6761;&#x4EF6;</a>
+        <a class="level-4" href="#steamos-2">SteamOS &#x7684;&#x9002;&#x7528;&#x8303;&#x56F4;</a>
+        <a class="level-3" href="#section-39">3.7 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#section-40">4 &#x793E;&#x533A;&#x4E0E;&#x751F;&#x6001;&#xFF1A;&#x6280;&#x672F;&#x6210;&#x7ACB;&#x4E3A;&#x4F55;&#x4ECD;&#x96BE;&#x4EE5;&#x5927;&#x4F17;&#x5316;&#xFF1F;</a>
+        <a class="level-3" href="#section-41">4.1 &#x6279;&#x8BC4;&#x3001;&#x89E3;&#x91CA;&#x4E0E;&#x9009;&#x62E9;</a>
+        <a class="level-4" href="#section-42">&#x6279;&#x8BC4;&#x8981;&#x5BF9;&#x51C6;&#x4E8B;&#x5B9E;</a>
+        <a class="level-4" href="#section-43">&#x533A;&#x5206;&#x5DE5;&#x7A0B;&#x539F;&#x56E0;&#x4E0E;&#x4EA7;&#x54C1;&#x8BC4;&#x4EF7;</a>
+        <a class="level-4" href="#section-44">&#x4E0D;&#x559C;&#x6B22;&#x5C31;&#x6362;</a>
+        <a class="level-3" href="#section-45">4.2 &#x5B88;&#x95E8;&#x4EBA;&#x6587;&#x5316;&#x4E0E;&#x8EAB;&#x4EFD;&#x6807;&#x7B7E;</a>
+        <a class="level-4" href="#section-46">&#x65B0;&#x7528;&#x6237;&#x9762;&#x5BF9;&#x7684;&#x9690;&#x6027;&#x95E8;&#x69DB;</a>
+        <a class="level-4" href="#section-47">&#x6280;&#x672F;&#x8EAB;&#x4EFD;&#x5982;&#x4F55;&#x653E;&#x5927;&#x4E89;&#x8BAE;</a>
+        <a class="level-3" href="#section-48">4.3 &#x7528;&#x6237;&#x89C4;&#x6A21;&#x4E0E;&#x8F6F;&#x4EF6;&#x652F;&#x6301;&#x7684;&#x5FAA;&#x73AF;</a>
+        <a class="level-4" href="#section-49">&#x5FAA;&#x73AF;&#x7ED3;&#x6784;</a>
+        <a class="level-4" href="#section-50">&#x4E3A;&#x4EC0;&#x4E48;&#x670D;&#x52A1;&#x5668;&#x6210;&#x529F;&#x4E0D;&#x80FD;&#x81EA;&#x52A8;&#x8F6C;&#x5316;&#x4E3A;&#x684C;&#x9762;&#x6210;&#x529F;</a>
+        <a class="level-4" href="#section-51">&#x793E;&#x533A;&#x6C1B;&#x56F4;&#x5982;&#x4F55;&#x5F71;&#x54CD;&#x751F;&#x6001;</a>
+        <a class="level-3" href="#section-52">4.4 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#section-53">5 &#x7EC4;&#x7EC7;&#x53EF;&#x6301;&#x7EED;&#x6027;&#xFF1A;&#x8C01;&#x6765;&#x627F;&#x62C5;&#x957F;&#x671F;&#x6210;&#x672C;&#xFF1F;</a>
+        <a class="level-3" href="#section-54">5.1 &#x5FD7;&#x613F;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x7ED3;&#x6784;&#x6027;&#x8FB9;&#x754C;</a>
+        <a class="level-4" href="#section-55">&#x5173;&#x952E;&#x4EBA;&#x7269;&#x4F9D;&#x8D56;</a>
+        <a class="level-4" href="#section-56">&#x53EA;&#x6709;&#x5DE5;&#x7A0B;&#x80FD;&#x529B;&#x8FD8;&#x4E0D;&#x591F;</a>
+        <a class="level-4" href="#section-57">&#x788E;&#x7247;&#x5316;&#x7684;&#x53CC;&#x91CD;&#x6548;&#x679C;</a>
+        <a class="level-4" href="#section-58">&#x8D44;&#x91D1;&#x56F0;&#x5883;&#x4E0E;&#x7A33;&#x5B9A;&#x6295;&#x5165;</a>
+        <a class="level-4" href="#section-59">&#x7528;&#x6237;&#x589E;&#x957F;&#x4E0D;&#x7B49;&#x4E8E;&#x8D21;&#x732E;&#x8005;&#x589E;&#x957F;</a>
+        <a class="level-4" href="#section-60">&#x5982;&#x4F55;&#x8BC4;&#x4EF7;&#x9879;&#x76EE;&#x4E0E;&#x7EF4;&#x62A4;&#x8005;</a>
+        <a class="level-3" href="#section-61">5.2 &#x670D;&#x52A1;&#x5668;&#x5BFC;&#x5411;&#x5E26;&#x6765;&#x7684;&#x4E09;&#x79CD;&#x684C;&#x9762;&#x6469;&#x64E6;</a>
+        <a class="level-4" href="#section-62">&#x66F4;&#x65B0;&#x540E;&#x7684;&#x7EF4;&#x62A4;&#x8D23;&#x4EFB;</a>
+        <a class="level-4" href="#section-63">&#x6392;&#x9519;&#x65F6;&#x7684;&#x8D23;&#x4EFB;&#x5F52;&#x5C5E;</a>
+        <a class="level-4" href="#section-64">&#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x9009;&#x62E9;</a>
+        <a class="level-3" href="#section-65">5.3 &#x5546;&#x4E1A;&#x529B;&#x91CF;&#x80FD;&#x89E3;&#x51B3;&#x4EC0;&#x4E48;&#xFF0C;&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x4EC0;&#x4E48;</a>
+        <a class="level-4" href="#canonical-1">Canonical</a>
+        <a class="level-4" href="#red-hat">Red Hat</a>
+        <a class="level-4" href="#valve">Valve</a>
+        <a class="level-4" href="#section-66">&#x5546;&#x4E1A;&#x4E0E;&#x793E;&#x533A;&#x7684;&#x5408;&#x7406;&#x5173;&#x7CFB;</a>
+        <a class="level-3" href="#nix">5.4 Nix &#x7684;&#x6280;&#x672F;&#x80FD;&#x529B;&#x4E0E;&#x6CBB;&#x7406;&#x95EE;&#x9898;</a>
+        <a class="level-4" href="#section-67">&#x6280;&#x672F;&#x8DEF;&#x7EBF;&#x4E0E;&#x6CBB;&#x7406;&#x95EE;&#x9898;</a>
+        <a class="level-4" href="#flakes">flakes &#x7684;&#x4E8B;&#x5B9E;&#x6807;&#x51C6;&#x50F5;&#x5C40;</a>
+        <a class="level-4" href="#section-68">&#x6CBB;&#x7406;&#x5371;&#x673A;</a>
+        <a class="level-4" href="#section-69">&#x51B3;&#x7B56;&#x6743;&#x4E0E;&#x7EF4;&#x62A4;&#x8D23;&#x4EFB;</a>
+        <a class="level-3" href="#section-70">5.5 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#apt-install-firefox-1">&#x7ED3;&#x8BED;&#xFF1A;&#x56DE;&#x5230; apt install firefox</a>
+        <a class="level-2" href="#a">&#x9644;&#x5F55; A&#xFF1A;&#x53D1;&#x884C;&#x7248;&#x5982;&#x4F55;&#x7BA1;&#x7406;&#x53D8;&#x5316;</a>
+        <a class="level-3" href="#section-71">&#x6BD4;&#x8F83;&#x53D1;&#x884C;&#x7248;&#x53D8;&#x5316;&#x7BA1;&#x7406;&#x7684;&#x516D;&#x4E2A;&#x7EF4;&#x5EA6;</a>
+        <a class="level-3" href="#debian-1">Debian&#xFF1A;&#x5148;&#x5F62;&#x6210;&#x53D1;&#x5E03;&#x57FA;&#x7EBF;&#xFF0C;&#x518D;&#x9650;&#x5236;&#x53D8;&#x5316;</a>
+        <a class="level-3" href="#arch-1">Arch&#xFF1A;&#x6301;&#x7EED;&#x7EF4;&#x62A4;&#x4ED3;&#x5E93;&#x7684;&#x4E00;&#x81F4;&#x72B6;&#x6001;</a>
+        <a class="level-3" href="#gentoo">Gentoo&#xFF1A;&#x6EDA;&#x52A8;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x8F6F;&#x4EF6;&#x5305;&#x7A33;&#x5B9A;&#x5316;</a>
+        <a class="level-3" href="#opensuse-tumbleweed">openSUSE Tumbleweed&#xFF1A;&#x8FDE;&#x7EED;&#x53D1;&#x5E03;&#x7ECF;&#x8FC7;&#x6D4B;&#x8BD5;&#x7684;&#x5FEB;&#x7167;</a>
+        <a class="level-3" href="#section-72">&#x56DB;&#x79CD;&#x8DEF;&#x7EBF;&#x7684;&#x5DEE;&#x522B;</a>
+        <a class="level-2" href="#b">&#x9644;&#x5F55; B&#xFF1A;&#x793E;&#x533A;&#x4E0E;&#x7528;&#x6237;&#x539F;&#x58F0;</a>
+        <a class="level-3" href="#ltt-linux">LTT &#x6311;&#x6218;&#x4E0E; Linux &#x684C;&#x9762;&#x4F53;&#x9A8C;</a>
+        <a class="level-3" href="#wsl-linux">WSL &#x4E0E;&#x539F;&#x751F; Linux &#x7684;&#x9009;&#x62E9;</a>
+        <a class="level-3" href="#section-73">&#x5B88;&#x95E8;&#x4EBA;&#x6587;&#x5316;&#x4E0E;&#x65B0;&#x7528;&#x6237;&#x95E8;&#x69DB;</a>
+        <a class="level-3" href="#snapubuntuarch-mint">Snap&#x3001;Ubuntu&#x3001;Arch &#x4E0E; Mint &#x7684;&#x7528;&#x6237;&#x89C2;&#x70B9;</a>
+        <a class="level-3" href="#nix-1">Nix &#x6CBB;&#x7406;&#x8BC4;&#x8BBA;</a>
+        <a class="level-2" href="#c">&#x9644;&#x5F55; C&#xFF1A;&#x65C1;&#x6CE8;&#x4E0E;&#x8865;&#x5145;&#x6750;&#x6599;</a>
+        <a class="level-3" href="#section-74">&#x7B2C; 1 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+        <a class="level-3" href="#section-75">&#x7B2C; 2 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+        <a class="level-3" href="#section-76">&#x7B2C; 3 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+        <a class="level-3" href="#section-77">&#x7B2C; 4 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+        <a class="level-3" href="#section-78">&#x7B2C; 5 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><h2 id="apt-install-firefox">导读：从 <code>apt install firefox</code> 说起 <a class="heading-anchor" href="#apt-install-firefox" aria-label="链接到本节">#</a></h2>
+<p>在 Ubuntu 桌面上，很多人习惯用这条命令安装 Firefox。</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">sudo apt install firefox
+</code></pre>
+</div>
+<p>Firefox 出现在应用列表里，一切看起来都很熟悉。可如果接着执行 <code>sudo apt remove firefox</code>，浏览器还在。从 Ubuntu 22.04 LTS 起，默认仓库里的 <code>firefox</code> 是个过渡包。安装它时，系统会从 Canonical 的 Snap Store 下载 Mozilla 发布的 Firefox Snap。以后由 snapd 更新浏览器，卸载也要用 Snap 的命令。<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a></p>
+<p>浏览器更新得快，Ubuntu 又要同时维护多个 LTS 版本。让 Mozilla 直接发布 Firefox，可以省去为各个版本分别维护浏览器的工作。我认为 Ubuntu 有理由改变交付方式，也应该在安装前就告诉用户，这条熟悉的命令将把浏览器交给谁管理。</p>
+<p>换成 Flatpak，或者继续提供原生包，打包、更新和处理故障的工作总得有人做。沿着这条安装命令往下看，就能比较不同发行版把哪些工作留给自己、哪些交给上游，以及哪些最后要由用户来做。</p>
+<h2 id="snap">1 入口与技术方案：Snap 解决了什么问题？ <a class="heading-anchor" href="#snap" aria-label="链接到本节">#</a></h2>
+<h3 id="ubuntu-snap">1.1 Ubuntu 到底把什么换成了 Snap <a class="heading-anchor" href="#ubuntu-snap" aria-label="链接到本节">#</a></h3>
+<p>在一台新装的 Ubuntu 上看到 Firefox Snap，还不能判断整个仓库里有多少软件改用了 Snap。先看三个容易弄混的地方。</p>
+<ul>
+<li><strong>默认安装</strong>：指系统安装时预置的软件；</li>
+<li><strong>仓库中存在</strong>：指某个软件在 apt 仓库里有对应条目；</li>
+<li><strong>通过过渡包重定向</strong>：指仓库中的某个包名只是一个过渡包，安装它时实际拉取 Snap 版本，deb 包本身不含软件主体。</li>
+</ul>
+<p>在 Ubuntu 26.04 的 apt 仓库中执行 <code>apt list | grep snap1</code>，匹配到的过渡包只有三组：Firefox、Chromium、Thunderbird，连同它们各自的 locale 子包<a id="fnref:3" href="#fn:2" class="footnote-ref"><sup>2</sup></a>。这些过渡包的版本号都带有 <code>1snap1</code> 标记，软件主体在 Snap 端。除此之外，仓库中的其余包——数以万计的库、工具和开发环境——仍以 deb 形式分发，gcc、python3、nginx、rustc 都是 deb 包<a id="fnref:4" href="#fn:2" class="footnote-ref"><sup>2</sup></a>。</p>
+<table>
+<thead>
+<tr>
+<th>软件</th>
+<th style="text-align: right;">转换时间</th>
+<th>deb 包状态</th>
+<th>Snap 发布者</th>
+<th>主要原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chromium</td>
+<td style="text-align: right;">2019-10</td>
+<td>过渡包</td>
+<td>Canonical</td>
+<td>多分支构建与高频安全更新成本</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td style="text-align: right;">2022-04</td>
+<td>过渡包</td>
+<td>Mozilla</td>
+<td>上游直接发布并统一更新</td>
+</tr>
+<tr>
+<td>Thunderbird</td>
+<td style="text-align: right;">后续转换</td>
+<td>过渡包</td>
+<td>Canonical + Thunderbird</td>
+<td>与 Firefox 类似的维护逻辑</td>
+</tr>
+</tbody>
+</table>
+<h4 id="chromium">Chromium：第一个过渡包 <a class="heading-anchor" href="#chromium" aria-label="链接到本节">#</a></h4>
+<p>Snappy Ubuntu Core 于 2014 年 12 月开放试用，早于 Flatpak 的首个版本 xdg-app 0.1（2015 年 3 月）<a id="fnref:5" href="#fn:3" class="footnote-ref"><sup>3</sup></a>。2016 年，Ubuntu 16.04 LTS 开始支持在桌面和服务器上安装 snap 包<a id="fnref:6" href="#fn:4" class="footnote-ref"><sup>4</sup></a>。通过 <code>apt install</code> 拉取 Snap 版本的过渡包则出现得更晚。</p>
+<p>第一个被转为过渡包的应用是 Chromium。2019 年 10 月 10 日，Canonical 宣布 Ubuntu 19.10 中的 <code>chromium-browser</code> deb 包转为过渡包，安装时实际拉取 Snap 版本<a id="fnref:7" href="#fn:5" class="footnote-ref"><sup>5</sup></a>。当时 Chromium 大约每六周发布一个大版本，中间还会发布修复安全漏洞的小版本；每个新版都要为多个受支持的 Ubuntu 版本和硬件架构分别构建，旧版 Ubuntu 的编译工具链还可能缺少上游使用的新特性。Chromium 项目提供源代码，但没有像 Mozilla 发布 Firefox 那样为 Ubuntu 直接发布 Chromium；Google 发布的则是基于 Chromium 构建的 Chrome，不是本文讨论的 Chromium 包。因此，Canonical 需要自行编译和发布 Chromium Snap。Snap 每个架构只需构建一次，便可推送到所有支持 snapd 的系统<a id="fnref:8" href="#fn:6" class="footnote-ref"><sup>6</sup></a>。</p>
+<p>Debian Stable 提供了这份工作量的对照：Debian 中 Chromium 的安全更新横跨 oldoldstable（120.x）、oldstable（143.x → 148.x）、stable（145.x → 148.x）到 unstable（148.x）四个分支，这些大版本更新的移植一度由同一位维护者 Andres Salomon 承担<a id="fnref:9" href="#fn:7" class="footnote-ref"><sup>7</sup></a>。这个案例只说明单个软件在多分支维护上的具体代价，不能代表 Debian 整体的维护状态。</p>
+<h4 id="firefox-thunderbird">Firefox 与 Thunderbird：上游厂商直接发布 <a class="heading-anchor" href="#firefox-thunderbird" aria-label="链接到本节">#</a></h4>
+<p>2021 年，Mozilla 主动联系 Canonical，希望让 Ubuntu Desktop 默认安装官方的 Firefox Snap。Canonical 的桌面团队、Snap 团队与 Mozilla 开发者一起推进，到 22.04 LTS，新装系统就默认使用了这个版本。<a id="fnref:2" href="#fn:1" class="footnote-ref"><sup>1</sup></a></p>
+<p>Mozilla 可以直接向支持 snapd 的发行版发布安全补丁和新功能，省去等待各个 Ubuntu 版本分别更新 deb 的时间。Snap Store 中带有 Verified 标识的 Firefox 由 Mozilla 发布和维护，Canonical 工程师则协助改进它在 Ubuntu 上的性能与沙箱隔离。</p>
+<p>Thunderbird 的转换逻辑与 Firefox 相似：同样是绕过发行版版本锁定的 Snap 交付，同样由 Snap Store 统一更新。区别在于维护主体：Thunderbird snap 由 Canonical 与 Thunderbird 项目共同维护<a id="fnref:11" href="#fn:8" class="footnote-ref"><sup>8</sup></a>。</p>
+<p>争议主要来自 <code>apt</code> 的行为与用户预期不一致：输入一条 deb 管理器的命令，得到的是另一套分发渠道。这个问题将在 1.4 节展开。</p>
+<h3 id="os">1.2 结构性矛盾：稳定 OS 与快速应用 <a class="heading-anchor" href="#os" aria-label="链接到本节">#</a></h3>
+<h4 id="section">稳定发行版如何维持兼容基线 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h4>
+<p>Ubuntu LTS、Debian Stable、RHEL 与 openSUSE Leap 都需要在一个发行版的生命周期内维持可预测的接口、依赖关系和运行行为。维护者会继续回溯安全补丁与重要错误修复，同时避免常规更新破坏已有应用、配置和服务<a id="fnref:12" href="#fn:9" class="footnote-ref"><sup>9</sup></a>。锁定大版本可以缩小每次更新需要重新验证的范围。</p>
+<p>旧版本本身不会带来稳定性。发行版要通过打包规范、依赖管理、构建和测试，把一组软件整理成能够协同工作的系统；发布后还要控制改动，并持续提供必要修复。附录 A 以 Debian、Arch、Gentoo 和 openSUSE Tumbleweed 为例，比较固定发行版与滚动发行版如何组织这些工作。</p>
+<p>这套工作需要大量人力。维护者除了初次打包，还要处理安全修复、构建失败和依赖变化。软件更新越频繁、内部耦合越复杂，后续维护越重。Debian 的人员规模和维护压力见 2.2 节。</p>
+<h4 id="section-1">浏览器为什么不适合跟随传统发行周期 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h4>
+<p>浏览器是这套稳定承诺下最别扭的存在。Firefox 大约每四周发布一个大版本，Chromium 的发布节奏更快，每个版本除了新功能还包含大量安全修复。浏览器同时是日常使用最频繁的应用和高风险的安全边界：它持续解析来自不可信网络的 HTML、JavaScript、媒体与加密数据，内存破坏类漏洞可被远程利用。</p>
+<p>发行版仍要及时修补浏览器，但浏览器的安全修复经常伴随代码重构、工具链更新和组件升级。维护旧基线时，发行版要筛选需要回溯的修改，解决旧环境中的构建问题，再为每个受支持的分支分别验证。Canonical 在解释 LTS 时也指出，软件缺少持续的安全更新会逐渐带来风险<a id="fnref:13" href="#fn:10" class="footnote-ref"><sup>10</sup></a>。</p>
+<p>ESR（Extended Support Release）是合理的折中。Debian Stable 提供 Firefox ESR，在一个延长支持的主版本上持续接收安全与稳定性修复，减少频繁升级带来的维护压力<a id="fnref:15" href="#fn:11" class="footnote-ref"><sup>11</sup></a>。代价是新功能进入得更慢。作者在 Debian 上使用 Firefox ESR 时发现，它会落后普通 Firefox 多个大版本，因而缺少 WebGPU 与部分编码器等较新的能力（作者体验，截至 2026-08）。</p>
+<p>2012 年 10 月，Mozilla 发现 Firefox 16 存在漏洞后移除了受影响的安装包，次日发布 16.0.1 并向用户推送自动更新<a id="fnref:17" href="#fn:12" class="footnote-ref"><sup>12</sup></a>。浏览器需要按数周节奏交付整个应用，系统基座却希望多年维持可预测的接口和依赖。发行版可以为普通系统库维护固定基线并回溯必要补丁，面对高速迭代、内部高度耦合的浏览器时，这种做法往往会形成一条长期下游分支。</p>
+<h4 id="section-2">四种可能方案及其成本 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h4>
+<p>面对&quot;稳定基座&quot;与&quot;快速应用&quot;的矛盾，发行版有四种选择，每种都有代价：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>优点</th>
+<th>主要成本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>为每个稳定版回溯补丁</td>
+<td>保持 ABI、依赖和行为边界稳定</td>
+<td>大量维护人力，容易形成关键人物依赖</td>
+</tr>
+<tr>
+<td>在发行版仓库持续推送新版</td>
+<td>用户获得最新功能</td>
+<td>需要处理依赖变化、ABI/API transition 与回归测试，扩大系统变化面</td>
+</tr>
+<tr>
+<td>默认接入上游第三方源</td>
+<td>上游直接发布</td>
+<td>超出发行版完整测试和支持边界</td>
+</tr>
+<tr>
+<td>使用独立应用格式</td>
+<td>应用与系统依赖解耦</td>
+<td>引入沙箱、商店、磁盘占用和治理问题</td>
+</tr>
+</tbody>
+</table>
+<p>Ubuntu 选择了第四种（Snap）。继续为每个 LTS 回溯浏览器补丁需要长期投入维护人力，直接在仓库中推送新版又会增加依赖变化和回归测试。接入 Mozilla 官方 apt 源可以把发布工作交给上游，但这些软件包不在 Ubuntu 的完整测试边界内。Ubuntu 默认也不开启第三方软件源<a id="fnref:18" href="#fn:13" class="footnote-ref"><sup>13</sup></a>。Snap 将浏览器及其大部分应用依赖与系统基座分开，Mozilla 可以按自己的节奏发布，Canonical 不必在系统仓库中反复适配多个 LTS 基线。</p>
+<p>deb/RPM 负责把大量组件组织成一套经过集成验证的系统。Snap 和 Flatpak 则让更新更快的应用脱离系统的依赖和发布节奏。这种解耦减少了系统仓库的维护压力，同时引入了沙箱集成、更新控制、商店治理和磁盘占用等问题。</p>
+<p>Ubuntu 保留了同时服务服务器和桌面的稳定 base，再用 Snap 等独立渠道补足桌面应用的更新速度。软件交付因此不再全部经过同一条渠道，但 Canonical 也不用维护两套不同节奏的完整系统。</p>
+<p>RHEL 在同一矛盾下做了同向选择，只是技术路线是 Flatpak：RHEL 10.0 已将 Firefox/Thunderbird 的 RPM 包标记为 deprecated，RHEL 10.2 起在 GNOME 安装场景默认预装 Flatpak 版本，同时在 RHEL 10 生命周期内继续在 AppStream 提供 RPM 包作为离线与策略受限场景的后备<a id="fnref:19" href="#fn:14" class="footnote-ref"><sup>14</sup></a>。Red Hat 的动机与 Canonical 一致，即操作系统提供稳定平台，快速迭代的应用独立分发。两家公司选择了不同的应用格式，但都在拆分系统与应用的更新周期<a id="fnref:20" href="#fn:14" class="footnote-ref"><sup>14</sup></a>。</p>
+<h4 id="section-3">为什么滚动发行版不是普遍答案 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h4>
+<p>滚动发行版也要处理共享库 ABI、配置格式和默认行为的变化，只是它持续验证并交付新的系统状态，不长期维护固定的发布基线。用户需要及时关注重要公告、处理配置更新，并避免不受支持的部分升级。发行版减少了向旧基线反复回溯补丁的工作，用户则要更快适应系统变化。</p>
+<p>这类模式适合希望持续使用新软件的个人用户。服务器和企业环境通常还需要固定支持周期、认证环境、可预测行为和 SLA，因此更常采用 Stable 或 LTS。两种模式都需要发行工程，区别在于更新频率、验证窗口和成本分配。附录 A 展开比较 Arch、Gentoo 与 openSUSE Tumbleweed 的做法。</p>
+<h4 id="section-4">浏览器之外 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h4>
+<p>锁版本的影响不止于浏览器。对桌面用户常用的开发工具，Ubuntu 官方源的版本经常落后上游：Neovim 在 Ubuntu 24.04 LTS 官方源停留在 0.9.x，而最新稳定版已是 0.12.x 以上；PrismLauncher 在官方源锁在 10.0.5、Snap 版已更新到 11.x；fish、fastfetch、ripgrep 等工具同样存在版本落差<a id="fnref:25" href="#fn:15" class="footnote-ref"><sup>15</sup></a>。</p>
+<p>系统仓库优先维持经过整体测试的发布基线，因此这类版本差距符合它的维护目标。需要新版本的用户可以选用 PPA、Flatpak、Snap 或 Homebrew，也可以使用滚动发行版。各渠道承担的依赖管理和维护责任不同，选择取决于具体软件和使用场景。</p>
+<h3 id="snap-flatpak">1.3 Snap 与 Flatpak：不同场景的技术取舍 <a class="heading-anchor" href="#snap-flatpak" aria-label="链接到本节">#</a></h3>
+<h4 id="section-5">应用、系统组件与系统镜像 <a class="heading-anchor" href="#section-5" aria-label="链接到本节">#</a></h4>
+<p>Firefox 可以有自己的更新周期，Ubuntu 仍然需要维护它下面的系统。比较软件分发方案时，先看它负责哪一部分。</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>典型方案</th>
+<th>主要职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发行版组件</td>
+<td>deb、RPM</td>
+<td>组成经过集成测试的系统基座</td>
+</tr>
+<tr>
+<td>独立应用</td>
+<td>Snap、Flatpak、AppImage、如意玲珑</td>
+<td>让应用拥有独立依赖和更新周期</td>
+</tr>
+<tr>
+<td>系统镜像</td>
+<td>bootc、rpm-ostree、Ubuntu Core</td>
+<td>提供原子更新、回滚和可复现状态</td>
+</tr>
+</tbody>
+</table>
+<p>一种方案也可能承担多项工作。Snap 既能交付单个应用，也能组成 Ubuntu Core 的系统组件。Nix 则可以管理包、开发环境和整个操作系统的配置，第 5 部分会再谈它的维护与治理。</p>
+<p>单看应用分发，Snap 和 Flatpak 都能打包桌面 GUI 应用。Flatpak 主要面向这类软件，Snap 还面向 CLI、IDE、后台服务和 IoT。比较浏览器时，首先要看两者怎样处理浏览器自带的沙箱。换成开发工具，能否访问宿主机上的工具链又会影响选择。</p>
+<h4 id="section-6">浏览器沙箱与嵌套隔离 <a class="heading-anchor" href="#section-6" aria-label="链接到本节">#</a></h4>
+<p>现代浏览器内部自带一套多进程沙箱：渲染进程、GPU 进程、插件彼此隔离，防止恶意网页突破浏览器触及系统。这套机制依赖 Linux 的非特权 user namespace，普通用户无需 root 即可创建隔离命名空间来运行渲染器。Chromium 的沙箱实现中，namespace sandbox 明确基于 unprivileged user namespaces，自 M-43 起在内核支持时取代 setuid sandbox<a id="fnref:26" href="#fn:16" class="footnote-ref"><sup>16</sup></a>。这是浏览器安全模型的基础。</p>
+<p>Flatpak 的沙箱基于 Bubblewrap，其 seccomp 过滤器阻止沙箱内应用创建子命名空间。官方文档明确写道 &quot;Flatpak won't allow spawning sub-namespaces in the sandbox&quot;<a id="fnref:27" href="#fn:17" class="footnote-ref"><sup>17</sup></a>。这项限制本身是合理的逃逸防护，但它与浏览器的内置沙箱直接冲突。浏览器在 Flatpak 里只能二选一：关闭自己的内置沙箱、把安全外包给 Flatpak 外层；或依赖 zypak 这类兼容层绕过限制。两条路径都不完整。</p>
+<p>这个冲突的现状不是&quot;已经解决&quot;。2025 年 Linux Application Summit 上，Flatpak 核心开发者 Sebastian Wick 的表述是：嵌套沙箱在 Flatpak 中 &quot;does not work&quot;，相关问题 &quot;存在已久，但没人知道如何解决&quot;<a id="fnref:28" href="#fn:18" class="footnote-ref"><sup>18</sup></a>。他同时指出 Flatpak 核心开发放缓，大量功能合并请求无人认领 review<a id="fnref:29" href="#fn:18" class="footnote-ref"><sup>18</sup></a>。这些是 Wick 的会议发言，不是本文作者的定论；但作为 Flatpak 核心开发者的一手陈述，它说明嵌套隔离问题至今没有公认解法。Wick 在同一演讲中也提到，user namespace 如今已是 &quot;well-tested and a much-used interface&quot;，Flatpak 用 seccomp 阻止其暴露的限制有历史原因，如今已没有太多反对的理由<a id="fnref:30" href="#fn:18" class="footnote-ref"><sup>18</sup></a>。也就是说，这个冲突存在缓和空间，但截至 2026-08 尚未在 Flatpak 中落地。</p>
+<p>Snap 在这条路径上的取舍不同。它的 strict confinement 用 AppArmor、seccomp 与 namespaces 提供外层边界<a id="fnref:31" href="#fn:19" class="footnote-ref"><sup>19</sup></a>，但官方对其定位是&quot;叠加在浏览器自身沙箱之上的额外安全层&quot;：Canonical 解释 Firefox snap 时写道，浏览器沙箱保护浏览器免受恶意代码侵害，snap confinement 则保护用户免受浏览器越界行为侵害<a id="fnref:32" href="#fn:20" class="footnote-ref"><sup>20</sup></a>。浏览器内部的多进程隔离与 user namespace 沙箱因此得以保留。这是 Canonical 与 Mozilla 协作的结果，也是 Canonical 选择 Snap 而非 Flatpak 分发 Firefox 与 Chromium 的核心技术原因。</p>
+<h4 id="nvidia">Nvidia 闭源驱动 <a class="heading-anchor" href="#nvidia" aria-label="链接到本节">#</a></h4>
+<p>对 Nvidia 显卡用户，图形驱动的处理是两者另一个差异点。</p>
+<p>Flatpak 使用与宿主 Nvidia 驱动版本匹配的 <code>org.freedesktop.Platform.GL.nvidia</code> 系列扩展，通常会在相关应用或运行时安装、更新时自动选择并下载。系统因而同时保留宿主和 Flatpak 扩展中的两份 Nvidia 用户态驱动；宿主驱动更新后，若匹配的扩展尚未安装，应用仍可能遇到图形初始化失败等问题<a id="fnref:33" href="#fn:21" class="footnote-ref"><sup>21</sup></a>。</p>
+<p>Snap 通过 gpu-2404 content interface 把宿主机的 GPU 用户态驱动库直通给 snap 容器<a id="fnref:34" href="#fn:22" class="footnote-ref"><sup>22</sup></a>。作者在本机实测：lsof 显示 Snap 应用运行时直接读取 /var/lib/snapd/hostfs/.../libnvidia-glcore.so.595.71.05，路径中的版本号即宿主当前驱动版本；宿主机驱动从 595.58 升到 595.71 后，Snap 应用无需 refresh 即用上新驱动。</p>
+<p>两者在解耦与同步之间作了不同取舍：Flatpak 单独分发驱动运行时，需要留意它与宿主驱动的版本是否一致；Snap 直接使用宿主驱动，减少了两份驱动之间的同步工作，但隔离边界也更依赖宿主驱动的状态。</p>
+<h4 id="flatpak">Flatpak 的强项 <a class="heading-anchor" href="#flatpak" aria-label="链接到本节">#</a></h4>
+<p>Flatpak 为桌面 GUI 应用设计，在这一领域更成熟：</p>
+<ul>
+<li><strong>桌面 GUI 生态</strong>：Flathub 上桌面应用的数量与更新活跃度高于 Snap Store（截至 2026-08 的对比）<a id="fnref:35" href="#fn:23" class="footnote-ref"><sup>23</sup></a>；</li>
+<li><strong>Wayland 原生支持</strong>：Flatpak 应用通常以原生 Wayland 运行，而 VSCode 的 Snap 仍走 XWayland<a id="fnref:36" href="#fn:24" class="footnote-ref"><sup>24</sup></a>；</li>
+<li><strong>Portal 集成</strong>：文件选择器、屏幕截图、打印等桌面 Portal 功能的支持更完善；</li>
+<li><strong>权限管理</strong>：Flatseal 提供图形化界面精细调整每个应用的沙箱权限；Snap 的 snap connections 也能做到，但操作不如 Flatseal 直观。</li>
+</ul>
+<h4 id="snap-1">Snap 的强项 <a class="heading-anchor" href="#snap-1" aria-label="链接到本节">#</a></h4>
+<p>Snap 的定位更广，覆盖 Flatpak 之外的多类场景：</p>
+<ul>
+<li><strong>classic 模式对 CLI 与 IDE 友好</strong>：classic snap 不设沙箱隔离，直接访问宿主的 home、usr、编译器、Git、SSH agent。JetBrains 全系 IDE 与 VSCode 有厂商官方维护的 Snap（classic），安装后体验接近原生。Flatpak 要做同样的事，需要 flatpak-spawn --host、额外的 SDK Extension、逐个环境变量。</li>
+<li><strong>后台服务与系统组件</strong>：Docker、LXD、MicroK8s 等后台服务可通过 Snap 打包部署。例如，MicroK8s 官方给出的 Linux 安装命令就是 <code>sudo snap install microk8s --classic</code>，安装后相关服务会持续运行并在重启后自动启动<a id="fnref:37" href="#fn:25" class="footnote-ref"><sup>25</sup></a>；Flatpak 无法管理守护进程、不能定义 systemd 服务。</li>
+<li><strong>Flatpak 对 CLI 的天然短板</strong>：Flatpak 应用通常要用完整的应用 ID 启动，例如 <code>flatpak run io.github.sxyazi.yazi</code>；对需要在 shell 中频繁调用的 CLI 工具，这比直接输入 <code>yazi</code> 多了一层。用户可以设置 alias 或包装脚本缩短命令，但这仍是需要逐个配置的 workaround，没有让应用获得原生包那样直接的命令入口。Flatpak 官方文档也明确写道 &quot;Flatpak is best suited for desktop applications. While command-line applications also work, Flatpak may not be suitable in some cases&quot;，随后列举：无法运行 SUID 二进制（su、sudo、pkexec）、不能访问宿主 /proc、seccomp 拦截子命名空间创建、内核模块与驱动不适用、不导出 udev 规则与 systemd 服务<a id="fnref:38" href="#fn:26" class="footnote-ref"><sup>26</sup></a>。</li>
+</ul>
+<p>对 IDE 这条路径，Universal Blue 的 Bluefin DX 变体给出了明确立场：官方文档推荐用 <code>ujust jetbrains-toolbox</code> 安装 JetBrains Toolbox，由它统一管理 JetBrains 全系 IDE 的安装、移除与升级，整个过程在用户主目录内完成、独立于系统镜像；文档同时明确写道，不推荐使用 JetBrains 的 Flatpak 包（&quot;We do not recommend using the JetBrains flatpaks&quot;）<a id="fnref:39" href="#fn:27" class="footnote-ref"><sup>27</sup></a>。VS Code 则被 Bluefin DX 直接作为镜像默认 IDE 预装<a id="fnref:40" href="#fn:27" class="footnote-ref"><sup>27</sup></a>。IDE 的部分工作流需要直接访问宿主文件系统、工具链和凭据，这会增加沙箱配置的复杂度。</p>
+<p>在服务器管理层，Canonical 还把 Livepatch 与 Landscape 放进 Ubuntu Pro 的支持体系。Livepatch 客户端本身以 <code>canonical-livepatch</code> Snap 发布，负责在维护窗口之外处理可实时修补的 High 与 Critical 级内核漏洞；Landscape 则可集中监控和管理 Ubuntu 主机、更新以及 Snap。Livepatch 延后的是非计划重启，并不取代常规内核更新和后续维护窗口中的重启。这组产品安排说明，Canonical 把 Snap 应用、内核补丁和集中管理放进了同一套交付与支持体系。Snap 在这里承担的已经不只是桌面应用分发<a id="fnref:42" href="#fn:28" class="footnote-ref"><sup>28</sup></a>。</p>
+<h4 id="section-7">场景化对比 <a class="heading-anchor" href="#section-7" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>更值得优先考虑的方向</th>
+<th>判断依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通桌面 GUI 应用</td>
+<td>Flatpak</td>
+<td>桌面生态、Portal、权限工具更成熟</td>
+</tr>
+<tr>
+<td>浏览器</td>
+<td>逐包评估</td>
+<td>内外沙箱、上游维护者与发行版集成方式</td>
+</tr>
+<tr>
+<td>IDE 与宿主开发环境深度交互</td>
+<td>Snap classic 或原生包</td>
+<td>需要访问宿主工具链与凭据</td>
+</tr>
+<tr>
+<td>CLI 工具</td>
+<td>原生包、Homebrew 或 Snap</td>
+<td>命令入口与宿主文件访问更自然</td>
+</tr>
+<tr>
+<td>后台服务与 IoT</td>
+<td>Snap</td>
+<td>服务生命周期与系统组件能力</td>
+</tr>
+<tr>
+<td>不可变 Fedora 桌面</td>
+<td>Flatpak + 容器化开发环境</td>
+<td>与系统镜像分层方式一致</td>
+</tr>
+</tbody>
+</table>
+<h3 id="snap-2">1.4 Snap 实现中的具体问题 <a class="heading-anchor" href="#snap-2" aria-label="链接到本节">#</a></h3>
+<p>解耦解释了 Snap 的技术定位，具体实现还要看安装透明度、治理结构、桌面体验和网络可达性。</p>
+<h4 id="apt"><code>apt</code> 静默重定向 <a class="heading-anchor" href="#apt" aria-label="链接到本节">#</a></h4>
+<p><code>apt</code> 是 Debian/Ubuntu 生态的基础工具，用户在终端输入 <code>apt install firefox</code> 时，预期是安装一个 deb 包——这是十几年的默认行为。实际发生的是系统静默安装 Snap 版 Firefox，安装前没有任何提示说明这一点，snap 的调用要等到安装过程中才出现。卸载行为同样不一致：<code>apt remove firefox</code> 不会真正移除 Firefox 的 Snap，因为 Snap 由 snapd 独立管理，不在 apt 追踪的 deb 包清单里。用户看到浏览器仍在系统中，自然对系统的行为产生困惑。</p>
+<p>不过，这个问题主要出现在用户主动管理软件时。Ubuntu 桌面版安装完成后自带 Firefox，对从不接触命令行的新手，浏览器在 Dock 上、点击即用，底层是 deb 还是 snap 并不重要；用户开始用 <code>apt</code> 安装或卸载 Firefox 后，实际行为才会与原有预期脱节。&quot;默认开箱即用&quot;的产品取向与&quot;用户可预期地管理系统&quot;之间存在冲突。</p>
+<p>过渡包完全可以在 postinst 脚本中给出明确提示，说明此命令实际安装的是 Snap 版本，以及如何改回传统 deb。Canonical 没有这样做。将 Firefox 改为 Snap 有工程上的理由，但过渡包在透明度和沟通上仍有改进空间。</p>
+<h4 id="snap-store">Snap Store 闭源与中心化 <a class="heading-anchor" href="#snap-store" aria-label="链接到本节">#</a></h4>
+<p>另一个争议点是 Snap Store 本身。snapd 客户端是开源的，源码托管在 GitHub 的 canonical/snapd 仓库，社区可以审计与贡献<a id="fnref:43" href="#fn:29" class="footnote-ref"><sup>29</sup></a>。但 Snap Store 的服务端由 Canonical 独家运营，服务端代码未开放；用户无法审计后端做了什么，也无法运行一个完全独立于 Canonical 的 Snap Store。</p>
+<p>&quot;用户无法自建 Snap Store 镜像&quot;这一说法不够准确。Canonical 提供 Snap Store Proxy（现更名 Enterprise Store），企业可以在内网自托管一个缓存代理，支持本地缓存、版本锁定和离线模式<a id="fnref:44" href="#fn:30" class="footnote-ref"><sup>30</sup></a>。但它是一个本地边缘代理，仍依赖 Canonical 的签名与公共 Store 基础设施，离线模式也需要先从联网系统导出再导入。Store 后端依旧闭源，无法 fork 一个替代 Store，平台依赖仍集中在 Canonical 一家；代理解决的是分发与缓存，不改变这个治理结构。</p>
+<p>中心化本身也有功能上的理由。Canonical 对 Snap Store 上架的软件有审核机制，从降低恶意软件风险的角度看，比任何人都能上传 PKGBUILD 的 AUR 更有保障<a id="fnref:45" href="#fn:31" class="footnote-ref"><sup>31</sup></a>。Canonical 也依靠这套中心化结构持续投入分发基础设施。不过，审核和持续投入带来的收益没有消除控制权集中的问题。</p>
+<h4 id="section-8">桌面体验短板 <a class="heading-anchor" href="#section-8" aria-label="链接到本节">#</a></h4>
+<p>与专注桌面 GUI 的 Flatpak 相比，Snap 在桌面端有具体不足，需区分历史问题与现状：</p>
+<ul>
+<li>VSCode Snap 至今只支持 XWayland，无法原生运行在 Wayland 下，输入法体验受影响（见 1.3 节）；</li>
+<li>第三方主题适配不如 Flatpak 流畅，非 Yaru 主题下的外观一致性依赖 gtk-common-themes；</li>
+<li>部分 Intel Xe 核显的 VA-API 硬件解码存在问题<a id="fnref:46" href="#fn:32" class="footnote-ref"><sup>32</sup></a>；</li>
+<li>Firefox Snap 早期问题：插件兼容、中文输入法调用、冷启动速度、主题异常、密码管理器集成，多数已随版本迭代改善，但早期体验留下的负面印象是真实的<a id="fnref:47" href="#fn:33" class="footnote-ref"><sup>33</sup></a>。</li>
+</ul>
+<p>这些是体验层面的短板，多数可修复，属于可改善的实现问题；同时它们是用户日常感知最直接的部分。</p>
+<h4 id="section-9">国内网络与可达性 <a class="heading-anchor" href="#section-9" aria-label="链接到本节">#</a></h4>
+<p>对国内用户，Snap 有一个额外的障碍：网络。据社区反馈，Snap Store 走 Cloudflare CDN 但未启用中国大陆节点，下载速度不稳定；Flatpak 可以通过中科大等镜像站换源，Snap 无法以同样方式换源<a id="fnref:48" href="#fn:34" class="footnote-ref"><sup>34</sup></a>。移动宽带用户受影响更大，代理能缓解但本身是门槛。中心化基础设施放大了地区网络差异：单一分发源让网络质量直接决定可用性。</p>
+<p>中文社区也在开发类似方案。deepin 自研的如意玲珑（Linyaps）同样通过沙箱隔离应用与系统，项目已于 2024 年捐赠给开放原子开源基金会<a id="fnref:49" href="#fn:35" class="footnote-ref"><sup>35</sup></a>。它目前主要在 deepin 与国产系统生态内流转，跨发行版的实际体验尚缺第三方验证；详细对照见 2.4 节。</p>
+<h3 id="section-10">1.5 小结 <a class="heading-anchor" href="#section-10" aria-label="链接到本节">#</a></h3>
+<p>把浏览器从 LTS 的发布周期中分离出来，可以让上游直接更新，也可以让发行版减少重复构建。用户面对的是另一组具体变化：安装命令会转向哪个商店，下载是否顺畅，应用能否和原来的桌面配合。其他发行版也得维护更新频繁的应用，它们把这些工作交给了谁？</p>
+<hr />
+<h2 id="canonical">2 行业对照：Canonical 之外的解耦路线 <a class="heading-anchor" href="#canonical" aria-label="链接到本节">#</a></h2>
+<p>Red Hat、Universal Blue 和 deepin 都尝试把应用更新与系统更新分开。先看它们各自怎么做，再和 Ubuntu 比较。中间也值得看看 Debian 的维护者：有人继续为多个稳定分支提供浏览器包，他们做的工作恰好解释了其他项目为什么想换一种交付方式。</p>
+<h3 id="rhel">2.1 RHEL：六年渐进式解耦 <a class="heading-anchor" href="#rhel" aria-label="链接到本节">#</a></h3>
+<p>Red Hat 把 Firefox、Thunderbird 的默认交付从 RPM 改为 Flatpak，这个过程从 2020 年持续到 2026 年，并非一步到位。按时间顺序排列，可以看到一条渐进预览、默认切换、后备并存的路径。</p>
+<h4 id="section-11">时间线 <a class="heading-anchor" href="#section-11" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020（RHEL 8.2）</td>
+<td>引入 Red Hat Flatpak Runtime，与 RHEL 生命周期对齐，承诺 10 年安全更新<a id="fnref:52" href="#fn:36" class="footnote-ref"><sup>36</sup></a></td>
+</tr>
+<tr>
+<td>2021（RHEL 8.3.1）</td>
+<td>Firefox、Thunderbird、GIMP、Inkscape 首批 Flatpak 镜像上线 Red Hat Container Catalog<a id="fnref:53" href="#fn:37" class="footnote-ref"><sup>37</sup></a></td>
+</tr>
+<tr>
+<td>2023（RHEL 9.2）</td>
+<td>LibreOffice 的 RPM 包标记 deprecated，改由 Flatpak 交付<a id="fnref:54" href="#fn:38" class="footnote-ref"><sup>38</sup></a></td>
+</tr>
+<tr>
+<td>2025（RHEL 10.0）</td>
+<td>Firefox、Thunderbird 的 RPM 包正式 deprecated<a id="fnref:21" href="#fn:14" class="footnote-ref"><sup>14</sup></a></td>
+</tr>
+<tr>
+<td>2026（RHEL 10.2）</td>
+<td>Anaconda 安装器默认预装 Flatpak 版，RPM 保留 AppStream 作后备，Kickstart 可回退<a id="fnref:22" href="#fn:14" class="footnote-ref"><sup>14</sup></a></td>
+</tr>
+</tbody>
+</table>
+<p>早在 RHEL 10.0 Beta 阶段，发行说明就已写明 Firefox、Thunderbird 在 RHEL 10 中仅以 Flatpak 提供<a id="fnref:56" href="#fn:39" class="footnote-ref"><sup>39</sup></a>。RHEL 10.0 正式将 Firefox 和 Thunderbird 的 RPM 标记为 deprecated，10.2 再把 Flatpak 设为默认。Red Hat 官方博客的表述是 &quot;RPMs for Firefox and Thunderbird were deprecated in RHEL 10.0, and RHEL 10.2 completes the transition by making Flatpaks the default&quot;<a id="fnref:23" href="#fn:14" class="footnote-ref"><sup>14</sup></a>。</p>
+<h4 id="red-hat-flatpak">Red Hat 选择 Flatpak 的原因 <a class="heading-anchor" href="#red-hat-flatpak" aria-label="链接到本节">#</a></h4>
+<p>Red Hat 给出的理由与 Ubuntu 选择 Snap 的理由相似：桌面应用有独立的依赖与更新周期，跟随发行版的 minor release 节奏会拖慢安全修复与功能更新；把桌面应用从系统基座解耦后，发行版工程师可以把资源集中到 Wayland、HDR、颜色管理等底层平台方向。Red Hat 停止随 RHEL 提供 LibreOffice 的 RPM 包，改由 Flatpak 交付，就是这种分工的一个例子。Red Hat Display Systems 团队在 Fedora 邮件列表里说明，团队将工程重点放在&quot;Wayland、HDR 等 Workstation 用户需要的方向&quot;<a id="fnref:55" href="#fn:38" class="footnote-ref"><sup>38</sup></a>。</p>
+<p>同时，Red Hat 保留了受控的后备路径。企业离线环境、合规策略、长期支持仍要求 RPM 可用：整个 RHEL 10 生命周期内，Firefox、Thunderbird 的 RPM 包都保留在 AppStream，Kickstart 可以强制回退<a id="fnref:24" href="#fn:14" class="footnote-ref"><sup>14</sup></a>。这是&quot;默认解耦&quot;，并非&quot;废除 RPM&quot;。</p>
+<h4 id="ubuntu">与 Ubuntu 的差异 <a class="heading-anchor" href="#ubuntu" aria-label="链接到本节">#</a></h4>
+<p>同样是解耦，Red Hat 的路径比 Ubuntu 更渐进：从 runtime 铺垫（8.2），到首批镜像（8.3.1），到单个应用 deprecation（9.2 的 LibreOffice），再到浏览器 deprecation（10.0）与默认切换（10.2），每一步都有明确的发行说明与回退路径。Ubuntu 的过渡包机制更直接：<code>apt install firefox</code> 静默拉 Snap，沟通与用户选择都更弱（1.4 节已述）。两条技术路线不同，面对的是同一个发布节奏矛盾。</p>
+<p>下游 Rocky Linux 10.2 同步跟进，把 Firefox、Thunderbird 的默认交付也改为 Flatpak，同样保留 AppStream 的 RPM 与 Kickstart 回退<a id="fnref:57" href="#fn:40" class="footnote-ref"><sup>40</sup></a>。</p>
+<h3 id="debian">2.2 Debian：传统打包模式的人力成本 <a class="heading-anchor" href="#debian" aria-label="链接到本节">#</a></h3>
+<p>在 Debian，许多软件仍由志愿者按发行版的节奏打包、测试和回溯安全修复。浏览器每出一个新版，维护者就得考虑它还能否在几个不同年代的系统上构建和运行。保留原生包要花多少人力，在这里看得尤其清楚。</p>
+<h4 id="section-12">维护规模与贡献者变化 <a class="heading-anchor" href="#section-12" aria-label="链接到本节">#</a></h4>
+<p>Debian 13（trixie）共有 69,830 个软件包<a id="fnref:58" href="#fn:41" class="footnote-ref"><sup>41</sup></a>。正式开发者（Debian Developer）的人数长期稳定在约一千人：2012 年 948 人，2025 年 1030 人<a id="fnref:59" href="#fn:42" class="footnote-ref"><sup>42</sup></a>。人数没有下降，维护对象却在持续增长。</p>
+<p>2020 年 DebConf20 上，时任 Debian 项目领导人 Jonathan Carter 给出的数字更直接：项目账上有超过 90 万美元，但只有约 975 名上传开发者和 223 名维护者，要维护超过 6.1 万个 amd64 二进制包；他估算要达到目标又不增加现有开发者的压力，大约需要三倍人力<a id="fnref:60" href="#fn:43" class="footnote-ref"><sup>43</sup></a>。Carter 的结论很明确：Debian 缺的主要是人手，不是账面资金。</p>
+<h4 id="section-13">浏览器与多稳定分支维护 <a class="heading-anchor" href="#section-13" aria-label="链接到本节">#</a></h4>
+<p>Debian 的 Chromium 维护覆盖了前文列出的 oldoldstable、oldstable、stable 和 unstable 四个分支，这些大版本更新的移植一度由同一名维护者 Andres Salomon 承担<a id="fnref:10" href="#fn:7" class="footnote-ref"><sup>7</sup></a>。其中，旧稳定分支需要处理旧基线上的构建、依赖与验证问题，体现了 1.2 节所述的维护成本。Firefox 在 Debian 稳定版中以 ESR 形式提供<a id="fnref:16" href="#fn:11" class="footnote-ref"><sup>11</sup></a>，可以减少频繁更换主版本的工作，代价是新功能进入得较慢。</p>
+<h4 id="section-14">关键团队、审核和新人入口 <a class="heading-anchor" href="#section-14" aria-label="链接到本节">#</a></h4>
+<p>人力缺口不只在单个软件包，也在关键基础设施团队。管理 Debian 软件仓库超过 20 年的 FTPmaster 团队，2025 年 10 月宣布解散，职责拆分为两个新团队，以便各自聚焦、降低新成员加入的门槛；长期人手不足是这一调整的背景<a id="fnref:62" href="#fn:44" class="footnote-ref"><sup>44</sup></a>。2026 年初，处理 GDPR 相关事务的数据保护团队，三名委派成员全部退出，委派被正式撤销<a id="fnref:63" href="#fn:45" class="footnote-ref"><sup>45</sup></a>。</p>
+<p>审核也会占用有限的人力。NEW 队列负责新包进入归档前的合规审核，个别包会滞留数月，有开发者提交后长时间等待审核、工作因此搁置<a id="fnref:64" href="#fn:46" class="footnote-ref"><sup>46</sup></a>。不过，这些个案不能代表整个队列：2025 年 3 月的公开分析显示，NEW 队列的中位处理时间不到 48 小时，只有约 2% 的包会滞留数月以上<a id="fnref:65" href="#fn:46" class="footnote-ref"><sup>46</sup></a>。长时间等待主要集中在少数复杂或需要改名的包上，队列整体吞吐正常。</p>
+<p>针对维护者悄然流失的问题，现任 DPL Andreas Tille 在 2026 年初提出用六阶段自动化 MIA（Missing in Action）流程追踪长期不活跃的维护者<a id="fnref:66" href="#fn:47" class="footnote-ref"><sup>47</sup></a>。目前这是提案层面的机制设计，尚未落地。</p>
+<p>小众方向的结局更直接：Debian GNU/kFreeBSD 端口（FreeBSD 内核 + GNU 用户态）在 Debian 8 之后不再进入正式发布，2023 年 7 月因缺乏维护者与兴趣正式终止开发<a id="fnref:67" href="#fn:48" class="footnote-ref"><sup>48</sup></a>。缺乏维护者的小众方向不会自动存活。</p>
+<h4 id="section-15">钱为何不是唯一答案 <a class="heading-anchor" href="#section-15" aria-label="链接到本节">#</a></h4>
+<p>账上资金不能直接转化为愿意长期维护项目的人力。Debian 有 90 万美元，Carter 仍把主要问题归结为缺人<a id="fnref:61" href="#fn:43" class="footnote-ref"><sup>43</sup></a>。2006 年的 Dunc-Tank 实验提供了一个历史对照：有人尝试向 etch 的发布经理支付报酬来推进发布，在社区引发争议，说明在志愿者协作中引入付费安排可能改变协作关系<a id="fnref:68" href="#fn:49" class="footnote-ref"><sup>49</sup></a>。</p>
+<p>维护者精力耗尽也并非 Debian 独有。2022 年 Linux 存储与文件系统峰会上，Josef Bacik 主持的关于维护者压力的讨论，标题就是 &quot;Maintainers don't scale&quot;<a id="fnref:69" href="#fn:50" class="footnote-ref"><sup>50</sup></a>。2023 年，内核社区宣布把长期支持（LTS）周期从六年缩短到约两年，理由是旧的 LTS 内核实际使用率低、维护成本高<a id="fnref:70" href="#fn:51" class="footnote-ref"><sup>51</sup></a>。2026 年 1 月，内核项目合并了一份连续性文档，规定当顶层仓库维护者无法继续工作时如何在一周内启动继任讨论，回应的正是核心维护者单点故障的风险<a id="fnref:71" href="#fn:52" class="footnote-ref"><sup>52</sup></a>。</p>
+<h3 id="universal-blue">2.3 Universal Blue：不可变桌面的另一种实现 <a class="heading-anchor" href="#universal-blue" aria-label="链接到本节">#</a></h3>
+<p>Universal Blue（简称 ublue）是一组基于 Fedora Atomic Desktops 构建、持续交付的系统镜像，并非独立的发行版<a id="fnref:72" href="#fn:53" class="footnote-ref"><sup>53</sup></a>。它把云原生工程里的镜像构建与持续交付做法搬到桌面：用 bootc 构建不可变系统，产品定位是 Chromebook 级别的可靠性与传统 Linux 桌面的完整能力。</p>
+<h4 id="section-16">基本模型 <a class="heading-anchor" href="#section-16" aria-label="链接到本节">#</a></h4>
+<p>Universal Blue 与叠加式包管理的传统发行版在模型上不同。传统发行版在基础系统上用包管理器一层层安装软件，每台机器经过不同的操作历史，系统状态各不相同。Universal Blue 的模型是：</p>
+<ul>
+<li>基础系统由只读的 OCI 容器镜像定义，用 Containerfile 声明式描述，在 GitHub Actions 上构建。镜像托管在 ghcr.io，并用 sigstore 签名<a id="fnref:73" href="#fn:53" class="footnote-ref"><sup>53</sup></a>。</li>
+<li>系统更新是原子操作：后台下载完整的新镜像，重启后切换到新版本，出问题可以回退<a id="fnref:74" href="#fn:53" class="footnote-ref"><sup>53</sup></a>。</li>
+<li>桌面应用以 Flatpak 为主，与系统层隔离。</li>
+<li>CLI 工具与开发环境通过 Homebrew 或 Distrobox、Toolbx 等容器工具获得，容器内可以是任意发行版的用户空间，不修改宿主系统。</li>
+</ul>
+<h4 id="section-17">原子更新与回滚 <a class="heading-anchor" href="#section-17" aria-label="链接到本节">#</a></h4>
+<p>bootc 是这套模型的关键组件，它的核心做法是把整个操作系统打包成 OCI 容器镜像，与 Docker 镜像同一套标准。bootc 的定位是 &quot;Transactional, in-place operating system updates using OCI/Docker container images&quot;：用标准容器镜像作为基础系统的交付格式，镜像本身包含用于引导的内核<a id="fnref:78" href="#fn:54" class="footnote-ref"><sup>54</sup></a>。</p>
+<p>这种更新方式与 Android 的 A/B 思路相似：新版本先在后台准备好，重启时切换，出问题回到上一版本。区别在实现，bootc 基于 ostree 在同一系统内维护多个可切换的文件树部署，而非在两个物理系统分区之间切换。Universal Blue 的镜像在 ghcr.io 上保留九十天，用户可以把系统切回这段时间内的任意版本<a id="fnref:75" href="#fn:53" class="footnote-ref"><sup>53</sup></a>。</p>
+<h4 id="section-18">产品化价值 <a class="heading-anchor" href="#section-18" aria-label="链接到本节">#</a></h4>
+<p>Universal Blue 在构建镜像时就配置好驱动、编解码器和 Secure Boot 等组件，让普通用户安装后可以直接使用：</p>
+<ul>
+<li>Nvidia 驱动内置在镜像里，不需要手动配置源安装<a id="fnref:79" href="#fn:55" class="footnote-ref"><sup>55</sup></a>。</li>
+<li>视频编解码的硬件加速开箱可用<a id="fnref:80" href="#fn:55" class="footnote-ref"><sup>55</sup></a>。</li>
+<li>Secure Boot 支持开箱即用<a id="fnref:81" href="#fn:55" class="footnote-ref"><sup>55</sup></a>。</li>
+<li>系统自动更新，更新后上一版本仍保留在机器上，可随时切回<a id="fnref:82" href="#fn:55" class="footnote-ref"><sup>55</sup></a>。</li>
+</ul>
+<p>四个主要变体面向不同用户：Bluefin 面向 GNOME 桌面的开发者和普通用户，预配置容器化开发工具；Aurora 是 Bluefin 的 KDE Plasma 版；Bazzite 面向游戏与 HTPC，预装 Steam、Lutris 和模拟器；uCore 基于 Fedora CoreOS，提供面向服务器的轻量镜像<a id="fnref:76" href="#fn:53" class="footnote-ref"><sup>53</sup></a>。</p>
+<h4 id="section-19">局限 <a class="heading-anchor" href="#section-19" aria-label="链接到本节">#</a></h4>
+<ul>
+<li>基础系统只读，不能直接 <code>dnf install</code>，安装软件的方式随之改变。</li>
+<li>桌面应用依赖 Flatpak；某个应用只有 Snap 或 deb 时无法直接安装，Distrobox 可以运行但体验打折扣。</li>
+<li>镜像构建与分发依赖 GitHub 与 ghcr.io，上游基础设施宕机会影响更新<a id="fnref:77" href="#fn:53" class="footnote-ref"><sup>53</sup></a>。</li>
+<li>社区维护，没有商业公司的长期支持保障。</li>
+</ul>
+<h3 id="deepin">2.4 deepin 与如意玲珑：本土生态的回答 <a class="heading-anchor" href="#deepin" aria-label="链接到本节">#</a></h3>
+<p>前文介绍了 Red Hat 和 Universal Blue 如何将应用与系统解耦；中文社区也有相似实践。deepin 自研的如意玲珑（Linyaps）走沙箱解耦路线，deepin 25 的磐石系统走不可变路线。这一节把两者放在一起，说明本土生态如何回答同一个问题。</p>
+<h4 id="section-20">要解决的问题 <a class="heading-anchor" href="#section-20" aria-label="链接到本节">#</a></h4>
+<p>如意玲珑要解决的核心问题与 Snap、Flatpak 相同：应用依赖与系统依赖解耦。它的针对性更强，国产应用要在多个 Linux 发行版之间构建和交付，逐一适配 deb、RPM、AppImage 等格式成本高。玲珑用一套容器化格式，主张一次构建、跨发行版运行，支持 deepin、UOS、openEuler 以及 Ubuntu、Debian 等主流发行版<a id="fnref:50" href="#fn:35" class="footnote-ref"><sup>35</sup></a>。</p>
+<p>对国内用户还有一层网络层面的理由。1.4 节已述，Snap Store 的国内可达性差，Flatpak 需要换镜像。据社区反馈，玲珑商店在国内网络下开箱即用，并上架了腾讯会议等一批国产常用软件的 Linux 版，这正是 Snap Store 和 Flathub 长期缺失的部分。</p>
+<p>deepin 25 的磐石系统对应系统层：核心目录只读挂载，更新走原子化增量，更新失败或无法启动时自动回滚到上次备份<a id="fnref:83" href="#fn:56" class="footnote-ref"><sup>56</sup></a>。如意玲珑负责应用层，磐石负责系统层，两者是同一套分层思路在中文生态的落地。</p>
+<h4 id="section-21">技术与治理 <a class="heading-anchor" href="#section-21" aria-label="链接到本节">#</a></h4>
+<p>如意玲珑的沙箱基于 User Namespace 与 CGroup：每个应用有独立的用户与组 ID 视图，容器内的 root 映射到宿主机非特权用户，配合文件系统隔离与权限声明，实现应用与系统、应用之间的隔离<a id="fnref:87" href="#fn:57" class="footnote-ref"><sup>57</sup></a>。存储采用写时复制，多个应用共享只读的运行时层与基础层，只在修改时复制，官方称相比传统打包可节省约 60% 存储空间<a id="fnref:88" href="#fn:57" class="footnote-ref"><sup>57</sup></a>。</p>
+<p>治理上，玲珑于 2024 年 5 月 24 日正式捐赠给开放原子开源基金会，代码托管在 GitHub 的 OpenAtom-Linyaps 仓库，不属于单一商业公司<a id="fnref:51" href="#fn:35" class="footnote-ref"><sup>35</sup></a>。生态集成方面，xdg-desktop-portal 在 1.21.0 版本（2026 年 1 月发布）加入了对玲珑应用的支持，应用信息模块新增 linyaps 子类<a id="fnref:89" href="#fn:58" class="footnote-ref"><sup>58</sup></a>。如意玲珑官网的&quot;发展历程&quot;把 XDG 正式支持归入 2025 年度，可精确查证的落地时间是 1.21.0 的发布<a id="fnref:90" href="#fn:58" class="footnote-ref"><sup>58</sup></a>。</p>
+<h4 id="section-22">成熟度边界 <a class="heading-anchor" href="#section-22" aria-label="链接到本节">#</a></h4>
+<p>已发布、可复现的能力是明确的：如意玲珑已完成 x86_64、ARM64、LoongArch 等架构适配，支持 10 余个主流发行版，上架应用规模在数千款（官网称 6000+，deepin 25 发行注记发布时为 5000+）<a id="fnref:84" href="#fn:56" class="footnote-ref"><sup>56</sup></a>。deepin 25 的磐石系统已随发行版交付只读、原子更新、回滚能力<a id="fnref:85" href="#fn:56" class="footnote-ref"><sup>56</sup></a>。</p>
+<p>官网主张的跨发行版能力与实际覆盖范围仍有差距。玲珑主要围绕 deepin、UOS、openEuler 等国产发行版，在 Ubuntu、Debian 等发行版上的第三方验证还较少；一次构建跨发行版运行是目标，落地程度取决于各发行版对玲珑运行时的集成。官网列出的外设适配、权限细化和商业软件适配仍是未来规划，尚未成为已发布功能。</p>
+<h3 id="section-23">2.5 四条路线的汇聚与边界 <a class="heading-anchor" href="#section-23" aria-label="链接到本节">#</a></h3>
+<p>把第 1 部分的 Ubuntu 和本部分的 RHEL、Universal Blue、deepin 放在一起，可以比较四个项目各自怎样拆分应用与系统。Debian 提供了另一种参照：继续按分支维护原生包，需要有人长期承担 2.2 节里那些移植和验证工作。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Ubuntu</th>
+<th>RHEL</th>
+<th>Universal Blue</th>
+<th>deepin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>deb + Snap</td>
+<td>RPM + Flatpak</td>
+<td>Flatpak + Homebrew</td>
+<td>deb + 如意玲珑</td>
+</tr>
+<tr>
+<td>系统层</td>
+<td>deb；Ubuntu Core 全 Snap<a id="fnref:91" href="#fn:59" class="footnote-ref"><sup>59</sup></a></td>
+<td>RPM；Image Mode 基于 bootc<a id="fnref:92" href="#fn:60" class="footnote-ref"><sup>60</sup></a></td>
+<td>OCI/bootc（底层 ostree）</td>
+<td>磐石系统路线</td>
+</tr>
+<tr>
+<td>更新重点</td>
+<td>跨场景统一分发</td>
+<td>企业生命周期与渐进解耦</td>
+<td>镜像原子更新和回滚</td>
+<td>本土桌面与应用生态</td>
+</tr>
+<tr>
+<td>治理主体</td>
+<td>Canonical</td>
+<td>Red Hat</td>
+<td>社区项目</td>
+<td>企业、社区与基金会</td>
+</tr>
+<tr>
+<td>主要代价</td>
+<td>商店中心化与桌面体验</td>
+<td>企业策略和生态范围</td>
+<td>上游及镜像基础设施依赖</td>
+<td>跨发行版成熟度仍需验证</td>
+</tr>
+</tbody>
+</table>
+<h4 id="section-24">可以归纳的共同趋势 <a class="heading-anchor" href="#section-24" aria-label="链接到本节">#</a></h4>
+<p>四条路线在应用层、系统层、更新机制和治理上各有选择，但共享几个方向：</p>
+<ul>
+<li>系统基座与快速应用逐步分层。</li>
+<li>应用发布者承担更多直接更新责任。</li>
+<li>系统更新向原子化、可回滚和声明式靠拢。</li>
+<li>评价软件分发不能只看文件格式，还要看维护责任与治理方式。</li>
+</ul>
+<h4 id="section-25">不能混为一谈的差异 <a class="heading-anchor" href="#section-25" aria-label="链接到本节">#</a></h4>
+<p>这些方案在实现层次和适用场景上仍有差异：</p>
+<ul>
+<li>Snap 与 Flatpak 解决应用层解耦，bootc 与磐石解决系统层不可变。应用沙箱与系统不可变属于不同层次，可以独立选择。</li>
+<li>Flatpak 的成功说明了应用格式的可行性；Snap Store 的中心化治理需要单独评价。</li>
+<li>bootc 镜像与 Ubuntu Core 的组件模型是两种实现。前者是 OCI 容器镜像，后者是全 Snap 组件化，更新与交付机制不同。</li>
+<li>这些方案面向不同用户，治理方式和商业模式也各不相同。</li>
+</ul>
+<h3 id="section-26">2.6 小结 <a class="heading-anchor" href="#section-26" aria-label="链接到本节">#</a></h3>
+<p>技术架构只能说明这些方案如何工作。评价它们对用户的影响，还要看谁负责更新、审核和支持，谁掌握控制权，以及这些安排实际为用户节省了多少时间。</p>
+<hr />
+<h2 id="section-27">3 用户与产品：技术选择最终替谁节省时间？ <a class="heading-anchor" href="#section-27" aria-label="链接到本节">#</a></h2>
+<h3 id="ubuntu-1">3.1 Ubuntu 为什么强调开箱即用 <a class="heading-anchor" href="#ubuntu-1" aria-label="链接到本节">#</a></h3>
+<h4 id="ubuntu-2">Ubuntu 同时服务服务器与桌面 <a class="heading-anchor" href="#ubuntu-2" aria-label="链接到本节">#</a></h4>
+<p>Ubuntu 的定位是用同一套 base 同时覆盖服务器与桌面。服务器端，LTS 的长期支持与 Ubuntu Pro 的延长维护是基本盘；桌面端，用户需要驱动、编解码器、应用商店、升级与恢复的完整体验。把桌面集成建立在共同的系统基线上，可以复用基础组件的维护工作，减少另行维护一套滚动桌面基线的成本。</p>
+<h4 id="section-28">产品整合的具体内容 <a class="heading-anchor" href="#section-28" aria-label="链接到本节">#</a></h4>
+<p>对刚从 Windows 或 macOS 转来的用户，开箱即用的标准不是先理解 deb、Snap 或 User Namespace，而是能开机上网、安装应用、使用显卡、完成更新，遇到问题时也有明确的排错入口。用户不应该为了安装浏览器先研究包格式，也不应该在安装 Nvidia 驱动前先查显卡分支和 Secure Boot 的 MOK 配置。</p>
+<p>Ubuntu 的开箱即用体验可以从下面四组默认能力来看。桌面默认值和操作细节来自作者在 Ubuntu 24.04/26.04 上的实际使用，官方功能另附文档来源。</p>
+<ol>
+<li><p><strong>安装</strong>：图形安装器完成硬件检测、分区与 Secure Boot 配置，安装时可勾选第三方驱动与闭源编解码器。Secure Boot 上微软信任 Canonical 的签名，从 UEFI 到桌面无需手动注册 MOK 密钥<a id="fnref:93" href="#fn:61" class="footnote-ref"><sup>61</sup></a>。</p>
+</li>
+<li><p><strong>软件</strong>：仓库、商店、驱动与编解码器入口齐全。Nvidia 驱动以预编译模块提供，<code>ubuntu-drivers install</code> 一条命令装齐，无需配 DKMS，图灵架构以前的显卡仍能从仓库装 580 版驱动<a id="fnref:94" href="#fn:62" class="footnote-ref"><sup>62</sup></a>。</p>
+<p>Snap Store 提供 Steam、PyCharm、Telegram 等 GUI 软件，用户可以直接从商店安装<a id="fnref:95" href="#fn:63" class="footnote-ref"><sup>63</sup></a>。开发工具方面，JetBrains 全系与 VSCode 有厂商官方维护的 classic Snap，直接访问宿主工具链，体验接近原生；Flatpak 的沙箱隔离与开发工具对宿主文件系统的深度访问相冲突，这也是 Bluefin DX 明确不建议 JetBrains Flatpak 的原因（见 1.3 节）<a id="fnref:41" href="#fn:27" class="footnote-ref"><sup>27</sup></a>。NVIDIA 的开源软件 OpenShell 也由 NVIDIA 认证发布者直接发布 Snap<a id="fnref:96" href="#fn:64" class="footnote-ref"><sup>64</sup></a>。</p>
+<p>仓库侧，26.04 起 CUDA Toolkit 进入官方仓库<a id="fnref:97" href="#fn:65" class="footnote-ref"><sup>65</sup></a>，闭源编解码器经 <code>ubuntu-restricted-addons</code> 安装，元包（如 <code>kubuntu-desktop</code>）补齐桌面与常见依赖。默认安装推荐依赖的行为也比 Debian 更克制，例如安装 sddm 不会顺带拉入整个 KDE，安装 nvidia-cuda-dev 不会拉入整个 NVIDIA 内核驱动。</p>
+</li>
+<li><p><strong>使用</strong>：Ubuntu 预置了一些低层但高频的默认设置。Ubuntu 的 GNOME 自带了打开终端的快捷键。通过 Language Support（语言支持）图形界面可以下载语言包，系统会自动下载对应字体；界面还可以选择 fcitx5 或 ibus，并自动配置所需的环境变量。Ubuntu 的 GNOME 会话因此省去了不少输入法和语言、字体的手动配置。这些默认设置由 Ubuntu 集成，其他 GNOME 发行版的配置可能不同。</p>
+<p>更细的默认值还有不少。<code>.bashrc</code> 预置 readline、补全与 alias，Nautilus 支持右键打开终端。Copyous 扩展会把剪贴板中的代码显示为 DejaVu 等宽字体，避免用户另行配置；作为对照，Arch 默认的 monospace 使用 Noto Mono。XWayland 实验性缩放入口加入了设置。<code>Shift+Delete</code> 的删除确认逻辑默认是取消而不是确认。Gradia 截图标注工具也可以直接从应用商店安装。这些细节单独看不起眼，但能减少用户反复查资料的次数。</p>
+<p>Canonical 通过 Ubuntu Certified 在数百款设备上做兼容性测试，并用 HWE 栈为 LTS 持续回溯新内核与图形驱动<a id="fnref:98" href="#fn:66" class="footnote-ref"><sup>66</sup></a>。相比 Debian Wiki，我也更喜欢 Ubuntu 官方文档的呈现方式。</p>
+</li>
+<li><p><strong>恢复</strong>：LTS 升级路径、Grub 菜单预装 memtest86+ 做内存诊断；Ubuntu Pro 为个人用户免费提供最多 5 台设备的延长安全更新<a id="fnref:99" href="#fn:67" class="footnote-ref"><sup>67</sup></a>。</p>
+</li>
+</ol>
+<h4 id="section-29">默认值与选择自由 <a class="heading-anchor" href="#section-29" aria-label="链接到本节">#</a></h4>
+<p>默认配置的价值是减少新用户的决策负担，而非剥夺选择。有经验的用户仍可以替换桌面、包格式与应用来源。需要区分两件事：替用户做合理的默认决定（比如默认装好驱动与编解码器），与不给用户知情选择（比如 1.4 节讨论的 <code>apt install firefox</code> 静默重定向）。前者是产品化，后者是透明度问题。</p>
+<p>这些默认值能降低常见门槛，却不能消除硬件、桌面环境和应用生态中的所有问题。LTT 的 Linux 挑战说明，用户遇到问题时仍可能无法判断责任属于桌面、驱动、应用还是发行版，下一节从这些具体案例开始。</p>
+<h3 id="ltt">3.2 LTT：普通用户不想把修系统当爱好 <a class="heading-anchor" href="#ltt" aria-label="链接到本节">#</a></h3>
+<h4 id="section-30">案例经过 <a class="heading-anchor" href="#section-30" aria-label="链接到本节">#</a></h4>
+<p>Linus Tech Tips 的 2026 Linux 挑战视频是一个观察窗口：Linus 只是想剪视频、打游戏、看网页，过程中却遇到一连串问题<a id="fnref:101" href="#fn:68" class="footnote-ref"><sup>68</sup></a>。五个具体案例：</p>
+<ul>
+<li><strong>Pop!_OS 的 Cosmic 桌面</strong>：下载页标注 LTS，但 Cosmic 桌面实际处于公开 beta 阶段。新手不会想到要先确认&quot;这个桌面环境是否 beta&quot;，装完遇到各种不稳定。</li>
+<li><strong>Bazzite 上的 DaVinci Resolve</strong>：Bazzite 是不可变系统（基于 Fedora Atomic，与 Universal Blue 同族），核心系统只读。Linus 像装 Windows 软件一样下载 Resolve 直接运行，失败；最终靠一个 6 分钟的视频教程才找到正确的安装命令。装上后又遇到 H.264/H.265 编解码器缺失，部分文件无法播放或导出。</li>
+<li><strong>Kubuntu 安装后黑屏</strong>：装完第一天黑屏几小时，第二天才莫名恢复（特定硬件问题）。</li>
+<li><strong>NTFS 游戏盘配合 Proton</strong>：把 Windows 的 NTFS 游戏盘直接挂到 Steam 库，部分游戏 glitch 或打不开；Linux 7.1 合入了新的 NTFS 驱动，但 Proton 对 NTFS 的兼容性仍不足<a id="fnref:104" href="#fn:69" class="footnote-ref"><sup>69</sup></a>。</li>
+<li><strong>OBS 屏幕捕获</strong>：deb 版 OBS 无法选择要录制的显示器，换 Flatpak 版后 KWin 的隐私设置又阻止了屏幕捕获，论坛里有五种不同解法，新手无法判断哪个有效。这个案例不能直接概括为所有 Linux 桌面都会如此，具体表现可能取决于桌面环境、显示协议和权限配置；作者在 Ubuntu 26.04 LTS 上未复现这一问题。</li>
+</ul>
+<p>这五个问题分属不同层次：Cosmic 是桌面环境成熟度问题，Resolve 是不可变系统的安装方式问题，黑屏是硬件兼容问题，NTFS 是文件系统兼容问题，OBS 是权限与桌面集成问题。普通用户面对的是同一种困惑，即不知道该把问题归给谁。</p>
+<h4 id="section-31">搜索与责任边界 <a class="heading-anchor" href="#section-31" aria-label="链接到本节">#</a></h4>
+<p>Linus 还提到 Linux 的搜索逻辑有时&quot;为了和 Windows 不同而不同&quot;：在搜索框输入 sleep 想调整睡眠设置、习惯性按回车，系统却直接休眠了。Luke 则分不清故障来自哪一层：在 Windows 上游戏崩溃，他知道是游戏的问题；在 Linux 的 Proton 兼容层上遇到报错，他分不清&quot;是因为我在用 Linux，还是游戏本身有 Bug&quot;<a id="fnref:102" href="#fn:68" class="footnote-ref"><sup>68</sup></a>。</p>
+<p>这些案例暴露出一个共同问题：普通用户无法判断问题属于 Proton、Steam、驱动、桌面还是发行版。Linux 生态的高度可替换性（组件可换、发行版众多、同一软件有 deb、Snap、Flatpak 多种来源）在给有经验用户自由的同时，增加了普通用户的故障路径与搜索噪声。技术上&quot;有解决办法&quot;（论坛里有五种 OBS 解法）不等于产品上&quot;问题已解决&quot;（新手无法判断该用哪个）。</p>
+<h4 id="section-32">案例的边界 <a class="heading-anchor" href="#section-32" aria-label="链接到本节">#</a></h4>
+<p>LTT 挑战记录了视频作者的使用经历，其中部分问题与特定硬件组合有关（如黑屏），部分源自作者的操作习惯。这些经历可用于分析具体问题，缺少严格实验和总体抽样所需的条件。它展示了用户愿意投入的时间与实际排错负担之间的差距：Linus 的原话是&quot;普通人不想把修操作系统当爱好&quot;<a id="fnref:103" href="#fn:68" class="footnote-ref"><sup>68</sup></a>。喜欢排错的人可能把这些问题视为挑战；只想完成日常任务的人，则可能因此放弃使用，并向他人表达负面评价。</p>
+<h3 id="linux">3.3 Linux 免费，但用户时间并不免费 <a class="heading-anchor" href="#linux" aria-label="链接到本节">#</a></h3>
+<h4 id="section-33">开箱即用与折腾不矛盾 <a class="heading-anchor" href="#section-33" aria-label="链接到本节">#</a></h4>
+<p>&quot;Linux is only free if your time has no value&quot;这句话在技术社区流传已久，出自 Jamie Zawinski<a id="fnref:105" href="#fn:70" class="footnote-ref"><sup>70</sup></a>。开源软件不收钱，但配置、维护、排错需要投入时间。对喜欢折腾的人，这种投入是乐趣；对只想用电脑干活的人，这种投入是门槛。第 3 部分的价值判断由此而来：衡量产品化是否成功，看它替用户减少了多少非自愿维护工作。</p>
+<p>开箱即用与折腾并不冲突。折腾应当是可选的能力，而非必须的入门成本。一个健康的循环是：新人被低门槛吸引进来，系统开箱能用，在社区里慢慢了解 Linux 的工作方式，有兴趣再深入，最终成为能帮别人的老手。</p>
+<p>Display Manager 可以说明这种区别。社区里有声音认为，tty 登录然后 exec sway 就够了，DM 臃肿多余。但 DM 在 Wayland 时代的角色远不止一个登录画面：它通过 PAM 完成 session 注册、初始化 D-Bus session bus、注入 XDG_SESSION_TYPE 等关键环境变量、自动解锁 Keyring，这些是桌面组件正常协作的前提。KDE 用户可以从 tty 直接 startplasma-wayland；图形化登录则为习惯 Windows 的用户提供熟悉的入口，我认为桌面操作系统应该保留这一基本功能。自由的价值在于拥有选择，而不是要求所有人先付出学习成本。</p>
+<h4 id="section-34">软件分发如何改变时间成本 <a class="heading-anchor" href="#section-34" aria-label="链接到本节">#</a></h4>
+<p>软件分发的不同选择，直接改变用户的时间成本：</p>
+<ul>
+<li>自动更新减少了手动维护，但可能削弱用户对更新时间点的控制；</li>
+<li>沙箱减少了依赖冲突，但引入了权限申请与宿主集成的额外步骤；</li>
+<li>统一商店降低了发现成本，但把治理权力集中到商店运营方。</li>
+</ul>
+<p>第三点有直接的对照。Elijah 在 LTT 总结视频里的感叹是：Bazzite 内置的软件商店体验超过 Windows，没有 Edge 弹窗、没有 OneDrive 订阅推销、不需要每个新应用都重新验证一次 2FA<a id="fnref:106" href="#fn:71" class="footnote-ref"><sup>71</sup></a>。对许多普通用户来说，能否顺利安装和自动更新软件，比底层是否采用沙箱更直接。发行版把这条默认路径做好，也就减少了用户转向其他系统的理由。</p>
+<h4 id="section-35">维护责任是否清晰 <a class="heading-anchor" href="#section-35" aria-label="链接到本节">#</a></h4>
+<p>评价软件分发方式时，需要考察用户是否清楚软件由谁发布、从哪里更新、如何回退，应用、发行版和商店之间是否有明确的故障支持边界，以及默认路径能否在自动工作的同时允许用户接管控制。</p>
+<p>这是评价 Snap、Flatpak、原生包和不可变系统的统一标准：减少多少非自愿维护时间，而非只比较功能数量。前面各节的判断都可以回到这个尺度上复核。</p>
+<h3 id="windows-wsl">3.4 Windows + WSL 的务实位置 <a class="heading-anchor" href="#windows-wsl" aria-label="链接到本节">#</a></h3>
+<h4 id="section-36">适合的用户 <a class="heading-anchor" href="#section-36" aria-label="链接到本节">#</a></h4>
+<p>对依赖 Windows 专有软件、又需要 Linux 命令行与开发环境的人，Windows + WSL 通常比双系统更省事。WSL 2 提供完整的 Linux 内核、systemd 支持、GPU 直通与 GUI 应用（WSLg）<a id="fnref:109" href="#fn:72" class="footnote-ref"><sup>72</sup></a>。VS Code 可以直接打开 WSL 环境，Docker 能在 WSL 内运行，CUDA 经 GPU-PV 可用，Linux 编译工具链也可以通过 <code>apt install build-essential</code> 安装<a id="fnref:110" href="#fn:72" class="footnote-ref"><sup>72</sup></a>。</p>
+<p>Windows 侧仍保留完整的消费级体验：Office、Adobe 全家桶、企业办公软件、游戏，这些是 Linux 桌面难以完整覆盖的部分。相比双系统，WSL 免去了分区、桌面环境配置（驱动、输入法、字体渲染）和反复重启切换的负担<a id="fnref:111" href="#fn:72" class="footnote-ref"><sup>72</sup></a>。文件互操作也方便：WSL 终端里 <code>explorer.exe .</code> 在资源管理器打开当前 Linux 目录，WSL 自动挂载 Windows 盘符（<code>/mnt/c</code>），不想自动挂载可在 <code>/etc/wsl.conf</code> 关闭<a id="fnref:112" href="#fn:72" class="footnote-ref"><sup>72</sup></a>。</p>
+<h4 id="wsl-containers-windows">WSL containers：把容器接入 Windows 工作流 <a class="heading-anchor" href="#wsl-containers-windows" aria-label="链接到本节">#</a></h4>
+<p>2026 年 9 月 29 日，微软宣布 WSL containers 正式可用（GA）。随 WSL 提供的 <code>wslc.exe</code> 可以从 Windows 侧构建、运行和管理 Linux 容器，配套 API 则允许原生 Windows 应用以编程方式使用这些容器。容器运行在 WSL 支撑的 Linux 虚拟机中，Windows 侧负责发起和管理相应操作。<a id="fnref:113" href="#fn:73" class="footnote-ref"><sup>73</sup></a></p>
+<p>这进一步扩展了 Windows + WSL 的实用价值：用户可以保留 Windows 桌面和已有应用，将按容器交付的 Linux 工作负载接入同一套工作流，减少自行衔接两侧环境的工作。不过，具体项目仍需核对编排需求；GA 公告将 <code>wslc compose</code> 列为后续开发重点，依赖 Compose 的项目要据此选择当前可用的工具。<a id="fnref:114" href="#fn:73" class="footnote-ref"><sup>73</sup></a></p>
+<h4 id="linux-1">更适合原生 Linux 的场景 <a class="heading-anchor" href="#linux-1" aria-label="链接到本节">#</a></h4>
+<p>WSL 2 可以承担编译、容器和本地测试等常见开发任务。不过，具体性能差异取决于工作负载、存储路径和硬件配置，跨 Windows 与 Linux 文件系统访问尤其可能增加开销<a id="fnref:115" href="#fn:74" class="footnote-ref"><sup>74</sup></a>。涉及 Linux 桌面图形栈、特定硬件与内核行为的开发，最终仍需在对应目标环境中验证；对裸机行为或低延迟有严格要求的工作，也更适合原生 Linux。</p>
+<p>评论区提供了另一组用户选择的样本<a id="fnref:117" href="#fn:75" class="footnote-ref"><sup>75</sup></a>：有人说&quot;现在越来越没有精力尝试那些发行版了，终极还是选择了 wsl+windows&quot;，有人说&quot;linux 最大众的用法：macos/win 系统 + ssh 远程连接&quot;。这些用户把 Linux 用作后端或开发环境，但不把它作为日常桌面。</p>
+<h4 id="section-37">与全文的关系 <a class="heading-anchor" href="#section-37" aria-label="链接到本节">#</a></h4>
+<p>WSL 说明很多用户真正需要的是 Linux 能力，而非必须把 Linux 当作桌面身份。工具选择应服从任务，不服从阵营。WSL 默认安装的发行版就是 Ubuntu，这本身也是 Canonical 务实策略的一部分。发行版可以单独导出备份、导入恢复，重建 Linux 开发环境通常不必重装 Windows；不过，恢复成本仍取决于数据、依赖和备份状况<a id="fnref:116" href="#fn:74" class="footnote-ref"><sup>74</sup></a>。这种分工让用户保留熟悉的桌面，同时按需要使用和管理 Linux 环境。</p>
+<h3 id="archubuntu-mint">3.5 Arch、Ubuntu 与 Mint：选择的是责任模型 <a class="heading-anchor" href="#archubuntu-mint" aria-label="链接到本节">#</a></h3>
+<h4 id="arch">Arch <a class="heading-anchor" href="#arch" aria-label="链接到本节">#</a></h4>
+<p>Arch 是滚动发布，软件新、配置显式、文档（Arch Wiki）完整。它的 KISS 原则是对懂系统的人简单，并非对所有人简单。选择 Arch，意味着用户承担了更多维护责任：</p>
+<ul>
+<li>滚动更新需要关注 Arch News，上游包改配置格式、换依赖、需要手动干预时，没看到公告直接全量更新可能出问题；Ubuntu 在一个 release 周期内基本只推安全补丁<a id="fnref:124" href="#fn:76" class="footnote-ref"><sup>76</sup></a>。</li>
+<li>不支持部分升级：新库推送到仓库后，只升级一个包可能连带升级依赖库，破坏其他依赖旧库的包；因此不能 <code>pacman -Sy</code>，装新包前必须先 <code>pacman -Syu</code> 全系统更新<a id="fnref:125" href="#fn:76" class="footnote-ref"><sup>76</sup></a>。</li>
+<li>更新需手动处理 pacnew 配置文件<a id="fnref:126" href="#fn:76" class="footnote-ref"><sup>76</sup></a>。</li>
+<li>AUR 是用户提交的仓库，没有统一质量审查，需要自己审阅 PKGBUILD。2026 年 6 月 12 日，攻击者曾接管无人维护的孤儿包并植入恶意代码<a id="fnref:128" href="#fn:77" class="footnote-ref"><sup>77</sup></a>。</li>
+</ul>
+<p>这些维护要求体现了 Arch 的设计取向：用户理解自己的系统、自己做决定，也承担相应的维护责任。EndeavourOS、CachyOS 用 GUI 安装器降低了安装门槛，但没有改变这套分工，用户仍然要关注新闻、管理 AUR、对自己的系统负责。</p>
+<p>这份责任还包括引导和安全启动配置。使用 GRUB 时，安装或移除内核后需要用户重新生成 <code>grub.cfg</code>；Secure Boot 的密钥也要按所选方案创建、签名和注册<a id="fnref:129" href="#fn:78" class="footnote-ref"><sup>78</sup></a>。</p>
+<p>更一般地说，以 root 权限执行的一次性命令如果没有记录，机器的实际状态会逐渐难以复现，之后也很难追溯某项设置从何而来。这正是声明式系统试图减少的配置漂移：把系统状态写进配置并纳入版本管理（见 5.4 节）。</p>
+<h4 id="ubuntu-3">Ubuntu <a class="heading-anchor" href="#ubuntu-3" aria-label="链接到本节">#</a></h4>
+<p>Ubuntu 由发行版统一承担更多默认集成和维护工作：预装驱动、编解码、商店与桌面，一个 release 周期内主要推安全补丁。跨版本升级由 <code>do-release-upgrade</code> 管理，它会处理第三方软件包和软件源，降低升级期间的冲突风险<a id="fnref:130" href="#fn:79" class="footnote-ref"><sup>79</sup></a>。代价是软件版本可能落后，部分应用通过 Snap、Flatpak 等独立渠道更新。适合希望系统长期可预测、不想跟进每个上游变动的用户。</p>
+<h4 id="mint">Mint <a class="heading-anchor" href="#mint" aria-label="链接到本节">#</a></h4>
+<p>Mint 在 Ubuntu 基础上提供更传统的桌面默认值：当前 Mint 22.x 以 Cinnamon 版为主，操作逻辑更接近 Windows<a id="fnref:131" href="#fn:80" class="footnote-ref"><sup>80</sup></a>。它对 Snap 做了不同的产品选择，通过 <code>/etc/apt/preferences.d/nosnap.pref</code> 默认屏蔽 snapd<a id="fnref:133" href="#fn:81" class="footnote-ref"><sup>81</sup></a>。Mint 团队在公告里把 Ubuntu 20.04 的 Chromium 过渡包描述为&quot;acting, without your consent, as a backdoor by connecting your computer to the Ubuntu Store&quot;<a id="fnref:134" href="#fn:81" class="footnote-ref"><sup>81</sup></a>。这一选择也带来代价：Mint 用户想用只有 Snap 的软件时，需要先手动解除屏蔽。</p>
+<p>反过来，Ubuntu 用户如果不想使用 Firefox Snap，也可以按 Mozilla 的官方文档切换到其 APT 仓库提供的 DEB 包，或安装 Flatpak 版<a id="fnref:135" href="#fn:82" class="footnote-ref"><sup>82</sup></a>。Mint 用户需要手动启用 Snap，Ubuntu 用户则需要手动换掉 Snap 默认值；两边都允许用户改变发行版的默认选择。</p>
+<p>Mint 的优势主要来自桌面体验偏好，基础系统仍是 Ubuntu LTS：它只基于 Ubuntu LTS 发布，且通常在 LTS 点版本之后数月才推出<a id="fnref:132" href="#fn:80" class="footnote-ref"><sup>80</sup></a>。以最近的周期为例，Ubuntu 26.04 于 2026 年 4 月发布，Mint 官方计划在 2026 年圣诞节发布以它为软件包基础的下一版本；在此之前，Mint 仍基于 Ubuntu 24.04。在不使用 Snap、Flatpak、Homebrew 这类独立渠道时，多数基础软件的大版本会在接近三年的时间里保持在 Ubuntu 24.04 基线上。Ubuntu 仍会提供安全修复，HWE 栈也会回溯更新内核与图形驱动，但多数软件包不会在同一基础版本中追随上游大版本<a id="fnref:14" href="#fn:10" class="footnote-ref"><sup>10</sup></a>。</p>
+<p>当前 Mint 22.x 默认使用 Xorg，Ubuntu 26.04 的 GNOME 会话默认使用 Wayland。Wayland 提供更好的分数缩放、HDR 和多屏支持；Xorg 对部分闭源办公软件和屏幕共享工作流仍更省事。新硬件更适合优先考虑 Ubuntu 最新 release，需要传统桌面逻辑或 Xorg 兼容性的用户则更适合 Mint。</p>
+<h4 id="section-38">选择问题 <a class="heading-anchor" href="#section-38" aria-label="链接到本节">#</a></h4>
+<p>与其问&quot;哪个发行版最强&quot;，不如先问：谁负责更新，谁负责排错，自己愿意承担多少系统维护工作？想深入理解系统、愿意自行维护的人可以选 Arch，希望系统长期可预测的人可以选 Ubuntu，偏好传统桌面的人可以选 Mint。</p>
+<h3 id="steamos">3.6 SteamOS 的产品条件与边界 <a class="heading-anchor" href="#steamos" aria-label="链接到本节">#</a></h3>
+<h4 id="steamos-1">SteamOS 的成功条件 <a class="heading-anchor" href="#steamos-1" aria-label="链接到本节">#</a></h4>
+<p>Steam Deck 把 Linux 桌面封装成接近消费电子产品的使用体验：系统不可变并支持原子更新，用户主要通过 Steam 和 Discover（Flatpak）安装软件，游戏模式可以直接使用，不需要了解底层的 Arch Linux<a id="fnref:136" href="#fn:83" class="footnote-ref"><sup>83</sup></a>。</p>
+<p>Steam Deck 把硬件范围、游戏场景和默认工作流固定下来，Valve 因此可以替用户承担驱动、Proton 兼容性和系统维护。不可变系统、回滚和自动更新减少了系统维护，Steam 和 Discover 也把软件来源收进了有限的入口。这个体验依赖的不只是技术，还依赖 Valve 持续投入资金和人力维护整个系统栈。</p>
+<h4 id="steamos-2">SteamOS 的适用范围 <a class="heading-anchor" href="#steamos-2" aria-label="链接到本节">#</a></h4>
+<p>SteamOS 的硬件范围由 Valve 控制，任务范围主要是游戏，远小于普通 PC。Steam Deck 用户通常不需要在上面写代码、接打印机、使用网银 U 盾或参加腾讯会议。通用桌面既要兼容更多硬件、软件和工作流，又要让不了解底层细节的用户自由安装软件，发行版至今仍很难同时满足这些要求。</p>
+<p>SteamOS 说明 Linux 可以在边界明确的产品中提供接近家电的体验，但这个结果不能直接推广到通用桌面。</p>
+<h3 id="section-39">3.7 小结 <a class="heading-anchor" href="#section-39" aria-label="链接到本节">#</a></h3>
+<p>对普通用户，技术方案的价值取决于安装、更新和排错需要投入多少时间，责任边界是否清楚，以及用户需要时能否接管控制。发行版没有解决的问题，往往需要用户到社区求助，并增加整个生态的支持成本。</p>
+<hr />
+<h2 id="section-40">4 社区与生态：技术成立为何仍难以大众化？ <a class="heading-anchor" href="#section-40" aria-label="链接到本节">#</a></h2>
+<h3 id="section-41">4.1 批评、解释与选择 <a class="heading-anchor" href="#section-41" aria-label="链接到本节">#</a></h3>
+<h4 id="section-42">批评要对准事实 <a class="heading-anchor" href="#section-42" aria-label="链接到本节">#</a></h4>
+<p>有人想卸载 Firefox，运行 <code>apt remove firefox</code> 以后浏览器还在。告诉他装进去的是 Snap，他就知道接下来该用哪个工具，也能说清自己对 Ubuntu 的意见：安装前应该提示这次转换。要是把话题转成 Canonical 打算怎样对待 deb，眼前这台机器上的问题反倒没人回答了。</p>
+<p>同样是对 Snap 有意见，下载困难的人关心商店在当地的网络表现，希望更换分发源的人关心谁控制商店，遇到桌面集成故障的人则需要查具体应用。问清用户碰到什么，才知道该帮他排错，还是该讨论产品和治理上的取舍。</p>
+<h4 id="section-43">区分工程原因与产品评价 <a class="heading-anchor" href="#section-43" aria-label="链接到本节">#</a></h4>
+<p>GNOME 托盘也常引起类似的争论。用户说“GNOME 连托盘都要装扩展才有”，他可能只是想找回某个后台应用的图标。GNOME 3.26（2017 年）默认不再显示基于 XEmbed 的旧式 status icon。这些图标在 Wayland 下不能原生工作，在 HiDPI 下表现也不佳，GNOME 为此发布了 Status Icon Migration 迁移说明。<a id="fnref:137" href="#fn:84" class="footnote-ref"><sup>84</sup></a></p>
+<p>后来 GNOME 44 增加了“后台应用”入口，但这个面板显示的是通过 Portal 声明后台活动的应用。GNOME 47 收录的官方 Status Icons 扩展可以兼容旧式图标，维护者也明确表示没有支持 AppIndicator 的计划。<a id="fnref:138" href="#fn:84" class="footnote-ref"><sup>84</sup></a> 如果用户需要的是 AppIndicator，就该找相应的兼容扩展。对依赖 OBS、Steam 或后台通讯软件托盘功能的人来说，多装一个扩展仍然是一项实在的不便。理解 GNOME 为什么作这个决定，也让这条批评能落到具体的使用场景上。</p>
+<h4 id="section-44">不喜欢就换 <a class="heading-anchor" href="#section-44" aria-label="链接到本节">#</a></h4>
+<p>Linux 允许用户更换发行版，这也是反馈项目决策的一种方式。但更换方案不需要把其他用户描述成无知或被绑架：你遇到的问题可能来自特定硬件组合或配置冲突，换一个发行版也可能遇到。脱离具体使用场景，单独断言一个工具好不好用，往往得不出有意义的结论。</p>
+<p>Canonical 也犯过错：Mir 显示服务器在 Wayland 成为共识后退场，Upstart 在 systemd 胜出后放弃，Unity 桌面最终让位于 GNOME<a id="fnref:139" href="#fn:85" class="footnote-ref"><sup>85</sup></a>。这些尝试造成过分裂，社区的不信任由此积累。Canonical 后来终止或调整了这些项目：Mir 的技术积累转向 Wayland 合成器底层，Unity 的部分设计延续在 Ubuntu 的 GNOME 定制里。批评应该对准今天的具体做法，而不是对着公司名字做条件反射；技术选择也不该成为社交身份的优越感，这个问题在 4.2 节展开。</p>
+<h3 id="section-45">4.2 守门人文化与身份标签 <a class="heading-anchor" href="#section-45" aria-label="链接到本节">#</a></h3>
+<h4 id="section-46">新用户面对的隐性门槛 <a class="heading-anchor" href="#section-46" aria-label="链接到本节">#</a></h4>
+<p>新用户面对的不只是技术门槛，还有一种隐性的守门人文化。当新人提问时，收到的回应可能是&quot;先读文档&quot;&quot;自己编译&quot;&quot;换发行版&quot;。这些回应在特定场景下合理：问的问题确实在文档里写清楚了，或确实需要用户自己动手。但在另一些场景中，这类回应只是把发行版或软件原本可以减少的使用困难，解释成用户必须承担的&quot;学习义务&quot;。</p>
+<p>经验用户掌握的知识不能直接当作普通用户的前置条件。一个用过多年 Linux 的人觉得&quot;改一下 .bashrc 就行&quot;是常识，但对一个刚装上系统的用户，这条路径本身就是门槛。守门人式的回应要求普通用户先掌握经验用户的知识，再自行处理原本可以由产品设计降低的使用成本。</p>
+<h4 id="section-47">技术身份如何放大争议 <a class="heading-anchor" href="#section-47" aria-label="链接到本节">#</a></h4>
+<p>Snap、systemd、GNOME、Wayland 这些技术名词容易被当作阵营标签。一旦贴上标签，讨论就从&quot;这个权衡是否合理&quot;变成&quot;你站在哪一边&quot;，具体的技术取舍也被简化成忠诚或背叛。</p>
+<p>社区原声能说明这种气氛。Arch 争议视频的评论区里，一条高赞评论写道：&quot;当一个社区的规模扩展到一定程度，原本作为工具的技术往往就会开始异化为一种身份图腾……掌握更多技术知识的人通常也就掌握了更大的话语权……将傲慢和缺乏同理心包装成'极客'的严谨性。&quot;<a id="fnref:118" href="#fn:75" class="footnote-ref"><sup>75</sup></a></p>
+<p>另一条评论点出了&quot;传教&quot;和&quot;引导&quot;的区别：&quot;你炫耀没问题，但你炫耀了，又不教，简直无耻……社区的精神应该是'带'而不是'拉'。拉入 Arch 有什么了不起，了不起的是你能带他走完你走过的坑！&quot;<a id="fnref:119" href="#fn:75" class="footnote-ref"><sup>75</sup></a></p>
+<p>LTT 总结视频里 Elijah 的遭遇更直接：他抱怨新游戏 Marathon 因内核级反作弊无法在 Linux 运行，收到的却是&quot;你本来就不该玩这个游戏&quot;的指责，甚至私信攻击他&quot;故意抹黑 Linux&quot;；最终他放弃论坛求助，转而全程用 LLM 解决问题<a id="fnref:107" href="#fn:71" class="footnote-ref"><sup>71</sup></a>。以&quot;保卫 Linux&quot;为名攻击用户，会让求助者离开社区支持渠道。</p>
+<p>这些原声记录了部分参与者的态度。评论区里也有人建议&quot;Arch 确实不适合新手，新手推荐 Mint/Ubuntu&quot;，还有人认为&quot;Arch 嘲笑 Windows、NixOS 嘲笑 Ubuntu，这种现象在任何发行版都存在&quot;<a id="fnref:120" href="#fn:75" class="footnote-ref"><sup>75</sup></a>。判断这类行为有多普遍还需要更广泛的样本；对已经出现的守门行为，可以具体批评和纠正。</p>
+<p>这些案例中的用户会放弃求助、缩小自己的使用范围，甚至离开 Linux。社区支持越难获得，留下来的用户就越集中在少数熟悉规则的人群中，项目收到的反馈也越窄。社区支持方式会影响用户留存和项目反馈，下一节继续分析这种关系。</p>
+<h3 id="section-48">4.3 用户规模与软件支持的循环 <a class="heading-anchor" href="#section-48" aria-label="链接到本节">#</a></h3>
+<h4 id="section-49">循环结构 <a class="heading-anchor" href="#section-49" aria-label="链接到本节">#</a></h4>
+<p>经过社区和商业力量长期投入，Linux 桌面体验已经比早期成熟许多。要继续扩大用户规模，还需要硬件认证、统一测试、商业软件支持和面向用户的服务。</p>
+<p>Linux 桌面的用户规模与软件支持之间存在一个会自我强化的循环。Linux 桌面份额长期在 3% 上下（Statcounter 含 Unknown 口径），远低于 Windows 的六成以上<a id="fnref:140" href="#fn:86" class="footnote-ref"><sup>86</sup></a>：</p>
+<div class="code-block" data-language="mermaid">
+<div class="code-toolbar"><span class="code-language">mermaid</span></div>
+<pre><code class="language-mermaid">flowchart LR
+  A[用户规模有限] --&gt; B[商业软件与硬件支持不足]
+  B --&gt; C[兼容、安装与排错成本偏高]
+  C --&gt; D[普通用户流失]
+  D --&gt; A
+</code></pre>
+</div>
+<p>每一步都在加固下一步：用户少，硬件厂商不做 Linux 驱动、软件厂商不做 Linux 客户端；支持不足，用户遇到硬件不兼容、软件缺失或体验差；体验差，用户回到 Windows；用户离开，份额更难扩大，厂商更没有投入动力。具体缺口包括游戏鼠标配置软件、某些打印机驱动，以及 Adobe、Microsoft Office、Autodesk 和部分国内企业办公、税务软件。Wine、Proton 或 Web 替代方案能覆盖其中一部分，但无法保证工作流稳定一致。</p>
+<p>继续扩大用户规模需要硬件认证、产品设计、应用适配、统一测试、文档和面向用户的支持，新的包管理器或桌面组件只能解决其中一部分问题。这些工作分属不同团队和组织，无法由单个志愿者项目自动补齐。</p>
+<p>专业软件的支持情况因工作流而异。Blender、Krita、Kdenlive 和 OBS 已经覆盖了 3D 创作、数字绘画和视频制作等部分工作流；Adobe、Autodesk、国内企业办公和税务软件等领域则仍缺少稳定的一致替代品。前者说明 Linux 已经能够支撑一部分专业创作，后者解释了为什么某些用户仍然无法迁移。</p>
+<h4 id="section-50">为什么服务器成功不能自动转化为桌面成功 <a class="heading-anchor" href="#section-50" aria-label="链接到本节">#</a></h4>
+<p>Linux 广泛用于服务器和云环境，但这些场景的条件不能直接复制到桌面。服务器目标明确、环境受控、维护者是专业管理员，企业也愿意为支持付费；桌面的硬件、应用、外设和用户能力高度分散，用户通常预期低价甚至免费。服务器上的不可变系统由 CI/CD、镜像仓库和受薪 SRE 团队管理，桌面用户通常没有对应的运维支持。deepin 因此为磐石系统保留了关闭系统保护的选项<a id="fnref:86" href="#fn:56" class="footnote-ref"><sup>56</sup></a>，让用户在系统保护与手动修改之间作出选择。</p>
+<p>服务器通常通过命令行和远程管理工具维护，面对的硬件与工作负载也更容易标准化；桌面则要处理显示服务器、主题、Portal、托盘、屏幕共享、输入法和消费级硬件长尾。不可变系统给运维者带来声明式部署和回滚等直接收益，普通用户更容易先注意到&quot;不能直接修改系统&quot;的限制，减少故障的收益反而不那么直观。</p>
+<h4 id="section-51">社区氛围如何影响生态 <a class="heading-anchor" href="#section-51" aria-label="链接到本节">#</a></h4>
+<p>社区氛围不会单独决定生态规模，却会影响用户是否愿意留下。对新人不友好的支持方式会让用户离开；只强调&quot;选择&quot;却不给出推荐路径，也会让新用户无从下手。面对六种包格式和几十种发行版，不想研究这些差别的人很难形成稳定的工作流。缺少明确的推荐和支持路径，会进一步增加这种负担。</p>
+<h3 id="section-52">4.4 小结 <a class="heading-anchor" href="#section-52" aria-label="链接到本节">#</a></h3>
+<p>产品没有说明由谁负责支持时，用户往往只能到社区求助，并自行判断问题出在哪。守门行为、搜索噪声和过多选择会让求助更费时间，也更容易让用户离开。要改善这种处境，发行版、桌面项目和应用维护者需要明确各自负责什么，并让整合、支持和社区治理工作能够持续下去。</p>
+<hr />
+<h2 id="section-53">5 组织可持续性：谁来承担长期成本？ <a class="heading-anchor" href="#section-53" aria-label="链接到本节">#</a></h2>
+<h3 id="section-54">5.1 志愿者模式的结构性边界 <a class="heading-anchor" href="#section-54" aria-label="链接到本节">#</a></h3>
+<p>前面的用户和生态问题最终都需要有人处理：谁来长期负责打包、审核、更新、支持、产品整合和社区治理？</p>
+<h4 id="section-55">关键人物依赖 <a class="heading-anchor" href="#section-55" aria-label="链接到本节">#</a></h4>
+<p>社区项目往往依赖少数核心维护者。Ubuntu Unity 的项目负责人 Rudra B. Rudra 因大学考试无法投入时间，项目一度面临生存危机<a id="fnref:141" href="#fn:87" class="footnote-ref"><sup>87</sup></a>；Ubuntu MATE 创始人 Martin Wimpress 在 2026 年 3 月宣布因失去热情而希望移交项目<a id="fnref:142" href="#fn:88" class="footnote-ref"><sup>88</sup></a>；Linux XFS 文件系统的维护者 Darrick Wong 公开表示&quot;精疲力竭&quot;，并警示自己不想在 2030 年还处于这种状态<a id="fnref:143" href="#fn:89" class="footnote-ref"><sup>89</sup></a>。这些案例说明，项目依赖少数人的热情和业余时间时，人员变动会直接影响维护工作的连续性。这里要讨论的是项目对少数人的依赖，并非维护者个人是否尽责。</p>
+<h4 id="section-56">只有工程能力还不够 <a class="heading-anchor" href="#section-56" aria-label="链接到本节">#</a></h4>
+<p>桌面操作系统除了代码，还需要设计、测试、文档、发布、支持和项目管理。deepin 的王勇曾指出：&quot;桌面要集合设计、用户心理研究、产品细节……而 Linux 社区只有技术架构。&quot;<a id="fnref:144" href="#fn:90" class="footnote-ref"><sup>90</sup></a> 他说的不只是写代码，还包括 UI/UX、无障碍、图形设计和用户沟通等长期工作。功能能够实现，只说明技术路径可行；普通用户能否稳定使用，还取决于这些工作的持续投入。</p>
+<p>具体到应用界面，交互状态、失败恢复、无障碍与运行性能都需要进入需求和实现。<a href="https://yoimiyalove.top/posts/Community/uiux.html">《把软件做得好用：UI/UX 的设计与实现》</a>第 3、4 部分展开了这些工作的内容，以及设计系统和标准控件能够减少的重复劳动。</p>
+<p>聘用设计人员之后，项目还需要明确他们能作出哪些决定。OSCHINA 的一篇评论转述了前 Ubuntu 设计师 David Siegel 的回忆：设计团队既受到创始人 Mark Shuttleworth 个人设计要求的限制，也需要面对长期软件包维护者在设计决策中的话语权<a id="fnref:145" href="#fn:91" class="footnote-ref"><sup>91</sup></a>。这份回忆关注的是设计人员的决策空间：他们是否有与职责相应的授权？集体决策与个人主导的效果，还要结合各自的实际运作评价。工程贡献值得尊重，但维护资历不能代替对具体设计方案的判断；设计、工程与产品负责人之间仍需明确各自的权限，以及发生分歧时如何作出决定。</p>
+<h4 id="section-57">碎片化的双重效果 <a class="heading-anchor" href="#section-57" aria-label="链接到本节">#</a></h4>
+<p>Linux 桌面的多样性给用户和开发者提供了选择，也增加了适配成本。目前存在超过 23 种风格类似的桌面环境<a id="fnref:146" href="#fn:92" class="footnote-ref"><sup>92</sup></a>，开发者倾向于创建新项目而非合力改进现有项目。应用开发者还要为不同的发行版、包格式和显示服务器逐一适配。在讨论&quot;大众化&quot;这个具体目标时，这些分支会分散测试、文档、应用适配和支持资源。</p>
+<p>维护工作也不只是写新代码。上游与下游之间的责任协调、重复问题的筛选、回归测试、Bug triage 和文档维护，往往同样消耗大量时间，却不如新功能显眼。志愿者模式的问题不仅是&quot;有没有人写代码&quot;，还包括这些长期、低可见度的工作是否有人持续承担。</p>
+<h4 id="section-58">资金困境与稳定投入 <a class="heading-anchor" href="#section-58" aria-label="链接到本节">#</a></h4>
+<p>资金困境也存在于顶级项目。KDE 在 2022 年和 2023 年分别亏损约 9.9 万欧元和 10.7 万欧元<a id="fnref:147" href="#fn:93" class="footnote-ref"><sup>93</sup></a>，GNOME 同样面临连续赤字。对比之下，Linux 内核超过 80% 的代码由受薪开发者贡献，纯粹无偿志愿者的贡献占比约一成<a id="fnref:148" href="#fn:94" class="footnote-ref"><sup>94</sup></a>。复杂软件工程需要稳定、持续的投入。KDE 的 2024 年度目标写得很克制：在不大幅扩张的情况下保持现有的活动水平<a id="fnref:149" href="#fn:95" class="footnote-ref"><sup>95</sup></a>。这反映了社区当时可投入资源的上限，不能据此判断社区的工程能力。</p>
+<h4 id="section-59">用户增长不等于贡献者增长 <a class="heading-anchor" href="#section-59" aria-label="链接到本节">#</a></h4>
+<p>资金充足也不等于有人愿意长期承担维护工作。openSUSE 社区的数据表明，贡献者数量最多的时候反而是用户最少的时候，用户增长期反而伴随着贡献者数量的停滞或下降<a id="fnref:150" href="#fn:96" class="footnote-ref"><sup>96</sup></a>。大多数用户只是想来用电脑，没有贡献的义务；把用户转化成贡献者需要社区建设、mentorship 和良好的新人体验，而这些本身也需要资源投入。付费开发、企业赞助和志愿贡献之间，需要清晰的权责关系。</p>
+<h4 id="section-60">如何评价项目与维护者 <a class="heading-anchor" href="#section-60" aria-label="链接到本节">#</a></h4>
+<p>用户当然可以批评项目，也没有贡献代码的义务。不过，从&quot;我用着不顺手&quot;直接推到&quot;这个项目是失败品&quot;，会跳过具体问题，也会忽略项目的目标和规模。拿 niri 和 COSMIC 对比就是一个例子：前者是合成器，后者是完整桌面环境，两者要覆盖的功能面、要处理的兼容性、要维护的代码量都不在一个量级，用合成器的进度去衡量桌面环境的完成度并不公允。</p>
+<p>志愿者可以启动项目，也能长期维护项目，但很难独自负责打包、测试、文档、支持和产品整合。没有人持续负责这些工作时，用户会在更新、排错和安装软件时付出更多时间。接下来讨论这些负担在桌面端的具体表现，以及谁有能力长期承担。</p>
+<h3 id="section-61">5.2 服务器导向带来的三种桌面摩擦 <a class="heading-anchor" href="#section-61" aria-label="链接到本节">#</a></h3>
+<p>Linux 桌面继承了许多为服务器和开发环境形成的工具与工作方式。同一套机制用于普通桌面时，会在三种场景下增加用户负担。这些问题来自使用场景不同，不能简单归结为技术设计错误。</p>
+<p>第 4.3 节已经说明，服务器上的不可变系统依赖受薪运维团队、标准化硬件和受控环境，不能直接复制到桌面。这里继续讨论这些限制怎样影响桌面端的更新、排错和软件分发。</p>
+<h4 id="section-62">更新后的维护责任 <a class="heading-anchor" href="#section-62" aria-label="链接到本节">#</a></h4>
+<p>在 Windows、macOS、Android 上，系统更新通常在后台下载、重启时自动应用，用户不需要知道这次更新改了什么，普通人不读 changelog 也不想读。多数 Linux 桌面很难提供完全相同的统一更新体验，因为内核、驱动、显示服务器、桌面环境、音频系统、包管理器和沙箱运行时来自不同上游，每个组件的更新节奏也由不同团队决定。不可变发行版已经能完成原子更新和回滚，但整个桌面栈的集成测试与后续支持仍由多个项目分担。</p>
+<p>自动更新和自动回滚可以减少更新失败造成的影响，但更新后如果某个硬件不工作或软件行为改变，用户仍要判断问题出在哪、去哪个上游报 bug。原子更新解决了更新切换和故障回退的问题，不会自动解决后续排错与支持。</p>
+<h4 id="section-63">排错时的责任归属 <a class="heading-anchor" href="#section-63" aria-label="链接到本节">#</a></h4>
+<p>Luke 无法判断故障来源的经历（见 3.2 节）还涉及支持责任。Windows 用户遇到问题时，硬件可以找 OEM 售后，软件可以找厂商；Linux 桌面问题可能来自内核、驱动、显示服务器、桌面环境、包管理器或沙箱运行时。没有明确的支持入口时，用户需要先判断该向哪个项目求助，而相关日志和文档也未必面向普通用户。</p>
+<p>Windows 同样有 bug，但用户通常更容易找到已有解决方案，或向 OEM 和软件厂商寻求支持。Ubuntu Pro 的付费支持、Red Hat 的企业级服务也在提供这类兜底，不过它们主要面向企业，而非普通桌面消费者<a id="fnref:100" href="#fn:67" class="footnote-ref"><sup>67</sup></a>。</p>
+<h4 id="section-64">软件分发选择 <a class="heading-anchor" href="#section-64" aria-label="链接到本节">#</a></h4>
+<p>Windows、macOS 上常见的安装路径是下载安装包并运行，用户通常不必先了解包格式和依赖关系。Linux 用户在发行版默认渠道之外寻找软件时，还可能需要选择分发格式：deb 版本可能较旧；Snap 提供沙箱机制，但国内网络可达性可能影响使用；Flatpak 适合 GUI，却未必适合某些工具；AppImage 可以免安装运行，但更新方式要看应用；AUR 提供了许多额外软件包，用户需要自行审阅 PKGBUILD；直接编译便于自行配置，也需要承担构建和维护工作。</p>
+<p>选择的丰富提高了覆盖率，也增加了发现、信任和支持的成本。普通人不该需要理解六种包格式的区别才能装一个软件。Valve 在 SteamOS 中限制软件入口，以此降低用户的选择成本（见 3.6 节）；通用桌面需要支持更广的用途，很难照搬这种做法。</p>
+<p>这三种情况说明，自动更新、回滚和统一分发可以减少一部分用户负担；要继续降低排错成本，还需要明确由谁负责整合和支持。接下来需要回答：谁有资源长期承担这些工作，谁愿意为产品决策负责。</p>
+<h3 id="section-65">5.3 商业力量能解决什么，不能解决什么 <a class="heading-anchor" href="#section-65" aria-label="链接到本节">#</a></h3>
+<p>志愿者项目很难长期覆盖全部工作，桌面用户又会直接承担更新和排错成本。要扩大桌面用户规模，项目需要稳定的资金、明确的产品责任和长期基础设施。Canonical、Red Hat 和 Valve 都投入了这些资源，但解决的范围不同。</p>
+<h4 id="canonical-1">Canonical <a class="heading-anchor" href="#canonical-1" aria-label="链接到本节">#</a></h4>
+<p>Canonical 同时维护 LTS、云服务、硬件认证、桌面集成和 Snap 基础设施，把安装、驱动、编解码器、应用商店和升级路径整合到同一个产品中（见 3.1 节）。这让 Ubuntu 能为普通用户承担一部分系统维护工作，也把商店控制权和产品策略集中到 Canonical 手中，因此产生了 1.4 节讨论的透明度和治理争议。</p>
+<h4 id="red-hat">Red Hat <a class="heading-anchor" href="#red-hat" aria-label="链接到本节">#</a></h4>
+<p>Red Hat 用企业生命周期、桌面 runtime 和底层图形技术支撑另一种分工：经过六年过渡，RHEL 把 Firefox、Thunderbird 等桌面应用逐步交给 Flatpak，同时把工程资源集中到 Wayland、HDR 等平台工作（见 2.1 节）。它的支持范围和迁移节奏由企业客户决定，RHEL 桌面服务的是企业产品战略，并不等同于面向所有消费者的通用桌面方案。</p>
+<h4 id="valve">Valve <a class="heading-anchor" href="#valve" aria-label="链接到本节">#</a></h4>
+<p>Valve 把硬件、Steam 和 Proton 放在同一个产品里，自己承担游戏兼容性、驱动协作和系统维护成本（见 3.6 节）。Steam Deck 因此可以提供接近家电的体验，但它依赖固定硬件和明确的游戏场景。通用桌面需要兼容更多硬件、软件和工作流，不能直接复制 SteamOS 的限制条件。</p>
+<h4 id="section-66">商业与社区的合理关系 <a class="heading-anchor" href="#section-66" aria-label="链接到本节">#</a></h4>
+<p>本文考察的案例中，商业公司承担资金、产品责任和长期基础设施，社区则提供开放协作、监督、移植和替代能力。两者协作需要清楚的责任边界：用户知道谁负责支持，贡献者知道谁能作决定，社区也保留 fork 和替代的可能。</p>
+<h3 id="nix">5.4 Nix 的技术能力与治理问题 <a class="heading-anchor" href="#nix" aria-label="链接到本节">#</a></h3>
+<h4 id="section-67">技术路线与治理问题 <a class="heading-anchor" href="#section-67" aria-label="链接到本节">#</a></h4>
+<p>Nix/NixOS 把不可变、声明式和可复现的系统做得很彻底。一份 <code>configuration.nix</code> 可以声明整个系统状态，构建结果可复现，generation 之间可以原子切换和回滚。Snap 与 Flatpak 主要解耦应用，Nix 则把同一套思路扩展到了整个操作系统。</p>
+<p>Nix 已经实现了这套技术，但权责分配、维护和决策仍是另一类问题。接下来的治理经历把两者的区别表现得很清楚。</p>
+<h4 id="flakes">flakes 的事实标准僵局 <a class="heading-anchor" href="#flakes" aria-label="链接到本节">#</a></h4>
+<p>flakes 于 2021 年随 Nix 2.4 引入，至今仍是 experimental 特性，也没有稳定时间表。nix.dev 官方文档承认它存在架构问题和实现缺陷<a id="fnref:151" href="#fn:97" class="footnote-ref"><sup>97</sup></a>。这个僵局有三个原因：</p>
+<ul>
+<li>RFC 49 在没有被接受的情况下就由原作者主导合入主干，只是藏在 experimental 开关后面，后续争议一直没有消失<a id="fnref:152" href="#fn:98" class="footnote-ref"><sup>98</sup></a>；</li>
+<li>RFC 136 设定的渐进稳定路线进展缓慢，缺少明确的完成时间；flakes 的纯评估限制、输出属性缺少类型检查等问题也没有解决<a id="fnref:153" href="#fn:99" class="footnote-ref"><sup>99</sup></a>；</li>
+<li>flakes 的采用率已经高到成为事实标准。现在转正会固化缺陷，大改又会伤害现有用户，所以项目一直停在&quot;准稳定&quot;的状态。</li>
+</ul>
+<p>Determinate Systems 由 Eelco 共同创办，多年来持续宣传&quot;flakes 已经稳定&quot;。这让技术问题、治理信任和商业利益纠缠在了一起<a id="fnref:154" href="#fn:100" class="footnote-ref"><sup>100</sup></a>。</p>
+<h4 id="section-68">治理危机 <a class="heading-anchor" href="#section-68" aria-label="链接到本节">#</a></h4>
+<p>治理危机有一条清晰的时间线：</p>
+<ul>
+<li>2023 年 9 月，NixCon 接受军事科技公司 Anduril 的赞助引发抗议，基金会撤下赞助<a id="fnref:155" href="#fn:101" class="footnote-ref"><sup>101</sup></a>；</li>
+<li>2024 年 4 月，《Save Nix Together》公开信征集到上百个签名，指控创始人 Eelco Dolstra 反复推翻社区团队决策，行使章程未授予的 BDFL 权力<a id="fnref:156" href="#fn:101" class="footnote-ref"><sup>101</sup></a>；</li>
+<li>2024 年 5 月，Eelco 退出 NixOS Foundation 董事会，一批维护者离开，Lix 从 CppNix 2.18 fork 出去<a id="fnref:157" href="#fn:101" class="footnote-ref"><sup>101</sup></a>；</li>
+<li>2024 年下半年，选举产生的 Steering Committee 上任，首次选举有 450 名贡献者投票<a id="fnref:158" href="#fn:101" class="footnote-ref"><sup>101</sup></a>；</li>
+<li>2025 年 9 月，Moderation Team 五名成员集体辞职，抗议 SC 干预 moderation 决策；同月 Nixpkgs core team 成立，被视为新治理的正面信号<a id="fnref:159" href="#fn:101" class="footnote-ref"><sup>101</sup></a>；</li>
+<li>2026 年 8 月 7 日，core team 宣布解散：公开招募补员只收到 1 份申请，剩余两名成员因 burnout 退出，并在公告中批评 SC&quot;缺乏宪法所设想的授权本能&quot;、对已下放的决策微观管理<a id="fnref:160" href="#fn:102" class="footnote-ref"><sup>102</sup></a>。</li>
+</ul>
+<p>core team 在仅有的 10 个月里完成了不少工作：改革 committer 委托流程，新增 19 名 committer，扩展 merge bot，谈下 GitHub Enterprise 赞助，并建立了初步的 AI 贡献政策<a id="fnref:161" href="#fn:102" class="footnote-ref"><sup>102</sup></a>。不过，这些成果并未消除团队所描述的授权争议：core team 在解散公告中批评 SC 对已下放的决策微观管理，moderation team 的辞职也涉及 SC 干预决策<a id="fnref:162" href="#fn:102" class="footnote-ref"><sup>102</sup></a>。不到一年内的两次事件，都暴露了维护团队与 SC 对决策权限的分歧。</p>
+<p>Nixpkgs 收录了 12 万以上软件包，core team 公开招募补员时却只收到 1 份申请<a id="fnref:163" href="#fn:102" class="footnote-ref"><sup>102</sup></a>。软件规模持续增长时，项目仍可能缺少愿意承担维护和治理责任的人。</p>
+<p>这与 5.1 节讨论的志愿者边界直接相连：即使项目有成熟的代码和明确的技术目标，维护者承担责任却不能作出决定，仍可能选择离开。Hacker News 上有一条评论：&quot;Nix 包管理器：正确解决了你整个操作系统的依赖地狱。Nix 治理：还没解决人类的依赖地狱。&quot;<a id="fnref:164" href="#fn:103" class="footnote-ref"><sup>103</sup></a></p>
+<h4 id="section-69">决策权与维护责任 <a class="heading-anchor" href="#section-69" aria-label="链接到本节">#</a></h4>
+<p>BDFL 退位、委员会经选举产生之后，Nix 项目仍然遇到了权责冲突。治理结构的变化没有自动带来稳定的授权机制，决策速度和责任追踪仍是需要处理的问题。</p>
+<p>Universal Blue 采取了不同的治理选择：它不把自己做成独立发行版，不设 BDFL，也不 fork Fedora，而是维护 Fedora 之上的定制层，使命宣言是&quot;We target the 96%, not the 4%&quot;<a id="fnref:166" href="#fn:104" class="footnote-ref"><sup>104</sup></a>。这种做法减少了项目内部出现同类权责冲突的机会，但不能保证 ublue 未来一定成功。它至少说明，项目需要像设计技术架构一样设计治理结构，让维护者知道自己能作出哪些决定、又要承担哪些责任。</p>
+<p>Lix 选择在保持兼容的前提下改进实现。它保持现有 flakes 和 NixOS 配置的兼容性，把工作重点放在清理语言中的历史 footguns、强化沙箱和重写错误信息上，并在 2025 年底宣布 flakes 进入 freeze 期，计划把它从核心抽离为默认随附的插件<a id="fnref:167" href="#fn:105" class="footnote-ref"><sup>105</sup></a>。这给现有用户留下了迁移之外的选择，但 fork 也意味着社区需要额外承担一套实现和治理成本。</p>
+<p>对普通用户来说，core team 解散不会立刻改变 nixpkgs 或 <code>nixos-rebuild</code> 的日常使用。长期影响取决于 SC 如何向维护团队授权、Nix 社区能否形成稳定的权责划分，以及 Lix 与 CppNix 能否保持兼容。</p>
+<h3 id="section-70">5.5 小结 <a class="heading-anchor" href="#section-70" aria-label="链接到本节">#</a></h3>
+<p>判断项目能否持续，既要看资金和贡献模式，也要看整合、分发、支持和治理工作由谁长期承担。承担责任的人还需要有相应的决策权。否则，即使技术路线可行，项目也可能因为缺人、授权不足或责任不清而停滞。</p>
+<hr />
+<h2 id="apt-install-firefox-1">结语：回到 <code>apt install firefox</code> <a class="heading-anchor" href="#apt-install-firefox-1" aria-label="链接到本节">#</a></h2>
+<p>回到 <code>apt install firefox</code>。过去要由发行版为多个系统版本打包的浏览器，现在由 Mozilla 直接更新，Canonical 运营分发所用的商店。这样可以让 Ubuntu 继续控制系统基座的变更，集中做维护和集成验证，同时让浏览器及时跟上上游。代价是部分分发控制权集中到了 Canonical，用户也得适应另一套更新和卸载方式。</p>
+<p>RHEL、Universal Blue 和 deepin 也把一部分应用从系统的更新周期里分了出来，有的还把系统更新做成可以回滚的镜像。它们选用不同的格式、商店和治理方式。换一种方案可以避开 Snap 的某些问题，更新出了差错，仍然得有人修复、审核和提供支持。</p>
+<p>对 Ubuntu 的这项选择，我看重它减少了多少重复维护，也在意用户为此多做了什么。安装源切换前有没有提示，商店在自己的网络上能不能用，出了问题知道该找谁，都直接影响这个选择是否值得。</p>
+<hr />
+<h2 id="a">附录 A：发行版如何管理变化 <a class="heading-anchor" href="#a" aria-label="链接到本节">#</a></h2>
+<p>正文指出，锁定大版本是稳定发行版控制变更的一种办法。本附录进一步讨论发行版怎样形成可预测的系统，并比较几种不同的实现。</p>
+<h3 id="section-71">比较发行版变化管理的六个维度 <a class="heading-anchor" href="#section-71" aria-label="链接到本节">#</a></h3>
+<p>发行版接收的上游软件始终在变化。维护者需要检查依赖关系、处理 ABI 变化、完成构建与测试，再决定何时把新的软件集合交给用户。发布后的修复规则、升级路径和故障恢复也属于这套工作。</p>
+<p>版本年龄不能单独说明系统是否可靠。失去维护的旧软件会积累漏洞和兼容问题；发行版也可以通过集成验证，让较新的软件共同工作。固定发行版和滚动发行版描述的是变化如何进入系统，软件质量还要看具体的维护与验证。</p>
+<p>比较不同发行版时，可以检查以下六项：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>要回答的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>版本新鲜度</td>
+<td>软件与上游版本相差多远</td>
+</tr>
+<tr>
+<td>维护状态</td>
+<td>软件是否仍接收安全更新和重要错误修复</td>
+</tr>
+<tr>
+<td>变化频率</td>
+<td>用户多久接收一次系统状态变化</td>
+</tr>
+<tr>
+<td>集成验证</td>
+<td>发行版在交付前检查哪些依赖和回归</td>
+</tr>
+<tr>
+<td>恢复能力</td>
+<td>更新失败后能否回滚或快速恢复</td>
+</tr>
+<tr>
+<td>兼容周期</td>
+<td>一个接口和系统基线承诺维持多久</td>
+</tr>
+</tbody>
+</table>
+<p>固定发行版通常降低变化频率，并延长兼容承诺。滚动发行版缩短交付间隔，持续产生新的系统状态。具体项目还会通过测试仓库、自动化测试、快照或回滚工具控制风险。</p>
+<h3 id="debian-1">Debian：先形成发布基线，再限制变化 <a class="heading-anchor" href="#debian-1" aria-label="链接到本节">#</a></h3>
+<p>Debian 的软件先在 unstable 和 testing 中演进。发布团队检查构建结果、依赖关系和测试回归，协调大型库升级，让软件包逐步形成可以共同发布的状态。Stable 发布后，允许进入系统的改动显著减少，维护者主要提供安全更新和必要修正。</p>
+<p>Debian Stable 中较旧的软件版本来自这个发布模型。项目选择长期维持已经验证的兼容关系，因此不会持续把所有上游版本送入同一个 Stable 版本。安全修复和兼容维护仍然继续，版本号只是这套策略留下的结果。</p>
+<details class="custom-container details">
+<summary>Debian 的 ABI、Testing 与 transition</summary>
+<p>Debian 使用共享库元数据记录兼容关系。ELF 程序会记录所需共享库的 SONAME。库包通过 <code>shlibs</code> 或更精细的 <code>symbols</code> 文件描述 ABI 依赖，<code>dpkg-shlibdeps</code> 再根据程序实际使用的库和符号生成包依赖。ABI 兼容时，库可以更新，已有二进制程序仍可继续运行。ABI 不兼容时，维护者通常需要改变 SONAME，并重新构建受影响的软件包<a id="fnref:168" href="#fn:106" class="footnote-ref"><sup>106</sup></a>。</p>
+<p>新包通常先进入 unstable，再由 <code>britney</code> 判断它能否迁移到 testing。<code>britney</code> 会检查构建结果和依赖关系，并确认迁移后不会产生新的不可安装包。对于配置了 <code>autopkgtest</code> 的软件，测试还可以覆盖候选包的反向依赖；一旦出现相对于当前 testing 的回归，迁移就会被阻止或延迟。Testing 是持续接受集成检查的候选系统，软件包在 Sid 中停留的时间只是迁移条件之一<a id="fnref:169" href="#fn:107" class="footnote-ref"><sup>107</sup></a>。</p>
+<p>Debian 把大型库升级作为 transition 管理。共享库改变 SONAME 后，构建基础设施可以通过 binNMU 批量重建只需重新链接的软件包；需要修改源码的包仍由维护者修复。Release Team 使用 transition tracker 跟踪相关反向依赖的迁移状态<a id="fnref:170" href="#fn:108" class="footnote-ref"><sup>108</sup></a>。</p>
+<p>这些机制先让不断变化的软件包形成一套经过验证、能够协同工作的系统，发布后再严格控制改动。维护者仍需长期提供安全修复并维持兼容关系。</p>
+</details>
+<h3 id="arch-1">Arch：持续维护仓库的一致状态 <a class="heading-anchor" href="#arch-1" aria-label="链接到本节">#</a></h3>
+<p>Arch 持续接收上游版本。官方包经过构建和签名，需要公开测试的版本会进入 testing；大型共享库或工具链升级则先在 staging 中完成相关软件包的重建<a id="fnref:171" href="#fn:109" class="footnote-ref"><sup>109</sup></a>。Arch 维护着一条不断前移的仓库基线。</p>
+<p>用户需要完整升级系统、阅读重要公告，并在必要时处理配置迁移。官方维护文档明确不支持 partial upgrade<a id="fnref:127" href="#fn:76" class="footnote-ref"><sup>76</sup></a>。Arch 减少了长期维护旧基线的工作，也要求用户及时跟进新的系统状态。正文 3.5 节讨论的是这套模式交给用户的日常维护责任。</p>
+<h3 id="gentoo">Gentoo：滚动系统中的软件包稳定化 <a class="heading-anchor" href="#gentoo" aria-label="链接到本节">#</a></h3>
+<p>Gentoo 的 keyword 机制按软件版本和架构标记稳定状态。以 <code>amd64</code> 为例，<code>amd64</code> 表示该版本已经广泛测试，没有已知的严重问题；<code>~amd64</code> 表示该版本尚未稳定化，仍需更多测试<a id="fnref:172" href="#fn:110" class="footnote-ref"><sup>110</sup></a>。同一个滚动发行版中，不同版本和架构可以处于不同的稳定化阶段。</p>
+<p>Gentoo 还用 slot、sub-slot 与 preserve-libs 处理可并存版本和共享库更新。sub-slot 变化可以触发依赖包重建；preserve-libs 会暂时保留仍有程序依赖的旧共享库，直到相关软件完成重建<a id="fnref:173" href="#fn:111" class="footnote-ref"><sup>111</sup></a>。因此，Gentoo 的滚动系统仍然保留了明确的软件包测试与稳定化阶段。</p>
+<h3 id="opensuse-tumbleweed">openSUSE Tumbleweed：连续发布经过测试的快照 <a class="heading-anchor" href="#opensuse-tumbleweed" aria-label="链接到本节">#</a></h3>
+<p>openSUSE Tumbleweed 将一批更新组成 snapshot，并用 openQA 检查单个软件包和整组更新能否共同工作。通过测试的快照再交付给用户<a id="fnref:174" href="#fn:112" class="footnote-ref"><sup>112</sup></a>。用户持续从一个经过验证的仓库状态移动到下一个状态。</p>
+<p>Tumbleweed 默认使用 Btrfs 与 Snapper，在包管理器操作前后创建快照并支持回滚<a id="fnref:175" href="#fn:113" class="footnote-ref"><sup>113</sup></a>。openQA 降低更新失败的概率，文件系统快照则缩短故障后的恢复过程。版本新、更新频繁和系统可恢复可以同时存在。</p>
+<h3 id="section-72">四种路线的差别 <a class="heading-anchor" href="#section-72" aria-label="链接到本节">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>如何组织变化</th>
+<th>用户承担的主要责任</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Debian Stable</td>
+<td>形成发布基线后长期限制改动</td>
+<td>接收维护更新，跨版本升级时处理迁移</td>
+</tr>
+<tr>
+<td>Arch</td>
+<td>持续推动整个仓库向前</td>
+<td>完整升级并及时处理迁移事项</td>
+</tr>
+<tr>
+<td>Gentoo</td>
+<td>按版本和架构完成软件包稳定化</td>
+<td>选择 keyword、USE 配置与更新节奏</td>
+</tr>
+<tr>
+<td>Tumbleweed</td>
+<td>连续发布经过 openQA 测试的快照</td>
+<td>持续更新，并在需要时使用快照恢复</td>
+</tr>
+</tbody>
+</table>
+<p>这些项目都在管理变化，只是验证窗口、交付频率和用户责任不同。操作系统需要长期维持兼容基线，浏览器却按数周周期发布。Snap 和 Flatpak 将此类应用从系统基座中拆出，减少发行版的多分支维护工作，同时增加沙箱集成、商店治理、更新控制和磁盘占用方面的成本。</p>
+<hr />
+<h2 id="b">附录 B：社区与用户原声 <a class="heading-anchor" href="#b" aria-label="链接到本节">#</a></h2>
+<blockquote>
+<p>本附录收录视频、评论区与论坛中的用户观点（等级 C），只用于展示体验和态度样本，不作为技术和统计事实。每组材料附有来源、上下文和适用范围。</p>
+</blockquote>
+<h3 id="ltt-linux">LTT 挑战与 Linux 桌面体验 <a class="heading-anchor" href="#ltt-linux" aria-label="链接到本节">#</a></h3>
+<p>正文 3.2 节记录了五个案例的经过与归因，并保留了 Linus 的&quot;普通人不想把修操作系统当爱好&quot;这一句。这里补全 Elijah 案例的完整原话（LTT wrap-up 视频）<a id="fnref:108" href="#fn:71" class="footnote-ref"><sup>71</sup></a>：</p>
+<details class="custom-container details">
+<summary>完整引语：Marathon 反作弊与社区反应</summary>
+<blockquote>
+<p>Elijah 抱怨由于内核级反作弊，新游戏 Marathon 无法在 Linux 上运行。他收到的不是同情或解决方案，而是社区的指责，许多人告诉他&quot;你本来就不该玩这个游戏&quot;，甚至私信攻击他是为了&quot;故意抹黑 Linux&quot;。</p>
+<p>更讽刺的是，由于每次去 Reddit 求助看到的都是&quot;400 多条互相攻击、争论哪个发行版更好的跟帖&quot;（正如 Linus 所说，无论遇到什么问题，总有半打人跑出来自信地宣称&quot;用我的这个发行版就不会有这问题&quot;），Elijah 最终被逼得完全放弃了在社区论坛求助，转而全程使用 LLM 来解决问题。</p>
+</blockquote>
+</details>
+<p>这段原声只能说明，社区中确实存在把用户的具体诉求转成立场攻击的行为，并因此把用户推离求助渠道；它不能代表整个 Linux 社区。正文 4.2 节已说明这一限制。</p>
+<h3 id="wsl-linux">WSL 与原生 Linux 的选择 <a class="heading-anchor" href="#wsl-linux" aria-label="链接到本节">#</a></h3>
+<p>正文 3.4 节引用了两条最有代表性的评论（&quot;终极还是选择了 wsl+windows&quot;、&quot;linux 最大众的用法&quot;）。这里保留 Arch 争议视频评论区的完整原声<a id="fnref:121" href="#fn:75" class="footnote-ref"><sup>75</sup></a>：</p>
+<details class="custom-container details">
+<summary>完整引语：关于 WSL 与发行版选择的六条评论</summary>
+<blockquote>
+<p>&quot;现在越来越没有精力尝试那些发行版了，终极还是选择了 wsl+windows&quot;</p>
+<p>&quot;我一般用 wsl2 或者直接 ssh Ubuntu 的 server，难道我会天天抱着个 home 目录里一遍又一遍地刷新看 logo 吗，我用 Ubuntu 是因为 linux 里面方便写 machine learning，仅此而已。&quot;</p>
+<p>&quot;个人观点，没有特殊需求，日常使用 Windows 完全够用，任何对非熟练计算用户的 Linux 传教都是不合适的。&quot;</p>
+<p>&quot;不是程序编码相关行业的没必要去用 Linux……除非你明确知道在 Linux 下你能完全替代 Win 下的工作流，你再选 Linux 才是正确的。&quot;</p>
+<p>&quot;我用 Arch 纯粹就是乐意折腾……有的时候掉链子是真的会想换 Windows 和 WSL&quot;</p>
+<p>&quot;linux 正确用法就应该是无头服务器跑服务。我自己是台式机 windows 打游戏，笔记本 arch 玩本地 ai 还有开发，家庭服务器 ubuntu server&quot;</p>
+</blockquote>
+</details>
+<p>这些评论显示，有一批用户把 Linux 定位为后端、服务器或开发环境，而不是桌面身份，并据此选择 WSL 或远程连接作为务实方案。这种取向在部分用户中出现，相关场景见 3.4 节。</p>
+<h3 id="section-73">守门人文化与新用户门槛 <a class="heading-anchor" href="#section-73" aria-label="链接到本节">#</a></h3>
+<p>正文 4.2 节保留了&quot;技术异化为身份图腾&quot;的高赞评论和&quot;社区的精神是'带'不是'拉'&quot;这一句。这里补全完整长引语<a id="fnref:122" href="#fn:75" class="footnote-ref"><sup>75</sup></a>：</p>
+<details class="custom-container details">
+<summary>完整引语：关于守门人文化的五条评论</summary>
+<blockquote>
+<p>&quot;当一个社区的规模扩展到一定程度，原本作为工具的技术往往就会开始异化为一种身份图腾。其原因在于在这些社区中，知识即地位，掌握更多技术知识的人通常也就掌握了更大的话语权。在这样的箱庭中，人们就会开始将技术知识储备作为衡量个人能力、甚至人格的绝对标准；将傲慢和缺乏同理心包装成'极客'的严谨性。&quot;</p>
+<p>&quot;Arch 信徒们根本不是想要拉小白触碰他们神圣的 Arch，而是通过'简单'之类的言语诱导小白进来，然后在小白一脸懵逼地倒在 install 阶段的时候跳出来嘲讽'这么简单都不会'，以此获得虚妄的满足感罢了。&quot;</p>
+<p>&quot;你炫耀没问题，但你炫耀了，又不教，简直无耻。你让人家用 Arch，你就应该知道这玩意难，社区的精神应该是'带'而不是'拉'。拉入 Arch 有什么了不起，了不起的是你能带他走完你走过的坑！&quot;</p>
+<p>&quot;用你的需要来强行决定，说别人也必须需要，这本身就是一种变态。而更变态的是，在说服别人之后，还要对别人提出的问题开口嘲笑。&quot;</p>
+<p>&quot;嘉豪们又会说，这些又不难，学一下就行了呗，这在暗中秀自己智商'高人一等'的同时，也犯下了傲慢之罪：并不是每个人都想知道技术细节与底层原理，也没有义务为了你设计的缺陷而额外付出精力和时间来学习一个全新的东西。……更何况，还有一群假装传教士的守门人以自己的方式阻止新人进入生态，毕竟，用的人多了，怎么体现自己的优越性呢？&quot;</p>
+</blockquote>
+</details>
+<p>以上五条说明社区中确实存在守门人式回应，但不能代表整个社区的态度。正文 4.2 节已说明这一限制。</p>
+<h3 id="snapubuntuarch-mint">Snap、Ubuntu、Arch 与 Mint 的用户观点 <a class="heading-anchor" href="#snapubuntuarch-mint" aria-label="链接到本节">#</a></h3>
+<p>以下三条评论分别讨论按需求选择发行版、自定义体验和学习经历，可与正文 4.2 节中的态度样本对照<a id="fnref:123" href="#fn:75" class="footnote-ref"><sup>75</sup></a>：</p>
+<details class="custom-container details">
+<summary>完整引语：发行版选择与使用经历</summary>
+<blockquote>
+<p>&quot;吹 Arch 和反 Arch 的都是嘉豪。我现在主要用 debian……但总有人喜欢 arch 的 wiki 氛围、够新的软件源、方便但有风险的 aur。也总有人喜欢 ubuntu 开箱即用的傻瓜方便和更高的硬件兼容性。各取所需，各走一条路就行。因为自己不喜欢另外一条路，所以专门发个檄文讨伐走另外一条路的人，我觉得这行为挺嘉豪的。&quot;</p>
+<p>&quot;使用大多数发行版都不妨碍用户自定义，Debian 不但尊重我的自定义，而且让我自定义得很轻松。&quot;</p>
+<p>&quot;我计算机出身的，从 win 再到 ubuntu/debian 再到 arch，最后回到 ubuntu 的怀抱。在研究 arch 的过程当中我真心学到了很多 Linux 底层的设计，这对我日后开发高性能服务程序提供了非常大的帮助。所以技术不分好坏，需要根据需求来决定。改车本质上就是小众文化，arch 社区忽悠小白上手 arch 本质上，就是跟不懂车的人说买辆二手车回来改一样抽象。&quot;</p>
+</blockquote>
+</details>
+<p>与守门人文化并存的，还有一批用户明确主张各取所需，反对以发行版划分阵营。两组原声放在一起，说明社区态度并非单一。</p>
+<h3 id="nix-1">Nix 治理评论 <a class="heading-anchor" href="#nix-1" aria-label="链接到本节">#</a></h3>
+<p>正文 5.4 节已引用 Hacker News 的这条评论，这里归档完整原话与来源<a id="fnref:165" href="#fn:103" class="footnote-ref"><sup>103</sup></a>：</p>
+<blockquote>
+<p>&quot;Nix 包管理器：正确解决了你整个操作系统的依赖地狱。Nix 治理：还没解决人类的依赖地狱。&quot;</p>
+</blockquote>
+<p>这条评论只能作为治理观点的样本，不能单独证明 Nix 社区对治理状态存在统一判断。它仍是观点材料（等级 C），不是官方定性。</p>
+<hr />
+<h2 id="c">附录 C：旁注与补充材料 <a class="heading-anchor" href="#c" aria-label="链接到本节">#</a></h2>
+<blockquote>
+<p>本附录保留不适合进入正文主线的作者旁注、预判反驳与延伸观察。以下内容均不属于正文论证，按对应章节分类。</p>
+</blockquote>
+<h3 id="section-74">第 1 部分旁注 <a class="heading-anchor" href="#section-74" aria-label="链接到本节">#</a></h3>
+<details class="custom-container details">
+<summary>补充材料：关于 ESR 的预判反驳</summary>
+<blockquote>
+<p>浏览器更新需要同时考虑功能和安全。仍在支持期内的 ESR 即使落后多个大版本，也会继续获得安全修复，并可能满足部分用户当前的功能需求。但某项新功能或 Web 标准不在一个用户的工作流中，不代表其他用户不需要；安全补丁修复的往往是只在特定输入或攻击路径下触发的漏洞，正常浏览时通常感觉不到修复前后的区别。因此，&quot;我感觉没什么区别&quot;只能说明当前常用功能没有明显变化，不能用来判断新功能是否普遍无用，也不能证明旧版本没有安全风险。发行版还要根据支持周期、网站兼容性和安全维护状态决定交付哪个版本。</p>
+</blockquote>
+</details>
+<details class="custom-container details">
+<summary>补充材料：关于浏览器自动更新与 LTS 的旁注</summary>
+<blockquote>
+<p>大多数用户手机或者 Windows 上的浏览器都是自动更新的，用户几乎体验不到新旧这个过程，大部分用户并不会自己故意不更新浏览器。Canonical 和 Mozilla 能让用户用上最新浏览器而且也是自动更新，这个选择我觉得没有什么问题。</p>
+<p>Arch 和 Fedora 不承诺 LTS 级别的长期稳定锁定，因此可以直接在仓库中推送最新版本的浏览器，维护压力小得多。</p>
+</blockquote>
+</details>
+<h3 id="section-75">第 2 部分旁注 <a class="heading-anchor" href="#section-75" aria-label="链接到本节">#</a></h3>
+<details class="custom-container details">
+<summary>补充材料：关于 RHEL 的旁注</summary>
+<blockquote>
+<p>Red Hat 将部分应用改为独立分发后，可以把更多工程资源用于 Wayland 等底层平台工作，具体分工见 2.1 节。</p>
+</blockquote>
+</details>
+<h3 id="section-76">第 3 部分旁注 <a class="heading-anchor" href="#section-76" aria-label="链接到本节">#</a></h3>
+<details class="custom-container details">
+<summary>补充材料：关于 WSL 性能的预判反驳</summary>
+<blockquote>
+<p>WSL 2 可以承担编译、运行容器、小模型训练和本地测试等常见开发任务。需要直接访问特定硬件、内核功能或严格控制延迟的工作仍应使用原生 Linux；具体性能差异取决于任务、存储路径和硬件配置。</p>
+</blockquote>
+</details>
+<details class="custom-container details">
+<summary>补充材料：关于 Arch 的旁注</summary>
+<blockquote>
+<p>对于个人用户而言，Arch Linux 同样可以用于服务器和桌面场景，靠自己的技术来维护。但大部分生产环境下是没得选的。</p>
+</blockquote>
+</details>
+<h3 id="section-77">第 4 部分旁注 <a class="heading-anchor" href="#section-77" aria-label="链接到本节">#</a></h3>
+<details class="custom-container details">
+<summary>补充材料：关于 GNOME 托盘与 KDE 借鉴的延伸观察</summary>
+<blockquote>
+<p>GNOME 不再默认展示旧式 status icon/legacy tray 本身没有问题，有利于 Wayland 的发展。但它没有原生提供一个与传统系统托盘等价的体验，而是更倾向于把应用迁移到新的后台应用机制；因此社区才发展出了 AppIndicator and KStatusNotifierItem Support 这类兼容扩展。把这件事说成&quot;GNOME 移除托盘图标&quot;会过度简化。</p>
+<p>GNOME 44 引入了&quot;后台应用&quot;机制。KDE Plasma 6.7（2026 年 6 月）的官方发布公告也说明，System Tray 增加了对新&quot;Background Apps&quot;系统的支持，这类机制在 Flatpak 应用中更常见。KDE 还在 Plasma 6.6 推出了 Plasma Login Manager（SDDM 的分支），为 Plasma 提供自己的显示管理器。这些变化说明两个桌面项目会分别吸收已有机制并补充缺少的组件。</p>
+<p>参考 <a href="https://kde.org/announcements/plasma/6/6.7.0/">https://kde.org/announcements/plasma/6/6.7.0/</a></p>
+</blockquote>
+</details>
+<details class="custom-container details">
+<summary>补充材料：关于 Arch 高手的讽刺观察</summary>
+<blockquote>
+<p>评论区里，一些长期用户会明确说明 Arch 不适合所有新手，并推荐 Mint 或 Ubuntu。相比之下，脱离用户需求宣称&quot;Arch 最简单&quot;，会忽略安装、更新和故障处理所要求的维护经验。熟悉系统的用户觉得这些操作简单，不代表新用户也具备相同的前置知识。</p>
+</blockquote>
+</details>
+<h3 id="section-78">第 5 部分旁注 <a class="heading-anchor" href="#section-78" aria-label="链接到本节">#</a></h3>
+<details class="custom-container details">
+<summary>补充材料：关于 deepin 实践王勇判断的延伸观察</summary>
+<blockquote>
+<p>deepin 25 默认使用&quot;磐石&quot;系统，核心目录只读，并支持原子更新和快照回滚；应用分发则加入了玲珑沙箱格式。这些设计与 Android、ChromeOS 的系统保护和独立应用分发方式有相似之处。deepin 的案例说明，商业公司可以投入资源整合系统更新、应用分发和桌面体验。</p>
+</blockquote>
+</details>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://discourse.ubuntu.com/t/feature-freeze-exception-seeding-the-official-firefox-snap-in-ubuntu-desktop/24210/1">Feature Freeze Exception: Seeding the official Firefox snap in Ubuntu Desktop</a>，Ubuntu Desktop Team 官方公告（Ubuntu Discourse），2021-09-16，访问于 2026-08-21。原文明确说明：Mozilla 主动联系 Canonical，Firefox 种子包由 deb 替换为&quot;Mozilla-official Firefox snap&quot;，过渡在 22.04 开发周期内完成。<a href="#fnref:1" class="footnote-back-ref">&#8617;</a><a href="#fnref:2" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>可复现实验：Ubuntu 26.04（Resolute），2026-08-21，执行 <code>apt list | grep snap1</code>。匹配到的过渡包仅 chromium-browser、firefox、thunderbird 三组（版本号均含 <code>1snap1</code> 标记）及其 locale 子包，无其他软件。<a href="#fnref:3" class="footnote-back-ref">&#8617;</a><a href="#fnref:4" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://flatpak.org/about/">Flatpak 官方项目时间线</a>。<a href="#fnref:5" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Snap 的前身是 2014 年 12 月 9 日 Canonical 发布的 Snappy Ubuntu Core，见 <a href="https://ubuntu.com/blog/announcing-ubuntu-core-with-snappy-transactional-updates">Announcing Ubuntu Core, with snappy transactional updates!（Mark Shuttleworth，Canonical 博客）</a>；2016 年随 Ubuntu 16.04 LTS 以&quot;snap&quot;应用格式进入桌面与服务器，见 <a href="https://wiki.ubuntu.com/XenialXerus/ReleaseNotes">Ubuntu 16.04 发行注记（XenialXerus/ReleaseNotes）</a>。访问于 2026-08-21。<a href="#fnref:6" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://snapcraft.io/blog/chromium-in-ubuntu-deb-to-snap-transition">Chromium in Ubuntu: deb to snap transition（Alan Pope，Snapcraft 官方博客）</a>，2019-10-10，访问于 2026-08-23。原文说明：Chromium 当时大约每六周发布一个大版本，中间还有修复安全漏洞的小版本；每个新版都要为多个受支持的 Ubuntu 版本和 amd64、i386、armhf、arm64 架构构建，旧版 Ubuntu 的编译工具链还可能不支持上游使用的新特性。Snap 每个架构只需构建一次，可以覆盖所有支持 snapd 的系统。<a href="#fnref:7" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p><a href="https://snapcraft.io/chromium">Chromium（Snapcraft Store）</a>，访问于 2026-08-21。<a href="#fnref:8" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p><a href="https://tracker.debian.org/pkg/chromium">Debian 包追踪页：chromium</a>，访问于 2026-08-21。<a href="#fnref:9" class="footnote-back-ref">&#8617;</a><a href="#fnref:10" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p><a href="https://support.mozilla.org/en-US/kb/installing-thunderbird-linux">Installing Thunderbird on Linux（Mozilla 官方支持文档）</a>，访问于 2026-08-21。原文说明 Thunderbird snap 由&quot;Canonical and Thunderbird&quot;共同维护。<a href="#fnref:11" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p><a href="https://ubuntu.com/about/release-cycle">Ubuntu release cycle</a>；<a href="https://wiki.debian.org/LTS">Debian LTS（Debian Wiki）</a>。访问于 2026-08-21。<a href="#fnref:12" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p><a href="https://ubuntu.com/blog/what-is-an-ubuntu-lts-release">What is an Ubuntu LTS release?（Rhys Davies，Canonical 博客）</a>，2020-04-17，访问于 2026-08-21。原文：&quot;Without long term support, software can become a security risk. Vulnerabilities develop over time and without mechanisms to patch or update them, systems become exposed and perform worse the longer they remain out-of-date.&quot;<a href="#fnref:13" class="footnote-back-ref">&#8617;</a><a href="#fnref:14" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p><a href="https://tracker.debian.org/pkg/firefox-esr">firefox-esr（Debian 包页）</a>；<a href="https://www.mozilla.org/en-US/firefox/enterprise/">Firefox ESR（Mozilla）</a>。访问于 2026-08-21。<a href="#fnref:15" class="footnote-back-ref">&#8617;</a><a href="#fnref:16" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p><a href="https://blog.mozilla.org/security/2012/10/10/security-vulnerability-in-firefox-16/">Security Vulnerability in Firefox 16（Mozilla Security Blog）</a>，2012-10-10，访问于 2026-08-21。Firefox 16 被发现漏洞后，Mozilla 次日发布 16.0.1 并通过自动更新推送给所有用户。<a href="#fnref:17" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p><a href="https://ubuntu.com/server/docs/how-to/software/package-management/">Manage software repositories（Ubuntu Server Docs）</a>，访问于 2026-08-21。<a href="#fnref:18" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p><a href="https://www.redhat.com/en/blog/firefox-and-thunderbird-rhel-flatpaks-what-it-means-you">Firefox and Thunderbird as RHEL Flatpaks: What it means for you（Scott McCarty，Red Hat 博客）</a>，2026-07-30，访问于 2026-08-21。原文：&quot;RPMs for Firefox and Thunderbird were deprecated in RHEL 10.0, and RHEL 10.2 completes the transition by making Flatpaks the default.&quot;<a href="#fnref:19" class="footnote-back-ref">&#8617;</a><a href="#fnref:20" class="footnote-back-ref">&#8617;</a><a href="#fnref:21" class="footnote-back-ref">&#8617;</a><a href="#fnref:22" class="footnote-back-ref">&#8617;</a><a href="#fnref:23" class="footnote-back-ref">&#8617;</a><a href="#fnref:24" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:15">
+<p>作者在 Ubuntu 上的使用观察（可复现实验，截至 2026-08）：Neovim 官方源版本落后于上游最新稳定版；PrismLauncher 官方源锁定在 10.0.5、Snap 版为 11.x；fish、fastfetch、ripgrep 等工具官方源版本同样落后。<a href="#fnref:25" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:16">
+<p><a href="https://github.com/chromium/chromium/blob/main/sandbox/linux/README.md">The Linux Sandbox（Chromium 官方文档）</a>，访问于 2026-08-21。原文：namespace sandbox &quot;based on (unprivileged) user namespaces in the Linux kernel&quot;，自 M-43 起在内核支持时取代 setuid sandbox。<a href="#fnref:26" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:17">
+<p><a href="https://docs.flatpak.org/en/latest/introduction.html">Introduction to Flatpak（Flatpak 官方文档）</a>，访问于 2026-08-21。原文列举 CLI 限制时写明：&quot;Flatpak won't allow spawning sub-namespaces in the sandbox.&quot;<a href="#fnref:27" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:18">
+<p><a href="https://lwn.net/Articles/1020571/">Flatpak and the future of the Linux desktop（Joe Brockmeier，LWN）</a>，2025，访问于 2026-08-21。记录 Flatpak 核心开发者 Sebastian Wick 在 Linux Application Summit 2025 的发言，原话：&quot;nested sandboxing does not work in Flatpak&quot;、&quot;There have been issues with this approach for quite a while ... but no one knows quite how to solve them&quot;、&quot;you will notice that it's not being actively developed anymore&quot;、user namespace &quot;well-tested and a much-used interface&quot;。<a href="#fnref:28" class="footnote-back-ref">&#8617;</a><a href="#fnref:29" class="footnote-back-ref">&#8617;</a><a href="#fnref:30" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:19">
+<p><a href="https://snapcraft.io/docs/snap-confinement">Snap confinement（Snapcraft 官方文档）</a>，访问于 2026-08-21。原文：&quot;Strict confinement uses security features of the Linux kernel, including AppArmor, seccomp and namespaces.&quot;<a href="#fnref:31" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:20">
+<p><a href="https://snapcraft.io/blog/how-are-we-improving-firefox-snap-performance-part-1">How are we improving Firefox snap performance? Part 1（Snapcraft 官方博客）</a>，访问于 2026-08-21。原文：&quot;snaps add an extra security layer on top of the browser's already-robust sandboxing mechanism.&quot;<a href="#fnref:32" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:21">
+<p><a href="https://github.com/flathub/org.freedesktop.Platform.GL.nvidia">org.freedesktop.Platform.GL.nvidia（GitHub，Flathub 源仓库）</a>，访问于 2026-08-21；<a href="https://docs.flatpak.org/en/latest/extension.html">Extensions（Flatpak 官方文档）</a>，访问于 2026-10-04。GL 扩展通过 <code>active-gl-driver</code> 条件匹配当前驱动，并通过 <code>download-if</code>、<code>enable-if</code> 控制自动下载和启用；Nvidia 驱动检测会读取宿主内核模块的版本。<a href="#fnref:33" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:22">
+<p><a href="https://documentation.ubuntu.com/core/how-to-guides/cuda-workloads">Run CUDA workloads on Ubuntu Core（Ubuntu 官方文档）</a>，访问于 2026-08-21。gpu-2404 content interface 把宿主 GPU 用户态驱动库（含 Nvidia）直通给 snap。<a href="#fnref:34" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:23">
+<p><a href="https://flathub.org/stats">Flathub Statistics</a>，访问于 2026-08-21。<a href="#fnref:35" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:24">
+<p><a href="https://github.com/microsoft/vscode/blob/main/resources/linux/snap/snapcraft.yaml">Visual Studio Code Snapcraft 配置（GitHub）</a>，访问于 2026-08-21。<a href="#fnref:36" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:25">
+<p><a href="https://canonical.com/microk8s/docs/getting-started">Get started（MicroK8s 官方文档）</a>；<a href="https://canonical.com/microk8s">MicroK8s（Canonical 官方页面）</a>，访问于 2026-09-01。官方页面给出的通用安装命令为 <code>sudo snap install microk8s --classic</code>；入门文档说明 MicroK8s 会持续运行，并在系统重启后自动启动。<a href="#fnref:37" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:26">
+<p><a href="https://docs.flatpak.org/en/latest/introduction.html">Introduction to Flatpak（Flatpak 官方文档）</a>，访问于 2026-08-21。原文：&quot;Flatpak is best suited for desktop applications. While command-line applications also work, Flatpak may not be suitable in some cases&quot;；随后列举 SUID 二进制、宿主 /proc、seccomp 子命名空间、内核模块、udev/systemd 等限制。<a href="#fnref:38" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:27">
+<p><a href="https://docs.projectbluefin.io/bluefin-dx/#jetbrains">Bluefin DX 官方文档（JetBrains 小节）</a>，访问于 2026-08-21。原文推荐 <code>ujust jetbrains-toolbox</code> 安装 JetBrains Toolbox 以统一管理 JetBrains 全系产品，并明确写道 &quot;We do not recommend using the JetBrains flatpaks.&quot;；VS Code 作为镜像默认 IDE 预装（&quot;included in the image as the default IDE&quot;）。<a href="#fnref:39" class="footnote-back-ref">&#8617;</a><a href="#fnref:40" class="footnote-back-ref">&#8617;</a><a href="#fnref:41" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:28">
+<p><a href="https://snapcraft.io/canonical-livepatch">canonical-livepatch（Snapcraft 官方商店）</a>；<a href="https://ubuntu.com/pro/docs/services-overview/">What is included in Ubuntu Pro?（Ubuntu Pro 官方文档）</a>；<a href="https://ubuntu.com/landscape">Landscape（Ubuntu 官方页面）</a>，访问于 2026-09-01。Snapcraft 页面显示 <code>canonical-livepatch</code> 由 Canonical Verified 账号发布；Ubuntu Pro 文档说明 Livepatch 面向 High 与 Critical 级内核 CVE，且仍需使用常规更新工具安装全部标准内核更新；Landscape 可集中管理 Ubuntu 主机、更新和 Snap。<a href="#fnref:42" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:29">
+<p><a href="https://github.com/canonical/snapd">canonical/snapd（GitHub）</a>，访问于 2026-08-21。snapd 客户端为开源软件，源码公开、支持社区贡献。<a href="#fnref:43" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:30">
+<p><a href="https://snapcraft.io/blog/managing-software-snap-store-proxy">Managing software in complex network environments: the Snap Store Proxy（Snapcraft 官方博客）</a>，访问于 2026-08-21。原文：Snap Store Proxy 是 &quot;an on-premise edge proxy to the global Snap Store&quot;，支持本地缓存、版本 override、离线（air-gapped）模式。<a href="#fnref:44" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:31">
+<p><a href="https://ubuntu.com/docs/snapcraft/latest/how-to/publishing/publish-a-snap/">Listing your snap for review（Snapcraft 官方文档）</a>，访问于 2026-08-21。<a href="#fnref:45" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:32">
+<p>部分 Intel Xe 核显 VA-API 硬件解码问题，作者观察，在 Ubuntu 26.04 LTS 仍然存在。<a href="#fnref:46" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:33">
+<p><a href="https://github.com/canonical/firefox-snap">canonical/firefox-snap（GitHub）</a>，访问于 2026-08-21。历史 issue 记录早期插件/输入法/冷启动/主题/密码管理器问题，多数已改善。<a href="#fnref:47" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:34">
+<p>据社区反馈（等级 C）：Snap Store 走 Cloudflare CDN 未启用大陆节点；Flatpak 可换中科大等镜像。<a href="#fnref:48" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:35">
+<p><a href="https://linyaps.org.cn/">如意玲珑（Linyaps）社区官网</a>；<a href="https://linyaps.org.cn/about-ll">了解如意玲珑（发展历程）</a>，访问于 2026-08-21。原文：2024-05-24 项目正式捐赠给开放原子开源基金会；基于 User Namespace 等内核隔离实现应用与系统解耦，&quot;一次构建、全发行版分发&quot;。<a href="#fnref:49" class="footnote-back-ref">&#8617;</a><a href="#fnref:50" class="footnote-back-ref">&#8617;</a><a href="#fnref:51" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:36">
+<p><a href="https://developers.redhat.com/blog/2020/08/12/introducing-the-red-hat-flatpak-runtime-for-desktop-containers/">Introducing the Red Hat Flatpak runtime for desktop containers（Red Hat Developer 博客）</a>，2020-08-12，访问于 2026-08-21。原文：runtime &quot;follows the Red Hat Enterprise Linux lifecycle&quot;，&quot;We intend to continue providing security fixes for 10 years from RHEL 8's May 2019 release date.&quot;<a href="#fnref:52" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:37">
+<p><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/8.3_release_notes/rhel-8_3_1_release">RHEL 8.3.1 release notes（Red Hat 文档）</a>，访问于 2026-08-21。&quot;Flatpak packages for several desktop applications&quot; 一节列出 Firefox、GIMP、Inkscape、Thunderbird 四个 Flatpak 容器镜像，上线 Red Hat Container Catalog。<a href="#fnref:53" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:38">
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/9.2_release_notes/deprecated-functionality">RHEL 9.2 Release Notes, Deprecated functionality（Red Hat 文档）</a>，访问于 2026-08-21。原文：&quot;The LibreOffice RPM packages are now deprecated and will be removed in a future major RHEL release.&quot; 另见 Matthias Clasen 在 Fedora devel 邮件列表的说明（2023-06-01，https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/46ZZ6GZ2W3G4OJYX3BIWTAW75H37TVW6/ ）：Red Hat Display Systems 团队调整工程优先级，聚焦 Wayland、HDR 等方向，停止随 RHEL 交付 LibreOffice。<a href="#fnref:54" class="footnote-back-ref">&#8617;</a><a href="#fnref:55" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:39">
+<p>Red Hat 官方 issue SAT-30947（https://issues.redhat.com/browse/SAT-30947 ）记录：RHEL 10.0 Beta 发行说明写明 &quot;In RHEL 10, Firefox and Thunderbird are available exclusively as Flatpaks&quot;。Beta 发行说明原文页已随版本下线，此表述由该官方 issue 存档。<a href="#fnref:56" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:40">
+<p><a href="https://rockylinux.org/news/rocky-linux-10-2-ga-release">Rocky Linux 10.2 Available Now（Rocky Linux 官方公告）</a>，2026-05-28，访问于 2026-08-21。原文：&quot;Flatpaks are now the default delivery method for Mozilla Firefox and Mozilla Thunderbird. The Anaconda installer preinstalls these Flatpaks automatically... RPM packages remain available in AppStream for the lifetime of Rocky Linux 10, and users who prefer them can override the default in Kickstart configurations.&quot;<a href="#fnref:57" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:41">
+<p><a href="https://www.debian.org/News/2025/20250809">Debian 13 &quot;trixie&quot; released（Debian 官方公告）</a>，2025-08-09。原文：软件包总数为 69,830 个。<a href="#fnref:58" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:42">
+<p>Debian 正式开发者（Debian Developer）人数来自 Debian 投票信息（Debian Voting Information）历年统计：2012 年 948 人，2025 年 1030 人；活跃贡献者口径见 <a href="https://contributors.debian.org/">contributors.debian.org</a>（过去 12 个月约 1397 人）。访问于 2026-08-21。<a href="#fnref:59" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:43">
+<p><a href="https://software.einnews.com/article/525966132/">DPL: Debian project has plenty of money but not enough developers（The Register，经 einnews 转载）</a>，2020 年（DebConf20 演讲报道），访问于 2026-08-21。原文：项目账上 &quot;over $900,000&quot;；&quot;there are 975 uploading developers and 223 maintainers&quot;；Bullseye 展望 &quot;over 61,000 amd64 binary packages&quot;；&quot;at three times we could probably achieve all our goals&quot;。<a href="#fnref:60" class="footnote-back-ref">&#8617;</a><a href="#fnref:61" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:44">
+<p><a href="https://lwn.net/Articles/1043364">Debian splits ftpmaster team（Joe Brockmeier，LWN）</a>，2025-10-29，访问于 2026-08-21。原文：FTPmaster 团队 &quot;responsible for ... maintaining Debian's package archive for more than two decades&quot;；截至 2025-10-26 &quot;the team is no more&quot;，职责拆分为 Archive Operations Team 与 DFSG, Licensing &amp; New Packages Team；新包等待审核的原因之一是 &quot;too few hands to do the work&quot;。<a href="#fnref:62" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:45">
+<p><a href="https://www.phoronix.com/news/No-Debian-Data-Protection-Team">There Is No One Left On Debian's Data Protection Team（Michael Larabel，Phoronix）</a>，2026-01-05，访问于 2026-08-21。原文：该团队 2018 年成立以处理 GDPR 事务，&quot;all three delegated members of the team recently stepped back&quot;；DPL Andreas Tille 在 Bits from the DPL 中说明 &quot;Debian currently has no active Data Protection Team. All previous delegates have stepped back, and the delegation has therefore been revoked.&quot;<a href="#fnref:63" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:46">
+<p><a href="https://lists.debian.org/debian-devel/2025/03/msg00138.html">Processing times for the NEW queue（Debian 邮件列表）</a>，2025-03，访问于 2026-08-21。Matthias Urlichs 指出 NEW 队列当时约 135 个包、最老的包已滞留约九个月；Timo Röhling 的分析则显示中位处理时间不到 48 小时、约 2% 的包滞留数月以上。另见 LWN 关于 ftpmaster 拆分的报道中 Otto Kekäläinen 举的开发者等待审核数月的例子。<a href="#fnref:64" class="footnote-back-ref">&#8617;</a><a href="#fnref:65" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:47">
+<p><a href="https://lwn.net/Articles/1052799">Debian 的 MIA 流程（LWN）</a>，2026-01，访问于 2026-08-21。原文记录的是 DebConf25 上提出的六阶段 MIA（Missing in Action）自动化流程提案，尚处于&quot;提出/鼓励&quot;阶段，未实施。<a href="#fnref:66" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:48">
+<p><a href="https://wiki.debian.org/Debian_GNU/kFreeBSD">Debian GNU/kFreeBSD（Debian Wiki）</a>，访问于 2026-08-21。原文：该端口在 Debian 6.0/7.0 以技术预览/正式 port 发布，&quot;Since Debian 8 (Jessie) it is no more included in official releases&quot;；&quot;The development of Debian GNU/kFreeBSD has officially terminated as of July 2023 due to the lack of interest and volunteers.&quot;<a href="#fnref:67" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:49">
+<p><a href="https://wiki.debian.org/DuncTank">Dunc-Tank（Debian Wiki）</a>；<a href="https://lwn.net/Articles/200305">Debian + Dunc-Tank.org = dissent（LWN）</a>，访问于 2026-08-21。2006 年由时任 Debian 领导人 Anthony Towns 发起的筹款实验，募集约 6000 美元，支付给两位 release manager（Steve Langasek、Andreas Barth）各一个月全职工作的报酬，试图让 etch 按时发布；此举引发社区强烈反对，担心付费让 Debian 变成两级系统，部分开发者因此减少投入，etch 反而推迟到 2007 年 4 月才发布。<a href="#fnref:68" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:50">
+<p><a href="https://lwn.net/Articles/896918">Maintainers don't scale（LWN）</a>，2022，访问于 2026-08-21。2022 年 Linux 存储、文件系统、内存管理与 BPF 峰会（LSFMM）上，Josef Bacik 主持的关于维护者压力与 burnout 的讨论（原计划由 Darrick Wong 主持），标题即 &quot;Maintainers don't scale&quot;。<a href="#fnref:69" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:51">
+<p><a href="https://www.theregister.com/2023/09/26/linux_kernel_report_2023/">Long-term support for Linux kernels is about to get a lot shorter（Liam Proven，The Register）</a>，2023-09-26，访问于 2026-08-21。原文：LWN 编辑 Jonathan Corbet 在 Open Source Summit 宣布六年更新政策将取消，&quot;We're likely to go back to a long-term stable kernel maintained for about two years.&quot;<a href="#fnref:70" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:52">
+<p><a href="https://www.theregister.com/2026/01/27/linux_continuity_plan/">Succession: Linux kernel community gets continuity plan for post-Linus era（Joe Fay，The Register）</a>，2026-01-27，访问于 2026-08-21。原文：Dan Williams 起草的 &quot;Linux project continuity document&quot; 已合并进内核文档（Documentation/process/conclave.rst），规定当顶层仓库维护者无法继续工作时，由 $ORGANIZER 在 72 小时内启动与最近一届 Maintainers Summit 参与者的继任讨论。<a href="#fnref:71" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:53">
+<p><a href="https://universal-blue.org/">Universal Blue 主页</a>，访问于 2026-08-21。原文：&quot;It's not a distribution, but a new way to consume existing distributions&quot;；&quot;Not a new distribution, a layer of customization on Fedora that can be cleanly removed&quot;；&quot;Reliable, atomic updates with built in rollback&quot;；&quot;Hosted on ghcr.io&quot;；&quot;Ninety (90) days of image archives allowing for flexible rollback options&quot;。镜像可通过 &quot;a Containerfile and our GitHub build actions&quot; 派生，并用 sigstore 工具签名；四个变体为 Bluefin、Aurora、Bazzite、uCore，其中 uCore 基于 Fedora CoreOS。<a href="#fnref:72" class="footnote-back-ref">&#8617;</a><a href="#fnref:73" class="footnote-back-ref">&#8617;</a><a href="#fnref:74" class="footnote-back-ref">&#8617;</a><a href="#fnref:75" class="footnote-back-ref">&#8617;</a><a href="#fnref:76" class="footnote-back-ref">&#8617;</a><a href="#fnref:77" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:54">
+<p><a href="https://github.com/bootc-dev/bootc">bootc 项目 README</a>，访问于 2026-08-21。原文：&quot;Transactional, in-place operating system updates using OCI/Docker container images&quot;；&quot;using standard OCI/Docker containers as a transport and delivery format for base operating system updates&quot;；&quot;The container image includes a Linux kernel ... which is used to boot.&quot; bootc 底层使用 ostree。<a href="#fnref:78" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:55">
+<p><a href="https://bazzite.gg/">Bazzite 官网</a>，访问于 2026-08-21。原文：&quot;built in Nvidia drivers&quot;；&quot;full support for accelerated video encoding and decoding&quot;；&quot;Secure Boot support&quot;；&quot;Bazzite is image based, meaning that after every update the previous version of the operating system is retained on your machine.&quot; 镜像经 GitHub Actions 与 Fedora Copr webhooks 自动更新。<a href="#fnref:79" class="footnote-back-ref">&#8617;</a><a href="#fnref:80" class="footnote-back-ref">&#8617;</a><a href="#fnref:81" class="footnote-back-ref">&#8617;</a><a href="#fnref:82" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:56">
+<p><a href="https://www.deepin.org/zh/deepin-25-release">deepin 25 发行注记</a>，访问于 2026-08-21。原文：磐石系统&quot;核心文件挂载为'只读'权限&quot;、&quot;支持原子化更新，通过数据增量的方式更新&quot;、&quot;支持系统更新失败或者系统无法启动时，自动回滚到上一次自动备份的数据&quot;、&quot;支持软件及驱动以系统扩展的形式进行安装&quot;；如意玲珑&quot;支持 Debian、Ubuntu、Arch、Fedora、openEuler 等多个主流发行版&quot;、&quot;累计已完成 5000+ 款软件上架&quot;。<a href="#fnref:83" class="footnote-back-ref">&#8617;</a><a href="#fnref:84" class="footnote-back-ref">&#8617;</a><a href="#fnref:85" class="footnote-back-ref">&#8617;</a><a href="#fnref:86" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:57">
+<p><a href="https://linyaps.org.cn/about-ll">如意玲珑社区官网&quot;了解如意玲珑&quot;</a>，访问于 2026-08-21。原文：四层架构（应用层/运行时层/基础层/沙箱视图）；&quot;通过 User Namespace 和 CGroup 实现隔离&quot;；&quot;写时复制技术&quot;；&quot;支持 10+ 主流 Linux 发行版&quot;；&quot;6000+ 应用&quot;；架构覆盖 x86_64/ARM64/LoongArch64/RISC-V/MIPS64/SW64。存储&quot;节省 60% 以上&quot;为官网宣传数据。<a href="#fnref:87" class="footnote-back-ref">&#8617;</a><a href="#fnref:88" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:58">
+<p><a href="https://github.com/flatpak/xdg-desktop-portal/releases/tag/1.21.0">xdg-desktop-portal 1.21.0 发布说明</a>，2026-01-21 发布，访问于 2026-08-21。原文 New Features 含 &quot;Support linyaps applications (#1846)&quot;。如意玲珑官网&quot;发展历程&quot;将 XDG 正式支持归入 2025 年度分组；精确落地为 1.21.0（2026-01）的发布。<a href="#fnref:89" class="footnote-back-ref">&#8617;</a><a href="#fnref:90" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:59">
+<p><a href="https://ubuntu.com/core">Ubuntu Core（Canonical 官网）</a>，访问于 2026-08-21。原文：Ubuntu Core 是 &quot;The immutable embedded Linux OS&quot;、&quot;Ubuntu Core is immutable and strictly confined&quot;、&quot;Ubuntu Core architecture is built on snaps&quot;，面向 IoT 与边缘设备。<a href="#fnref:91" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:60">
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/using_image_mode_for_rhel_to_build_deploy_and_manage_operating_systems/introducing-image-mode-for-rhel">Introducing image mode for RHEL（Red Hat 文档）</a>，访问于 2026-08-21。原文：&quot;RHEL Image mode is a deployment method that uses container technology to manage the operating system as an Open Container Initiative (OCI) container image&quot;；&quot;Image mode for RHEL is available by using the registry.redhat.io/rhel10/rhel-bootc bootc image&quot;；&quot;Immutable updates ... roll back when needed in the same way that you use rpm-ostree systems&quot;；bootc &quot;is intended to supersede rpm-ostree&quot;。<a href="#fnref:92" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:61">
+<p><a href="https://wiki.ubuntu.com/UEFI/SecureBoot">UEFI/SecureBoot（Ubuntu Wiki）</a>，访问于 2026-08-21。微软信任 Canonical 的签名，Ubuntu 从 UEFI 到桌面开箱即用，无需手动注册 MOK 密钥；对比之下 Arch/openSUSE 需自行签名。<a href="#fnref:93" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:62">
+<p><a href="https://ubuntu.com/server/docs/nvidia-drivers-installation">NVIDIA drivers installation（Ubuntu 文档）</a>，访问于 2026-08-21。<code>sudo ubuntu-drivers install</code> 自动安装推荐驱动；仓库提供预编译多版本驱动模块，图灵架构以前的显卡仍可从官方仓库安装 580 版驱动。<a href="#fnref:94" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:63">
+<p><a href="https://snapcraft.io/store">Snapcraft 商店</a>，访问于 2026-08-21。Steam、PyCharm、Telegram 等闭源软件在 Snap Store 提供官方 Snap 包，可一键安装。<a href="#fnref:95" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:64">
+<p><a href="https://snapcraft.io/openshell">OpenShell（Snapcraft 商店）</a>，访问于 2026-08-21。NVIDIA 的 OpenShell 是运行自主 AI agent 的开源沙箱运行时（Apache-2.0），由 NVIDIA 认证发布者（nvidia-snap-publisher）发布 Snap；简介为 &quot;OpenShell provides safe, sandboxed runtimes for autonomous AI agents.&quot;（另见 https://docs.nvidia.com/openshell/ ）。AUR 截至 2026-08-21 仍未打包。<a href="#fnref:96" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:65">
+<p><a href="https://documentation.ubuntu.com/release-notes/26.04/summary-for-lts-users">Ubuntu 26.04 LTS 发行注记（Summary for LTS users）</a>，访问于 2026-08-21。原文：&quot;The NVIDIA CUDA toolkit is now available. Added in version 26.04&quot;，应用开发者与系统管理员 &quot;can now install the NVIDIA CUDA parallel computing platform from the Ubuntu Archives&quot;，安装命令为 <code>sudo apt install cuda-toolkit</code>。<a href="#fnref:97" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:66">
+<p><a href="https://ubuntu.com/certified">Ubuntu Certified hardware（Canonical 官网）</a>；<a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack">LTS Enablement Stack（Ubuntu Wiki）</a>，访问于 2026-08-21。Canonical 与 Dell、Lenovo、HP 等厂商合作在认证设备上做兼容性测试；HWE 栈为 LTS 持续回溯新内核与图形驱动。<a href="#fnref:98" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:67">
+<p><a href="https://ubuntu.com/pro">Ubuntu Pro（Canonical 官网）</a>，访问于 2026-08-21。Ubuntu Pro 为个人用户免费提供最多 5 台设备的延长安全维护。<a href="#fnref:99" class="footnote-back-ref">&#8617;</a><a href="#fnref:100" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:68">
+<p><a href="https://www.bilibili.com/video/BV1dTLw6gEr1">LTT 2026 Linux 挑战视频（B站）</a>。本节所述案例与引语（Linus 的&quot;普通人不想把修操作系统当爱好&quot;、Luke 无法判断故障来源的困惑、sleep 搜索逻辑等）作为展示普通用户体验的观察材料（等级 C）。<a href="#fnref:101" class="footnote-back-ref">&#8617;</a><a href="#fnref:102" class="footnote-back-ref">&#8617;</a><a href="#fnref:103" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:69">
+<p><a href="https://www.theregister.com/software/2026/04/20/linux-71-will-have-an-optional-new-ntfs-driver/5226567">Linux 7.1 will have an optional new NTFS driver（Liam Proven，The Register）</a>，2026-04-20，访问于 2026-08-21。Linux 7.1 合入了 Namjae Jeon 开发的新 NTFS 驱动（开发名 NTFSPLUS，合入后命名为 ntfs），是对早期只读驱动的重制，加入了完整写支持。<a href="#fnref:104" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:70">
+<p><a href="https://www.jwz.org/doc/linux.html">Mouthing off about Linux（Jamie Zawinski）</a>，访问于 2026-08-21。原文：&quot;Linux is only free if your time has no value.&quot;<a href="#fnref:105" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:71">
+<p><a href="https://www.youtube.com/watch?v=8KQFgWdiudo">LTT 2026 Linux challenge wrap-up（YouTube）</a>。Elijah 关于 Bazzite 软件商店体验超过 Windows 的评价（等级 C）。<a href="#fnref:106" class="footnote-back-ref">&#8617;</a><a href="#fnref:107" class="footnote-back-ref">&#8617;</a><a href="#fnref:108" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:72">
+<p><a href="https://learn.microsoft.com/en-us/windows/wsl/">Windows Subsystem for Linux（微软文档）</a>，访问于 2026-08-21。WSL 2 提供完整 Linux 内核、systemd、GPU 直通、WSLg；CUDA 经 GPU-PV 可用；<code>explorer.exe .</code> 与 <code>/mnt/c</code> 自动挂载、<code>/etc/wsl.conf</code> 配置见微软 WSL 文档。<a href="#fnref:109" class="footnote-back-ref">&#8617;</a><a href="#fnref:110" class="footnote-back-ref">&#8617;</a><a href="#fnref:111" class="footnote-back-ref">&#8617;</a><a href="#fnref:112" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:73">
+<p>Microsoft，<a href="https://blogs.windows.com/windowsdeveloper/2026/09/29/wsl-containers-now-generally-available/">WSL containers is now generally available</a>；<a href="https://devblogs.microsoft.com/commandline/wslc-architecture-deep-dive/">WSLC Architecture deep dive</a>，均发布于 2026-09-29，访问于 2026-10-03。前者说明 GA、命令行与原生应用 API，并将 Compose 支持列入后续计划；后者说明会话、Linux 虚拟机和宿主集成的架构。<a href="#fnref:113" class="footnote-back-ref">&#8617;</a><a href="#fnref:114" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:74">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/wsl/compare-versions">Comparing WSL Versions</a>；<a href="https://learn.microsoft.com/en-us/windows/wsl/filesystems">Working across file systems</a>；<a href="https://learn.microsoft.com/en-us/windows/wsl/basic-commands">Basic commands for WSL</a>，访问于 2026-10-04。说明跨文件系统访问的性能差异，以及发行版导出、导入和注销操作；注销会删除发行版中的数据、设置和软件，不能当作保留数据的恢复操作。<a href="#fnref:115" class="footnote-back-ref">&#8617;</a><a href="#fnref:116" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:75">
+<p><a href="https://www.bilibili.com/video/BV14tNi6tEVN/">Arch 争议视频（B站）</a>。评论区原声（等级 C），作为展示实际用户选择的观察材料。<a href="#fnref:117" class="footnote-back-ref">&#8617;</a><a href="#fnref:118" class="footnote-back-ref">&#8617;</a><a href="#fnref:119" class="footnote-back-ref">&#8617;</a><a href="#fnref:120" class="footnote-back-ref">&#8617;</a><a href="#fnref:121" class="footnote-back-ref">&#8617;</a><a href="#fnref:122" class="footnote-back-ref">&#8617;</a><a href="#fnref:123" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:76">
+<p><a href="https://wiki.archlinux.org/title/System_maintenance">System maintenance（Arch Wiki）</a>，访问于 2026-08-21。原文：&quot;Partial upgrades are unsupported&quot;、&quot;Do not use pacman -Sy package... Always upgrade (with pacman -Syu) before installing a package&quot;；pacnew/pacsave 需手动处理；滚动更新需关注 Arch Linux News（https://archlinux.org/news/）。<a href="#fnref:124" class="footnote-back-ref">&#8617;</a><a href="#fnref:125" class="footnote-back-ref">&#8617;</a><a href="#fnref:126" class="footnote-back-ref">&#8617;</a><a href="#fnref:127" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:77">
+<p><a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-aur-supply-chain-ebpf-rootkit-20260614-csa">CSA 研究报告（Sonatype-2026-003775，CVSS 8.7）</a>；<a href="https://www.infosec.ge/blog/arch-linux-aur-atomic-arch-supply-chain-2026">Infosec.ge 报道</a>，访问于 2026-08-21。2026 年 6 月 12 日，AUR 孤儿包被投毒，攻击者通过接管无人维护的包植入恶意代码。<a href="#fnref:128" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:78">
+<p><a href="https://wiki.archlinux.org/title/GRUB">GRUB（Arch Wiki）</a>；<a href="https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot">Secure Boot（Arch Wiki）</a>，访问于 2026-09-01。Arch Wiki 要求 GRUB 用户在安装或移除内核后重新运行 <code>grub-mkconfig</code>，并分别说明了 Secure Boot 密钥的创建、签名和注册流程。<a href="#fnref:129" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:79">
+<p><a href="https://www.debian.org/releases/stable/release-notes/upgrading.html">Debian 升级文档</a>，访问于 2026-08-21。Debian 跨版本升级需手动改源再 <code>apt full-upgrade</code>；Ubuntu 的 <code>do-release-upgrade</code> 会引导临时卸载第三方包、禁用第三方仓库。<a href="#fnref:130" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:80">
+<p><a href="https://linuxmint.com/">Linux Mint 官网</a>；<a href="https://blog.linuxmint.com/?p=4591">Monthly News，October 2023</a>；<a href="https://blog.linuxmint.com/?m=202604">Monthly News，April 2026</a>，访问于 2026-09-01。Mint 官方曾说明 22.x 不会用 Wayland 取代默认的 Xorg 会话；2026 年 4 月的月报称下一版本计划在 2026 年圣诞节发布，并以 Ubuntu 26.04 LTS 为软件包基础。<a href="#fnref:131" class="footnote-back-ref">&#8617;</a><a href="#fnref:132" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:81">
+<p><a href="https://itsfoss.com/enable-snap-support-linux-mint/">How to Enable Snap Applications Support in Linux Mint（It's FOSS）</a>，访问于 2026-08-21。Mint 通过 <code>/etc/apt/preferences.d/nosnap.pref</code> 默认屏蔽 snapd；Mint 团队对 Ubuntu 20.04 Chromium 过渡包的表述：&quot;acting, without your consent, as a backdoor by connecting your computer to the Ubuntu Store&quot;。<a href="#fnref:133" class="footnote-back-ref">&#8617;</a><a href="#fnref:134" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:82">
+<p><a href="https://support.mozilla.org/en-US/kb/install-firefox-linux">Install Firefox on Linux（Mozilla Support）</a>，访问于 2026-09-01。Mozilla 的文档提供了用官方 APT 仓库中的 DEB 包替换 Ubuntu Firefox Snap 的步骤，也给出了 Flatpak 安装方式。<a href="#fnref:135" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:83">
+<p><a href="https://store.steampowered.com/steamos/">SteamOS（Valve 官方页面）</a>，访问于 2026-08-21。Steam Deck 为不可变系统、原子更新，用户通过 Steam 与 Discover（Flatpak）安装软件。<a href="#fnref:136" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:84">
+<p><a href="https://release.gnome.org/3-26/">Introducing GNOME 3.26（GNOME 发布说明）</a>，2017-09，访问于 2026-08-21。原文：&quot;GNOME 3.26 no longer shows status icons in the bottom-left of the screen... they can be restored using the TopIcons extension&quot;；另见 <a href="https://wiki.gnome.org/Initiatives/StatusIconMigration/FAQ">Status Icon Migration FAQ</a>、<a href="https://release.gnome.org/44/developers/index.html">GNOME 44 for Developers（background apps）</a>、<a href="https://www.omgubuntu.co.uk/2024/08/gnome-official-status-icons-extension">GNOME 官方 Status Icons 扩展（omgubuntu）</a>。<a href="#fnref:137" class="footnote-back-ref">&#8617;</a><a href="#fnref:138" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:85">
+<p><a href="https://en.wikipedia.org/wiki/Mir_(software)">Mir (software)（Wikipedia）</a>；<a href="https://en.wikipedia.org/wiki/Upstart_(software)">Upstart (software)（Wikipedia）</a>，访问于 2026-08-21。Canonical 曾主导 Mir 显示服务器、Upstart 初始化系统与 Unity 桌面，均在后来的技术路线竞争中让位（Mir 退场、Upstart 让位 systemd、Unity 让位 GNOME）。<a href="#fnref:139" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:86">
+<p><a href="https://gs.statcounter.com/os-market-share/desktop/worldwide">Desktop Operating System Market Share（Statcounter）</a>，访问于 2026-08-21。含 &quot;Unknown&quot; 桶口径下，Linux 桌面份额长期约 3%（2026-04 为 2.99%、2026-05 为 3.09%）；2026 年 7 月起 Statcounter 去掉 &quot;Unknown&quot; 桶后显示约 7.5%，前后口径不同、不可直接比较。无论哪种口径，Linux 桌面都远低于 Windows 的六成以上。<a href="#fnref:140" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:87">
+<p><a href="https://cloud.tencent.com/developer/news/3159291">Ubuntu Unity 维护者因学业无法投入（IT之家，转载 NeoWin 2025-10-28）</a>，访问于 2026-08-21。项目负责人 Rudra B. Rudra 忙于大学考试，项目一度濒临关停。<a href="#fnref:141" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:88">
+<p><a href="https://www.phoronix.com/news/Ubuntu-MATE-Needs-Leader">Ubuntu MATE Needs a Leader（Phoronix）</a>，2026-03，访问于 2026-08-21。创始人 Martin Wimpress 宣布失去热情、希望移交项目。<a href="#fnref:142" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:89">
+<p><a href="https://lkml.org/lkml/2023/8/10/1488">Darrick Wong 关于 XFS 维护的邮件（LKML）</a>，2023-08，访问于 2026-08-21。公开表示&quot;精疲力竭&quot;，警示不想在 2030 年仍处于这种状态。<a href="#fnref:143" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:90">
+<p><a href="https://bbs.deepin.org.cn/post/282927">王勇原话（deepin 论坛原帖）</a>；<a href="https://manateelazycat.github.io/2024/12/28/twitter-answers/">王勇 twitter 回答整理</a>，访问于 2026-08-21。原文：&quot;桌面要集合设计、用户心理研究、产品细节……而 Linux 社区只有技术架构。&quot;<a href="#fnref:144" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:91">
+<p><a href="https://www.oschina.net/news/502408">Ubuntu 设计团队往事：品味是如何死在投票箱里的？（OSCHINA）</a>，2026-09-10，访问于 2026-09-11。评论转述 David Siegel 的当事人回忆；本文仅将其作为设计人员对决策过程的观点材料（等级 C），不据此认定具体历史争议的全部原因，也不沿用评论对集体决策和桌面 Linux 的整体判断。<a href="#fnref:145" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:92">
+<p><a href="https://en.wikipedia.org/wiki/Desktop_environment">Desktop environment（Wikipedia）</a>，访问于 2026-08-21。该词条的 Gallery 部分列出超过 23 种风格类似的桌面环境。<a href="#fnref:146" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:93">
+<p><a href="https://ev.kde.org/reports/">KDE e.V. 年报</a>；<a href="https://www.phoronix.com/news/KDE-2023-Report">KDE 2023 报告（Phoronix）</a>，访问于 2026-08-21。KDE 2022 年亏损约 9.9 万欧元、2023 年亏损约 10.7 万欧元。<a href="#fnref:147" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:94">
+<p><a href="https://www.linuxfoundation.org/blog/blog/linux-kernel-report-more-contributors-than-ever">Linux Kernel Report（Linux Foundation）</a>，访问于 2026-08-21。超过 80% 内核代码由受薪开发者贡献；纯志愿者占比约一成（历次报告约 10-12%）。<a href="#fnref:148" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:95">
+<p><a href="https://ev.kde.org/reports/ev-2023/">KDE e.V. 2023 年报</a>，访问于 2026-08-21。KDE 2024 年度目标写得很克制：&quot;在不大幅扩张的情况下保持现有的活动水平&quot;。<a href="#fnref:149" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:96">
+<p><a href="https://lwn.net/ml/opensuse-factory/e6b7b51617c0085fdf14634d5734da88@suse.de/">Richard Brown 关于 openSUSE 贡献者与用户的邮件（LWN 存档）</a>，访问于 2026-08-21。贡献者最多时用户最少，用户增长期贡献者停滞或下降。<a href="#fnref:150" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:97">
+<p><a href="https://nix.dev/concepts/flakes">Nix flakes（nix.dev 官方文档）</a>；<a href="https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake">Nix 手册 flakes（nixos.org）</a>，访问于 2026-08-21。flakes 2021 年随 Nix 2.4 引入，至今 experimental；nix.dev 承认 flakes 存在根本性的架构问题与实现缺陷。<a href="#fnref:151" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:98">
+<p><a href="https://github.com/NixOS/rfcs/pull/49">RFC 49: Flakes（Nix RFC 仓库）</a>，访问于 2026-08-21。RFC 49 由 Eelco Dolstra 主导，在未被接受的情况下即合入主干，藏在 experimental 开关后面。<a href="#fnref:152" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:99">
+<p><a href="https://github.com/NixOS/rfcs">Nix RFC 仓库</a>，访问于 2026-08-21。RFC 136 确立增量稳定路线（先稳定 CLI，再动 flakes 本体），进展缓慢、无截止日期。<a href="#fnref:153" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:100">
+<p><a href="https://github.com/cig0/nix-drama-explained">nix-drama-explained（社区分析）</a>；<a href="https://determinate.systems">Determinate Systems</a>，访问于 2026-08-21。Determinate Systems（Eelco 联合创办）持续营销&quot;flakes 已经稳定&quot;，社区对其商业动机保持警惕。<a href="#fnref:154" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:101">
+<p><a href="https://discourse.nixos.org/t/nixcon-2023-sponsorship-situation-from-the-nixos-foundation/33583">NixCon 2023 赞助情况（NixOS Foundation 官方声明）</a>；<a href="https://github.com/save-nix-together/open-letter">Save Nix Together 公开信</a>；<a href="https://discourse.nixos.org/t/results-for-the-nix-steering-committee-election-2024/55511">SC 选举结果公告</a>；<a href="https://discourse.nixos.org/t/-/69828">Moderation Team 辞职声明</a>，访问于 2026-08-21。时间线各事件均按官方公告确认。<a href="#fnref:155" class="footnote-back-ref">&#8617;</a><a href="#fnref:156" class="footnote-back-ref">&#8617;</a><a href="#fnref:157" class="footnote-back-ref">&#8617;</a><a href="#fnref:158" class="footnote-back-ref">&#8617;</a><a href="#fnref:159" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:102">
+<p><a href="https://discourse.nixos.org/t/the-nixpkgs-core-team-has-disbanded/79413">The Nixpkgs core team has disbanded（NixOS 官方公告）</a>，2026-08-07，访问于 2026-08-21。core team 招募补员只收到 1 份申请，剩余两名成员 burnout 退出，公告批评 SC&quot;缺乏宪法所设想的授权本能&quot;；10 个月成绩含改革 committer 流程、新增 19 名 committer、GitHub Enterprise 赞助等。<a href="#fnref:160" class="footnote-back-ref">&#8617;</a><a href="#fnref:161" class="footnote-back-ref">&#8617;</a><a href="#fnref:162" class="footnote-back-ref">&#8617;</a><a href="#fnref:163" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:103">
+<p><a href="https://news.ycombinator.com/item?id=49217993">Hacker News 讨论（Nix core team 解散）</a>，访问于 2026-08-21。评论原话：&quot;Nix 包管理器：正确解决了你整个操作系统的依赖地狱。Nix 治理：还没解决人类的依赖地狱。&quot;（等级 C，仅作观点材料）<a href="#fnref:164" class="footnote-back-ref">&#8617;</a><a href="#fnref:165" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:104">
+<p><a href="https://universal-blue.org/mission.html">Universal Blue – Mission</a>，访问于 2026-08-21。原文：&quot;We target the 96%, not the 4%&quot;；&quot;no BDFL-like structures&quot;；&quot;more like 'My expert linux friend set up my Fedora for me' than a fork or derivative&quot;。<a href="#fnref:166" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:105">
+<p><a href="https://wiki.lix.systems/books/development/page/flakes-feature-freeze">Lix Wiki: Flakes feature freeze</a>，访问于 2026-08-21。Lix 2025 年底宣布 flakes 进入 freeze 期，计划从核心抽离为默认随附的插件。<a href="#fnref:167" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:106">
+<p><a href="https://www.debian.org/doc/debian-policy/ch-sharedlibs.html">Debian Policy Manual：Shared libraries</a>，访问于 2026-08-24。Debian 使用 <code>shlibs</code> 或 <code>symbols</code> 文件提供共享库 ABI 依赖信息，构建时由 <code>dpkg-shlibdeps</code> 计算二进制包依赖；不向后兼容的 ABI 变化通常需要改变 SONAME，并重新构建使用该库的软件包。<a href="#fnref:168" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:107">
+<p><a href="https://release.debian.org/doc/britney/short-intro-to-migrations.html">Britney2：A short introduction to migrations</a>；<a href="https://release.debian.org/doc/britney/solutions-to-common-policy-issues.html">Britney2：Solutions to common policy decisions</a>，访问于 2026-08-24。<code>britney</code> 以不引入新的质量与可安装性回归为主要迁移原则，<code>autopkgtest</code> 结果可以阻止或延迟候选版本进入 Testing。<a href="#fnref:169" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:108">
+<p><a href="https://wiki.debian.org/Teams/ReleaseTeam/Transitions">Debian Wiki：Teams/ReleaseTeam/Transitions</a>，访问于 2026-08-24。需要反向依赖重新构建或修改的 ABI/API 更新由 Release Team 作为 transition 跟踪；只需重新链接的软件包可通过 binNMU 重建。<a href="#fnref:170" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:109">
+<p><a href="https://wiki.archlinux.org/title/Official_repositories">Official repositories（ArchWiki）</a>，访问于 2026-08-24。Arch 使用 testing 仓库测试即将进入稳定仓库的软件包；staging 用于需要协调重建的软件包，不面向一般用户。<a href="#fnref:171" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:110">
+<p><a href="https://devmanual.gentoo.org/keywording/concepts/index.html">Gentoo Development Guide：Keywording concepts and policy</a>，访问于 2026-08-24。稳定 keyword 表示软件版本和 ebuild 已经过广泛测试，在对应平台没有已知严重问题；<code>~arch</code> 表示仍需更多测试。<a href="#fnref:172" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:111">
+<p><a href="https://wiki.gentoo.org/wiki/Preserve-libs">Gentoo Wiki：preserve-libs</a>，访问于 2026-08-24。preserve-libs 会保留被替换但仍有程序依赖的共享库，直到相关消费者完成重建或卸载。<a href="#fnref:173" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:112">
+<p><a href="https://doc.opensuse.org/documentation/tumbleweed/updating_upgrading_reverting/">Updating, upgrading, snapshots and best practices（openSUSE 文档）</a>，访问于 2026-08-24。Tumbleweed snapshot 是一批经过 openQA 测试的更新，测试覆盖单个包及同一快照中更新之间的兼容性。<a href="#fnref:174" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:113">
+<p><a href="https://doc.opensuse.org/documentation/tumbleweed/snapper/">Snapper and Btrfs（openSUSE 文档）</a>，访问于 2026-08-24。Tumbleweed 默认在根分区使用 Btrfs 并启用快照，可撤销 YaST、zypper 造成的系统变化或回滚整个系统。<a href="#fnref:175" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
+</div>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="./deb.html">Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;</a>
+                        </li>
+                        <li>
+                            <a href="./podman.html">&#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;</a>
+                        </li>
+                        <li>
+                            <a href="./ue.html">Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="./dev.html" rel="prev"><span>上一篇</span>Linux &#x6548;&#x7387;&#x5DE5;&#x5177;</a>
+                    <a href="./ovmf.html" rel="next"><span>下一篇</span>KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#apt-install-firefox">&#x5BFC;&#x8BFB;&#xFF1A;&#x4ECE; apt install firefox &#x8BF4;&#x8D77;</a>
+        <a class="level-2" href="#snap">1 &#x5165;&#x53E3;&#x4E0E;&#x6280;&#x672F;&#x65B9;&#x6848;&#xFF1A;Snap &#x89E3;&#x51B3;&#x4E86;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF1F;</a>
+        <a class="level-3" href="#ubuntu-snap">1.1 Ubuntu &#x5230;&#x5E95;&#x628A;&#x4EC0;&#x4E48;&#x6362;&#x6210;&#x4E86; Snap</a>
+        <a class="level-4" href="#chromium">Chromium&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x8FC7;&#x6E21;&#x5305;</a>
+        <a class="level-4" href="#firefox-thunderbird">Firefox &#x4E0E; Thunderbird&#xFF1A;&#x4E0A;&#x6E38;&#x5382;&#x5546;&#x76F4;&#x63A5;&#x53D1;&#x5E03;</a>
+        <a class="level-3" href="#os">1.2 &#x7ED3;&#x6784;&#x6027;&#x77DB;&#x76FE;&#xFF1A;&#x7A33;&#x5B9A; OS &#x4E0E;&#x5FEB;&#x901F;&#x5E94;&#x7528;</a>
+        <a class="level-4" href="#section">&#x7A33;&#x5B9A;&#x53D1;&#x884C;&#x7248;&#x5982;&#x4F55;&#x7EF4;&#x6301;&#x517C;&#x5BB9;&#x57FA;&#x7EBF;</a>
+        <a class="level-4" href="#section-1">&#x6D4F;&#x89C8;&#x5668;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x9002;&#x5408;&#x8DDF;&#x968F;&#x4F20;&#x7EDF;&#x53D1;&#x884C;&#x5468;&#x671F;</a>
+        <a class="level-4" href="#section-2">&#x56DB;&#x79CD;&#x53EF;&#x80FD;&#x65B9;&#x6848;&#x53CA;&#x5176;&#x6210;&#x672C;</a>
+        <a class="level-4" href="#section-3">&#x4E3A;&#x4EC0;&#x4E48;&#x6EDA;&#x52A8;&#x53D1;&#x884C;&#x7248;&#x4E0D;&#x662F;&#x666E;&#x904D;&#x7B54;&#x6848;</a>
+        <a class="level-4" href="#section-4">&#x6D4F;&#x89C8;&#x5668;&#x4E4B;&#x5916;</a>
+        <a class="level-3" href="#snap-flatpak">1.3 Snap &#x4E0E; Flatpak&#xFF1A;&#x4E0D;&#x540C;&#x573A;&#x666F;&#x7684;&#x6280;&#x672F;&#x53D6;&#x820D;</a>
+        <a class="level-4" href="#section-5">&#x5E94;&#x7528;&#x3001;&#x7CFB;&#x7EDF;&#x7EC4;&#x4EF6;&#x4E0E;&#x7CFB;&#x7EDF;&#x955C;&#x50CF;</a>
+        <a class="level-4" href="#section-6">&#x6D4F;&#x89C8;&#x5668;&#x6C99;&#x7BB1;&#x4E0E;&#x5D4C;&#x5957;&#x9694;&#x79BB;</a>
+        <a class="level-4" href="#nvidia">Nvidia &#x95ED;&#x6E90;&#x9A71;&#x52A8;</a>
+        <a class="level-4" href="#flatpak">Flatpak &#x7684;&#x5F3A;&#x9879;</a>
+        <a class="level-4" href="#snap-1">Snap &#x7684;&#x5F3A;&#x9879;</a>
+        <a class="level-4" href="#section-7">&#x573A;&#x666F;&#x5316;&#x5BF9;&#x6BD4;</a>
+        <a class="level-3" href="#snap-2">1.4 Snap &#x5B9E;&#x73B0;&#x4E2D;&#x7684;&#x5177;&#x4F53;&#x95EE;&#x9898;</a>
+        <a class="level-4" href="#apt">apt &#x9759;&#x9ED8;&#x91CD;&#x5B9A;&#x5411;</a>
+        <a class="level-4" href="#snap-store">Snap Store &#x95ED;&#x6E90;&#x4E0E;&#x4E2D;&#x5FC3;&#x5316;</a>
+        <a class="level-4" href="#section-8">&#x684C;&#x9762;&#x4F53;&#x9A8C;&#x77ED;&#x677F;</a>
+        <a class="level-4" href="#section-9">&#x56FD;&#x5185;&#x7F51;&#x7EDC;&#x4E0E;&#x53EF;&#x8FBE;&#x6027;</a>
+        <a class="level-3" href="#section-10">1.5 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#canonical">2 &#x884C;&#x4E1A;&#x5BF9;&#x7167;&#xFF1A;Canonical &#x4E4B;&#x5916;&#x7684;&#x89E3;&#x8026;&#x8DEF;&#x7EBF;</a>
+        <a class="level-3" href="#rhel">2.1 RHEL&#xFF1A;&#x516D;&#x5E74;&#x6E10;&#x8FDB;&#x5F0F;&#x89E3;&#x8026;</a>
+        <a class="level-4" href="#section-11">&#x65F6;&#x95F4;&#x7EBF;</a>
+        <a class="level-4" href="#red-hat-flatpak">Red Hat &#x9009;&#x62E9; Flatpak &#x7684;&#x539F;&#x56E0;</a>
+        <a class="level-4" href="#ubuntu">&#x4E0E; Ubuntu &#x7684;&#x5DEE;&#x5F02;</a>
+        <a class="level-3" href="#debian">2.2 Debian&#xFF1A;&#x4F20;&#x7EDF;&#x6253;&#x5305;&#x6A21;&#x5F0F;&#x7684;&#x4EBA;&#x529B;&#x6210;&#x672C;</a>
+        <a class="level-4" href="#section-12">&#x7EF4;&#x62A4;&#x89C4;&#x6A21;&#x4E0E;&#x8D21;&#x732E;&#x8005;&#x53D8;&#x5316;</a>
+        <a class="level-4" href="#section-13">&#x6D4F;&#x89C8;&#x5668;&#x4E0E;&#x591A;&#x7A33;&#x5B9A;&#x5206;&#x652F;&#x7EF4;&#x62A4;</a>
+        <a class="level-4" href="#section-14">&#x5173;&#x952E;&#x56E2;&#x961F;&#x3001;&#x5BA1;&#x6838;&#x548C;&#x65B0;&#x4EBA;&#x5165;&#x53E3;</a>
+        <a class="level-4" href="#section-15">&#x94B1;&#x4E3A;&#x4F55;&#x4E0D;&#x662F;&#x552F;&#x4E00;&#x7B54;&#x6848;</a>
+        <a class="level-3" href="#universal-blue">2.3 Universal Blue&#xFF1A;&#x4E0D;&#x53EF;&#x53D8;&#x684C;&#x9762;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;</a>
+        <a class="level-4" href="#section-16">&#x57FA;&#x672C;&#x6A21;&#x578B;</a>
+        <a class="level-4" href="#section-17">&#x539F;&#x5B50;&#x66F4;&#x65B0;&#x4E0E;&#x56DE;&#x6EDA;</a>
+        <a class="level-4" href="#section-18">&#x4EA7;&#x54C1;&#x5316;&#x4EF7;&#x503C;</a>
+        <a class="level-4" href="#section-19">&#x5C40;&#x9650;</a>
+        <a class="level-3" href="#deepin">2.4 deepin &#x4E0E;&#x5982;&#x610F;&#x73B2;&#x73D1;&#xFF1A;&#x672C;&#x571F;&#x751F;&#x6001;&#x7684;&#x56DE;&#x7B54;</a>
+        <a class="level-4" href="#section-20">&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;</a>
+        <a class="level-4" href="#section-21">&#x6280;&#x672F;&#x4E0E;&#x6CBB;&#x7406;</a>
+        <a class="level-4" href="#section-22">&#x6210;&#x719F;&#x5EA6;&#x8FB9;&#x754C;</a>
+        <a class="level-3" href="#section-23">2.5 &#x56DB;&#x6761;&#x8DEF;&#x7EBF;&#x7684;&#x6C47;&#x805A;&#x4E0E;&#x8FB9;&#x754C;</a>
+        <a class="level-4" href="#section-24">&#x53EF;&#x4EE5;&#x5F52;&#x7EB3;&#x7684;&#x5171;&#x540C;&#x8D8B;&#x52BF;</a>
+        <a class="level-4" href="#section-25">&#x4E0D;&#x80FD;&#x6DF7;&#x4E3A;&#x4E00;&#x8C08;&#x7684;&#x5DEE;&#x5F02;</a>
+        <a class="level-3" href="#section-26">2.6 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#section-27">3 &#x7528;&#x6237;&#x4E0E;&#x4EA7;&#x54C1;&#xFF1A;&#x6280;&#x672F;&#x9009;&#x62E9;&#x6700;&#x7EC8;&#x66FF;&#x8C01;&#x8282;&#x7701;&#x65F6;&#x95F4;&#xFF1F;</a>
+        <a class="level-3" href="#ubuntu-1">3.1 Ubuntu &#x4E3A;&#x4EC0;&#x4E48;&#x5F3A;&#x8C03;&#x5F00;&#x7BB1;&#x5373;&#x7528;</a>
+        <a class="level-4" href="#ubuntu-2">Ubuntu &#x540C;&#x65F6;&#x670D;&#x52A1;&#x670D;&#x52A1;&#x5668;&#x4E0E;&#x684C;&#x9762;</a>
+        <a class="level-4" href="#section-28">&#x4EA7;&#x54C1;&#x6574;&#x5408;&#x7684;&#x5177;&#x4F53;&#x5185;&#x5BB9;</a>
+        <a class="level-4" href="#section-29">&#x9ED8;&#x8BA4;&#x503C;&#x4E0E;&#x9009;&#x62E9;&#x81EA;&#x7531;</a>
+        <a class="level-3" href="#ltt">3.2 LTT&#xFF1A;&#x666E;&#x901A;&#x7528;&#x6237;&#x4E0D;&#x60F3;&#x628A;&#x4FEE;&#x7CFB;&#x7EDF;&#x5F53;&#x7231;&#x597D;</a>
+        <a class="level-4" href="#section-30">&#x6848;&#x4F8B;&#x7ECF;&#x8FC7;</a>
+        <a class="level-4" href="#section-31">&#x641C;&#x7D22;&#x4E0E;&#x8D23;&#x4EFB;&#x8FB9;&#x754C;</a>
+        <a class="level-4" href="#section-32">&#x6848;&#x4F8B;&#x7684;&#x8FB9;&#x754C;</a>
+        <a class="level-3" href="#linux">3.3 Linux &#x514D;&#x8D39;&#xFF0C;&#x4F46;&#x7528;&#x6237;&#x65F6;&#x95F4;&#x5E76;&#x4E0D;&#x514D;&#x8D39;</a>
+        <a class="level-4" href="#section-33">&#x5F00;&#x7BB1;&#x5373;&#x7528;&#x4E0E;&#x6298;&#x817E;&#x4E0D;&#x77DB;&#x76FE;</a>
+        <a class="level-4" href="#section-34">&#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x5982;&#x4F55;&#x6539;&#x53D8;&#x65F6;&#x95F4;&#x6210;&#x672C;</a>
+        <a class="level-4" href="#section-35">&#x7EF4;&#x62A4;&#x8D23;&#x4EFB;&#x662F;&#x5426;&#x6E05;&#x6670;</a>
+        <a class="level-3" href="#windows-wsl">3.4 Windows &#x2B; WSL &#x7684;&#x52A1;&#x5B9E;&#x4F4D;&#x7F6E;</a>
+        <a class="level-4" href="#section-36">&#x9002;&#x5408;&#x7684;&#x7528;&#x6237;</a>
+        <a class="level-4" href="#wsl-containers-windows">WSL containers&#xFF1A;&#x628A;&#x5BB9;&#x5668;&#x63A5;&#x5165; Windows &#x5DE5;&#x4F5C;&#x6D41;</a>
+        <a class="level-4" href="#linux-1">&#x66F4;&#x9002;&#x5408;&#x539F;&#x751F; Linux &#x7684;&#x573A;&#x666F;</a>
+        <a class="level-4" href="#section-37">&#x4E0E;&#x5168;&#x6587;&#x7684;&#x5173;&#x7CFB;</a>
+        <a class="level-3" href="#archubuntu-mint">3.5 Arch&#x3001;Ubuntu &#x4E0E; Mint&#xFF1A;&#x9009;&#x62E9;&#x7684;&#x662F;&#x8D23;&#x4EFB;&#x6A21;&#x578B;</a>
+        <a class="level-4" href="#arch">Arch</a>
+        <a class="level-4" href="#ubuntu-3">Ubuntu</a>
+        <a class="level-4" href="#mint">Mint</a>
+        <a class="level-4" href="#section-38">&#x9009;&#x62E9;&#x95EE;&#x9898;</a>
+        <a class="level-3" href="#steamos">3.6 SteamOS &#x7684;&#x4EA7;&#x54C1;&#x6761;&#x4EF6;&#x4E0E;&#x8FB9;&#x754C;</a>
+        <a class="level-4" href="#steamos-1">SteamOS &#x7684;&#x6210;&#x529F;&#x6761;&#x4EF6;</a>
+        <a class="level-4" href="#steamos-2">SteamOS &#x7684;&#x9002;&#x7528;&#x8303;&#x56F4;</a>
+        <a class="level-3" href="#section-39">3.7 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#section-40">4 &#x793E;&#x533A;&#x4E0E;&#x751F;&#x6001;&#xFF1A;&#x6280;&#x672F;&#x6210;&#x7ACB;&#x4E3A;&#x4F55;&#x4ECD;&#x96BE;&#x4EE5;&#x5927;&#x4F17;&#x5316;&#xFF1F;</a>
+        <a class="level-3" href="#section-41">4.1 &#x6279;&#x8BC4;&#x3001;&#x89E3;&#x91CA;&#x4E0E;&#x9009;&#x62E9;</a>
+        <a class="level-4" href="#section-42">&#x6279;&#x8BC4;&#x8981;&#x5BF9;&#x51C6;&#x4E8B;&#x5B9E;</a>
+        <a class="level-4" href="#section-43">&#x533A;&#x5206;&#x5DE5;&#x7A0B;&#x539F;&#x56E0;&#x4E0E;&#x4EA7;&#x54C1;&#x8BC4;&#x4EF7;</a>
+        <a class="level-4" href="#section-44">&#x4E0D;&#x559C;&#x6B22;&#x5C31;&#x6362;</a>
+        <a class="level-3" href="#section-45">4.2 &#x5B88;&#x95E8;&#x4EBA;&#x6587;&#x5316;&#x4E0E;&#x8EAB;&#x4EFD;&#x6807;&#x7B7E;</a>
+        <a class="level-4" href="#section-46">&#x65B0;&#x7528;&#x6237;&#x9762;&#x5BF9;&#x7684;&#x9690;&#x6027;&#x95E8;&#x69DB;</a>
+        <a class="level-4" href="#section-47">&#x6280;&#x672F;&#x8EAB;&#x4EFD;&#x5982;&#x4F55;&#x653E;&#x5927;&#x4E89;&#x8BAE;</a>
+        <a class="level-3" href="#section-48">4.3 &#x7528;&#x6237;&#x89C4;&#x6A21;&#x4E0E;&#x8F6F;&#x4EF6;&#x652F;&#x6301;&#x7684;&#x5FAA;&#x73AF;</a>
+        <a class="level-4" href="#section-49">&#x5FAA;&#x73AF;&#x7ED3;&#x6784;</a>
+        <a class="level-4" href="#section-50">&#x4E3A;&#x4EC0;&#x4E48;&#x670D;&#x52A1;&#x5668;&#x6210;&#x529F;&#x4E0D;&#x80FD;&#x81EA;&#x52A8;&#x8F6C;&#x5316;&#x4E3A;&#x684C;&#x9762;&#x6210;&#x529F;</a>
+        <a class="level-4" href="#section-51">&#x793E;&#x533A;&#x6C1B;&#x56F4;&#x5982;&#x4F55;&#x5F71;&#x54CD;&#x751F;&#x6001;</a>
+        <a class="level-3" href="#section-52">4.4 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#section-53">5 &#x7EC4;&#x7EC7;&#x53EF;&#x6301;&#x7EED;&#x6027;&#xFF1A;&#x8C01;&#x6765;&#x627F;&#x62C5;&#x957F;&#x671F;&#x6210;&#x672C;&#xFF1F;</a>
+        <a class="level-3" href="#section-54">5.1 &#x5FD7;&#x613F;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x7ED3;&#x6784;&#x6027;&#x8FB9;&#x754C;</a>
+        <a class="level-4" href="#section-55">&#x5173;&#x952E;&#x4EBA;&#x7269;&#x4F9D;&#x8D56;</a>
+        <a class="level-4" href="#section-56">&#x53EA;&#x6709;&#x5DE5;&#x7A0B;&#x80FD;&#x529B;&#x8FD8;&#x4E0D;&#x591F;</a>
+        <a class="level-4" href="#section-57">&#x788E;&#x7247;&#x5316;&#x7684;&#x53CC;&#x91CD;&#x6548;&#x679C;</a>
+        <a class="level-4" href="#section-58">&#x8D44;&#x91D1;&#x56F0;&#x5883;&#x4E0E;&#x7A33;&#x5B9A;&#x6295;&#x5165;</a>
+        <a class="level-4" href="#section-59">&#x7528;&#x6237;&#x589E;&#x957F;&#x4E0D;&#x7B49;&#x4E8E;&#x8D21;&#x732E;&#x8005;&#x589E;&#x957F;</a>
+        <a class="level-4" href="#section-60">&#x5982;&#x4F55;&#x8BC4;&#x4EF7;&#x9879;&#x76EE;&#x4E0E;&#x7EF4;&#x62A4;&#x8005;</a>
+        <a class="level-3" href="#section-61">5.2 &#x670D;&#x52A1;&#x5668;&#x5BFC;&#x5411;&#x5E26;&#x6765;&#x7684;&#x4E09;&#x79CD;&#x684C;&#x9762;&#x6469;&#x64E6;</a>
+        <a class="level-4" href="#section-62">&#x66F4;&#x65B0;&#x540E;&#x7684;&#x7EF4;&#x62A4;&#x8D23;&#x4EFB;</a>
+        <a class="level-4" href="#section-63">&#x6392;&#x9519;&#x65F6;&#x7684;&#x8D23;&#x4EFB;&#x5F52;&#x5C5E;</a>
+        <a class="level-4" href="#section-64">&#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x9009;&#x62E9;</a>
+        <a class="level-3" href="#section-65">5.3 &#x5546;&#x4E1A;&#x529B;&#x91CF;&#x80FD;&#x89E3;&#x51B3;&#x4EC0;&#x4E48;&#xFF0C;&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x4EC0;&#x4E48;</a>
+        <a class="level-4" href="#canonical-1">Canonical</a>
+        <a class="level-4" href="#red-hat">Red Hat</a>
+        <a class="level-4" href="#valve">Valve</a>
+        <a class="level-4" href="#section-66">&#x5546;&#x4E1A;&#x4E0E;&#x793E;&#x533A;&#x7684;&#x5408;&#x7406;&#x5173;&#x7CFB;</a>
+        <a class="level-3" href="#nix">5.4 Nix &#x7684;&#x6280;&#x672F;&#x80FD;&#x529B;&#x4E0E;&#x6CBB;&#x7406;&#x95EE;&#x9898;</a>
+        <a class="level-4" href="#section-67">&#x6280;&#x672F;&#x8DEF;&#x7EBF;&#x4E0E;&#x6CBB;&#x7406;&#x95EE;&#x9898;</a>
+        <a class="level-4" href="#flakes">flakes &#x7684;&#x4E8B;&#x5B9E;&#x6807;&#x51C6;&#x50F5;&#x5C40;</a>
+        <a class="level-4" href="#section-68">&#x6CBB;&#x7406;&#x5371;&#x673A;</a>
+        <a class="level-4" href="#section-69">&#x51B3;&#x7B56;&#x6743;&#x4E0E;&#x7EF4;&#x62A4;&#x8D23;&#x4EFB;</a>
+        <a class="level-3" href="#section-70">5.5 &#x5C0F;&#x7ED3;</a>
+        <a class="level-2" href="#apt-install-firefox-1">&#x7ED3;&#x8BED;&#xFF1A;&#x56DE;&#x5230; apt install firefox</a>
+        <a class="level-2" href="#a">&#x9644;&#x5F55; A&#xFF1A;&#x53D1;&#x884C;&#x7248;&#x5982;&#x4F55;&#x7BA1;&#x7406;&#x53D8;&#x5316;</a>
+        <a class="level-3" href="#section-71">&#x6BD4;&#x8F83;&#x53D1;&#x884C;&#x7248;&#x53D8;&#x5316;&#x7BA1;&#x7406;&#x7684;&#x516D;&#x4E2A;&#x7EF4;&#x5EA6;</a>
+        <a class="level-3" href="#debian-1">Debian&#xFF1A;&#x5148;&#x5F62;&#x6210;&#x53D1;&#x5E03;&#x57FA;&#x7EBF;&#xFF0C;&#x518D;&#x9650;&#x5236;&#x53D8;&#x5316;</a>
+        <a class="level-3" href="#arch-1">Arch&#xFF1A;&#x6301;&#x7EED;&#x7EF4;&#x62A4;&#x4ED3;&#x5E93;&#x7684;&#x4E00;&#x81F4;&#x72B6;&#x6001;</a>
+        <a class="level-3" href="#gentoo">Gentoo&#xFF1A;&#x6EDA;&#x52A8;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x8F6F;&#x4EF6;&#x5305;&#x7A33;&#x5B9A;&#x5316;</a>
+        <a class="level-3" href="#opensuse-tumbleweed">openSUSE Tumbleweed&#xFF1A;&#x8FDE;&#x7EED;&#x53D1;&#x5E03;&#x7ECF;&#x8FC7;&#x6D4B;&#x8BD5;&#x7684;&#x5FEB;&#x7167;</a>
+        <a class="level-3" href="#section-72">&#x56DB;&#x79CD;&#x8DEF;&#x7EBF;&#x7684;&#x5DEE;&#x522B;</a>
+        <a class="level-2" href="#b">&#x9644;&#x5F55; B&#xFF1A;&#x793E;&#x533A;&#x4E0E;&#x7528;&#x6237;&#x539F;&#x58F0;</a>
+        <a class="level-3" href="#ltt-linux">LTT &#x6311;&#x6218;&#x4E0E; Linux &#x684C;&#x9762;&#x4F53;&#x9A8C;</a>
+        <a class="level-3" href="#wsl-linux">WSL &#x4E0E;&#x539F;&#x751F; Linux &#x7684;&#x9009;&#x62E9;</a>
+        <a class="level-3" href="#section-73">&#x5B88;&#x95E8;&#x4EBA;&#x6587;&#x5316;&#x4E0E;&#x65B0;&#x7528;&#x6237;&#x95E8;&#x69DB;</a>
+        <a class="level-3" href="#snapubuntuarch-mint">Snap&#x3001;Ubuntu&#x3001;Arch &#x4E0E; Mint &#x7684;&#x7528;&#x6237;&#x89C2;&#x70B9;</a>
+        <a class="level-3" href="#nix-1">Nix &#x6CBB;&#x7406;&#x8BC4;&#x8BBA;</a>
+        <a class="level-2" href="#c">&#x9644;&#x5F55; C&#xFF1A;&#x65C1;&#x6CE8;&#x4E0E;&#x8865;&#x5145;&#x6750;&#x6599;</a>
+        <a class="level-3" href="#section-74">&#x7B2C; 1 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+        <a class="level-3" href="#section-75">&#x7B2C; 2 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+        <a class="level-3" href="#section-76">&#x7B2C; 3 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+        <a class="level-3" href="#section-77">&#x7B2C; 4 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+        <a class="level-3" href="#section-78">&#x7B2C; 5 &#x90E8;&#x5206;&#x65C1;&#x6CE8;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F; &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Linux/wsl.html">
+            <meta property="og:title" content="Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Linux/wsl.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="All Sword and No Play Makes March a Dull Girl.">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.bb1aee13f1a46506.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html" aria-current="page">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html" aria-current="page">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;</h1>
+                    <p class="article-date"><time datetime="2026-08-01">2026-08-01</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-14">2026-11-14</time></p>
+                    <p class="article-date article-reading-time">预计阅读 6 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-4c696e757820e4bdbfe794a8">Linux &#x4F7F;&#x7528;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/4828e60247c1636f57b7446a314e7f599c12b53d40061cc851a1442004354fed.html">#Linux</a></li>
+                            <li><a href="../../tags/f9f9595e5abb085e851339c947d04ebc39a9b924600e1b5a42b1fee16b30427f.html">#WSL</a></li>
+                            <li><a href="../../tags/ea49523d744c40bc900b4462c43132d1c8a8de5216fa8436cc0e8b3e89dddbe3.html">#GPU</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</a>
+        <a class="level-2" href="#section-1">&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5305;</a>
+        <a class="level-2" href="#mesa">&#x914D;&#x7F6E; Mesa</a>
+        <a class="level-2" href="#drm">&#x51C6;&#x5907; DRM &#x8BBE;&#x5907;&#x8282;&#x70B9;</a>
+        <a class="level-2" href="#section-2">&#x9A8C;&#x8BC1;</a>
+        <a class="level-2" href="#section-3">&#x539F;&#x7406;&#x5206;&#x6790;</a>
+        <a class="level-3" href="#gpu-gpu-pv-d3d12">GPU &#x6267;&#x884C;&#xFF1A;GPU-PV &#x4E0E; D3D12</a>
+        <a class="level-3" href="#wslg-vail">&#x7A97;&#x53E3;&#x663E;&#x793A;&#xFF1A;WSLg &#x4E0E; VAIL</a>
+        <a class="level-3" href="#section-4">&#x6027;&#x80FD;&#x5F00;&#x9500;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><aside class="custom-container tip">
+<p class="custom-container-title">参考</p>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL">Arch Wiki: WSL</a></li>
+<li><a href="https://wiki.gentoo.org/wiki/Gentoo_in_WSL">Gentoo Wiki: WSL</a></li>
+<li><a href="https://devblogs.microsoft.com/commandline/d3d12-gpu-video-acceleration-in-the-windows-subsystem-for-linux-now-available/">D3D12 GPU Video acceleration in the Windows Subsystem for Linux now available!</a></li>
+<li><a href="https://devblogs.microsoft.com/directx/directx-heart-linux/">DirectX ❤ Linux</a></li>
+<li><a href="https://www.microsoft.com/en-us/windows-server/blog/2015/05/06/microsoft-loves-linux/">Microsoft ❤ Linux</a></li>
+<li><a href="https://docs.mesa3d.org/drivers/d3d12.html">Mesa D3D12 driver</a></li>
+<li><a href="https://github.com/microsoft/wslg">GitHub: WSLg</a></li>
+<li><a href="https://github.com/microsoft/wsl">GitHub: WSL</a></li>
+</ul>
+</aside>
+<p>WSL2 通过 WDDM GPU 半虚拟化（GPU-PV）共享由 Windows 管理的物理 GPU。Linux 程序从 <code>/dev/dxg</code> 进入这条链路，OpenGL、Vulkan 和 VA-API 再由 Mesa 翻译到 D3D12。</p>
+<p>WSLg 把 Linux 窗口集成到 Windows 桌面。GPU-PV 提供 GPU 执行通路，WSLg 负责窗口显示，两条通路在应用运行时配合工作。</p>
+<h2 id="section">准备工作 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<p>先在 Windows 终端更新 WSL，并安装最新的显卡驱动：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">wsl --update
+wsl --shutdown
+wsl --list --verbose
+</code></pre>
+</div>
+<p>目标发行版应运行在 WSL2。重新进入 Arch 后，确认 WSL 已投影 GPU 设备和 D3D12 库：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">ls -l /dev/dxg
+ls -l /usr/lib/wsl/lib/libd3d12.so /usr/lib/wsl/lib/libdxcore.so
+</code></pre>
+</div>
+<p><code>/dev/dxg</code> 由 WSL 和 Windows 显卡驱动提供。缺少该设备时，应先更新 WSL 和支持 WSL 的 Windows 显卡驱动。</p>
+<h2 id="section-1">安装软件包 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h2>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">sudo pacman -Syu ffmpeg glmark2 libva-utils mesa mesa-utils mpv vulkan-dzn vulkan-tools
+</code></pre>
+</div>
+<p>Arch 的 <code>mesa</code> 包含 D3D12 Gallium 与 VA-API 驱动，<code>vulkan-dzn</code> 则提供 Vulkan-on-D3D12 ICD。</p>
+<h2 id="mesa">配置 Mesa <a class="heading-anchor" href="#mesa" aria-label="链接到本节">#</a></h2>
+<p>下面两个变量分别让 OpenGL 和 VA-API 使用 D3D12 后端：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">printf '%s\n' \
+  'export GALLIUM_DRIVER=d3d12' \
+  'export LIBVA_DRIVER_NAME=d3d12' \
+  | sudo tee /etc/profile.d/wsl-gpu.sh
+
+source /etc/profile.d/wsl-gpu.sh
+</code></pre>
+</div>
+<p>多显卡机器可以指定适配器。这个值是显卡名称的子串，匹配时不区分大小写，应按本机情况修改：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">echo 'export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA' \
+  | sudo tee -a /etc/profile.d/wsl-gpu.sh
+</code></pre>
+</div>
+<h2 id="drm">准备 DRM 设备节点 <a class="heading-anchor" href="#drm" aria-label="链接到本节">#</a></h2>
+<p>先检查设备节点：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">ls -l /dev/dri
+</code></pre>
+</div>
+<p>如果 <code>/dev/dri/card0</code> 或 <code>/dev/dri/renderD128</code> 不存在，可加载 WSL 内核提供的 <code>vgem</code> 模块；确认有效后再设置开机加载：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">sudo modprobe vgem
+echo vgem | sudo tee /etc/modules-load.d/vgem.conf
+</code></pre>
+</div>
+<p><code>vgem</code> 创建的 <code>/dev/dri</code> 节点为 Mesa、EGL 和 VA-API 提供兼容的 DRM 接口，GPU 命令仍通过 <code>/dev/dxg</code> 进入 GPU-PV。若当前用户没有设备访问权限，可将其加入 <code>video</code>、<code>render</code> 组，然后重新登录：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">sudo usermod -aG video,render &quot;$USER&quot;
+</code></pre>
+</div>
+<h2 id="section-2">验证 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h2>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">eglinfo -B | grep -i renderer
+vulkaninfo --summary
+vainfo --display drm --device /dev/dri/renderD128
+</code></pre>
+</div>
+<p>OpenGL 输出应包含 <code>D3D12</code> 和实际显卡名称，<code>llvmpipe</code> 表示仍在使用软件渲染。Vulkan 应列出 <code>dzn</code> 对应的 D3D12 设备。<code>vainfo</code> 显示当前显卡与 Windows 驱动支持的编解码 Profile，不同机器的结果可能不同。</p>
+<p>接着测试渲染、播放与转码：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">glmark2
+vkcube
+mpv --hwdec=vaapi-copy input.mp4
+ffmpeg -vaapi_device /dev/dri/renderD128 \
+  -hwaccel vaapi -hwaccel_output_format vaapi \
+  -i input.mp4 -c:v h264_vaapi output.mp4
+taskmgr.exe
+</code></pre>
+</div>
+<p>运行测试时可在 Windows 任务管理器中观察相应的 GPU 引擎。FFmpeg 命令要求 <code>vainfo</code> 同时列出输入格式的解码能力与 H.264 编码入口；硬件不支持时需要更换编解码器或改用软件编码。</p>
+<p><img src="../../assets/images/wsl/1.png" alt="WSL GPU 运行测试（1.png）" /></p>
+<p><img src="../../assets/images/wsl/2.png" alt="WSL GPU 运行测试（2.png）" /></p>
+<h2 id="section-3">原理分析 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h2>
+<h3 id="gpu-gpu-pv-d3d12">GPU 执行：GPU-PV 与 D3D12 <a class="heading-anchor" href="#gpu-gpu-pv-d3d12" aria-label="链接到本节">#</a></h3>
+<p>WSL2 的 GPU 支持建立在 WDDM GPU 半虚拟化（GPU-PV）之上。微软为 WSL2 内核实现了 <code>dxgkrnl</code>，并通过 <code>/dev/dxg</code> 暴露接近 WDDM D3DKMT 服务层的接口。Linux 侧的 <code>dxgkrnl</code> 经由 VM Bus 与 Windows 宿主的 <code>dxgkrnl</code> 通信，物理设备最终仍由 Windows 显卡驱动的内核模式驱动（KMD）控制。</p>
+<p>微软还把与 Windows <code>d3d12.dll</code> 同源的 D3D12 用户态组件编译为 Linux 库，投影到 <code>/usr/lib/wsl/lib</code>；显卡厂商提供的 Linux 目标 D3D12 用户态驱动则位于 <code>/usr/lib/wsl/drivers</code>。对本文涉及的三类 API，调用链可以简化为：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">OpenGL  ─&gt; Mesa Gallium d3d12 ─┐
+Vulkan  ─&gt; Mesa dzn ───────────┼─&gt; D3D12 用户态栈 ─&gt; /dev/dxg
+VA-API  ─&gt; Mesa D3D12 Video ───┘        │
+                                        └─&gt; VM Bus ─&gt; Windows dxgkrnl
+                                                      ─&gt; GPU KMD ─&gt; GPU
+</code></pre>
+</div>
+<ul>
+<li><code>GALLIUM_DRIVER=d3d12</code> 选择 OpenGL 的 D3D12 Gallium 后端。</li>
+<li><code>vulkan-dzn</code> 把 Vulkan 调用翻译为 D3D12。</li>
+<li><code>LIBVA_DRIVER_NAME=d3d12</code> 让 VA-API 通过 D3D12 Video 使用显卡的解码、编码和视频处理单元。</li>
+</ul>
+<p>WSL2 中的多种 GPU API 共用 WDDM GPU-PV 基础设施。Mesa 和 D3D12 承接 OpenGL、Vulkan 与 VA-API；CUDA 等计算栈则使用独立的用户态驱动连接 WDDM 抽象层。</p>
+<h3 id="wslg-vail">窗口显示：WSLg 与 VAIL <a class="heading-anchor" href="#wslg-vail" aria-label="链接到本节">#</a></h3>
+<p>WSLg 运行在只读的 system distro 中；当前 system distro 基于 Azure Linux 3.0，与用户发行版共享 WSL 虚拟机和内核，但用户态相互隔离。WSLGd 启动并监控 Weston、XWayland 和 PulseAudio，还会在宿主机静默启动 <code>mstsc.exe</code> 建立 RDP 连接。</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Linux GUI 应用
+  ─&gt; Wayland / X11（经 XWayland）
+  ─&gt; Weston + FreeRDP
+  ─&gt; VAIL 共享内存
+  ─&gt; Windows mstsc.exe
+  ─&gt; DWM / Windows 桌面
+</code></pre>
+</div>
+<p>RAIL 按远程连接设计，在 RDP 传输中复制像素。WSLg 使用 VAIL，通过 <code>virtio-fs</code> 在宿主机与客户机之间共享内存，并按窗口传递画面。Windows 随后将这些窗口接入任务栏、Alt-Tab、剪贴板和多显示器体系。</p>
+<p>GPU 执行路径生成画面，WSLg 显示路径将窗口呈现到 Windows 桌面。纯 CUDA 任务只使用 GPU 执行路径，可以在关闭 WSLg 后运行。</p>
+<h3 id="section-4">性能开销 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h3>
+<p>这套图形栈的开销来自 API 与着色器翻译、跨虚拟机的命令提交和同步、显存与系统内存之间的数据移动，以及 Weston 和 Windows DWM 的两级合成。具体瓶颈取决于应用的 API、数据传输量和呈现频率。</p>
+<p>检测结果中的 <code>D3D12</code> 表明应用已使用 GPU 加速。它与原生 Linux 的性能差异需要按具体负载测试。依赖 Linux 原生显卡驱动，或需要降低虚拟化开销的任务，更适合原生 Linux；硬件和平台允许时，也可以使用支持设备直通的独立虚拟机。</p>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="./ovmf.html">KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;</a>
+                        </li>
+                        <li>
+                            <a href="./ue.html">Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</a>
+                        </li>
+                        <li>
+                            <a href="./genshin.html">Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="../Community/tech-argument.html" rel="prev"><span>上一篇</span>&#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;</a>
+                    <a href="./arch.html" rel="next"><span>下一篇</span>Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</a>
+        <a class="level-2" href="#section-1">&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5305;</a>
+        <a class="level-2" href="#mesa">&#x914D;&#x7F6E; Mesa</a>
+        <a class="level-2" href="#drm">&#x51C6;&#x5907; DRM &#x8BBE;&#x5907;&#x8282;&#x70B9;</a>
+        <a class="level-2" href="#section-2">&#x9A8C;&#x8BC1;</a>
+        <a class="level-2" href="#section-3">&#x539F;&#x7406;&#x5206;&#x6790;</a>
+        <a class="level-3" href="#gpu-gpu-pv-d3d12">GPU &#x6267;&#x884C;&#xFF1A;GPU-PV &#x4E0E; D3D12</a>
+        <a class="level-3" href="#wslg-vail">&#x7A97;&#x53E3;&#x663E;&#x793A;&#xFF1A;WSLg &#x4E0E; VAIL</a>
+        <a class="level-3" href="#section-4">&#x6027;&#x80FD;&#x5F00;&#x9500;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

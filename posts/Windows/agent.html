@@ -1,0 +1,1104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C; &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <meta name="description" content="&#x4ECE;&#x4EFB;&#x52A1;&#x9700;&#x6C42;&#x3001;&#x5DE5;&#x5177;&#x63A5;&#x53E3;&#x3001;&#x7ED3;&#x679C;&#x9A8C;&#x8BC1;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;&#x51FA;&#x53D1;&#xFF0C;&#x8BA8;&#x8BBA; AI Agent &#x7684;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#xFF0C;&#x4EE5;&#x53CA;&#x4E0D;&#x540C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x548C; Shell &#x7684;&#x9002;&#x7528;&#x6761;&#x4EF6;&#x4E0E;&#x4F7F;&#x7528;&#x6210;&#x672C;&#x3002;">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Windows/agent.html">
+            <meta property="og:title" content="&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Windows/agent.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="&#x4ECE;&#x4EFB;&#x52A1;&#x9700;&#x6C42;&#x3001;&#x5DE5;&#x5177;&#x63A5;&#x53E3;&#x3001;&#x7ED3;&#x679C;&#x9A8C;&#x8BC1;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;&#x51FA;&#x53D1;&#xFF0C;&#x8BA8;&#x8BBA; AI Agent &#x7684;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#xFF0C;&#x4EE5;&#x53CA;&#x4E0D;&#x540C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x548C; Shell &#x7684;&#x9002;&#x7528;&#x6761;&#x4EF6;&#x4E0E;&#x4F7F;&#x7528;&#x6210;&#x672C;&#x3002;">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.bb1aee13f1a46506.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./agent.html" aria-current="page">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./agent.html" aria-current="page">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;</h1>
+                    <p class="article-date"><time datetime="2026-09-28">2026-09-28</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-14">2026-11-14</time></p>
+                    <p class="article-date article-reading-time">预计阅读 46 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-414920e5ae9ee8b7b5">AI &#x5B9E;&#x8DF5;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/11fb682be0a0233d5fb899721ecfc1827d20f0d2ff2e093310efa61efca8af1c.html">#AI</a></li>
+                            <li><a href="../../tags/11b39c93777e8f1f3983bdba7c72b22fe68cfea20c677e9de53e17cb7dbfb19f.html">#Agent</a></li>
+                            <li><a href="../../tags/360480034cc3e9d32da9e262f001b129f80ddea134733a2e8b6268032aa139ab.html">#&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#gpu">&#x5BFC;&#x8BFB;&#xFF1A;&#x4ECE;&#x4E00;&#x4EFD; GPU &#x6355;&#x83B7;&#x5F00;&#x59CB;</a>
+        <a class="level-2" href="#section">1 &#x5148;&#x786E;&#x5B9A;&#x4EFB;&#x52A1;&#xFF0C;&#x518D;&#x6BD4;&#x8F83;&#x8FD0;&#x884C;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#section-1">1.1 &#x5B8C;&#x6210;&#x6761;&#x4EF6;&#x51B3;&#x5B9A;&#x9700;&#x8981;&#x4EC0;&#x4E48;&#x4FE1;&#x606F;</a>
+        <a class="level-3" href="#section-2">1.2 &#x6A21;&#x578B;&#x7684;&#x5224;&#x65AD;&#x600E;&#x6837;&#x53D8;&#x6210;&#x5B9E;&#x9645;&#x64CD;&#x4F5C;</a>
+        <a class="level-3" href="#section-3">1.3 &#x4ECE;&#x53EF;&#x884C;&#x6027;&#x5230;&#x4F7F;&#x7528;&#x6210;&#x672C;</a>
+        <a class="level-2" href="#shell-agent">2 Shell &#x600E;&#x6837;&#x5E2E;&#x52A9; Agent &#x5B8C;&#x6210;&#x5F00;&#x53D1;&#x5DE5;&#x4F5C;</a>
+        <a class="level-3" href="#shell">2.1 &#x65E5;&#x5E38;&#x547D;&#x4EE4;&#x7528;&#x5230;&#x4E86;&#x591A;&#x5C11; Shell &#x80FD;&#x529B;</a>
+        <a class="level-3" href="#section-4">2.2 &#x4E00;&#x6761;&#x547D;&#x4EE4;&#x7ECF;&#x8FC7;&#x4E86;&#x54EA;&#x4E9B;&#x5904;&#x7406;</a>
+        <a class="level-3" href="#section-5">2.3 &#x63A5;&#x53E3;&#x8BBE;&#x8BA1;&#x7684;&#x6536;&#x76CA;&#x53D6;&#x51B3;&#x4E8E;&#x4EFB;&#x52A1;</a>
+        <a class="level-2" href="#agent">3 &#x5E94;&#x7528;&#x600E;&#x6837;&#x628A;&#x80FD;&#x529B;&#x63D0;&#x4F9B;&#x7ED9; Agent</a>
+        <a class="level-3" href="#section-6">3.1 &#x8C03;&#x7528;&#x5165;&#x53E3;&#x4E0E;&#x5B83;&#x6240;&#x63D0;&#x4F9B;&#x7684;&#x80FD;&#x529B;</a>
+        <a class="level-3" href="#xcode-metal">3.2 Xcode &#x4E0E; Metal&#xFF1A;&#x547D;&#x4EE4;&#x884C;&#x4E5F;&#x80FD;&#x63D0;&#x4F9B;&#x4E13;&#x4E1A;&#x72B6;&#x6001;</a>
+        <a class="level-3" href="#rider-unreal">3.3 Rider &#x4E0E; Unreal&#xFF1A;&#x628A;&#x6E90;&#x7801;&#x5173;&#x7CFB;&#x548C;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x63A5;&#x8D77;&#x6765;</a>
+        <a class="level-3" href="#blender">3.4 Blender&#xFF1A;&#x4FEE;&#x6539;&#x573A;&#x666F;&#x4EE5;&#x540E;&#xFF0C;&#x600E;&#x6837;&#x5224;&#x65AD;&#x753B;&#x9762;</a>
+        <a class="level-2" href="#section-7">4 &#x5F00;&#x53D1;&#x5DE5;&#x5177;&#x9700;&#x8981;&#x600E;&#x6837;&#x7684;&#x6743;&#x9650;&#x8303;&#x56F4;</a>
+        <a class="level-3" href="#section-8">4.1 &#x8BA9;&#x4EFB;&#x52A1;&#x6388;&#x6743;&#x6210;&#x4E3A;&#x5B9E;&#x9645;&#x9650;&#x5236;</a>
+        <a class="level-3" href="#codex-on-windows">4.2 Codex on Windows&#xFF1A;&#x628A;&#x73B0;&#x6709;&#x673A;&#x5236;&#x7EC4;&#x6210;&#x6C99;&#x7BB1;</a>
+        <a class="level-3" href="#mxc-windows-mcp">4.3 MXC &#x4E0E; Windows MCP &#x5206;&#x522B;&#x89E3;&#x51B3;&#x54EA;&#x4E00;&#x6BB5;</a>
+        <a class="level-3" href="#section-9">4.4 &#x6743;&#x9650;&#x9700;&#x8981;&#x6CBF;&#x7740;&#x8C03;&#x7528;&#x7EE7;&#x7EED;&#x8FFD;&#x8E2A;</a>
+        <a class="level-2" href="#section-10">5 &#x600E;&#x6837;&#x636E;&#x6B64;&#x9009;&#x62E9;&#x5DE5;&#x4F5C;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#section-11">5.1 &#x628A;&#x63A5;&#x53E3;&#x653E;&#x8FDB;&#x4E00;&#x6B21;&#x5B8C;&#x6574;&#x8C03;&#x67E5;</a>
+        <a class="level-3" href="#section-12">5.2 &#x76EE;&#x6807;&#x8F6F;&#x4EF6;&#x5148;&#x786E;&#x5B9A;&#x6267;&#x884C;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#windows-wsl">5.3 Windows &#x2B; WSL&#xFF1A;&#x4FDD;&#x7559;&#x4E24;&#x4FA7;&#x5DF2;&#x6709;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;</a>
+        <a class="level-3" href="#section-13">5.4 &#x63A5;&#x53E3;&#x8282;&#x7701;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x4E0E;&#x63A5;&#x5165;&#x540E;&#x589E;&#x52A0;&#x7684;&#x5DE5;&#x4F5C;</a>
+        <a class="level-2" href="#section-14">&#x7ED3;&#x8BED;&#xFF1A;&#x4ECE;&#x53EF;&#x8C03;&#x7528;&#x7684;&#x80FD;&#x529B;&#x5224;&#x65AD;&#x5E73;&#x53F0;&#x4EF7;&#x503C;</a>
+        <a class="level-2" href="#awindows">&#x9644;&#x5F55; A&#xFF1A;Windows &#x7684;&#x957F;&#x671F;&#x63A5;&#x53E3;&#x4E0E;&#x8D44;&#x6E90;&#x7BA1;&#x7406;</a>
+        <a class="level-3" href="#a.1">A.1 &#x957F;&#x671F;&#x517C;&#x5BB9;&#x5982;&#x4F55;&#x4FDD;&#x62A4;&#x65E2;&#x6709;&#x6295;&#x5165;</a>
+        <a class="level-3" href="#a.2">A.2 &#x5BF9;&#x8C61;&#x3001;&#x8EAB;&#x4EFD;&#x4E0E;&#x4E00;&#x6B21;&#x8BBF;&#x95EE;&#x83B7;&#x5F97;&#x7684;&#x6743;&#x9650;</a>
+        <a class="level-3" href="#a.3">A.3 &#x8D44;&#x6E90;&#x4F55;&#x65F6;&#x4ECD;&#x5728;&#x4F7F;&#x7528;&#xFF0C;&#x4F55;&#x65F6;&#x53EF;&#x4EE5;&#x91CA;&#x653E;</a>
+        <a class="level-3" href="#a.4">A.4 &#x7528;&#x4EFB;&#x52A1;&#x7EC4;&#x7EC7;&#x8FDB;&#x7A0B;&#x3001;&#x9884;&#x7B97;&#x548C;&#x9000;&#x51FA;&#x89C4;&#x5219;</a>
+        <a class="level-3" href="#a.5">A.5 &#x5C06;&#x57FA;&#x7840;&#x673A;&#x5236;&#x53D8;&#x6210;&#x7528;&#x6237;&#x53EF;&#x7406;&#x89E3;&#x7684;&#x884C;&#x4E3A;</a>
+        <a class="level-2" href="#bpowershell-bash">&#x9644;&#x5F55; B&#xFF1A;PowerShell &#x4E0E; Bash &#x7684;&#x80FD;&#x529B;&#x8FB9;&#x754C;</a>
+        <a class="level-3" href="#b.1">B.1 &#x5148;&#x9650;&#x5B9A;&#x6BD4;&#x8F83;&#x5BF9;&#x8C61;</a>
+        <a class="level-3" href="#b.2-powershell.net">B.2 PowerShell &#x600E;&#x6837;&#x76F4;&#x63A5;&#x4F7F;&#x7528; .NET</a>
+        <a class="level-3" href="#b.3-bash">B.3 Bash &#x600E;&#x6837;&#x7EC4;&#x5408;&#x8FDB;&#x7A0B;&#x4E0E;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;</a>
+        <a class="level-3" href="#b.4-agent">B.4 &#x6570;&#x636E;&#x8FD4;&#x56DE; Agent &#x65F6;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;</a>
+        <a class="level-3" href="#b.5">B.5 &#x54EA;&#x4E9B;&#x4EFB;&#x52A1;&#x80FD;&#x76F4;&#x63A5;&#x53D7;&#x76CA;</a>
+        <a class="level-2" href="#c">&#x9644;&#x5F55; C&#xFF1A;&#x6587;&#x4E2D;&#x4EA7;&#x54C1;&#x6750;&#x6599;&#x7684;&#x65F6;&#x95F4;&#x4E0E;&#x8303;&#x56F4;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><h2 id="gpu">导读：从一份 GPU 捕获开始 <a class="heading-anchor" href="#gpu" aria-label="链接到本节">#</a></h2>
+<p>假设游戏里有一帧突然变慢，让 Agent 来查。搜源码能找到相关的着色器，但要知道那一帧的时间花在了哪里，还得读 GPU 捕获，看当时执行了哪些工作、用到了哪些资源。Apple 的 Metal 工具可以从命令行读取捕获。Agent 据此找到值得检查的代码，改完重新构建，再用新的捕获确认那一帧有没有变快。<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a></p>
+<p>选 Agent 的运行环境，我更愿意先确认一项工作能否完成，再比较完成它要花多少时间。就这次调查来说，Shell 能启动工具，Metal 工具能读出 GPU 状态，构建和验证还要用到相应的软件、设备和权限。如果几个环境都具备这些条件，哪个用起来更省事，才值得接着比。</p>
+<h2 id="section">1 先确定任务，再比较运行环境 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<h3 id="section-1">1.1 完成条件决定需要什么信息 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h3>
+<p>修复编译错误时，Agent 可以从编译器诊断入手，定位并修改源码，再运行构建。diff 记录了代码改动，构建结果说明这组输入能否通过编译。如果用户报告的是“角色在运行时走错了分支”，调查还要继续进入实际执行过程，查看日志、断点和对象值。若要求把画面中的物体放到指定位置，渲染结果也要参与判断。</p>
+<p>源码能帮助 Agent 推测哪里出了问题，断点处的对象值能告诉它程序这次实际走了哪条路，渲染图能让它看到用户最后看见的画面。该取哪种证据，要看用户要求它修复什么。</p>
+<p>同一项工作里，Agent 可能先改代码，再调应用接口，最后看截图，用鼠标或键盘操作界面。Coding Agent、应用 Agent 和 Computer Use 描述的能力可以这样配合。至于哪些操作需要先请用户确认，还得看这项任务的授权。</p>
+<h3 id="section-2">1.2 模型的判断怎样变成实际操作 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h3>
+<p>模型根据上下文决定下一步，负责组织调用的程序（常称为 <em>harness</em>）把请求交给工具，再把结果送回模型。真正读取栈帧的是调试器，修改图层的是图像编辑器。本机进程能访问哪些资源，由操作系统限制。请求到了远端服务，还要看服务用什么身份执行、这个身份有哪些权限。</p>
+<p>一项能力要经过这条链才能被模型使用。IDE 里已有断点功能，Agent 还需要一个可调用的入口、正确的调试会话，以及能够解释返回值的上下文。连接失败、参数错误和断点没有命中，发生在不同环节：前两种问题涉及工具调用，后一种还可能与构建配置、符号或程序执行路径有关。</p>
+<p>把这些环节分开，能让平台比较更准确。一次工具失败可能来自 Agent 程序的适配，也可能来自应用没有开放接口，或操作系统拒绝了访问。知道失败发生在哪里，才知道更换 Shell、升级插件或调整权限分别能解决什么。</p>
+<h3 id="section-3">1.3 从可行性到使用成本 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h3>
+<p>如果没有可用的目标设备，Agent 即使改完源码，也可能没法验证结果。几个环境都能跑完整个任务时，我才会比较配置要花多久、哪些步骤需要人来接手。下面这些问题可以用来检查自己的工作环境。</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>应当确认的问题</th>
+<th>可以取得的证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软件与设备</td>
+<td>目标工具链、应用和硬件是否可用？</td>
+<td>支持范围、启动结果、设备连接状态</td>
+</tr>
+<tr>
+<td>操作入口</td>
+<td>Agent 能否表达所需动作？</td>
+<td>命令参数、API 或工具定义及调用返回</td>
+</tr>
+<tr>
+<td>状态与验证</td>
+<td>能否读到足以判断成败的信息？</td>
+<td>诊断、对象值、测试结果或图像</td>
+</tr>
+<tr>
+<td>执行权限</td>
+<td>谁允许写文件、启动程序、访问网络？</td>
+<td>实际生效的策略、审批记录和服务端授权</td>
+</tr>
+<tr>
+<td>使用成本</td>
+<td>接入和运行需要谁投入时间？</td>
+<td>配置步骤、人工介入、延迟及故障恢复记录</td>
+</tr>
+</tbody>
+</table>
+<p>同一套接口可能减少人工点击，也可能增加配置和故障排查。比较时，应尽量保持任务、模型和权限条件一致，观察完整过程里省下了哪些工作、又增加了哪些工作。Shell 是开发任务里常见的入口，可以先从这里看这种成本如何产生。</p>
+<h2 id="shell-agent">2 Shell 怎样帮助 Agent 完成开发工作 <a class="heading-anchor" href="#shell-agent" aria-label="链接到本节">#</a></h2>
+<h3 id="shell">2.1 日常命令用到了多少 Shell 能力 <a class="heading-anchor" href="#shell" aria-label="链接到本节">#</a></h3>
+<p>在以检索源码、查看 diff 和运行构建为主的工作流中，Agent 主要调用的是 <code>rg</code>、Git 和编译器。换成 PowerShell 执行同一组命令，主要工作仍由这些外部程序完成。如果脚本很少使用 PowerShell 模块，也没有调用 .NET API，就很少用到对象管道与运行时集成所提供的能力。对这类简单文本与仓库操作，更直接的选择依据是现有脚本、参数传递和错误处理是否省事。</p>
+<p>Bash 通过管道连接程序的输入输出，格式由程序约定；PowerShell 的 cmdlet 管道在进程内传递对象，按参数绑定规则接收。<a id="fnref:24" href="#fn:2" class="footnote-ref"><sup>2</sup></a> 例如 <code>Get-Process | Where-Object WorkingSet64 -gt 200MB</code> 直接筛选对象属性，省去了识别显示列和单位的步骤。Bash 可以通过外部程序取得数据，再用 <code>jq</code> 等工具处理结构化输出。已有工具能提供什么，决定了两条路径各需多少额外处理。</p>
+<p>而当任务需要 .NET 能力时，PowerShell 的优势就更具体了。它可以加载与当前运行时兼容的 .NET 程序集，构造对象、访问属性和调用方法，也能使用现成的 PowerShell 模块。<a id="fnref:25" href="#fn:3" class="footnote-ref"><sup>3</sup></a> 相比为同一个类库另写包装程序，再让 Bash 启动并解析输出，直接调用通常更方便，也少了一层进程间的数据转换。</p>
+<p>已有 Bash 脚本能把工作做完，就可以继续用。需要直接调用 .NET 类库或管理模块时，PowerShell 能省去包装和转换。两种 Shell 在进程与数据处理上的具体差异见附录 B。</p>
+<h3 id="section-4">2.2 一条命令经过了哪些处理 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h3>
+<p>命令看起来很短，执行时却可能经过多次解析。Agent 将命令文本交给执行工具，Shell 处理引号、展开和重定向，外部程序再解释收到的参数。程序结束以后，执行工具还可能截断输出，或将结果包装成文本、JSON 再交回模型。路径中的空格、编码差异和输出格式，都可能在这些步骤中影响结果。</p>
+<p>这些规则与版本有关。PowerShell 7.3 改进了原生程序的参数传递，7.4 改进了部分原生命令重定向和管道中的字节流保留；Windows PowerShell 5.1 沿用较早的规则。输出经过 cmdlet 时，还需考虑该 cmdlet 的解析与转换。<a id="fnref:17" href="#fn:4" class="footnote-ref"><sup>4</sup></a> 因此，一次失败值得保留的材料包括 Shell 版本、原命令、目标程序和实际错误。它们能帮助判断改动应落在哪一步。</p>
+<p>返回值的设计同样影响后续工作。PowerShell 可以先筛选对象属性再输出 JSON，CLI 也可以自行生成 JSON。模型依据这些返回字段判断下一步：空结果、失败和部分成功若没有区别清楚，就可能需要额外调用才能确认发生了什么。附录 B.4 进一步讨论对象离开执行进程后如何表示。</p>
+<h3 id="section-5">2.3 接口设计的收益取决于任务 <a class="heading-anchor" href="#section-5" aria-label="链接到本节">#</a></h3>
+<p>SWE-agent 的论文使用 ACI（Agent-Computer Interface）描述 Agent 与计算机交互的接口，并研究仓库浏览、文件编辑等操作的设计怎样影响软件工程任务。接口会影响模型获得什么反馈，以及怎样发现和纠正操作错误。<a id="fnref:18" href="#fn:5" class="footnote-ref"><sup>5</sup></a> mini-SWE-agent 则采用以 Bash 为核心的简洁设计，复用现成命令来完成编程任务。<a id="fnref:19" href="#fn:6" class="footnote-ref"><sup>6</sup></a></p>
+<p>我倾向于先用手头的命令完成一次任务，看哪一步最费事。频繁搜索仍找不到符号，或者反复读源码也猜不出断点处的变量值，这时接入 IDE 就有明确用途。它能让 Agent 直接做哪项查询、少做哪些尝试，也就有了可以和接入成本比较的依据。</p>
+<h2 id="agent">3 应用怎样把能力提供给 Agent <a class="heading-anchor" href="#agent" aria-label="链接到本节">#</a></h2>
+<h3 id="section-6">3.1 调用入口与它所提供的能力 <a class="heading-anchor" href="#section-6" aria-label="链接到本节">#</a></h3>
+<p>CLI、应用 API、MCP 和图像输入分别参与调用过程的不同部分。CLI 通过命令及参数表达操作，应用 API 提供可编程能力；MCP（Model Context Protocol）约定客户端怎样发现工具、提交参数并取得结果；图像输入则让模型观察可见内容。一个 MCP 工具可以在服务端调用 CLI，一条 CLI 命令也可以通过应用 API 取得结构化数据。<a id="fnref:20" href="#fn:7" class="footnote-ref"><sup>7</sup></a></p>
+<p>一个返回文件文本的工具，与一个返回断点处对象值的工具，向模型提供的信息不同。选用它们，要看当前问题需要哪一种信息，以及这些信息是否足以支持下一步判断。比较工具时，应具体检查它们的输入和返回值。</p>
+<p>MCP 规范允许工具声明输入结构，并返回文本或结构化内容。这有助于客户端理解怎样发起调用，但具体操作、错误处理和访问控制仍由工具及其后端实现。<a id="fnref:21" href="#fn:7" class="footnote-ref"><sup>7</sup></a> 下面三个案例分别考察 GPU 调查、游戏运行时调试和视觉结果检查，看看应用能力如何进入 Agent 的工作流。</p>
+<h3 id="xcode-metal">3.2 Xcode 与 Metal：命令行也能提供专业状态 <a class="heading-anchor" href="#xcode-metal" aria-label="链接到本节">#</a></h3>
+<p>Apple 为 Metal 提供的命令行工具处理着具体的图形开发任务。<code>gpucapture</code> 用于捕获 GPU 工作负载，<code>gpudebug</code> 用于浏览捕获、检查资源和分析性能，<code>metalperftrace</code> 用于性能跟踪及摘要。Agent 可以通过命令取得这些领域信息，再结合源码继续调查。<a id="fnref:2" href="#fn:1" class="footnote-ref"><sup>1</sup></a></p>
+<p>在捕获中找到耗时的 GPU 工作以后，Agent 可以查看它用到的资源，再回到工程里找相应的代码。这里直接调用 Metal 的命令行工具就有价值：它能提供光靠搜索源码拿不到的运行数据。</p>
+<p>Xcode 也通过 MCP 向外部 Agent 开放能力，包括项目构建等操作；使用时需按相应版本完成接入和授权。<a id="fnref:23" href="#fn:8" class="footnote-ref"><sup>8</sup></a> 这使同一项调查可以组合命令行与 IDE 工具：读取捕获、修改工程、重新构建，再观察新的运行结果。接口如何分工，取决于每一步需要的数据和操作。</p>
+<h3 id="rider-unreal">3.3 Rider 与 Unreal：把源码关系和运行状态接起来 <a class="heading-anchor" href="#rider-unreal" aria-label="链接到本节">#</a></h3>
+<p>假设 Unreal 项目中的角色在某个条件下走错了分支。Agent 可以从源码里找出相关函数和调用关系，再通过调试器查看这次执行的输入、对象和线程。前一种信息帮助形成解释，后一种信息用于核对解释是否符合实际运行。</p>
+<p>Rider 2026.2 提供 <code>ue-code-authoring</code>、<code>ue-live-debugging</code> 和 <code>ue-test-authoring</code> 三项面向 UE C++ 的 Agent Skill，分别指导代码编写、运行时调查和测试编写。2026.2.1 公告又介绍了覆盖 C++ 和 Unreal 等项目的通用 <code>debugging-code</code> Skill。<a id="fnref:3" href="#fn:9" class="footnote-ref"><sup>9</sup></a><a id="fnref:4" href="#fn:10" class="footnote-ref"><sup>10</sup></a></p>
+<p>这些 Skill 为不同任务提供操作指引。执行调用时，Rider 的 MCP Server 提供入口，IDE 索引和调试器执行相应查询。Rider 与 Unreal Editor 之间还通过 UnrealLink、RiderLink 两侧插件实现蓝图导航、游戏启动设置和编辑器日志等集成。Agent 的工具调用由此能够使用工程信息，并在连接和调试条件满足时读取运行状态。<a id="fnref:7" href="#fn:11" class="footnote-ref"><sup>11</sup></a></p>
+<p><code>ue-live-debugging</code> 的文档还给出了 PIE（Play In Editor，即在编辑器内运行游戏）的调查路径：查询当前游戏状态，或者等待断点命中后读取栈帧与变量。对于项目 C++ 断点，这份技能要求先检查构建配置，使用 <code>DebugGame Editor</code> 或 <code>Debug Editor</code>，并确认断点已绑定后再触发问题。<a id="fnref:5" href="#fn:10" class="footnote-ref"><sup>10</sup></a> 取得变量值后，Agent 要将断点命中时的输入和对象状态与用户报告的触发条件对照，确认观察到的是同一问题。</p>
+<h3 id="blender">3.4 Blender：修改场景以后，怎样判断画面 <a class="heading-anchor" href="#blender" aria-label="链接到本节">#</a></h3>
+<p>运行时数据能够解释程序怎样执行；涉及构图和视觉效果时，还需要观察最终产物。Blender 的 Python API <code>bpy</code> 可以修改场景，命令行可以在无界面模式下执行脚本和渲染。依据这些能力，可以构造一条工作流：Agent 通过脚本移动物体、生成渲染，再将图片交给具备视觉输入的模型或用户检查。<a id="fnref:8" href="#fn:12" class="footnote-ref"><sup>12</sup></a></p>
+<p>这里可以把完成条件说得很具体：目标物体是否出现在画面中，是否落在约定区域，是否被其他物体遮挡。脚本返回成功，说明这次调用按程序的规则完成；但画面是否符合要求，还要结合物体位置、摄像机朝向和遮挡关系检查渲染结果。“光照自然”之类要求则需要参考图或更明确的描述，才有一致的检查依据。</p>
+<p>视觉输入负责观察，场景修改仍可通过 <code>bpy</code> 进行；需要处理界面状态时，GUI 控制也可以参与。由应用 API 完成操作、通过图像确认效果，是同一任务中可以配合的两种能力。</p>
+<p>在这些专业任务中，应用与验证工具的接入，比命令采用哪套 Shell 语法更影响 Agent 能否完成工作。我认为，把专业软件已有的操作和状态开放给 Agent，是平台适配值得重点投入的方向。随着这些能力开放，Agent 能够修改的对象和调用的进程也会增加，执行环境还要对这些操作落实权限限制。</p>
+<h2 id="section-7">4 开发工具需要怎样的权限范围 <a class="heading-anchor" href="#section-7" aria-label="链接到本节">#</a></h2>
+<h3 id="section-8">4.1 让任务授权成为实际限制 <a class="heading-anchor" href="#section-8" aria-label="链接到本节">#</a></h3>
+<p>开发任务需要访问的资源通常超出一个源码目录。Agent 在项目中写文件，编译器可能要读取安装在别处的工具链和依赖，构建工具还会启动子进程。执行环境既要容纳这些正常行为，也要把写入和网络访问限制在允许的范围内。Codex 的 Windows 沙箱工程文章描述的，正是这组需求。<a id="fnref:9" href="#fn:13" class="footnote-ref"><sup>13</sup></a></p>
+<p>用户提出“修改这个项目”，给出了任务意图。产品还要把这个意图转成具体策略：哪些目录能写、哪些命令需要确认、是否允许联网，以及限制怎样传给子进程。例如，配置中的 <code>writable_roots</code> 描述可写范围，执行层再据此设置操作系统能够强制实施的限制。</p>
+<p>这里的沙箱指受约束的执行环境。用户授权决定任务允许做什么，审批流程处理需要再次确认的操作，沙箱负责在进程执行时落实资源限制。三者相互配合，才使“允许修复项目”成为可以执行和检查的规则。</p>
+<h3 id="codex-on-windows">4.2 Codex on Windows：把现有机制组成沙箱 <a class="heading-anchor" href="#codex-on-windows" aria-label="链接到本节">#</a></h3>
+<p>OpenAI 在 2026 年 5 月的工程文章中说明，团队需要让 Codex 使用用户已有的 Shell、Git、Python、包管理器和构建工具，同时限制文件写入和网络访问。团队评估了 AppContainer、Windows Sandbox 和完整性级别等方案。对于这种开放的工具调用，AppContainer 的能力配置难以直接适配；独立的 Windows Sandbox 桌面则需要额外衔接实际项目与开发环境。<a id="fnref:10" href="#fn:13" class="footnote-ref"><sup>13</sup></a></p>
+<p>最终方案组合了专用 Windows 用户、安全标识符（SID）、访问控制列表（ACL）、受限令牌和防火墙规则。早期实现曾通过环境变量和代理地址抑制联网，但程序可以忽略这些设置，直接建立连接。后续实现改用针对专用用户的防火墙规则：设置阶段需要管理员权限，运行命令的进程则使用受限身份。<a id="fnref:11" href="#fn:13" class="footnote-ref"><sup>13</sup></a></p>
+<p>这段实现过程说明了产品要承担哪些工作。它要准备用户和凭据，配置文件访问，建立并检查网络规则，还要让开发工具读到必要的路径。每项限制都需要落到实际调用上；某个依赖目录没有开放，正常构建就可能失败，某条网络路径没有受到约束，产品声明的规则就可能没有落实。</p>
+<p>同文还讨论了 macOS 的 Seatbelt，以及 Linux 上的 seccomp、bubblewrap。<a id="fnref:12" href="#fn:13" class="footnote-ref"><sup>13</sup></a> Linux 另有 Landlock，允许普通进程主动收紧自身及后代的部分资源访问，支持的操作随内核 ABI 变化。<a id="fnref:13" href="#fn:14" class="footnote-ref"><sup>14</sup></a> 就这项 Codex 实践而言，Windows 的身份、文件权限与防火墙需要额外整合，这是原生 Windows 适配中实际增加的工作。因而，现成隔离工具和 Agent 产品的适配成熟度，应当作为平台选型的重要条件；用户最终要承担的安装、配置与排错成本也应计入其中。Win32 与 NT 的长期接口和资源管理设计见附录 A。</p>
+<h3 id="mxc-windows-mcp">4.3 MXC 与 Windows MCP 分别解决哪一段 <a class="heading-anchor" href="#mxc-windows-mcp" aria-label="链接到本节">#</a></h3>
+<p>微软的 Microsoft eXecution Container（MXC）尝试用统一配置和 SDK 描述不可信代码的执行范围，再由 Windows、Linux、macOS 上的不同后端实施隔离。统一配置有助于开发者表达执行要求，实际限制则由所选后端和具体实现决定。不过，本文引用的仓库说明将它列为早期预览，并明确警示当前配置仍有过宽之处，不能作为安全边界。<a id="fnref:15" href="#fn:15" class="footnote-ref"><sup>15</sup></a></p>
+<p>Windows MCP 文档关注工具的发现、连接和受限运行。On-device Agent Registry（ODR）帮助 Agent 发现并连接本机或远端 MCP 服务，并提供用户和管理员控制。符合相应打包、注册条件的受限服务可在独立的 Agent 会话中运行，访问用户文件还涉及额外授权。相关文档标为预发布信息。<a id="fnref:27" href="#fn:16" class="footnote-ref"><sup>16</sup></a></p>
+<p>这两条路线分别试图减少执行环境配置和工具接入的工作。对一个实际任务，可以继续追踪：服务怎样被找到，客户端以什么身份连接，服务进程在哪里运行，最终访问由哪项策略限制。产品的发展状态及材料范围列在附录 C。</p>
+<h3 id="section-9">4.4 权限需要沿着调用继续追踪 <a class="heading-anchor" href="#section-9" aria-label="链接到本节">#</a></h3>
+<p>假设 Agent 的本地命令只获准写一个项目目录，同时接入了能够修改远端仓库的 MCP 服务。一次本地写入由本机沙箱约束；一次远端提交使用的则是服务端身份和授权范围。两项操作即使由同一个模型发起，也可能经过不同的执行者。</p>
+<p>MCP 工具定义描述调用形式，协议还规定 HTTP 传输中的授权职责。<a id="fnref:28" href="#fn:17" class="footnote-ref"><sup>17</sup></a> 因此，在调查一次远端修改时，需要找到实际接收请求的服务及其凭据；在调查一次本地文件写入时，需要检查执行进程及其访问策略。调用链中的这些身份和限制，共同决定 Agent 最终能做什么。</p>
+<p>这种追踪也适用于应用工具。Agent 获准连接 IDE 后，IDE 能执行哪些操作，取决于它暴露的工具、应用权限和项目状态。平台选择因而还涉及工具服务运行在哪里，以及用户能否理解、维护这条调用链。</p>
+<h2 id="section-10">5 怎样据此选择工作环境 <a class="heading-anchor" href="#section-10" aria-label="链接到本节">#</a></h2>
+<h3 id="section-11">5.1 把接口放进一次完整调查 <a class="heading-anchor" href="#section-11" aria-label="链接到本节">#</a></h3>
+<p>现在可以把 Rider 与 Unreal 的案例连成一项工作：用户提供了可复现的运行时异常，Agent 先取得触发条件和日志，定位源码，再进入调试现场，最后修改并重新运行。下表依据前面的文档能力组织这条流程，说明每一步依赖什么，以及得到的结果用于判断什么。<a id="fnref:16" href="#fn:18" class="footnote-ref"><sup>18</sup></a></p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>依赖的能力</th>
+<th>得到的结果用于判断什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>重现并读取异常</td>
+<td>引擎运行、输入条件与日志工具</td>
+<td>问题能否在约定条件下再次出现</td>
+</tr>
+<tr>
+<td>定位相关代码</td>
+<td>文本搜索、IDE 符号和调用关系查询</td>
+<td>哪条执行路径可能解释现象</td>
+</tr>
+<tr>
+<td>检查运行时</td>
+<td>PIE 状态查询、断点、栈帧和变量读取</td>
+<td>实际执行是否符合对源码的解释</td>
+</tr>
+<tr>
+<td>修改并构建</td>
+<td>文件编辑、构建工具及诊断</td>
+<td>改动是否按预期完成，能否通过构建</td>
+</tr>
+<tr>
+<td>再次运行</td>
+<td>同样的触发条件及必要的画面检查</td>
+<td>改动是否修复了用户报告的行为</td>
+</tr>
+</tbody>
+</table>
+<p>通过 Rider MCP 执行这条 PIE 调查路径，需要 IDE 打开对应工程、MCP Server 已启用，并能连接 Unreal Editor；项目 C++ 断点还要确认已绑定。<a id="fnref:6" href="#fn:10" class="footnote-ref"><sup>10</sup></a></p>
+<p>如果 Agent 找不到符号，可以从索引和工程状态查起；无法取得变量，就要检查调试会话；构建通过以后行为仍然异常，则要继续调查运行条件和修复思路。平台适配的收益也可以逐项观察，例如更容易连接调试器、少做一次文件传递，或更可靠地重现问题。它们最终影响的是完成这项工作的时间和人工介入。</p>
+<h3 id="section-12">5.2 目标软件先确定执行环境 <a class="heading-anchor" href="#section-12" aria-label="链接到本节">#</a></h3>
+<p>专业工具给平台选择设定了具体条件。Metal 捕获和 Xcode 调查依赖相应的 Apple 开发环境；在 Windows 上用 PIX 调查 D3D12 工作负载，需要满足其 Windows、GPU 和图形 API 要求。<a id="fnref:29" href="#fn:19" class="footnote-ref"><sup>19</sup></a> 一项需要在 Linux 目标环境重现的服务端故障，则可能把最终验证放在 Linux 主机或容器中。</p>
+<p>对这些任务，专业软件和设备支持应当优先于通用命令执行的便利。一个平台能直接提供目标应用及其调试、构建接口，就是明确的适用性优势。Agent 的交互界面、命令执行端和最终验证设备可以位于不同位置，远程构建、容器和 WSL 都提供了组合环境的方式；组合以后，文件传递、凭据和设备连接也成为工作的一部分。</p>
+<p>因此，“使用哪套桌面系统”和“让某项任务在哪个系统中执行”可以分别决定。对同时依赖几种环境的开发者，保留已有工具并连接它们，可能比迁移整个工作流更省事。Windows + WSL 就是其中一种实际可用的组合。</p>
+<h3 id="windows-wsl">5.3 Windows + WSL：保留两侧已有的工作流 <a class="heading-anchor" href="#windows-wsl" aria-label="链接到本节">#</a></h3>
+<p>Windows + WSL 的适用场景及容器支持见 <a href="../Linux/snap.html">《Snap、Flatpak 与 Nix》3.4 节</a>。对于同时依赖 Windows 应用和 Linux 开发环境的用户，我认为保留 Windows 桌面，再让 WSL 承担 Linux 侧开发工作，是务实的选择。Agent 也可以沿用这套分工：Windows 继续运行桌面应用，Codex CLI 与 Linux 工具链在 WSL2 中运行。OpenAI 的 WSL 文档给出了对应的安装和启动方法。<a id="fnref:30" href="#fn:20" class="footnote-ref"><sup>20</sup></a></p>
+<p>这种组合让用户可以保留两侧已经熟悉的工具。不过，具体工程仍需确定放在哪里、由哪一侧编译和运行。微软与 OpenAI 都建议，将主要使用 Linux 命令处理的项目放在 WSL 文件系统中，以减少跨文件系统访问的开销及相关兼容问题。<a id="fnref:31" href="#fn:20" class="footnote-ref"><sup>20</sup></a></p>
+<p>若要让 WSL2 中的 Agent 进一步调用 Windows IDE，工作流还需提供可达的工具入口，正确对应两侧路径，并安排最终构建和调试在哪一侧执行。设备、调试器与凭据的使用方式也要随之确定。这些接入工作会影响组合方案是否省事。</p>
+<p>要不要这样组合，取决于自己的项目。日常工作已经能在 Linux 桌面上完成，多接一侧 IDE 就多一处要维护的连接。工程依赖 Windows 专业应用，又有现成的 Linux 脚本要跑，花时间把两侧接通就有了具体收益。Codex CLI 能在 WSL2 里运行，只回答了兼容性问题。选环境还得算上自己的软件依赖和维护时间，这也是<a href="../Community/tech-argument.html">《我们到底在争论什么》1.1 节</a>讨论过的区别。</p>
+<h3 id="section-13">5.4 接口节省的工作，与接入后增加的工作 <a class="heading-anchor" href="#section-13" aria-label="链接到本节">#</a></h3>
+<p>专用工具可以让 Agent 直接取得 IDE 的语义分析结果或调试状态，减少反复搜索与猜测。与此同时，工具需要配置和维护，定义及返回数据也会占用模型上下文。Anthropic 在讨论通过代码组合 MCP 调用时，展示了将部分中间处理留在执行环境中、只向模型返回必要结果的设计。<a id="fnref:32" href="#fn:21" class="footnote-ref"><sup>21</sup></a> 调用方式会改变这些成本，工具提供的数据也需要适当选择。</p>
+<p>评价一次接入，可以沿着 5.1 节的完整流程观察：它让哪一步更容易完成？减少了多少人工整理和重复调用？连接失败时，谁负责恢复？这些工作要与延迟、配置和版本维护一起计算。</p>
+<p>我会把接入工作花在调查真正卡住的地方。现成的命令已经能定位问题、修改并验证，就继续复用。源码搜索只能缩小范围，还得靠人打开调试器逐个读变量，就值得先接通调试器，再看整次调查省下了多少人工操作。</p>
+<h2 id="section-14">结语：从可调用的能力判断平台价值 <a class="heading-anchor" href="#section-14" aria-label="链接到本节">#</a></h2>
+<p>给自己的项目选环境时，我会挑一个平时就会遇到的问题，看看 Agent 能不能一直查到足以验证修复的那一步。查 GPU 性能，就看它能否读取捕获、定位代码，改完重新构建，再测一次。查角色走错分支，就看它能否在问题发生时停住，读到那次调用的对象值。专业软件里我用惯的这些能力，如果 Agent 也能直接调用，就是我选择这个平台的理由。</p>
+<p>沿这条路径还要查清权限。允许 Agent 修项目，构建工具就得读得到依赖，写入和网络访问也得限制在授权范围内。一个平台可能有我需要的专业软件，同时还需要产品和用户多做一些沙箱配置。这些工作也得算进使用成本。</p>
+<p>对依赖 Windows 应用、同时要跑 Linux 工具链的人，Windows + WSL 值得考虑。已经在 Linux 桌面或 macOS 上跑通整套流程的人，也有充分理由沿用现有环境。对我来说，换平台最有说服力的理由，是它能完成原先做不了的那一步，或者让一件常做的事少费些工夫。</p>
+<h2 id="awindows">附录 A：Windows 的长期接口与资源管理 <a class="heading-anchor" href="#awindows" aria-label="链接到本节">#</a></h2>
+<p>正文中的 Windows 案例涉及应用接口和操作系统实现两个层次。Win32 向应用提供窗口、进程、文件和系统集成等 API；这里讨论的 NT 基础设施包括对象管理器、安全机制和 I/O 管理等内核态组件。它们影响软件能使用多久、资源由谁持有，以及应用如何落实访问限制。理解这些设计，有助于解释 4.2 节中沙箱实现的工程成本。</p>
+<h3 id="a.1">A.1 长期兼容如何保护既有投入 <a class="heading-anchor" href="#a.1" aria-label="链接到本节">#</a></h3>
+<p>我看重 Win32 的一个原因，是 Windows 把旧软件继续可用当作平台维护的一项责任。源码兼容让旧代码仍能编译，二进制兼容让已经发布的程序继续运行，行为兼容则要求接口尽量维持调用方依赖的语义。对寿命很长的行业软件和内部工具，后两项直接影响用户能否升级操作系统。Raymond Chen 在讨论 Windows 兼容性的工程成本时指出，成本更多体现在新功能的设计上：平台必须考虑那些早于新功能发布、对它一无所知的应用会怎样运行。<a id="fnref:33" href="#fn:22" class="footnote-ref"><sup>22</sup></a></p>
+<p>平台因此分担了应用开发者和用户的迁移成本。停止维护的小工具仍有继续使用的机会，已有工作流也能逐步更新。与此同时，新接口的设计要照顾旧调用方式，开发者会遇到多个年代留下的函数、参数和行为。评价这样的接口，既要算今天写一段代码的成本，也要算已发布软件在今后几年继续工作的成本。</p>
+<p>API Set 展示了 Windows 如何把公开契约与实现位置分开。应用可以依赖 API 契约名，由加载器将它映射到当前系统上的实现 DLL；平台调整内部组织时，调用方可以继续依赖同一契约。不过，使用具体契约前仍需查询它是否可用，并遵守接口文档中的版本要求。<a id="fnref:34" href="#fn:23" class="footnote-ref"><sup>23</sup></a></p>
+<p>在 COM 组件体系中，<code>QueryInterface</code> 让调用方询问对象是否支持某个接口，成功后再使用；同一对象实例可查询到的接口集合须保持稳定。例如，宿主可以让旧插件继续提供基本读取功能，让实现了新接口的插件额外提供批量读取。这个例子说明，稳定的基础接口可以与逐步增加的能力并存，各组件因而能够按自己的节奏更新。<a id="fnref:35" href="#fn:24" class="footnote-ref"><sup>24</sup></a></p>
+<h3 id="a.2">A.2 对象、身份与一次访问获得的权限 <a class="heading-anchor" href="#a.2" aria-label="链接到本节">#</a></h3>
+<p>NT 将文件、进程、线程、事件和注册表键等资源表示为不同类型的内核对象。对象管理器统一处理这类对象的命名和生命周期，具体类型保留各自的数据与操作。文件读取和进程终止因而可以共享身份、访问检查和引用管理的基本概念，同时按照各自的规则执行。<a id="fnref:36" href="#fn:25" class="footnote-ref"><sup>25</sup></a></p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>在访问控制中承担的工作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SID</td>
+<td>标识用户、组等安全主体</td>
+</tr>
+<tr>
+<td>Access Token</td>
+<td>记录进程或模拟线程的身份、组、特权等安全上下文</td>
+</tr>
+<tr>
+<td>安全描述符及 DACL</td>
+<td>描述对象的所有者和自主访问控制规则</td>
+</tr>
+<tr>
+<td>句柄及已授予的访问权</td>
+<td>让进程引用具体对象，并限定通过该句柄可请求的操作</td>
+</tr>
+</tbody>
+</table>
+<p>例如，允许查询一个进程的信息、读取它的内存和终止它，可以对应不同的访问权。服务线程还可以模拟客户端身份，让资源访问接受客户端安全上下文的检查。<a id="fnref:37" href="#fn:25" class="footnote-ref"><sup>25</sup></a> 服务据此选择以谁的身份访问；具体任务获准使用哪些资源，还要由宿主根据用户授权进一步限定。</p>
+<p>对于按句柄接收输入的工作进程，宿主可以先打开文件，再传入具有所需访问权的句柄。<code>DuplicateHandle</code> 提供跨进程复制句柄的机制，结果受参数、对象类型和相应规则约束。设计者还要检查工作进程通过令牌、其他句柄或代理服务获得的访问路径：一个只读句柄只限定经它进行的操作，进程重新按路径打开文件时还会接受另一轮访问检查。<a id="fnref:38" href="#fn:25" class="footnote-ref"><sup>25</sup></a></p>
+<p>这种把授权附着在具体资源引用上的思路，也可以与 FreeBSD 的 Capsicum 对照。进程进入 capability mode 后，访问全局命名空间受到限制，主要使用明确授予的文件描述符等资源，并能进一步收窄其操作权限。Linux capabilities 这个名称指向另一种机制：它把传统 root 特权拆成若干单元。比较这些设计时，需要分别说明授予的是某个对象的操作权，还是执行某类特权操作的资格。<a id="fnref:39" href="#fn:26" class="footnote-ref"><sup>26</sup></a></p>
+<h3 id="a.3">A.3 资源何时仍在使用，何时可以释放 <a class="heading-anchor" href="#a.3" aria-label="链接到本节">#</a></h3>
+<p>程序取得句柄以后，还要遵守相应的生命周期契约。<code>CloseHandle</code> 用于关闭多类内核对象的句柄；注册表键和 socket 分别使用 <code>RegCloseKey</code> 和 <code>closesocket</code>。关闭一个进程句柄也不会终止那个进程。这些区别要求程序明确记录自己持有什么、谁负责释放，以及释放动作究竟结束了什么。<a id="fnref:40" href="#fn:27" class="footnote-ref"><sup>27</sup></a></p>
+<p>这部分责任可以交给类型和封装来执行。微软的 Windows Implementation Library（WIL）提供 C++ RAII 包装，把 Windows 资源的释放与包装对象的生命周期绑定，并提供缓冲区和错误处理辅助。应用仍然调用原有 Windows API，同时用作用域管理减少遗漏清理的机会。稳定的底层接口由此可以继续使用，调用代码也能逐步改善。<a id="fnref:41" href="#fn:28" class="footnote-ref"><sup>28</sup></a></p>
+<p>异步调用返回后，请求可能仍在进行。使用 I/O Completion Port 时，应用提交异步 I/O，工作线程从完成端口取得相应的完成通知。宿主要保存请求与任务的对应关系，并让相关内存在请求完成前保持有效。发出取消请求后，也要确认操作已经结束；微软的取消文档要求，相关 <code>OVERLAPPED</code> 结构要等相应 I/O 完成后才能重用。<a id="fnref:42" href="#fn:29" class="footnote-ref"><sup>29</sup></a></p>
+<p>窗口消息提供了另一个具体例子。<code>PostMessage</code> 投递消息后返回，接收方稍后处理；<code>SendMessage</code> 等待窗口过程处理完成。同线程调用可以直接进入窗口过程，跨线程等待时发送方还可能处理传入的非队列消息。<a id="fnref:43" href="#fn:30" class="footnote-ref"><sup>30</sup></a> 如果程序正在修改数据结构，此时调用的窗口过程又触发了回调，回调就可能看到尚未完成的状态。对提供 GUI 或插件接口的 Agent 宿主，需要明确什么时候允许回调观察状态，以及窗口关闭时怎样处理尚未完成的任务。</p>
+<h3 id="a.4">A.4 用任务组织进程、预算和退出规则 <a class="heading-anchor" href="#a.4" aria-label="链接到本节">#</a></h3>
+<p>一次编译或文档转换可能启动多个辅助进程。Windows 的 Job Object 可以把相关进程作为一个单位管理，设置资源限制、收集统计，并整体终止其中的进程。设置 <code>JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE</code> 后，关闭该 Job 的最后一个句柄会终止与它关联的进程。要让这条退出规则覆盖整项任务，还需检查子进程的创建方式，以及是否允许它们脱离 Job。<a id="fnref:44" href="#fn:31" class="footnote-ref"><sup>31</sup></a></p>
+<p>假设 Agent 启动一个转换工具，工具又启动渲染器。宿主可以把它们纳入同一个 Job，为这次转换设置预算，并在任务结束时清理关联进程。用户取消这次转换时，宿主便能处理归入该任务的多个进程。实现时需要确认辅助进程确实被纳入管理；宿主可先请求正常退出，再按超时规则终止未退出的进程。</p>
+<p>Linux 的 cgroup v2 同样能按层级组织进程、分配和限制资源。资源预算与访问控制各有职责：内存限额决定任务能使用多少内存，文件访问策略决定它能读取哪些文档。seccomp 限制系统调用，Landlock 则允许程序进一步收紧自身及后代的部分资源访问。<a id="fnref:14" href="#fn:14" class="footnote-ref"><sup>14</sup></a> 对 Windows 也要逐项检查进程归组、身份、对象权限和网络策略，才能确定一次任务实际受到什么约束。</p>
+<h3 id="a.5">A.5 将基础机制变成用户可理解的行为 <a class="heading-anchor" href="#a.5" aria-label="链接到本节">#</a></h3>
+<p>在自主访问检查中，NULL DACL 放行访问，存在但不含任何条目的空 DACL 则不授予访问。两个看起来相近的参数状态，产生了相反的效果。宿主需要把“未配置”“拒绝访问”“允许哪些操作”转换为准确的底层状态，并检查失败路径。<a id="fnref:46" href="#fn:32" class="footnote-ref"><sup>32</sup></a></p>
+<p>审计也需要专门配置。文件访问审计依赖已启用的策略，以及系统访问控制列表（SACL）中与访问类型、主体匹配的条目。<a id="fnref:47" href="#fn:33" class="footnote-ref"><sup>33</sup></a> 系统可以记录资源访问，Agent 产品还要将这些事件与任务、工具调用和用户授权关联起来。这些记录才能帮助用户查明某次修改由什么任务发起、当时允许了什么，以及任务取消以后是否仍有工作在运行。</p>
+<p>Win32 的长期契约保护了已有应用和集成代码的投入，NT 的对象、安全与生命周期机制则为宿主提供了组织执行过程的基础。对本文讨论的 Agent，这些价值最终体现在旧工具能否继续使用、授权能否落实到具体操作、任务结束后能否正确收尾。4.2 节的 Windows 沙箱案例展示了把这些基础机制组合成产品的工作；5.3 节讨论的个人工作流，则决定这份投入对使用者是否划算。</p>
+<h2 id="bpowershell-bash">附录 B：PowerShell 与 Bash 的能力边界 <a class="heading-anchor" href="#bpowershell-bash" aria-label="链接到本节">#</a></h2>
+<p>第 2 部分讨论 Shell 在工作流中的作用。本附录进一步区分解释器本身、运行时和外部程序提供的能力，并说明这些能力怎样变成 Agent 能使用的结果。</p>
+<h3 id="b.1">B.1 先限定比较对象 <a class="heading-anchor" href="#b.1" aria-label="链接到本节">#</a></h3>
+<p><code>pwsh</code> 通常指现代跨平台 PowerShell，运行在现代 .NET 上；Windows PowerShell 5.1 由 <code>powershell.exe</code> 启动，基于 .NET Framework。二者的模块兼容性、原生程序参数和编码行为有所不同。现代 PowerShell 可以在 Linux、macOS 上运行，但 Windows 专属模块、provider 或 API 仍需要相应的 Windows 环境。<a id="fnref:48" href="#fn:34" class="footnote-ref"><sup>34</sup></a></p>
+<p>Bash 本身提供展开、数组、管道、重定向和进程替换等语言能力；GNU Coreutils、<code>jq</code>、Python 和 Git 是它可以调用的外部程序。脚本使用 Bash 的数组或进程替换时，部署环境也需要提供 Bash，不能只按 POSIX <code>sh</code> 的语法范围来准备。<a id="fnref:49" href="#fn:35" class="footnote-ref"><sup>35</sup></a> 两种 Shell 的可移植性都涉及解释器、依赖库或命令，以及最终调用的操作系统接口。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>PowerShell / <code>pwsh</code></th>
+<th>Bash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据与管道</td>
+<td>cmdlet 之间传递 .NET 对象，并按参数绑定规则处理</td>
+<td>通过程序输入输出和文件描述符组织数据，格式由程序约定</td>
+</tr>
+<tr>
+<td>库调用</td>
+<td>可直接使用可加载的 .NET 类型与方法</td>
+<td>通常通过命令、其他语言或单独的程序接入库</td>
+</tr>
+<tr>
+<td>外部程序</td>
+<td>能调用 Git、编译器等；参数和输出处理与版本有关</td>
+<td>复用已有 Unix CLI 约定；外部命令选项可能随平台变化</td>
+</tr>
+<tr>
+<td>错误处理</td>
+<td>区分终止与非终止错误，并处理原生程序退出码</td>
+<td>使用退出状态、条件判断与管道规则；<code>set -e</code> 受上下文影响</td>
+</tr>
+<tr>
+<td>可移植性</td>
+<td>取决于模块、.NET API 与操作系统支持范围</td>
+<td>取决于 Bash 版本、GNU/BSD 工具参数与设备接口</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b.2-powershell.net">B.2 PowerShell 怎样直接使用 .NET <a class="heading-anchor" href="#b.2-powershell.net" aria-label="链接到本节">#</a></h3>
+<p>下面的例子在 PowerShell 中构造一个 .NET <code>System.Uri</code> 对象，读取地址的主机名和查询字符串：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">$uri = [System.Uri]::new('https://example.com/docs?id=7')
+$uri.Host
+$uri.Query
+</code></pre>
+</div>
+<p>脚本通过类型和成员直接取得结果。这条路径的便利来自 PowerShell 与 .NET 运行时的集成：已有类库中的对象可以继续保留属性和方法，供后续脚本使用。调用者可以用 <code>Get-Member</code> 查看成员，调用静态方法，也可以用 <code>Add-Type</code> 加载程序集或编译 C#。需要 Windows 原生函数时，还能经 .NET 的 P/Invoke 互操作路径调用，并按接口要求处理签名、数据布局和资源释放。<a id="fnref:26" href="#fn:3" class="footnote-ref"><sup>3</sup></a></p>
+<p>对于已经依赖 .NET 类库或 PowerShell 管理模块的任务，直接使用这些类型可以省去一层包装程序。不过，程序集及其依赖需要适配当前运行时，Windows API 需要受支持的系统，进程访问也仍接受身份与沙箱检查。若任务需要读取某个应用的内部状态，应用还须提供相应接口，脚本才能调用。</p>
+<h3 id="b.3-bash">B.3 Bash 怎样组合进程与文件描述符 <a class="heading-anchor" href="#b.3-bash" aria-label="链接到本节">#</a></h3>
+<p>下面的命令比较两份排序后的输入：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">diff &lt;(sort left.txt) &lt;(sort right.txt)
+</code></pre>
+</div>
+<p>两次 <code>sort</code> 负责排序，<code>diff</code> 负责比较。Bash 的进程替换在系统支持时，将两条排序命令的输出呈现为 <code>diff</code> 可读取的路径。这里每个程序完成自己的操作，Shell 负责连接它们。管道、重定向和文件描述符使已有程序能够组合使用，展开和作业控制则帮助脚本组织输入与执行过程。<a id="fnref:50" href="#fn:35" class="footnote-ref"><sup>35</sup></a></p>
+<p>这种组合方式适合已经围绕标准输入、标准输出和退出状态建立的工具链。要可靠地复用这些工具，脚本需要正确处理变量引用、分词与通配符展开，文件名和编码也要符合目标程序的约定；跨平台使用时，还可能遇到 GNU 与 BSD 工具选项不同。管道的默认退出状态和 <code>pipefail</code> 会影响前面某个命令的失败能否反映到整条管道。<a id="fnref:51" href="#fn:35" class="footnote-ref"><sup>35</sup></a></p>
+<p>输入输出也可以采用结构化格式。例如，Bash 调用返回 JSON 的程序，再交给 <code>jq</code> 或 Python 处理，数据便能按约定字段继续传递。与 PowerShell 进程内的对象操作相比，这条路径把更多约定放在进程之间：谁生成数据、谁解析数据，以及怎样表达错误，都需要由工具和脚本共同确定。</p>
+<h3 id="b.4-agent">B.4 数据返回 Agent 时发生了什么 <a class="heading-anchor" href="#b.4-agent" aria-label="链接到本节">#</a></h3>
+<p>PowerShell 可以先在执行进程内筛选对象、选择字段，再将结果编码：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">Get-Process |
+    Where-Object WorkingSet64 -gt 200MB |
+    Select-Object Id, ProcessName, WorkingSet64 |
+    ConvertTo-Json
+</code></pre>
+</div>
+<p><code>200MB</code> 是演示阈值。交给模型的是选定字段的 JSON。在这条调用中，对象处理由 PowerShell 完成，模型根据返回字段作判断。后续若需要读取更多属性或调用方法，Agent 还要发起相应的工具操作。接口也应约定返回值的形状，例如是否固定使用数组，空结果怎样表示，以及部分失败如何报告。</p>
+<p>PowerShell 远程会话也会涉及类似的数据传递问题：输出通常经过序列化，接收端多是保留属性的表示，具体类型和方法行为由远程会话规则决定。<a id="fnref:45" href="#fn:36" class="footnote-ref"><sup>36</sup></a> 因此，在一个进程里可直接调用的对象，跨过进程或工具边界以后，要按实际传输形式继续处理。</p>
+<p>错误结果同样需要明确约定。PowerShell 的 <code>try</code>/<code>catch</code> 捕获终止错误，cmdlet 的非终止错误和原生程序的非零退出码需要按调用方式处理；Bash 则需要检查退出状态，以及管道中较早命令的失败。<a id="fnref:52" href="#fn:35" class="footnote-ref"><sup>35</sup></a> MCP 的工具 schema 或 CLI 的 JSON 输出可以用字段表示这些结果，帮助 Agent 判断哪一步失败、是否还有可用数据，以及接下来能否继续。<a id="fnref:22" href="#fn:7" class="footnote-ref"><sup>7</sup></a></p>
+<h3 id="b.5">B.5 哪些任务能直接受益 <a class="heading-anchor" href="#b.5" aria-label="链接到本节">#</a></h3>
+<p>系统管理任务如果已经使用 .NET 类库和 PowerShell 模块，直接调用对象与方法往往能减少包装和格式转换。已有大量 Bash 脚本和 Unix CLI 的项目，则可以沿用现成的进程、文件和退出状态约定。这些收益来自已有依赖与 Shell 能力的配合。</p>
+<p>如果两边主要调用同一组跨平台程序，就应结合项目脚本比较参数传递、编码和错误处理。现有脚本的复用程度，以及团队是否需要维护额外包装，也会影响最终选择。</p>
+<h2 id="c">附录 C：文中产品材料的时间与范围 <a class="heading-anchor" href="#c" aria-label="链接到本节">#</a></h2>
+<p>正文中的产品案例依据下列版本与材料。发布说明描述当时的实现，文档和仓库则可能继续更新；实际接入时，需要按使用的版本确认启用条件。</p>
+<table>
+<thead>
+<tr>
+<th>产品或机制</th>
+<th>本文采用的材料</th>
+<th>适用范围与限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Xcode / Metal</td>
+<td>Apple 开发者文档；访问于 2026-09-28</td>
+<td>说明文档所述的 Metal 工具和外部 Agent 接入方式，实际使用依赖 Xcode 版本与授权</td>
+</tr>
+<tr>
+<td>Rider / Unreal</td>
+<td>Rider 2026.2、2026.2.1 公告，Unreal 技能及 MCP、UnrealLink 文档；访问于 2026-09-28</td>
+<td>Skill 指导调用；IDE 索引、调试器和运行中的 UE 项目提供状态，具体步骤依赖工具接入与调试配置</td>
+</tr>
+<tr>
+<td>Codex Windows 沙箱</td>
+<td>OpenAI 2026-05-13 工程文章</td>
+<td>说明当时的设计与实现；当前行为按所用版本核对</td>
+</tr>
+<tr>
+<td>MXC</td>
+<td>Microsoft GitHub README；访问于 2026-09-28</td>
+<td>早期预览；仓库明确不允许将当前配置视作安全边界</td>
+</tr>
+<tr>
+<td>Windows MCP / ODR</td>
+<td>Microsoft 预发布文档；访问于 2026-09-28</td>
+<td>发现、授权和服务的受限运行各有前提，打包方式影响服务可使用的隔离方式</td>
+</tr>
+<tr>
+<td>Codex CLI in WSL2</td>
+<td>OpenAI WSL 文档；访问于 2026-09-28</td>
+<td>支持在 WSL 内安装与运行 CLI；调用 Windows 应用还需相应的工具接入</td>
+</tr>
+</tbody>
+</table>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Apple，<a href="https://developer.apple.com/metal/tools/">Metal Developer Tools</a> 与 <a href="https://developer.apple.com/documentation/xcode/investigating-gpu-issues-with-ai-agents">Investigating GPU issues with AI agents</a>，访问于 2026-09-28。说明 Metal 命令行工具的职责和文档化的调查路径。<a href="#fnref:1" class="footnote-back-ref">&#8617;</a><a href="#fnref:2" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>JetBrains，<a href="https://blog.jetbrains.com/dotnet/2026/08/19/rider-resharper-2026-2-1/">Rider 2026.2.1 and ReSharper 2026.2.1 Are Here!</a>，2026-08-19。说明通用 <code>debugging-code</code> Skill 覆盖 C++ 与 Unreal Engine 等项目。<a href="#fnref:3" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>JetBrains，<a href="https://www.jetbrains.com/help/rider/AI_skills_ue.html">Unreal Engine Agent Skills</a>；<a href="https://github.com/JetBrains/rider-skills/blob/master/skills/ue-live-debugging/SKILL.md">ue-live-debugging 技能源码</a>，访问于 2026-09-28。用于核对 Unreal 调试工作流的工具与前提。<a href="#fnref:4" class="footnote-back-ref">&#8617;</a><a href="#fnref:5" class="footnote-back-ref">&#8617;</a><a href="#fnref:6" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>JetBrains，<a href="https://www.jetbrains.com/help/rider/Unreal_Engine__UnrealLink_RiderLink.html">UnrealLink and RiderLink</a>，访问于 2026-09-28。说明 Rider 插件、Unreal Editor 插件及两者提供的集成。<a href="#fnref:7" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:12">
+<p>Blender，<a href="https://github.com/blender/blender/blob/main/doc/python_api/rst/info_api_reference.rst">Python API 使用文档源码</a>与<a href="https://github.com/blender/blender/blob/main/doc/python_api/rst/info_advanced_blender_as_bpy.rst">Blender 作为 Python 模块的说明源码</a>，访问于 2026-09-28。官方 GitHub 镜像中的前者展示通过 <code>bpy</code> 修改对象位置，后者解释将 Blender 作为 Python 模块使用，以及它与后台模式运行脚本的关系和区别；视觉检查是本文组合示例。<a href="#fnref:8" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:13">
+<p>OpenAI，<a href="https://openai.com/index/building-codex-windows-sandbox/">Building a safe, effective sandbox to enable Codex on Windows</a>，2026-05-13。记载当时的目标、候选方案及受限用户、令牌、ACL、防火墙的组合实现。<a href="#fnref:9" class="footnote-back-ref">&#8617;</a><a href="#fnref:10" class="footnote-back-ref">&#8617;</a><a href="#fnref:11" class="footnote-back-ref">&#8617;</a><a href="#fnref:12" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:14">
+<p>Linux kernel，<a href="https://cdn.kernel.org/doc/html/latest/userspace-api/landlock.html">Landlock userspace API</a>，访问于 2026-09-28。限制继承及支持的访问类别随内核 ABI 变化。<a href="#fnref:13" class="footnote-back-ref">&#8617;</a><a href="#fnref:14" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:15">
+<p>Microsoft，<a href="https://github.com/microsoft/mxc">Microsoft eXecution Container README</a>，访问于 2026-09-28。仓库自述为早期预览，警示现有配置过宽且当前不能作为安全边界。<a href="#fnref:15" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:18">
+<p>JetBrains，<a href="https://www.jetbrains.com/help/rider/mcp-server.html">Rider MCP Server</a>，访问于 2026-09-28。说明外部 Agent 的连接、服务启用和 IDE 工具范围。<a href="#fnref:16" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/powershell/scripting/whats-new/what-s-new-in-powershell-74?view=powershell-7.4">What's new in PowerShell 7.4</a>，访问于 2026-09-28。用于部分原生程序重定向和管道的字节流处理。<a href="#fnref:17" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Yang 等，<a href="https://arxiv.org/abs/2405.15793">SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering</a>，2024。论文讨论 ACI 设计与其软件工程实验结果，结论受实验条件限制。<a href="#fnref:18" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>mini-SWE-agent，<a href="https://mini-swe-agent.com/latest/">官方项目文档</a>，访问于 2026-09-28。用于说明以 Bash 为主的简洁工具设计。<a href="#fnref:19" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Model Context Protocol，<a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools">Tools 规范</a>，协议版本 2026-07-28，访问于 2026-09-28。定义工具描述、调用与返回形式；具体工具实现负责处理正确性和访问权限。<a href="#fnref:20" class="footnote-back-ref">&#8617;</a><a href="#fnref:21" class="footnote-back-ref">&#8617;</a><a href="#fnref:22" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Apple，<a href="https://developer.apple.com/documentation/xcode/giving-external-agents-access-to-xcode">Giving external agents access to Xcode</a>；<a href="https://developer.apple.com/documentation/xcode-release-notes/xcode-26_3-release-notes">Xcode 26.3 Release Notes</a>，访问于 2026-09-28。用于外部 Agent 接入及版本前提。<a href="#fnref:23" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines?view=powershell-7.4">about_Pipelines</a>，PowerShell 7.4 文档视图，访问于 2026-09-28。说明 cmdlet 对象管道与原生程序边界。<a href="#fnref:24" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/add-type?view=powershell-7.5">Add-Type</a>；<a href="https://github.com/MicrosoftDocs/PowerShell-Docs/blob/main/reference/docs-conceptual/samples/Using-Static-Classes-and-Methods.md">Using Static Classes and Methods</a>，访问于 2026-09-28。用于 .NET 类型、程序集及互操作路径。<a href="#fnref:25" class="footnote-back-ref">&#8617;</a><a href="#fnref:26" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:16">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/ai/mcp/servers/mcp-containment">Securely containing MCP servers on Windows</a>，访问于 2026-09-28。受限会话、打包前提、用户文件授权及例外需按具体配置核查。<a href="#fnref:27" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:17">
+<p>Model Context Protocol，<a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization">Authorization 规范</a>，协议版本 2026-07-28，访问于 2026-09-28。用于 HTTP 传输的授权职责，不代替本地进程隔离。<a href="#fnref:28" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:19">
+<p>Microsoft，<a href="https://devblogs.microsoft.com/pix/requirements/">PIX Requirements</a>，访问于 2026-09-28。用于限定 PIX 的运行要求，不外推到所有游戏开发任务。<a href="#fnref:29" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:20">
+<p>OpenAI，<a href="https://learn.chatgpt.com/docs/windows/wsl">WSL: Run and troubleshoot Codex in Windows Subsystem for Linux</a>，访问于 2026-09-28。提供 Codex CLI 在 WSL 中的安装运行说明及相关环境边界。<a href="#fnref:30" class="footnote-back-ref">&#8617;</a><a href="#fnref:31" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:21">
+<p>Anthropic，<a href="https://www.anthropic.com/engineering/code-execution-with-mcp">Code execution with MCP: building more efficient AI agents</a>，2025-11-04。分析工具定义与中间结果的上下文成本；示例数字不作为通用平均值。<a href="#fnref:32" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:22">
+<p>Raymond Chen，<a href="https://devblogs.microsoft.com/oldnewthing/20070723-00/?p=25903">The real cost of compatibility is not in the hacks; the hacks are small potatoes</a>，2007-07-23。作者以 Windows 功能设计说明兼容旧应用的成本；本文据此讨论平台与调用方之间的维护责任。<a href="#fnref:33" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:23">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/win32/apiindex/windows-apisets">Windows API sets</a>，访问于 2026-10-03。说明契约名称、实现 DLL 的映射及可用性查询。<a href="#fnref:34" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:24">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/win32/com/rules-for-implementing-queryinterface">Rules for Implementing QueryInterface</a>，访问于 2026-10-03。规定 COM 对象身份和可查询接口集合的稳定性；插件渐进扩展是本文构造的示例。<a href="#fnref:35" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:25">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows-hardware/drivers/driversecurity/windows-security-model">Windows Security Model for Driver Developers</a>，访问于 2026-10-03。用于身份、模拟、安全描述符与对象访问检查。<a href="#fnref:36" class="footnote-back-ref">&#8617;</a><a href="#fnref:37" class="footnote-back-ref">&#8617;</a><a href="#fnref:38" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:26">
+<p>FreeBSD，<a href="https://man.freebsd.org/cgi/man.cgi?query=capsicum&amp;sektion=4">capsicum(4)</a>；Linux man-pages，<a href="https://man7.org/linux/man-pages/man7/capabilities.7.html">capabilities(7)</a>，访问于 2026-10-03。分别说明 capability mode、描述符权限限制与 Linux 对特权的拆分。<a href="#fnref:39" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:27">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle">CloseHandle</a>，访问于 2026-10-03。说明适用对象、注册表键和 socket 的关闭方式，以及关闭进程句柄与终止进程的区别。<a href="#fnref:40" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:28">
+<p>Microsoft，<a href="https://github.com/microsoft/wil">Windows Implementation Library</a>，访问于 2026-10-03。项目提供 Windows 资源的 RAII 包装、缓冲区及错误处理辅助。<a href="#fnref:41" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:29">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/win32/fileio/i-o-completion-ports">I/O Completion Ports</a>；<a href="https://learn.microsoft.com/en-us/windows/win32/fileio/canceling-pending-i-o-operations">Canceling Pending I/O Operations</a>，访问于 2026-10-03。说明完成通知、请求取消及相关结构的使用寿命。<a href="#fnref:42" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:30">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendmessage">SendMessage</a>，访问于 2026-10-03。说明同步消息处理、同线程调用、跨线程等待期间的非队列消息，以及投递消息的替代入口。<a href="#fnref:43" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:31">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects">Job Objects</a>；<a href="https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_basic_limit_information">JOBOBJECT_BASIC_LIMIT_INFORMATION</a>，访问于 2026-10-03。用于进程归组、资源限制、breakaway 和关闭最后一个 Job 句柄时的终止规则。<a href="#fnref:44" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:36">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_output?view=powershell-7.6">about_Remote_Output</a>，访问于 2026-09-28。说明远程会话输出的序列化及对象行为。<a href="#fnref:45" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:32">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/win32/secauthz/null-dacls-and-empty-dacls">Null DACLs and Empty DACLs</a>，访问于 2026-10-03。说明两种状态在自主访问控制中的含义；对象的最终可访问性还受其他适用检查影响。<a href="#fnref:46" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:33">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-audit#objectaccess_auditfilesystem">Audit Policy CSP: ObjectAccess_AuditFileSystem</a>，访问于 2026-10-03。说明文件访问审计策略与 SACL 匹配条件；事件与 Agent 任务的关联由本文提出为宿主的实现责任。<a href="#fnref:47" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:34">
+<p>Microsoft，<a href="https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.5">What is PowerShell?</a>；<a href="https://learn.microsoft.com/en-us/powershell/scripting/whats-new/migrating-from-windows-powershell-51-to-powershell-7?view=powershell-7.5">Migrating from Windows PowerShell 5.1 to PowerShell 7</a>；<a href="https://learn.microsoft.com/en-us/powershell/scripting/whats-new/unix-support?view=powershell-7.6">PowerShell differences on non-Windows platforms</a>，访问于 2026-09-28。<a href="#fnref:48" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:35">
+<p>GNU，<a href="https://www.gnu.org/software/bash/manual/bash.html">Bash Reference Manual</a>。用于 Bash 展开、重定向、进程替换、数组和退出状态规则。<a href="#fnref:49" class="footnote-back-ref">&#8617;</a><a href="#fnref:50" class="footnote-back-ref">&#8617;</a><a href="#fnref:51" class="footnote-back-ref">&#8617;</a><a href="#fnref:52" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
+</div>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="../AI/mcp.html">MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="../Community/uiux.html" rel="prev"><span>上一篇</span>&#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;</a>
+                    <a href="../Community/tech-argument.html" rel="next"><span>下一篇</span>&#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#gpu">&#x5BFC;&#x8BFB;&#xFF1A;&#x4ECE;&#x4E00;&#x4EFD; GPU &#x6355;&#x83B7;&#x5F00;&#x59CB;</a>
+        <a class="level-2" href="#section">1 &#x5148;&#x786E;&#x5B9A;&#x4EFB;&#x52A1;&#xFF0C;&#x518D;&#x6BD4;&#x8F83;&#x8FD0;&#x884C;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#section-1">1.1 &#x5B8C;&#x6210;&#x6761;&#x4EF6;&#x51B3;&#x5B9A;&#x9700;&#x8981;&#x4EC0;&#x4E48;&#x4FE1;&#x606F;</a>
+        <a class="level-3" href="#section-2">1.2 &#x6A21;&#x578B;&#x7684;&#x5224;&#x65AD;&#x600E;&#x6837;&#x53D8;&#x6210;&#x5B9E;&#x9645;&#x64CD;&#x4F5C;</a>
+        <a class="level-3" href="#section-3">1.3 &#x4ECE;&#x53EF;&#x884C;&#x6027;&#x5230;&#x4F7F;&#x7528;&#x6210;&#x672C;</a>
+        <a class="level-2" href="#shell-agent">2 Shell &#x600E;&#x6837;&#x5E2E;&#x52A9; Agent &#x5B8C;&#x6210;&#x5F00;&#x53D1;&#x5DE5;&#x4F5C;</a>
+        <a class="level-3" href="#shell">2.1 &#x65E5;&#x5E38;&#x547D;&#x4EE4;&#x7528;&#x5230;&#x4E86;&#x591A;&#x5C11; Shell &#x80FD;&#x529B;</a>
+        <a class="level-3" href="#section-4">2.2 &#x4E00;&#x6761;&#x547D;&#x4EE4;&#x7ECF;&#x8FC7;&#x4E86;&#x54EA;&#x4E9B;&#x5904;&#x7406;</a>
+        <a class="level-3" href="#section-5">2.3 &#x63A5;&#x53E3;&#x8BBE;&#x8BA1;&#x7684;&#x6536;&#x76CA;&#x53D6;&#x51B3;&#x4E8E;&#x4EFB;&#x52A1;</a>
+        <a class="level-2" href="#agent">3 &#x5E94;&#x7528;&#x600E;&#x6837;&#x628A;&#x80FD;&#x529B;&#x63D0;&#x4F9B;&#x7ED9; Agent</a>
+        <a class="level-3" href="#section-6">3.1 &#x8C03;&#x7528;&#x5165;&#x53E3;&#x4E0E;&#x5B83;&#x6240;&#x63D0;&#x4F9B;&#x7684;&#x80FD;&#x529B;</a>
+        <a class="level-3" href="#xcode-metal">3.2 Xcode &#x4E0E; Metal&#xFF1A;&#x547D;&#x4EE4;&#x884C;&#x4E5F;&#x80FD;&#x63D0;&#x4F9B;&#x4E13;&#x4E1A;&#x72B6;&#x6001;</a>
+        <a class="level-3" href="#rider-unreal">3.3 Rider &#x4E0E; Unreal&#xFF1A;&#x628A;&#x6E90;&#x7801;&#x5173;&#x7CFB;&#x548C;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x63A5;&#x8D77;&#x6765;</a>
+        <a class="level-3" href="#blender">3.4 Blender&#xFF1A;&#x4FEE;&#x6539;&#x573A;&#x666F;&#x4EE5;&#x540E;&#xFF0C;&#x600E;&#x6837;&#x5224;&#x65AD;&#x753B;&#x9762;</a>
+        <a class="level-2" href="#section-7">4 &#x5F00;&#x53D1;&#x5DE5;&#x5177;&#x9700;&#x8981;&#x600E;&#x6837;&#x7684;&#x6743;&#x9650;&#x8303;&#x56F4;</a>
+        <a class="level-3" href="#section-8">4.1 &#x8BA9;&#x4EFB;&#x52A1;&#x6388;&#x6743;&#x6210;&#x4E3A;&#x5B9E;&#x9645;&#x9650;&#x5236;</a>
+        <a class="level-3" href="#codex-on-windows">4.2 Codex on Windows&#xFF1A;&#x628A;&#x73B0;&#x6709;&#x673A;&#x5236;&#x7EC4;&#x6210;&#x6C99;&#x7BB1;</a>
+        <a class="level-3" href="#mxc-windows-mcp">4.3 MXC &#x4E0E; Windows MCP &#x5206;&#x522B;&#x89E3;&#x51B3;&#x54EA;&#x4E00;&#x6BB5;</a>
+        <a class="level-3" href="#section-9">4.4 &#x6743;&#x9650;&#x9700;&#x8981;&#x6CBF;&#x7740;&#x8C03;&#x7528;&#x7EE7;&#x7EED;&#x8FFD;&#x8E2A;</a>
+        <a class="level-2" href="#section-10">5 &#x600E;&#x6837;&#x636E;&#x6B64;&#x9009;&#x62E9;&#x5DE5;&#x4F5C;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#section-11">5.1 &#x628A;&#x63A5;&#x53E3;&#x653E;&#x8FDB;&#x4E00;&#x6B21;&#x5B8C;&#x6574;&#x8C03;&#x67E5;</a>
+        <a class="level-3" href="#section-12">5.2 &#x76EE;&#x6807;&#x8F6F;&#x4EF6;&#x5148;&#x786E;&#x5B9A;&#x6267;&#x884C;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#windows-wsl">5.3 Windows &#x2B; WSL&#xFF1A;&#x4FDD;&#x7559;&#x4E24;&#x4FA7;&#x5DF2;&#x6709;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;</a>
+        <a class="level-3" href="#section-13">5.4 &#x63A5;&#x53E3;&#x8282;&#x7701;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x4E0E;&#x63A5;&#x5165;&#x540E;&#x589E;&#x52A0;&#x7684;&#x5DE5;&#x4F5C;</a>
+        <a class="level-2" href="#section-14">&#x7ED3;&#x8BED;&#xFF1A;&#x4ECE;&#x53EF;&#x8C03;&#x7528;&#x7684;&#x80FD;&#x529B;&#x5224;&#x65AD;&#x5E73;&#x53F0;&#x4EF7;&#x503C;</a>
+        <a class="level-2" href="#awindows">&#x9644;&#x5F55; A&#xFF1A;Windows &#x7684;&#x957F;&#x671F;&#x63A5;&#x53E3;&#x4E0E;&#x8D44;&#x6E90;&#x7BA1;&#x7406;</a>
+        <a class="level-3" href="#a.1">A.1 &#x957F;&#x671F;&#x517C;&#x5BB9;&#x5982;&#x4F55;&#x4FDD;&#x62A4;&#x65E2;&#x6709;&#x6295;&#x5165;</a>
+        <a class="level-3" href="#a.2">A.2 &#x5BF9;&#x8C61;&#x3001;&#x8EAB;&#x4EFD;&#x4E0E;&#x4E00;&#x6B21;&#x8BBF;&#x95EE;&#x83B7;&#x5F97;&#x7684;&#x6743;&#x9650;</a>
+        <a class="level-3" href="#a.3">A.3 &#x8D44;&#x6E90;&#x4F55;&#x65F6;&#x4ECD;&#x5728;&#x4F7F;&#x7528;&#xFF0C;&#x4F55;&#x65F6;&#x53EF;&#x4EE5;&#x91CA;&#x653E;</a>
+        <a class="level-3" href="#a.4">A.4 &#x7528;&#x4EFB;&#x52A1;&#x7EC4;&#x7EC7;&#x8FDB;&#x7A0B;&#x3001;&#x9884;&#x7B97;&#x548C;&#x9000;&#x51FA;&#x89C4;&#x5219;</a>
+        <a class="level-3" href="#a.5">A.5 &#x5C06;&#x57FA;&#x7840;&#x673A;&#x5236;&#x53D8;&#x6210;&#x7528;&#x6237;&#x53EF;&#x7406;&#x89E3;&#x7684;&#x884C;&#x4E3A;</a>
+        <a class="level-2" href="#bpowershell-bash">&#x9644;&#x5F55; B&#xFF1A;PowerShell &#x4E0E; Bash &#x7684;&#x80FD;&#x529B;&#x8FB9;&#x754C;</a>
+        <a class="level-3" href="#b.1">B.1 &#x5148;&#x9650;&#x5B9A;&#x6BD4;&#x8F83;&#x5BF9;&#x8C61;</a>
+        <a class="level-3" href="#b.2-powershell.net">B.2 PowerShell &#x600E;&#x6837;&#x76F4;&#x63A5;&#x4F7F;&#x7528; .NET</a>
+        <a class="level-3" href="#b.3-bash">B.3 Bash &#x600E;&#x6837;&#x7EC4;&#x5408;&#x8FDB;&#x7A0B;&#x4E0E;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;</a>
+        <a class="level-3" href="#b.4-agent">B.4 &#x6570;&#x636E;&#x8FD4;&#x56DE; Agent &#x65F6;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;</a>
+        <a class="level-3" href="#b.5">B.5 &#x54EA;&#x4E9B;&#x4EFB;&#x52A1;&#x80FD;&#x76F4;&#x63A5;&#x53D7;&#x76CA;</a>
+        <a class="level-2" href="#c">&#x9644;&#x5F55; C&#xFF1A;&#x6587;&#x4E2D;&#x4EA7;&#x54C1;&#x6750;&#x6599;&#x7684;&#x65F6;&#x95F4;&#x4E0E;&#x8303;&#x56F4;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

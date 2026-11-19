@@ -1,0 +1,1422 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E; &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Linux/genshin.html">
+            <meta property="og:title" content="Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Linux/genshin.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="All Sword and No Play Makes March a Dull Girl.">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.bb1aee13f1a46506.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html" aria-current="page">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html" aria-current="page">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;</h1>
+                    <p class="article-date"><time datetime="2026-10-17">2026-10-17</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-14">2026-11-14</time></p>
+                    <p class="article-date article-reading-time">预计阅读 20 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-4c696e757820e4bdbfe794a8">Linux &#x4F7F;&#x7528;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/4828e60247c1636f57b7446a314e7f599c12b53d40061cc851a1442004354fed.html">#Linux</a></li>
+                            <li><a href="../../tags/f7b39b2d1a2a93b8cf8672886a1fc37e53dc78f3f687b29f059bba628ca85333.html">#Proton</a></li>
+                            <li><a href="../../tags/d1597c51ed6c8992305a1d61dfeae1bcf8e8d36f015229cf01a1a0d3d1202fde.html">#&#x539F;&#x795E;</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x73AF;&#x5883;&#x4E0E;&#x76EE;&#x5F55;</a>
+        <a class="level-2" href="#xfs">&#x590D;&#x5236;&#x6E38;&#x620F;&#x5230; XFS</a>
+        <a class="level-2" href="#dwproton">&#x4E0B;&#x8F7D;&#x5E76;&#x89E3;&#x538B; DWProton</a>
+        <a class="level-2" href="#mangohud">&#x914D;&#x7F6E; MangoHud</a>
+        <a class="level-2" href="#section-1">&#x666E;&#x901A;&#x542F;&#x52A8;&#x811A;&#x672C;</a>
+        <a class="level-3" href="#section-2">&#x542F;&#x52A8;&#x65B9;&#x5F0F;</a>
+        <a class="level-3" href="#section-3">&#x5173;&#x952E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</a>
+        <a class="level-3" href="#wayland-xwayland">&#x5207;&#x6362; Wayland / XWayland</a>
+        <a class="level-3" href="#hdr">&#x53EF;&#x9009; HDR</a>
+        <a class="level-2" href="#rust">&#x914D;&#x7F6E; Rust &#x4EA4;&#x53C9;&#x7F16;&#x8BD1;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#section-4">&#x5B89;&#x88C5;&#x5DE5;&#x5177;</a>
+        <a class="level-3" href="#section-5">&#x51C6;&#x5907;&#x6E90;&#x7801;</a>
+        <a class="level-3" href="#exe-dll">&#x5E72;&#x51C0;&#x6784;&#x5EFA; EXE &#x548C; DLL</a>
+        <a class="level-2" href="#section-6">&#x90E8;&#x7F72;&#x8865;&#x5145;&#x5DE5;&#x5177;</a>
+        <a class="level-3" href="#config.ini">config.ini</a>
+        <a class="level-2" href="#section-7">&#x8865;&#x5145;&#x5DE5;&#x5177;&#x542F;&#x52A8;&#x811A;&#x672C;</a>
+        <a class="level-2" href="#section-8">&#x65E5;&#x5FD7;&#x4E0E;&#x540E;&#x7EED;&#x7EF4;&#x62A4;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><p>DWProton 直接通过自身的 <code>proton</code> 脚本启动游戏。普通入口支持游戏和官方启动器；补充工具入口先运行 <code>gi-toolkit-ng.exe</code>，再由它启动游戏并加载 <code>hutao_minhook_ng.dll</code>。两者共用同一个 Wine prefix。</p>
+<aside class="custom-container tip">
+<p class="custom-container-title">参考</p>
+<ul>
+<li><a href="https://github.com/dawn-winery/dwproton-mirror">DWProton 镜像仓库</a></li>
+<li><a href="https://github.com/dawn-winery/dwproton-mirror/releases/tag/dwproton-11.0-14">DWProton 11.0-14 发布页</a></li>
+<li><a href="https://github.com/flightlessmango/MangoHud">MangoHud</a></li>
+<li><a href="https://github.com/rust-cross/cargo-xwin/blob/v0.23.1/README.md">cargo-xwin 0.23.1</a></li>
+<li><a href="https://github.com/Rukkhadevata123/hutao-minhook-ng">hutao-minhook-ng</a></li>
+<li><a href="https://github.com/Rukkhadevata123/gi-toolkit-ng">gi-toolkit-ng</a></li>
+<li><a href="https://github.com/MoYingJi/Hyps">Hyps</a></li>
+</ul>
+</aside>
+<h2 id="section">环境与目录 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<p>本文记录时的主要版本：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>本机版本或设置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>桌面</td>
+<td>KDE Plasma 6.8，Wayland 会话</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>NVIDIA GeForce RTX 4050 Laptop GPU</td>
+</tr>
+<tr>
+<td>NVIDIA 驱动</td>
+<td><code>615.78.08-1</code></td>
+</tr>
+<tr>
+<td>游戏所在文件系统</td>
+<td>XFS</td>
+</tr>
+<tr>
+<td>DWProton</td>
+<td><code>dwproton-11.0-14</code></td>
+</tr>
+<tr>
+<td>MangoHud</td>
+<td><code>0.8.4-1</code></td>
+</tr>
+<tr>
+<td>Rust / Cargo</td>
+<td>rustup stable，<code>1.99.1</code></td>
+</tr>
+<tr>
+<td>cargo-xwin</td>
+<td>AUR <code>cargo-xwin 0.23.1-1</code>，通过 yay 安装</td>
+</tr>
+<tr>
+<td>Clang / LLVM</td>
+<td><code>23.1.3-2</code></td>
+</tr>
+<tr>
+<td>Windows 编译目标</td>
+<td><code>x86_64-pc-windows-msvc</code></td>
+</tr>
+</tbody>
+</table>
+<p>最终目录布局：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">~/.local/opt/dwproton-11.0-14/          # DWProton 解压目录
+~/.local/bin/genshin-bilibili          # 普通启动脚本
+~/.local/bin/genshin-bilibili-hutao    # 补充工具启动脚本
+~/.config/MangoHud/MangoHud.conf       # MangoHud 配置
+
+~/Games/
+├── genshin-bilibili/
+│   ├── launcher.exe
+│   └── games/Genshin Impact Game/YuanShen.exe
+├── genshin-bilibili-hutao/
+│   ├── gi-toolkit-ng.exe
+│   ├── hutao_minhook_ng.dll
+│   ├── config.ini
+│   └── offset.ini                    # 运行后生成的偏移缓存
+└── compatdata/genshin-bilibili-direct/
+    ├── pfx/                          # 实际的 Wine prefix
+    └── steam-client/                 # 提供给 Proton 的客户端路径
+
+~/hutao-minhook-ng/                   # DLL 源码
+~/gi-toolkit-ng/                      # EXE 源码
+~/.cache/gi-windows-build.XXXXXX/      # 每次独立的构建目录
+</code></pre>
+</div>
+<p>以下默认 NVIDIA 驱动和 Vulkan 已经可用。游戏文件和 prefix 都放在 Linux 文件系统中。</p>
+<h2 id="xfs">复制游戏到 XFS <a class="heading-anchor" href="#xfs" aria-label="链接到本节">#</a></h2>
+<p>安装复制、下载、监测工具和 NTSync 自动加载配置。DWProton 的启动脚本还需要 Python：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">sudo pacman -Syu --needed rsync curl python mangohud ntsync-autoload
+
+mkdir -p &quot;$HOME/Games/genshin-bilibili&quot;
+findmnt -T &quot;$HOME/Games&quot; -o TARGET,SOURCE,FSTYPE
+df -h &quot;$HOME/Games&quot;
+</code></pre>
+</div>
+<p><a href="https://archlinux.org/packages/extra/any/ntsync-autoload/"><code>ntsync-autoload</code></a> 用于开机自动加载 <code>ntsync</code> 内核模块，供支持 NTSync 的 Wine / Proton 使用。安装后重启即可；当前会话也可以先执行 <code>sudo modprobe ntsync</code> 加载。</p>
+<p>确认目标文件系统是 XFS，剩余空间足够，然后复制整个 B 服安装目录：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">rsync -rt --partial --info=progress2 \
+  '/run/media/yoimiya/新加卷/Program Files/Genshin Impact bilibili/' \
+  &quot;$HOME/Games/genshin-bilibili/&quot;
+</code></pre>
+</div>
+<p>源目录末尾的 <code>/</code> 表示复制目录里面的内容，因此复制完成后 <code>launcher.exe</code> 直接位于 <code>~/Games/genshin-bilibili/</code> 下。</p>
+<p><code>-r</code> 递归复制，<code>-t</code> 保留修改时间，<code>--partial</code> 保留未完成的文件，<code>--info=progress2</code> 显示整体进度。同一条命令可以重跑，大小和修改时间一致的文件会被跳过；目标目录中额外生成的文件会保留。</p>
+<p>检查两个入口：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">ls -l &quot;$HOME/Games/genshin-bilibili/launcher.exe&quot;
+ls -l &quot;$HOME/Games/genshin-bilibili/games/Genshin Impact Game/YuanShen.exe&quot;
+</code></pre>
+</div>
+<h2 id="dwproton">下载并解压 DWProton <a class="heading-anchor" href="#dwproton" aria-label="链接到本节">#</a></h2>
+<p>这里固定使用本机验证过的 <code>11.0-14</code>，下载官方镜像仓库的 x86_64 压缩包：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">mkdir -p &quot;$HOME/Downloads&quot; &quot;$HOME/.local/opt/dwproton-11.0-14&quot;
+
+curl -fL \
+  'https://github.com/dawn-winery/dwproton-mirror/releases/download/dwproton-11.0-14/dwproton-11.0-14-x86_64.tar.xz' \
+  -o &quot;$HOME/Downloads/dwproton-11.0-14-x86_64.tar.xz&quot;
+
+tar -xJf &quot;$HOME/Downloads/dwproton-11.0-14-x86_64.tar.xz&quot; \
+  -C &quot;$HOME/.local/opt/dwproton-11.0-14&quot; \
+  --strip-components=1
+
+test -x &quot;$HOME/.local/opt/dwproton-11.0-14/proton&quot;
+</code></pre>
+</div>
+<p>压缩包本身带有一层 <code>dwproton-11.0-14-x86_64/</code>，所以解压时使用 <code>--strip-components=1</code>。最后的入口应当是 <code>~/.local/opt/dwproton-11.0-14/proton</code>。</p>
+<p>DWProton 包含配套的 Wine、DXVK 和游戏修复。这里调用包内的 <code>proton</code>，由它完成 prefix 初始化和运行环境配置。</p>
+<h2 id="mangohud">配置 MangoHud <a class="heading-anchor" href="#mangohud" aria-label="链接到本节">#</a></h2>
+<p>写入当前使用的配置：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">mkdir -p &quot;$HOME/.config/MangoHud&quot;
+cat &gt; &quot;$HOME/.config/MangoHud/MangoHud.conf&quot; &lt;&lt;'MANGOHUD_CONF'
+# Default overlay for games launched with MANGOHUD=1.
+position=top-left
+font_size=22
+background_alpha=0.4
+
+# Frame rate and frame time.
+fps
+frametime
+frame_timing
+
+# CPU/GPU load, temperatures, and GPU power.
+cpu_stats
+cpu_temp
+gpu_stats
+gpu_temp
+gpu_power
+
+# Memory usage and rendering backend.
+vram
+ram
+engine_version
+
+# Right Shift + F12: show/hide. Left Shift + F4: reload config.
+toggle_hud=Shift_R+F12
+reload_cfg=Shift_L+F4
+MANGOHUD_CONF
+</code></pre>
+</div>
+<p>覆盖层显示帧率、帧时间曲线、CPU/GPU 使用率和温度、GPU 功耗、内存与显存占用。快捷键如下：</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>右 Shift + F12</td>
+<td>显示或隐藏覆盖层</td>
+</tr>
+<tr>
+<td>左 Shift + F4</td>
+<td>重新载入配置</td>
+</tr>
+</tbody>
+</table>
+<p>后面的脚本默认导出 <code>MANGOHUD=1</code>，通过 Vulkan 层启用 MangoHud。需要临时关闭时，在启动命令前设置 <code>MANGOHUD=0</code>。</p>
+<h2 id="section-1">普通启动脚本 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h2>
+<p>创建 <code>~/.local/bin/genshin-bilibili</code>。这份脚本默认启动游戏，也可以选择官方启动器；显示后端默认为 XWayland，通过 <code>PROTON_ENABLE_WAYLAND=1</code> 可以切换到原生 Wayland。游戏模式另外提供可选 HDR 开关。</p>
+<details class="custom-container details">
+<summary>完整脚本</summary>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">mkdir -p &quot;$HOME/.local/bin&quot;
+cat &gt; &quot;$HOME/.local/bin/genshin-bilibili&quot; &lt;&lt;'GENSHIN_SCRIPT'
+#!/usr/bin/env bash
+set -euo pipefail
+
+dwproton_dir=&quot;${DWPROTON_DIR:-$HOME/.local/opt/dwproton-11.0-14}&quot;
+game_exe=&quot;$HOME/Games/genshin-bilibili/games/Genshin Impact Game/YuanShen.exe&quot;
+launcher_exe=&quot;$HOME/Games/genshin-bilibili/launcher.exe&quot;
+enable_wayland=&quot;${PROTON_ENABLE_WAYLAND:-0}&quot;
+# Enable with GENSHIN_HDR=1, or change the default below to 1.
+# This shell-local setting applies only when launching the game directly.
+enable_hdr=&quot;${GENSHIN_HDR:-0}&quot;
+compat_dir=&quot;$HOME/Games/compatdata/genshin-bilibili-direct&quot;
+log_dir=&quot;${XDG_STATE_HOME:-$HOME/.local/state}/dwproton&quot;
+
+launch_exe=&quot;$game_exe&quot;
+launch_mode=game
+case &quot;${1:-}&quot; in
+    --launcher)
+        launch_exe=&quot;$launcher_exe&quot;
+        launch_mode=launcher
+        shift
+        ;;
+    --game)
+        shift
+        ;;
+    -h|--help)
+        printf 'Usage: %s [--game|--launcher] [arguments...]\n' &quot;${0##*/}&quot;
+        printf 'Defaults to launching YuanShen.exe. Remaining arguments go to the selected executable.\n'
+        printf 'GENSHIN_HDR=1 enables game HDR and native Wayland in game mode only.\n'
+        printf 'PROTON_ENABLE_WAYLAND=1 enables native Wayland for game or launcher; defaults to 0 (XWayland).\n'
+        exit 0
+        ;;
+    --)
+        shift
+        ;;
+esac
+
+if [[ &quot;$launch_mode&quot; == game &amp;&amp; &quot;$enable_hdr&quot; != 0 &amp;&amp; &quot;$enable_hdr&quot; != 1 ]]; then
+    printf 'GENSHIN_HDR must be 0 or 1.\n' &gt;&amp;2
+    exit 2
+fi
+
+# Resolve the backend once. Game HDR takes precedence over the display switch.
+if [[ &quot;$enable_wayland&quot; != 0 &amp;&amp; &quot;$enable_wayland&quot; != 1 ]]; then
+    printf 'PROTON_ENABLE_WAYLAND must be 0 or 1.\n' &gt;&amp;2
+    exit 2
+fi
+if [[ &quot;$launch_mode&quot; == game &amp;&amp; &quot;$enable_hdr&quot; == 1 ]]; then
+    enable_wayland=1
+fi
+case &quot;$enable_wayland&quot; in
+    0)
+        graphics_driver=x11
+        ;;
+    1)
+        graphics_driver=wayland
+        if [[ -z &quot;${WAYLAND_DISPLAY:-}&quot; ]]; then
+            printf 'Native Wayland requires WAYLAND_DISPLAY in the current session.\n' &gt;&amp;2
+            exit 2
+        fi
+        ;;
+esac
+
+if [[ ! -x &quot;$dwproton_dir/proton&quot; ]]; then
+    printf 'DWProton launcher not found: %s\n' &quot;$dwproton_dir/proton&quot; &gt;&amp;2
+    exit 1
+fi
+if [[ ! -f &quot;$launch_exe&quot; ]]; then
+    printf 'Executable not found: %s\n' &quot;$launch_exe&quot; &gt;&amp;2
+    exit 1
+fi
+
+mkdir -p &quot;$compat_dir/steam-client&quot; &quot;$log_dir&quot;
+cd &quot;${launch_exe%/*}&quot;
+
+# Proton creates the actual Wine prefix under &quot;$compat_dir/pfx&quot;.
+export STEAM_COMPAT_DATA_PATH=&quot;$compat_dir&quot;
+# Proton expects a client path even when no Steam client is installed.
+export STEAM_COMPAT_CLIENT_INSTALL_PATH=&quot;$compat_dir/steam-client&quot;
+export STEAM_COMPAT_INSTALL_PATH=&quot;${launch_exe%/*}&quot;
+export SteamAppId=0
+export SteamGameId=0
+
+# These select DWProton's bundled Genshin fixes and steam.exe compatibility stub.
+# Setting UMU_ID does not invoke or require umu-launcher.
+export UMU_ID=umu-genshin
+export STORE=none
+export UMU_USE_STEAM=1
+
+# Use Wine's new WoW64 mode to avoid the traditional 32-bit Unix Wine loader.
+export PROTON_USE_WOW64=1
+# Export one consistent backend and clear the alternate Proton switch.
+export PROTON_ENABLE_WAYLAND=&quot;$enable_wayland&quot;
+unset PROTON_USE_WAYLAND
+export WINE_GRAPHICS_DRIVER=&quot;$graphics_driver&quot;
+# Disable the optional automatic FSR4 DLL download for this game.
+export PROTON_FSR4_UPGRADE=0
+
+# Request NVIDIA PRIME render offload for this game.
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+export MANGOHUD=&quot;${MANGOHUD:-1}&quot;
+export PROTON_LOG=&quot;${PROTON_LOG:-1}&quot;
+export PROTON_LOG_DIR=&quot;$log_dir&quot;
+
+if [[ &quot;$launch_mode&quot; == game ]]; then
+    # Match hutao-minhook-ng/src/hdr.rs in this game's prefix. Using `run`
+    # also initializes a fresh prefix before writing the registry value.
+    PROTON_LOG=0 MANGOHUD=0 &quot;$dwproton_dir/proton&quot; run reg.exe add \
+        'HKCU\Software\miHoYo\原神' \
+        /v WINDOWS_HDR_ON_h3132281285 /t REG_DWORD /d &quot;$enable_hdr&quot; /f
+
+    if [[ &quot;$enable_hdr&quot; == 1 ]]; then
+        export DXVK_HDR=1
+    fi
+fi
+
+&quot;$dwproton_dir/proton&quot; waitforexitandrun &quot;$launch_exe&quot; &quot;$@&quot; \
+    2&gt;&amp;1 | tee &quot;$log_dir/genshin-direct-launch.log&quot;
+GENSHIN_SCRIPT
+chmod +x &quot;$HOME/.local/bin/genshin-bilibili&quot;
+bash -n &quot;$HOME/.local/bin/genshin-bilibili&quot;
+</code></pre>
+</div>
+</details>
+<p>把下面一行加入 <code>~/.zshrc</code>，并在当前终端执行一次，以便直接使用命令名：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">export PATH=&quot;$HOME/.local/bin:$PATH&quot;
+</code></pre>
+</div>
+<h3 id="section-2">启动方式 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h3>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash"># 默认直接启动 YuanShen.exe
+genshin-bilibili
+
+# 显式启动游戏
+genshin-bilibili --game
+
+# 启动官方 B 服启动器，用于更新等操作
+genshin-bilibili --launcher
+
+# 日常游玩时关闭 Proton 详细日志
+PROTON_LOG=0 genshin-bilibili --game
+
+# 临时关闭 MangoHud
+MANGOHUD=0 genshin-bilibili --game
+</code></pre>
+</div>
+<h3 id="section-3">关键环境变量 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>设置</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STEAM_COMPAT_DATA_PATH</code></td>
+<td>指向 compatdata 目录，实际 prefix 位于它下面的 <code>pfx/</code></td>
+</tr>
+<tr>
+<td><code>STEAM_COMPAT_CLIENT_INSTALL_PATH</code></td>
+<td>给 Proton 提供客户端路径；本例使用独立的 <code>steam-client/</code> 目录</td>
+</tr>
+<tr>
+<td><code>SteamAppId=0</code>、<code>SteamGameId=0</code></td>
+<td>为直接启动提供固定标识，Proton 日志相应命名为 <code>steam-0.log</code></td>
+</tr>
+<tr>
+<td><code>UMU_ID=umu-genshin</code></td>
+<td>选择 DWProton 内置的原神修复</td>
+</tr>
+<tr>
+<td><code>UMU_USE_STEAM=1</code></td>
+<td>使用 DWProton 包内的 <code>steam.exe</code> 兼容入口</td>
+</tr>
+<tr>
+<td><code>PROTON_USE_WOW64=1</code></td>
+<td>使用 Wine 新 WoW64 模式，避免依赖传统的 32 位 Unix Wine 加载器</td>
+</tr>
+<tr>
+<td><code>PROTON_ENABLE_WAYLAND=0/1</code></td>
+<td>默认为 <code>0</code>（XWayland），设为 <code>1</code> 时选择原生 Wayland；脚本据此统一设置 <code>WINE_GRAPHICS_DRIVER</code></td>
+</tr>
+<tr>
+<td><code>PROTON_FSR4_UPGRADE=0</code></td>
+<td>关闭这个游戏不需要的 FSR4 DLL 自动下载</td>
+</tr>
+<tr>
+<td><code>__NV_PRIME_RENDER_OFFLOAD=1</code></td>
+<td>请求 NVIDIA PRIME 渲染卸载</td>
+</tr>
+<tr>
+<td><code>__GLX_VENDOR_LIBRARY_NAME=nvidia</code></td>
+<td>为 GLX 选择 NVIDIA 实现</td>
+</tr>
+<tr>
+<td><code>MANGOHUD=1</code></td>
+<td>启用 MangoHud</td>
+</tr>
+<tr>
+<td><code>PROTON_LOG=1</code></td>
+<td>输出 Proton 详细日志，排查完成后可以设为 <code>0</code></td>
+</tr>
+</tbody>
+</table>
+<p>这些 <code>UMU_*</code> 变量用于选择 DWProton 的兼容行为，脚本本身没有调用 <code>umu-run</code>。其中 <code>steam.exe</code> 是 DWProton 提供的兼容程序，启动过程不需要安装 Steam 客户端。</p>
+<h3 id="wayland-xwayland">切换 Wayland / XWayland <a class="heading-anchor" href="#wayland-xwayland" aria-label="链接到本节">#</a></h3>
+<p>本机测试中，Wine 原生 Wayland 出现过鼠标光标显示异常，官方启动器也无法正常打开，因此两个脚本默认使用 XWayland。后续关注 Wine / DWProton 的更新时，可以通过同一个环境变量切换后端，分别测试游戏和启动器：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash"># 使用相同的 SDR 设置对比普通游戏入口
+GENSHIN_HDR=0 PROTON_ENABLE_WAYLAND=0 genshin-bilibili --game
+GENSHIN_HDR=0 PROTON_ENABLE_WAYLAND=1 genshin-bilibili --game
+
+# 分别测试官方启动器
+PROTON_ENABLE_WAYLAND=0 genshin-bilibili --launcher
+PROTON_ENABLE_WAYLAND=1 genshin-bilibili --launcher
+</code></pre>
+</div>
+<p><code>PROTON_ENABLE_WAYLAND</code> 接受 <code>0</code> 或 <code>1</code>。脚本先确定最终后端，再一次性导出这个变量和对应的 <code>WINE_GRAPHICS_DRIVER=x11/wayland</code>；继承的 <code>PROTON_USE_WAYLAND</code> 会被清除，避免两个开关互相影响。选择原生 Wayland 时，当前会话需要提供 <code>WAYLAND_DISPLAY</code>，缺少时脚本会直接报错。</p>
+<p>对比时先退出上一轮游戏，保持 DWProton 版本、游戏画面设置和 HDR 状态一致。补充工具入口的切换命令见后文。</p>
+<h3 id="hdr">可选 HDR <a class="heading-anchor" href="#hdr" aria-label="链接到本节">#</a></h3>
+<p>需要尝试 HDR 时，先自行在 KDE 显示设置中开启 HDR，再执行：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">GENSHIN_HDR=1 genshin-bilibili --game
+</code></pre>
+</div>
+<p>游戏模式会在同一个 prefix 中设置以下注册表值，并启用 <code>DXVK_HDR=1</code>。<code>GENSHIN_HDR=1</code> 的游戏模式优先选择原生 Wayland，即使同时指定了 <code>PROTON_ENABLE_WAYLAND=0</code>：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">HKCU\Software\miHoYo\原神
+WINDOWS_HDR_ON_h3132281285 = REG_DWORD 1
+</code></pre>
+</div>
+<p>默认游戏模式会把这个注册表值写回 <code>0</code>。<code>--launcher</code> 根据 <code>PROTON_ENABLE_WAYLAND</code> 选择显示后端，并且不执行上述注册表修改；<code>GENSHIN_HDR</code> 对启动器模式不生效。KDE 自身的 HDR 开关由用户管理。</p>
+<p>当前 DWProton 基于的 CachyOS 上游已将旧的 <code>PROTON_ENABLE_HDR</code> 替换为 <code>DXVK_HDR</code>。<a href="https://github.com/CachyOS/proton-cachyos#retired-environment-variables">上游说明</a></p>
+<h2 id="rust">配置 Rust 交叉编译环境 <a class="heading-anchor" href="#rust" aria-label="链接到本节">#</a></h2>
+<p>两个补充项目分别生成：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>产物</th>
+<th>记录时的提交</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hutao-minhook-ng</code></td>
+<td><code>hutao_minhook_ng.dll</code></td>
+<td><code>e470ec5</code></td>
+</tr>
+<tr>
+<td><code>gi-toolkit-ng</code></td>
+<td><code>gi-toolkit-ng.exe</code></td>
+<td><code>5aa22ad</code></td>
+</tr>
+</tbody>
+</table>
+<p>DLL 通过 <code>cc</code> crate 编译 <code>src/hutao_seh_stub.c</code>，里面使用 Windows 的 <code>__try / __except</code> 结构化异常处理。两个项目统一使用 <code>x86_64-pc-windows-msvc</code> 目标和 <code>clang-cl</code>。</p>
+<h3 id="section-4">安装工具 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h3>
+<p>使用 pacman 安装 rustup 和 Clang：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">sudo pacman -S --needed rustup clang
+
+rustup set profile minimal
+rustup default stable
+rustup target add x86_64-pc-windows-msvc
+</code></pre>
+</div>
+<p><code>cargo-xwin</code> 则通过 yay 安装 AUR 包，由 pacman 管理 <code>/usr/bin/cargo-xwin</code>：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">yay -S cargo-xwin
+</code></pre>
+</div>
+<p>本机需要的工具分工如下：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rustup</td>
+<td>安装 Rust/Cargo 和匹配的 Windows Rust 标准库</td>
+</tr>
+<tr>
+<td>clang</td>
+<td>提供 <code>clang-cl</code>，编译 DLL 中的 C 代码</td>
+</tr>
+<tr>
+<td>llvm</td>
+<td>提供 <code>llvm-lib</code> 等工具；当前 Arch 的 clang 会自动依赖安装</td>
+</tr>
+<tr>
+<td>Rust 自带的 <code>rust-lld</code></td>
+<td>cargo-xwin 找不到系统 <code>lld-link</code> 时使用的链接器</td>
+</tr>
+<tr>
+<td>cargo-xwin</td>
+<td>下载并缓存微软 SDK/CRT，配置头文件、库路径、C 编译器和链接参数</td>
+</tr>
+</tbody>
+</table>
+<p>Rust 的 Windows 标准库和微软 C 运行库是两套不同组件，分别由 rustup 与 cargo-xwin 准备。<a href="https://github.com/rust-cross/cargo-xwin/blob/v0.23.1/src/compiler/common.rs#L86-L175">cargo-xwin 的工具替代实现</a></p>
+<p>检查环境：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">rustc -V
+cargo -V
+rustup target list --installed
+cargo xwin --version
+command -v clang-cl llvm-lib
+test -x &quot;$(rustc +stable --print target-libdir)/../bin/rust-lld&quot;
+</code></pre>
+</div>
+<h3 id="section-5">准备源码 <a class="heading-anchor" href="#section-5" aria-label="链接到本节">#</a></h3>
+<p>本机已经有 <code>~/hutao-minhook-ng</code> 和 <code>~/gi-toolkit-ng</code>。在新机器上可以先克隆：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">git clone https://github.com/Rukkhadevata123/hutao-minhook-ng.git &quot;$HOME/hutao-minhook-ng&quot;
+git clone https://github.com/Rukkhadevata123/gi-toolkit-ng.git &quot;$HOME/gi-toolkit-ng&quot;
+</code></pre>
+</div>
+<p>下面的编译命令保留两个仓库已有的 <code>Cargo.lock</code>，使用 <code>--locked</code> 固定依赖解析结果。</p>
+<h3 id="exe-dll">干净构建 EXE 和 DLL <a class="heading-anchor" href="#exe-dll" aria-label="链接到本节">#</a></h3>
+<p>整段可以直接在 zsh 中执行，实际构建在独立 Bash 子进程中进行。每次创建全新的 target 目录，中间产物放在 <code>~/.cache</code>，最终产物集中到本次构建的 <code>dist/</code>：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">bash &lt;&lt;'BUILD'
+set -euo pipefail
+
+mkdir -p &quot;$HOME/.cache&quot;
+build_root=&quot;$(mktemp -d &quot;$HOME/.cache/gi-windows-build.XXXXXX&quot;)&quot;
+
+export XWIN_ARCH=x86_64
+export XWIN_CROSS_COMPILER=clang-cl
+export RUSTFLAGS=&quot;-C target-feature=+crt-static&quot;
+
+for project_name in hutao-minhook-ng gi-toolkit-ng; do
+    cargo +stable xwin build \
+        --manifest-path &quot;$HOME/$project_name/Cargo.toml&quot; \
+        --target x86_64-pc-windows-msvc \
+        --target-dir &quot;$build_root/$project_name&quot; \
+        --release --locked
+done
+
+out_dir=&quot;$build_root/dist&quot;
+mkdir -p &quot;$out_dir&quot;
+
+cp &quot;$build_root/hutao-minhook-ng/x86_64-pc-windows-msvc/release/hutao_minhook_ng.dll&quot; &quot;$out_dir/&quot;
+cp &quot;$build_root/gi-toolkit-ng/x86_64-pc-windows-msvc/release/gi-toolkit-ng.exe&quot; &quot;$out_dir/&quot;
+cp &quot;$HOME/hutao-minhook-ng/config.ini&quot; &quot;$out_dir/&quot;
+
+file &quot;$out_dir/gi-toolkit-ng.exe&quot; &quot;$out_dir/hutao_minhook_ng.dll&quot;
+printf '\n输出目录：%s\n' &quot;$out_dir&quot;
+BUILD
+</code></pre>
+</div>
+<p><code>XWIN_ARCH=x86_64</code> 让 cargo-xwin 只准备需要的架构。<code>+crt-static</code> 请求静态链接 C 运行库，cargo-xwin 会补充对应的 UCRT 链接参数。首次构建需要联网下载微软 SDK/CRT 和尚未缓存的 Rust 依赖。</p>
+<p>本次成功构建的输出目录是：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">/home/yoimiya/.cache/gi-windows-build.okMtj6/dist
+</code></pre>
+</div>
+<p><code>file</code> 确认两个产物均为 <code>PE32+</code>、<code>x86-64</code>，分别是 GUI EXE 和 DLL。导入表中没有 <code>vcruntime140.dll</code>、<code>msvcp140.dll</code> 或 <code>ucrtbase.dll</code>，符合本次静态 CRT 配置的预期。</p>
+<h2 id="section-6">部署补充工具 <a class="heading-anchor" href="#section-6" aria-label="链接到本节">#</a></h2>
+<p>把本次构建打印出的 <code>dist</code> 复制到游戏目录旁边。下面使用本次实际产物路径，重新构建后应替换 <code>source_dir</code>：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">source_dir=&quot;$HOME/.cache/gi-windows-build.okMtj6/dist&quot;
+toolkit_dir=&quot;$HOME/Games/genshin-bilibili-hutao&quot;
+
+mkdir -p &quot;$toolkit_dir&quot;
+cp -a &quot;$source_dir/.&quot; &quot;$toolkit_dir/&quot;
+</code></pre>
+</div>
+<p>这是首次部署的复制方式。后续只更新 EXE/DLL 时，单独复制这两个文件，可以保留已经修改的 <code>config.ini</code> 和运行时生成的 <code>offset.ini</code>。</p>
+<h3 id="config.ini">config.ini <a class="heading-anchor" href="#config.ini" aria-label="链接到本节">#</a></h3>
+<p><code>gi-toolkit-ng.exe</code> 从自身所在目录读取 <code>config.ini</code>，并在同目录查找 <code>hutao_minhook_ng.dll</code>。因此三个文件需要放在一起。</p>
+<p>游戏路径要写成 Wine 能识别的 Windows 路径。本机 prefix 的 <code>dosdevices/z:</code> 指向 <code>/</code>，所以 Linux 中的 <code>/home/yoimiya/...</code> 对应 <code>Z:\home\yoimiya\...</code>：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">readlink &quot;$HOME/Games/compatdata/genshin-bilibili-direct/pfx/dosdevices/z:&quot;
+</code></pre>
+</div>
+<p>当前使用的配置如下。这个代码块会写入补充工具目录中的配置文件：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">cat &gt; &quot;$HOME/Games/genshin-bilibili-hutao/config.ini&quot; &lt;&lt;'HUTAO_CONF'
+[Settings]
+GamePath=Z:\home\yoimiya\Games\genshin-bilibili\games\Genshin Impact Game\YuanShen.exe
+
+EnableFPSUnlock=1
+
+TargetFPS=120
+
+EnableFOVModify=1
+
+TargetFOV=60.0
+
+; 1 = set the current user's Genshin Impact HDR registry value on each DLL injection.
+EnableHDR=0
+
+UseTouchScreen=0
+
+; 1 = only register enabled features at startup.
+DisableHotReload=0
+
+; 1 = log hook setup and runtime debug events.
+DebugMode=0
+
+; Temporary probe hooks. Requires DebugMode=1.
+ProbeMode=0
+
+[Visuals]
+RemoveFog=0
+
+RemoveBlur=0
+
+RemoveDiveMosaic=0
+
+HideQuestBanner=0
+
+HideUID=0
+
+DisableEventCameraMove=0
+
+DisableShowDamageText=0
+
+[Features]
+RedirectCrafting=1
+
+RemoveTeamAnimation=1
+
+[Hotkeys]
+; HOME
+ToggleKey=36
+
+; Semicolon
+CraftKey=186
+HUTAO_CONF
+</code></pre>
+</div>
+<p>其中 <code>TargetFPS=120</code>、<code>TargetFOV=60.0</code> 是本机当前设置。<code>EnableHDR=0</code> 表示 DLL 不主动写入启用 HDR 的注册表值；补充工具启动脚本也不处理 HDR。按 Home 可以重新载入配置。</p>
+<p><code>offset.ini</code> 是运行时按游戏版本保存的偏移缓存，不需要从构建目录手动提供。</p>
+<h2 id="section-7">补充工具启动脚本 <a class="heading-anchor" href="#section-7" aria-label="链接到本节">#</a></h2>
+<p>创建 <code>~/.local/bin/genshin-bilibili-hutao</code>。它只负责启动 <code>gi-toolkit-ng.exe</code>，显示后端同样通过 <code>PROTON_ENABLE_WAYLAND=0/1</code> 选择，默认使用 XWayland。</p>
+<details class="custom-container details">
+<summary>完整脚本</summary>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">mkdir -p &quot;$HOME/.local/bin&quot;
+cat &gt; &quot;$HOME/.local/bin/genshin-bilibili-hutao&quot; &lt;&lt;'HUTAO_SCRIPT'
+#!/usr/bin/env bash
+set -euo pipefail
+
+dwproton_dir=&quot;${DWPROTON_DIR:-$HOME/.local/opt/dwproton-11.0-14}&quot;
+toolkit_dir=&quot;$HOME/Games/genshin-bilibili-hutao&quot;
+toolkit_exe=&quot;$toolkit_dir/gi-toolkit-ng.exe&quot;
+game_dir=&quot;$HOME/Games/genshin-bilibili/games/Genshin Impact Game&quot;
+enable_wayland=&quot;${PROTON_ENABLE_WAYLAND:-0}&quot;
+compat_dir=&quot;$HOME/Games/compatdata/genshin-bilibili-direct&quot;
+log_dir=&quot;${XDG_STATE_HOME:-$HOME/.local/state}/dwproton/hutao&quot;
+
+case &quot;$enable_wayland&quot; in
+    0)
+        graphics_driver=x11
+        ;;
+    1)
+        graphics_driver=wayland
+        if [[ -z &quot;${WAYLAND_DISPLAY:-}&quot; ]]; then
+            printf 'Native Wayland requires WAYLAND_DISPLAY in the current session.\n' &gt;&amp;2
+            exit 2
+        fi
+        ;;
+    *)
+        printf 'PROTON_ENABLE_WAYLAND must be 0 or 1.\n' &gt;&amp;2
+        exit 2
+        ;;
+esac
+
+if [[ ! -x &quot;$dwproton_dir/proton&quot; ]]; then
+    printf 'DWProton launcher not found: %s\n' &quot;$dwproton_dir/proton&quot; &gt;&amp;2
+    exit 1
+fi
+for required_file in &quot;$toolkit_exe&quot; &quot;$toolkit_dir/hutao_minhook_ng.dll&quot; &quot;$toolkit_dir/config.ini&quot;; do
+    if [[ ! -f &quot;$required_file&quot; ]]; then
+        printf 'Required file not found: %s\n' &quot;$required_file&quot; &gt;&amp;2
+        exit 1
+    fi
+done
+
+mkdir -p &quot;$compat_dir/steam-client&quot; &quot;$log_dir&quot;
+cd &quot;$toolkit_dir&quot;
+
+# Reuse the existing game's Proton prefix.
+export STEAM_COMPAT_DATA_PATH=&quot;$compat_dir&quot;
+export STEAM_COMPAT_CLIENT_INSTALL_PATH=&quot;$compat_dir/steam-client&quot;
+export STEAM_COMPAT_INSTALL_PATH=&quot;$game_dir&quot;
+export SteamAppId=0
+export SteamGameId=0
+
+# Apply DWProton's Genshin fixes to the toolkit and its child game process.
+export UMU_ID=umu-genshin
+export STORE=none
+export UMU_USE_STEAM=1
+export PROTON_USE_WOW64=1
+export PROTON_FSR4_UPGRADE=0
+
+# Export one consistent backend and clear the alternate Proton switch.
+export PROTON_ENABLE_WAYLAND=&quot;$enable_wayland&quot;
+unset PROTON_USE_WAYLAND
+export WINE_GRAPHICS_DRIVER=&quot;$graphics_driver&quot;
+
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+export MANGOHUD=&quot;${MANGOHUD:-1}&quot;
+export PROTON_LOG=&quot;${PROTON_LOG:-1}&quot;
+export PROTON_LOG_DIR=&quot;$log_dir&quot;
+
+&quot;$dwproton_dir/proton&quot; waitforexitandrun &quot;$toolkit_exe&quot; &quot;$@&quot; \
+    2&gt;&amp;1 | tee &quot;$log_dir/genshin-hutao-launch.log&quot;
+HUTAO_SCRIPT
+chmod +x &quot;$HOME/.local/bin/genshin-bilibili-hutao&quot;
+bash -n &quot;$HOME/.local/bin/genshin-bilibili-hutao&quot;
+</code></pre>
+</div>
+</details>
+<p>运行方式：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">genshin-bilibili-hutao
+
+# 显式使用 XWayland
+PROTON_ENABLE_WAYLAND=0 genshin-bilibili-hutao
+
+# 使用原生 Wayland，便于对比
+PROTON_ENABLE_WAYLAND=1 genshin-bilibili-hutao
+
+# 关闭 Proton 详细日志
+PROTON_LOG=0 genshin-bilibili-hutao
+</code></pre>
+</div>
+<p><code>gi-toolkit-ng.exe</code> 会读取 <code>GamePath</code>，以挂起状态创建游戏进程，加载同目录 DLL，再恢复游戏。它为游戏设置的工作目录是 <code>YuanShen.exe</code> 所在目录。</p>
+<p>两个入口共用 <code>~/Games/compatdata/genshin-bilibili-direct/pfx</code>。切换入口时先退出上一次启动的游戏。官方启动器需要更新游戏时，使用普通脚本的 <code>--launcher</code>。</p>
+<h2 id="section-8">日志与后续维护 <a class="heading-anchor" href="#section-8" aria-label="链接到本节">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>默认路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通入口的终端输出</td>
+<td><code>~/.local/state/dwproton/genshin-direct-launch.log</code></td>
+</tr>
+<tr>
+<td>普通入口的 Proton 日志</td>
+<td><code>~/.local/state/dwproton/steam-0.log</code></td>
+</tr>
+<tr>
+<td>补充工具入口的终端输出</td>
+<td><code>~/.local/state/dwproton/hutao/genshin-hutao-launch.log</code></td>
+</tr>
+<tr>
+<td>补充工具入口的 Proton 日志</td>
+<td><code>~/.local/state/dwproton/hutao/steam-0.log</code></td>
+</tr>
+<tr>
+<td>构建中间文件及 dist</td>
+<td><code>~/.cache/gi-windows-build.XXXXXX/</code></td>
+</tr>
+</tbody>
+</table>
+<p>设置 <code>XDG_STATE_HOME</code> 时，日志根目录会相应移动。两个入口分开保存日志，方便对照；同一入口再次运行时会覆盖对应的本次启动日志。</p>
+<p><code>PROTON_LOG=1</code> 会生成较大的详细日志。本机一次启动曾产生约 44 MiB 的 <code>steam-0.log</code>，日常使用可以在命令前加 <code>PROTON_LOG=0</code>，脚本仍通过 <code>tee</code> 保存终端输出。</p>
+<p>DWProton 升级后，可以修改两个脚本的默认版本路径，或者在运行时临时指定：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">DWPROTON_DIR=&quot;$HOME/.local/opt/另一个版本目录&quot; genshin-bilibili --game
+</code></pre>
+</div>
+<p>补充工具已经复制到 <code>~/Games/genshin-bilibili-hutao</code> 后，可以按需清理旧的独立构建目录。游戏文件、prefix、补充工具部署目录分别管理；备份时保留补充工具目录中的配置文件和需要的 prefix 数据。</p>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="./ue.html">Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</a>
+                        </li>
+                        <li>
+                            <a href="./wsl.html">Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;</a>
+                        </li>
+                        <li>
+                            <a href="./arch.html">Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="./ue.html" rel="prev"><span>上一篇</span>Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</a>
+                    <a href="../Community/uiux.html" rel="next"><span>下一篇</span>&#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x73AF;&#x5883;&#x4E0E;&#x76EE;&#x5F55;</a>
+        <a class="level-2" href="#xfs">&#x590D;&#x5236;&#x6E38;&#x620F;&#x5230; XFS</a>
+        <a class="level-2" href="#dwproton">&#x4E0B;&#x8F7D;&#x5E76;&#x89E3;&#x538B; DWProton</a>
+        <a class="level-2" href="#mangohud">&#x914D;&#x7F6E; MangoHud</a>
+        <a class="level-2" href="#section-1">&#x666E;&#x901A;&#x542F;&#x52A8;&#x811A;&#x672C;</a>
+        <a class="level-3" href="#section-2">&#x542F;&#x52A8;&#x65B9;&#x5F0F;</a>
+        <a class="level-3" href="#section-3">&#x5173;&#x952E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</a>
+        <a class="level-3" href="#wayland-xwayland">&#x5207;&#x6362; Wayland / XWayland</a>
+        <a class="level-3" href="#hdr">&#x53EF;&#x9009; HDR</a>
+        <a class="level-2" href="#rust">&#x914D;&#x7F6E; Rust &#x4EA4;&#x53C9;&#x7F16;&#x8BD1;&#x73AF;&#x5883;</a>
+        <a class="level-3" href="#section-4">&#x5B89;&#x88C5;&#x5DE5;&#x5177;</a>
+        <a class="level-3" href="#section-5">&#x51C6;&#x5907;&#x6E90;&#x7801;</a>
+        <a class="level-3" href="#exe-dll">&#x5E72;&#x51C0;&#x6784;&#x5EFA; EXE &#x548C; DLL</a>
+        <a class="level-2" href="#section-6">&#x90E8;&#x7F72;&#x8865;&#x5145;&#x5DE5;&#x5177;</a>
+        <a class="level-3" href="#config.ini">config.ini</a>
+        <a class="level-2" href="#section-7">&#x8865;&#x5145;&#x5DE5;&#x5177;&#x542F;&#x52A8;&#x811A;&#x672C;</a>
+        <a class="level-2" href="#section-8">&#x65E5;&#x5FD7;&#x4E0E;&#x540E;&#x7EED;&#x7EF4;&#x62A4;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

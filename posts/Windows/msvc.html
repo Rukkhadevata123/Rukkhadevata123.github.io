@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883; &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Windows/msvc.html">
+            <meta property="og:title" content="Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Windows/msvc.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="All Sword and No Play Makes March a Dull Girl.">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.bb1aee13f1a46506.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./msvc.html" aria-current="page">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./agent.html">
+                            &#x4EC0;&#x4E48;&#x6837;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9002;&#x5408; AI Agent&#xFF1A;&#x4EFB;&#x52A1;&#x3001;&#x63A5;&#x53E3;&#x4E0E;&#x6743;&#x9650;&#x8FB9;&#x754C;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="11 &#x7BC7;&#x6587;&#x7AE0;">11</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Linux/podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Linux/ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./msvc.html" aria-current="page">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="2 &#x7BC7;&#x6587;&#x7AE0;">2</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;</h1>
+                    <p class="article-date"><time datetime="2025-07-09">2025-07-09</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-14">2026-11-14</time></p>
+                    <p class="article-date article-reading-time">预计阅读 3 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-57696e646f777320e4bdbfe794a8">Windows &#x4F7F;&#x7528;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/d598026a9cbc60505f138ce53ac78088d582100c196d0f70c7e2538d4a8d7e10.html">#Windows</a></li>
+                            <li><a href="../../tags/f1deb75fa21d3c47a6e7a45967b79fad2d053947066dc95322c5bcee1e9fe21c.html">#C&#x2B;&#x2B;</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#windows-terminal-powershell">&#x5B89;&#x88C5; Windows Terminal &#x548C; PowerShell</a>
+        <a class="level-2" href="#visual-studio">&#x5B89;&#x88C5; Visual Studio</a>
+        <a class="level-2" href="#section">&#x914D;&#x7F6E;&#x7EC8;&#x7AEF;</a>
+        <a class="level-2" href="#section-1">&#x7F16;&#x8BD1;&#x5668;&#x4F7F;&#x7528;</a>
+        <a class="level-3" href="#section-2">&#x57FA;&#x672C;&#x8BED;&#x6CD5;</a>
+        <a class="level-3" href="#section-3">&#x4E3B;&#x8981;&#x7F16;&#x8BD1;&#x9009;&#x9879;</a>
+        <a class="level-4" href="#section-4">1. &#x8F93;&#x51FA;&#x7C7B;&#x578B;&#x63A7;&#x5236;</a>
+        <a class="level-4" href="#section-5">2. &#x4F18;&#x5316;&#x9009;&#x9879;</a>
+        <a class="level-4" href="#section-6">3. &#x8C03;&#x8BD5;&#x4FE1;&#x606F;</a>
+        <a class="level-4" href="#section-7">4. &#x8B66;&#x544A;&#x63A7;&#x5236;</a>
+        <a class="level-4" href="#c">5. C&#x2B;&#x2B;&#x6807;&#x51C6;</a>
+        <a class="level-4" href="#section-8">6. &#x5F02;&#x5E38;&#x5904;&#x7406;</a>
+        <a class="level-4" href="#section-9">7. &#x9884;&#x5904;&#x7406;&#x5668;&#x9009;&#x9879;</a>
+        <a class="level-3" href="#section-10">&#x793A;&#x4F8B;</a>
+        <a class="level-4" href="#dll">1. &#x7F16;&#x8BD1;DLL</a>
+        <a class="level-4" href="#section-11">2. &#x7F16;&#x8BD1;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><h2 id="windows-terminal-powershell">安装 <code>Windows Terminal</code> 和 <code>PowerShell</code> <a class="heading-anchor" href="#windows-terminal-powershell" aria-label="链接到本节">#</a></h2>
+<div class="code-block" data-language="PowerShell">
+<div class="code-toolbar"><span class="code-language">PowerShell</span></div>
+<pre><code class="language-PowerShell">winget install Microsoft.WindowsTerminal Microsoft.PowerShell
+</code></pre>
+</div>
+<h2 id="visual-studio">安装 <code>Visual Studio</code> <a class="heading-anchor" href="#visual-studio" aria-label="链接到本节">#</a></h2>
+<blockquote>
+<p>在 <a href="https://visualstudio.microsoft.com/zh-hans/">https://visualstudio.microsoft.com/zh-hans/</a> 下载安装器</p>
+</blockquote>
+<p>打开安装前，选择 <code>使用C++的桌面开发</code></p>
+<h2 id="section">配置终端 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<blockquote>
+<p>命令行改为 <code>pwsh.exe</code></p>
+</blockquote>
+<p>配置主题和背景，字体等</p>
+<h2 id="section-1">编译器使用 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h2>
+<blockquote>
+<p>参见 <a href="https://learn.microsoft.com/zh-cn/cpp/build/reference/compiler-options-listed-by-category">https://learn.microsoft.com/zh-cn/cpp/build/reference/compiler-options-listed-by-category</a></p>
+</blockquote>
+<h3 id="section-2">基本语法 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h3>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">cl [选项] 源文件 [链接选项]
+</code></pre>
+</div>
+<h3 id="section-3">主要编译选项 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h3>
+<h4 id="section-4">1. 输出类型控制 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h4>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">/Fe:filename    # 指定可执行文件名
+/Fo:filename    # 指定对象文件名  
+/Fm:filename    # 指定映射文件名
+/LD             # 编译为DLL (动态链接库)
+/LDd            # 编译为调试版DLL
+/MD             # 使用多线程运行时库(DLL版本)
+/MT             # 使用多线程运行时库(静态版本)
+/MTd            # 使用多线程调试运行时库(静态版本)
+</code></pre>
+</div>
+<h4 id="section-5">2. 优化选项 <a class="heading-anchor" href="#section-5" aria-label="链接到本节">#</a></h4>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">/O1             # 最小化大小
+/O2             # 最大化速度 (推荐)
+/Od             # 禁用优化 (调试时用)
+/Ox             # 最大优化
+</code></pre>
+</div>
+<h4 id="section-6">3. 调试信息 <a class="heading-anchor" href="#section-6" aria-label="链接到本节">#</a></h4>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">/Zi             # 生成完整调试信息
+/Z7             # 生成旧格式调试信息
+/DEBUG          # 生成调试信息到PDB文件
+</code></pre>
+</div>
+<h4 id="section-7">4. 警告控制 <a class="heading-anchor" href="#section-7" aria-label="链接到本节">#</a></h4>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">/W0             # 禁用所有警告
+/W1             # 显示严重警告
+/W2             # 显示重要警告  
+/W3             # 显示大部分警告(默认)
+/W4             # 显示所有警告
+/Wall           # 显示所有警告(包括系统头文件)
+/WX             # 将警告视为错误
+</code></pre>
+</div>
+<h4 id="c">5. C++标准 <a class="heading-anchor" href="#c" aria-label="链接到本节">#</a></h4>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">/std:c++11      # C++11标准
+/std:c++20      # C++20标准
+/std:c++latest  # 最新标准
+</code></pre>
+</div>
+<h4 id="section-8">6. 异常处理 <a class="heading-anchor" href="#section-8" aria-label="链接到本节">#</a></h4>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">/EHsc           # 启用C++异常处理(推荐)
+/EHs            # 启用同步异常处理
+/EHa            # 启用异步异常处理
+</code></pre>
+</div>
+<h4 id="section-9">7. 预处理器选项 <a class="heading-anchor" href="#section-9" aria-label="链接到本节">#</a></h4>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">/D macro        # 定义宏
+/U macro        # 取消定义宏
+/I directory    # 添加包含目录
+/E              # 仅预处理到标准输出
+/EP             # 预处理到标准输出(无#line)
+</code></pre>
+</div>
+<h3 id="section-10">示例 <a class="heading-anchor" href="#section-10" aria-label="链接到本节">#</a></h3>
+<h4 id="dll">1. 编译DLL <a class="heading-anchor" href="#dll" aria-label="链接到本节">#</a></h4>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">cl /std:c++17 /LD hutao_minhook.cpp /DEF:hutao_dll.def /Fe:hutao_minhook.dll
+</code></pre>
+</div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>/std:c++17</code> - 使用C++17标准</li>
+<li><code>/LD</code> - 编译为DLL</li>
+<li><code>hutao_minhook.cpp</code> - 源文件</li>
+<li><code>/DEF:hutao_dll.def</code> - 指定模块定义文件(导出函数列表)</li>
+<li><code>/Fe:hutao_minhook.dll</code> - 输出文件名</li>
+</ul>
+<h4 id="section-11">2. 编译可执行文件 <a class="heading-anchor" href="#section-11" aria-label="链接到本节">#</a></h4>
+<div class="code-block" data-language="cmd">
+<div class="code-toolbar"><span class="code-language">cmd</span></div>
+<pre><code class="language-cmd">cl /EHsc /O2 /MT /std:c++17 hutao_injector.cpp /Fe:hutao_injector.exe
+</code></pre>
+</div>
+<p><strong>说明：</strong></p>
+<ul>
+<li><code>/EHsc</code> - 启用C++异常处理</li>
+<li><code>/O2</code> - 最大化速度优化</li>
+<li><code>/MT</code> - 静态链接运行时库</li>
+<li><code>/std:c++17</code> - C++17标准</li>
+<li><code>hutao_injector.cpp</code> - 源文件</li>
+<li><code>/Fe:hutao_injector.exe</code> - 输出文件名</li>
+</ul>
+<blockquote>
+<p>直接在命令末尾加上某lib可以链接，如 <code>user32.lib</code>，也可以在代码中使用 <code>#pragma comment(lib, &quot;user32.lib&quot;)</code>，就不需要与指定链接文件</p>
+</blockquote>
+<blockquote>
+<p>直接从 <code>Developer PowerShell for VS 2026</code> 启动 <code>code .</code>，再安装微软的 <code>C/C++</code> 和 <code>IntelliCode</code> 插件，即可在vscode上使用MSVC而不需要启动 <code>Visual Studio</code></p>
+</blockquote>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="./clang-cl-vcpkg.html">&#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;</a>
+                        </li>
+                        <li>
+                            <a href="./tips.html">&#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;</a>
+                        </li>
+                        <li>
+                            <a href="./dev.html">Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="../Linux/ovmf.html" rel="prev"><span>上一篇</span>KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;</a>
+                    <a href="../Linux/ubuntu.html" rel="next"><span>下一篇</span>Ubuntu Tips</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#windows-terminal-powershell">&#x5B89;&#x88C5; Windows Terminal &#x548C; PowerShell</a>
+        <a class="level-2" href="#visual-studio">&#x5B89;&#x88C5; Visual Studio</a>
+        <a class="level-2" href="#section">&#x914D;&#x7F6E;&#x7EC8;&#x7AEF;</a>
+        <a class="level-2" href="#section-1">&#x7F16;&#x8BD1;&#x5668;&#x4F7F;&#x7528;</a>
+        <a class="level-3" href="#section-2">&#x57FA;&#x672C;&#x8BED;&#x6CD5;</a>
+        <a class="level-3" href="#section-3">&#x4E3B;&#x8981;&#x7F16;&#x8BD1;&#x9009;&#x9879;</a>
+        <a class="level-4" href="#section-4">1. &#x8F93;&#x51FA;&#x7C7B;&#x578B;&#x63A7;&#x5236;</a>
+        <a class="level-4" href="#section-5">2. &#x4F18;&#x5316;&#x9009;&#x9879;</a>
+        <a class="level-4" href="#section-6">3. &#x8C03;&#x8BD5;&#x4FE1;&#x606F;</a>
+        <a class="level-4" href="#section-7">4. &#x8B66;&#x544A;&#x63A7;&#x5236;</a>
+        <a class="level-4" href="#c">5. C&#x2B;&#x2B;&#x6807;&#x51C6;</a>
+        <a class="level-4" href="#section-8">6. &#x5F02;&#x5E38;&#x5904;&#x7406;</a>
+        <a class="level-4" href="#section-9">7. &#x9884;&#x5904;&#x7406;&#x5668;&#x9009;&#x9879;</a>
+        <a class="level-3" href="#section-10">&#x793A;&#x4F8B;</a>
+        <a class="level-4" href="#dll">1. &#x7F16;&#x8BD1;DLL</a>
+        <a class="level-4" href="#section-11">2. &#x7F16;&#x8BD1;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>
