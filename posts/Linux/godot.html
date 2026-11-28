@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Linux/godot.html">
+            <meta property="og:title" content="Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Linux/godot.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="All Sword and No Play Makes March a Dull Girl.">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.64f8bbf71e65cd51.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="12 &#x7BC7;&#x6587;&#x7AE0;">12</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./godot.html" aria-current="page">
+                            Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x793E;&#x533A;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="12 &#x7BC7;&#x6587;&#x7AE0;">12</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./godot.html" aria-current="page">
+                            Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x793E;&#x533A;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider</h1>
+                    <p class="article-date"><time datetime="2026-11-22">2026-11-22</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-24">2026-11-24</time></p>
+                    <p class="article-date article-reading-time">预计阅读 9 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-4c696e757820e4bdbfe794a8">Linux &#x4F7F;&#x7528;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/4828e60247c1636f57b7446a314e7f599c12b53d40061cc851a1442004354fed.html">#Linux</a></li>
+                            <li><a href="../../tags/710eb4f4d7f72b0e329a51d30a83377bc7ef6c0cca1a444bd8d2e70e72326e8f.html">#Ubuntu</a></li>
+                            <li><a href="../../tags/2a02b2443f7985d89d09001086ae3dcfa6eb0f55c6ef170715d42328e16e6cb8.html">#Godot</a></li>
+                            <li><a href="../../tags/040228846ead4a4195145fe089343cb0894d00a9380176a41a8f6c5ee70b4824.html">#C#</a></li>
+                            <li><a href="../../tags/8eb9369aed3ff0affec7e7d2cf3f076fcb605aa582df3084c95bd1cb1f74b344.html">#Rider</a></li>
+                            <li><a href="../../tags/705cf66058dbc5f928db85fa069818070963d5429712aad9a43700138fb52371.html">#Vulkan</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x4E00;&#x3001;&#x51C6;&#x5907;&#x4F9D;&#x8D56;&#x548C;&#x6E90;&#x7801;</a>
+        <a class="level-2" href="#clanglld-thinlto.net">&#x4E8C;&#x3001;&#x7528; Clang&#x3001;lld &#x548C; ThinLTO &#x7F16;&#x8BD1; .NET &#x7F16;&#x8F91;&#x5668;</a>
+        <a class="level-3" href="#clangd">&#x4E3A; clangd &#x751F;&#x6210;&#x7F16;&#x8BD1;&#x6570;&#x636E;&#x5E93;</a>
+        <a class="level-2" href="#section-1">&#x4E09;&#x3001;&#x5B89;&#x88C5;&#x5230;&#x7528;&#x6237;&#x76EE;&#x5F55;</a>
+        <a class="level-2" href="#forward-vulkan-c">&#x56DB;&#x3001;&#x521B;&#x5EFA; Forward&#x2B; &#x9879;&#x76EE;&#xFF0C;&#x9A8C;&#x8BC1; Vulkan &#x548C; C#</a>
+        <a class="level-2" href="#rider">&#x4E94;&#x3001;&#x5728; Rider &#x91CC;&#x6253;&#x5F00;&#x6E38;&#x620F;&#x548C;&#x5F15;&#x64CE;&#x6E90;&#x7801;</a>
+        <a class="level-2" href="#linux-x86_64">&#x516D;&#x3001;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x5BFC;&#x51FA; Linux x86_64 &#x6E38;&#x620F;</a>
+        <a class="level-3" href="#net-release">&#x7F16;&#x8BD1;&#x5E76;&#x5B89;&#x88C5; .NET Release &#x6A21;&#x677F;</a>
+        <a class="level-3" href="#section-2">&#x914D;&#x7F6E;&#x5BFC;&#x51FA;&#x9884;&#x8BBE;</a>
+        <a class="level-3" href="#section-3">&#x5BFC;&#x51FA;&#x3001;&#x538B;&#x7F29;&#x548C;&#x8BD5;&#x8FD0;&#x884C;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><h2 id="section">一、准备依赖和源码 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<p>本机使用 Ubuntu 26.10、GNOME Wayland 和 Radeon 880M，已有 Git、Python 3、<code>build-essential</code>、Clang 22、.NET SDK 11 和 Rider。构建 Godot 4.7.2 还需安装：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">sudo apt install --no-install-recommends scons pkgconf libwayland-bin lld
+mkdir -p ~/src
+git clone --filter=blob:none --branch 4.7.2-stable \
+  https://github.com/godotengine/godot.git ~/src/godot
+cd ~/src/godot
+</code></pre>
+</div>
+<p>保留默认的 Wayland 和 X11 后端。Godot 4.7.2 默认使用自带头文件，运行时加载系统库，这套配置可以省去 X11、Mesa 和音频库的开发包。<code>libwayland-bin</code> 提供 <code>wayland-scanner</code>，缺少它时构建脚本会关闭 Wayland 支持。<a href="https://github.com/godotengine/godot/blob/4.7.2-stable/platform/linuxbsd/detect.py">Linux 构建检测源码</a></p>
+<h2 id="clanglld-thinlto.net">二、用 Clang、lld 和 ThinLTO 编译 .NET 编辑器 <a class="heading-anchor" href="#clanglld-thinlto.net" aria-label="链接到本节">#</a></h2>
+<p>引擎主体按 <code>x86-64-v3</code> 编译。Godot 内置的 Embree 只编入部分求交实现，全局启用 AVX2 会导致链接时缺少 <code>BVHN&lt;4&gt;</code> 等符号。在 <code>modules/raycast/SCsub</code> 的 <code>env_thirdparty = env_raycast.Clone()</code> 后加两行，单独限制 Embree 的指令集：</p>
+<div class="code-block" data-language="python">
+<div class="code-toolbar"><span class="code-language">python</span></div>
+<pre><code class="language-python">    env_thirdparty = env_raycast.Clone()
+    if env[&quot;platform&quot;] == &quot;linuxbsd&quot; and env[&quot;arch&quot;] == &quot;x86_64&quot;:
+        env_thirdparty.Append(CXXFLAGS=[&quot;-march=x86-64-v2&quot;])
+</code></pre>
+</div>
+<p>在源码根目录用 Bash 执行。<code>module_mono_enabled=yes</code> 是 Godot 4 启用 C# 的构建开关。<code>target=editor</code> 默认用 <code>-O2</code>，<code>-j20</code> 按本机的 20 个线程设置。</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">build_args=(
+  platform=linuxbsd target=editor module_mono_enabled=yes
+  use_llvm=yes linker=lld lto=thin
+  cflags=-march=x86-64-v3 cxxflags=-march=x86-64-v3
+)
+exe=godot.linuxbsd.editor.x86_64.llvm.mono
+
+PATH=&quot;/usr/lib/llvm-22/bin:$PATH&quot; scons &quot;${build_args[@]}&quot; -j20 &amp;&amp;
+&quot;./bin/$exe&quot; --headless --generate-mono-glue modules/mono/glue &amp;&amp;
+python3 modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin
+</code></pre>
+</div>
+<p>三步分别生成原生编辑器、匹配该引擎的 C# API 绑定，以及 <code>bin/GodotSharp/</code> 下的托管程序集。首次构建程序集时需要访问 NuGet。<a href="https://docs.godotengine.org/en/4.7/engine_details/development/compiling/compiling_with_dotnet.html">Godot .NET 构建文档</a></p>
+<h3 id="clangd">为 clangd 生成编译数据库 <a class="heading-anchor" href="#clangd" aria-label="链接到本节">#</a></h3>
+<p>用 clangd 浏览引擎的 C++ 源码时，在刚才定义了 <code>build_args</code> 的 Bash 会话中运行以下命令。SCons 会把每个源文件的编译命令写入源码根目录的 <code>compile_commands.json</code>，写完即退出，无需重编引擎。</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">cd ~/src/godot
+PATH=&quot;/usr/lib/llvm-22/bin:$PATH&quot; scons &quot;${build_args[@]}&quot; \
+  compiledb=yes compiledb_gen_only=yes
+</code></pre>
+</div>
+<p>在启用了 clangd 的编辑器中打开 <code>~/src/godot</code>，clangd 会从数据库读取头文件搜索路径和宏定义，按这次 Linux .NET 编辑器的配置索引 C++ 源码。数据库可以与第五节的 <code>godot.sln</code> 并存。切换目标平台或启用其他引擎模块后，用新的构建参数重新生成数据库。<a href="https://clangd.llvm.org/installation.html#project-setup">clangd 编译数据库说明</a></p>
+<h2 id="section-1">三、安装到用户目录 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h2>
+<p>把可执行文件和 <code>GodotSharp/</code> 放在同一版本目录，终端和 Rider 共用 <code>~/.local/bin/godot-dotnet</code>：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">root=&quot;$HOME/.local/opt/godot-dotnet&quot;
+build=4.7.2-stable-clang-v3
+
+mkdir -p &quot;$root/$build&quot; &quot;$HOME/.local/bin&quot; &amp;&amp;
+cp -a &quot;bin/$exe&quot; bin/GodotSharp &quot;$root/$build/&quot; &amp;&amp;
+ln -sfnT &quot;$build&quot; &quot;$root/current&quot; &amp;&amp;
+ln -sfnT &quot;$root/current/$exe&quot; &quot;$HOME/.local/bin/godot-dotnet&quot;
+</code></pre>
+</div>
+<p>完成安装并创建示例项目后，用户目录里与 Godot 有关的路径如下：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">~/
+├── src/godot/                            # 引擎源码
+│   ├── godot.sln                         # Rider 的引擎解决方案
+│   ├── compile_commands.json             # clangd 的编译数据库
+│   └── bin/                              # 编译产物
+│       ├── godot.linuxbsd.editor.x86_64.llvm.mono
+│       ├── GodotSharp/
+│       └── obj/                          # 增量编译用的目标文件
+├── .local/
+│   ├── bin/godot-dotnet -&gt; ~/.local/opt/godot-dotnet/current/godot.linuxbsd.editor.x86_64.llvm.mono
+│   └── opt/godot-dotnet/
+│       ├── current -&gt; 4.7.2-stable-clang-v3
+│       └── 4.7.2-stable-clang-v3/        # 已安装的版本
+│           ├── godot.linuxbsd.editor.x86_64.llvm.mono
+│           └── GodotSharp/
+└── RiderProjects/ForwardLab/             # 游戏项目
+    ├── project.godot
+    └── ForwardLab.sln                    # Rider 的游戏解决方案
+</code></pre>
+</div>
+<p>以后更新时，先保存 Embree 的本地补丁，切到新标签后检查是否仍需应用。重新编译并复制到新的 <code>build</code> 目录，切换 <code>current</code> 即可。回退到本文版本用 <code>ln -sfnT 4.7.2-stable-clang-v3 &quot;$root/current&quot;</code>。</p>
+<h2 id="forward-vulkan-c">四、创建 Forward+ 项目，验证 Vulkan 和 C# <a class="heading-anchor" href="#forward-vulkan-c" aria-label="链接到本节">#</a></h2>
+<p>在新目录写入 <code>project.godot</code>，然后通过 Wayland 打开项目：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">mkdir -p ~/RiderProjects
+project=&quot;$HOME/RiderProjects/ForwardLab&quot;
+mkdir &quot;$project&quot; &amp;&amp;
+cat &gt; &quot;$project/project.godot&quot; &lt;&lt;'EOF'
+config_version=5
+
+[application]
+config/name=&quot;ForwardLab&quot;
+config/features=PackedStringArray(&quot;4.7&quot;, &quot;Forward Plus&quot;)
+
+[rendering]
+renderer/rendering_method=&quot;forward_plus&quot;
+EOF
+
+~/.local/bin/godot-dotnet --editor --display-driver wayland --path &quot;$project&quot;
+</code></pre>
+</div>
+<p>在左侧点 <strong>3D 场景</strong>，把根节点改名为 <code>Main</code>，按 <code>Ctrl+S</code> 保存为 <code>Main.tscn</code>。右键根节点，选 <strong>附加脚本 → C#</strong>，保存为 <code>Main.cs</code>。Godot 会同时生成 <code>ForwardLab.csproj</code> 和 <code>ForwardLab.sln</code>。</p>
+<div class="code-block" data-language="csharp">
+<div class="code-toolbar"><span class="code-language">csharp</span></div>
+<pre><code class="language-csharp">using Godot;
+
+namespace ForwardLab;
+
+public partial class Main : Node3D
+{
+    public override void _Ready()
+    {
+        GD.Print($&quot;渲染器：{RenderingServer.GetCurrentRenderingMethod()}&quot;);
+        GD.Print($&quot;显卡：{RenderingServer.GetVideoAdapterName()}&quot;);
+    }
+}
+</code></pre>
+</div>
+<p>按 <code>F6</code> 运行当前场景，本机输出如下。首次按 <code>F5</code> 时选 <strong>当前场景</strong>，即可将 <code>Main.tscn</code> 设为项目入口。</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">Vulkan 1.4.354 - Forward+ - Using Device #0: AMD - AMD Radeon 880M Graphics (RADV STRIX1)
+
+渲染器：forward_plus
+显卡：AMD Radeon 880M Graphics (RADV STRIX1)
+</code></pre>
+</div>
+<p>单独启动 <code>--project-manager</code> 时看到 OpenGL 属正常情况。4.7.2 项目管理器默认使用 Compatibility，具体游戏使用的后端看游戏启动日志。<a href="https://github.com/godotengine/godot/blob/4.7.2-stable/main/main.cpp#L2504">项目管理器的渲染器选择</a></p>
+<h2 id="rider">五、在 Rider 里打开游戏和引擎源码 <a class="heading-anchor" href="#rider" aria-label="链接到本节">#</a></h2>
+<ul>
+<li><strong>写游戏。</strong> 在 Godot 的 <strong>编辑器 → 编辑器设置 → Dotnet → Editor → External Editor</strong> 选择 <strong>JetBrains Rider</strong>。本机自动识别到 <code>/snap/rider/current/bin/rider.sh</code>。在 Rider 打开 <code>~/RiderProjects/ForwardLab/ForwardLab.sln</code>，用 <code>Player</code> 配置运行或调试。要让运行配置跟随引擎更新，可以复制一份 <code>Player</code>，将可执行文件设为 <code>~/.local/bin/godot-dotnet</code> 展开后的绝对路径。</li>
+<li><strong>顺手查引擎。</strong> 在 Rider 的 Explorer 右键游戏解决方案，选 <strong>Add → Existing Folder</strong>，附加 <code>~/src/godot</code>。这样可以在游戏窗口里搜索 C++ 实现。</li>
+<li><strong>开发引擎。</strong> 在源码根目录用与实际构建相同的参数生成引擎自己的 <code>godot.sln</code>，在 Rider 里选 <code>editor | x64</code>。以下命令复用第二节的 <code>build_args</code>，只生成工程文件。</li>
+</ul>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">cd ~/src/godot
+PATH=&quot;/usr/lib/llvm-22/bin:$PATH&quot; scons &quot;${build_args[@]}&quot; \
+  vsproj=yes vsproj_gen_only=yes
+rider ~/src/godot/godot.sln
+</code></pre>
+</div>
+<p>如果已按 Rider 提示生成过工程，可以在上述 SCons 命令追加 <code>vsproj_props_only=yes</code>。检查 <code>godot.linuxbsd.editor.x86_64.generated.props</code> 里的 <code>NMakeOutput</code>，本次构建应指向 <code>bin/godot.linuxbsd.editor.x86_64.llvm.mono</code>。<a href="https://docs.godotengine.org/en/4.7/engine_details/development/configuring_an_ide/rider.html">Godot 的 Rider 配置文档</a></p>
+<h2 id="linux-x86_64">六、在命令行导出 Linux x86_64 游戏 <a class="heading-anchor" href="#linux-x86_64" aria-label="链接到本节">#</a></h2>
+<p>这里用同一台机器上完成的 C# 游戏 <code>CoverMyShift</code> 演示。Godot 导出时会用 Release 模板生成玩家启动的可执行文件，再打包场景、素材和 C# 程序集。模板按引擎版本安装一次，之后修改游戏只需重新导出。</p>
+<h3 id="net-release">编译并安装 .NET Release 模板 <a class="heading-anchor" href="#net-release" aria-label="链接到本节">#</a></h3>
+<p>回到前面编译 4.7.2 编辑器的源码目录，把 SCons 目标设为 <code>template_release</code>，保留 Clang 和 C# 支持。本次模板构建使用以下参数：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">cd ~/src/godot
+scons -j20 platform=linuxbsd target=template_release arch=x86_64 \
+  module_mono_enabled=yes use_llvm=yes &amp;&amp;
+install -Dm755 bin/godot.linuxbsd.template_release.x86_64.llvm.mono \
+  &quot;$HOME/.local/share/godot/export_templates/4.7.2.stable.mono/linux_release.x86_64&quot;
+</code></pre>
+</div>
+<p><code>4.7.2.stable.mono</code> 是这版 .NET 编辑器查找模板的子目录，<code>linux_release.x86_64</code> 是 Linux 导出器查找的文件名。也可以从 <a href="https://godotengine.org/download/archive/4.7.2-stable/">4.7.2 下载页</a> 获取同版本的 .NET 导出模板。使用官方模板时，第二节编译编辑器用的 <code>-march=x86-64-v3</code> 不会传给玩家的可执行文件。</p>
+<h3 id="section-2">配置导出预设 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h3>
+<p>在游戏的 <code>project.godot</code> 旁创建 <code>export_presets.cfg</code>。下面是本项目使用的预设；如果项目已有其他预设，追加时使用下一个编号，并同步修改 <code>.options</code> 的编号。</p>
+<div class="code-block" data-language="ini">
+<div class="code-toolbar"><span class="code-language">ini</span></div>
+<pre><code class="language-ini">[preset.0]
+
+name=&quot;Linux x86_64&quot;
+platform=&quot;Linux&quot;
+runnable=true
+export_filter=&quot;all_resources&quot;
+include_filter=&quot;Assets/Fonts/LICENSE-NotoSans.txt&quot;
+exclude_filter=&quot;Tests/*,Evidence/*&quot;
+
+[preset.0.options]
+
+binary_format/architecture=&quot;x86_64&quot;
+texture_format/s3tc_bptc=true
+dotnet/include_debug_symbols=false
+</code></pre>
+</div>
+<p><code>Linux x86_64</code> 是稍后传给命令行的预设名。<code>include_filter</code> 把随游戏分发的 Noto Sans 字体许可加入资源包，<code>exclude_filter</code> 排除测试场景和验收录像所在的目录。换项目时按实际目录调整这两项。</p>
+<h3 id="section-3">导出、压缩和试运行 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h3>
+<p>以下命令在项目外的 <code>~/RiderProjects/dist/</code> 生成游戏目录和压缩包。使用新导出目录时先用 <code>mkdir -p</code> 创建，<code>--export-release</code> 的最后一个参数要写到可执行文件名。</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">cd ~/RiderProjects/CoverMyShift
+out=&quot;$PWD/../dist/CoverMyShift-linux-x86_64&quot;
+mkdir -p &quot;$out&quot; &amp;&amp;
+godot-dotnet --headless --path . --import &amp;&amp;
+godot-dotnet --headless --path . --export-release &quot;Linux x86_64&quot; &quot;$out/CoverMyShift&quot; &amp;&amp;
+tar -C &quot;$(dirname &quot;$out&quot;)&quot; -czf &quot;$out.tar.gz&quot; &quot;$(basename &quot;$out&quot;)&quot;
+</code></pre>
+</div>
+<p>本次生成的 <code>CoverMyShift-linux-x86_64.tar.gz</code> 约 59 MiB。解压后，同一目录里有可执行文件 <code>CoverMyShift</code>、资源包 <code>CoverMyShift.pck</code> 和 <code>data_CoverMyShift_linuxbsd_x86_64/</code>。最后一个目录含 <code>CoverMyShift.dll</code> 及 .NET 运行库，分发时保留这三项的相对位置。</p>
+<p>把压缩包解到临时目录，用无窗口模式启动了导出的游戏。运行下面两条命令后，终端输出 Godot 版本并正常退出：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">check_dir=$(mktemp -d)
+tar -xzf &quot;$out.tar.gz&quot; -C &quot;$check_dir&quot; &amp;&amp;
+&quot;$check_dir/CoverMyShift-linux-x86_64/CoverMyShift&quot; --headless --quit-after 5
+</code></pre>
+</div>
+<p>在桌面试玩时，直接运行 <code>&quot;$out/CoverMyShift&quot;</code> 即可。</p>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="./ue.html">Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</a>
+                        </li>
+                        <li>
+                            <a href="./genshin.html">Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;</a>
+                        </li>
+                        <li>
+                            <a href="./wsl.html">Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="../Windows/clang-cl-vcpkg.html" rel="next"><span>下一篇</span>&#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x4E00;&#x3001;&#x51C6;&#x5907;&#x4F9D;&#x8D56;&#x548C;&#x6E90;&#x7801;</a>
+        <a class="level-2" href="#clanglld-thinlto.net">&#x4E8C;&#x3001;&#x7528; Clang&#x3001;lld &#x548C; ThinLTO &#x7F16;&#x8BD1; .NET &#x7F16;&#x8F91;&#x5668;</a>
+        <a class="level-3" href="#clangd">&#x4E3A; clangd &#x751F;&#x6210;&#x7F16;&#x8BD1;&#x6570;&#x636E;&#x5E93;</a>
+        <a class="level-2" href="#section-1">&#x4E09;&#x3001;&#x5B89;&#x88C5;&#x5230;&#x7528;&#x6237;&#x76EE;&#x5F55;</a>
+        <a class="level-2" href="#forward-vulkan-c">&#x56DB;&#x3001;&#x521B;&#x5EFA; Forward&#x2B; &#x9879;&#x76EE;&#xFF0C;&#x9A8C;&#x8BC1; Vulkan &#x548C; C#</a>
+        <a class="level-2" href="#rider">&#x4E94;&#x3001;&#x5728; Rider &#x91CC;&#x6253;&#x5F00;&#x6E38;&#x620F;&#x548C;&#x5F15;&#x64CE;&#x6E90;&#x7801;</a>
+        <a class="level-2" href="#linux-x86_64">&#x516D;&#x3001;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x5BFC;&#x51FA; Linux x86_64 &#x6E38;&#x620F;</a>
+        <a class="level-3" href="#net-release">&#x7F16;&#x8BD1;&#x5E76;&#x5B89;&#x88C5; .NET Release &#x6A21;&#x677F;</a>
+        <a class="level-3" href="#section-2">&#x914D;&#x7F6E;&#x5BFC;&#x51FA;&#x9884;&#x8BBE;</a>
+        <a class="level-3" href="#section-3">&#x5BFC;&#x51FA;&#x3001;&#x538B;&#x7F29;&#x548C;&#x8BD5;&#x8FD0;&#x884C;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

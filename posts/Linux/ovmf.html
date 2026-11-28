@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A; &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Linux/ovmf.html">
+            <meta property="og:title" content="KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Linux/ovmf.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="All Sword and No Play Makes March a Dull Girl.">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.64f8bbf71e65cd51.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="12 &#x7BC7;&#x6587;&#x7AE0;">12</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./godot.html">
+                            Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html" aria-current="page">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x793E;&#x533A;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="12 &#x7BC7;&#x6587;&#x7AE0;">12</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./godot.html">
+                            Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./podman.html">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html" aria-current="page">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x793E;&#x533A;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;</h1>
+                    <p class="article-date"><time datetime="2025-08-11">2025-08-11</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-14">2026-11-14</time></p>
+                    <p class="article-date article-reading-time">预计阅读 4 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-4c696e757820e4bdbfe794a8">Linux &#x4F7F;&#x7528;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/4828e60247c1636f57b7446a314e7f599c12b53d40061cc851a1442004354fed.html">#Linux</a></li>
+                            <li><a href="../../tags/d27c7d202f214eaaa42894b132c1d4d7d778d8c297c2da06d54cec5d8dcb61c3.html">#KVM</a></li>
+                            <li><a href="../../tags/ea49523d744c40bc900b4462c43132d1c8a8de5216fa8436cc0e8b3e89dddbe3.html">#GPU</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x6548;&#x679C;</a>
+        <a class="level-2" href="#section-1">&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</a>
+        <a class="level-2" href="#section-2">(&#x53EF;&#x9009;)&#x5BFC;&#x51FA;&#x79BB;&#x7EBF;&#x9A71;&#x52A8;</a>
+        <a class="level-2" href="#section-3">&#x786E;&#x4FDD;&#x76F4;&#x901A;&#x8BBE;&#x5907;&#x5728;&#x540C;&#x4E00;&#x7EC4;</a>
+        <a class="level-2" href="#iommu">&#x542F;&#x7528;IOMMU</a>
+        <a class="level-2" href="#gpussd">&#x9694;&#x79BB;GPU&#x548C;SSD</a>
+        <a class="level-2" href="#section-4">&#x91CD;&#x542F;</a>
+        <a class="level-2" href="#virt-manager">&#x5B89;&#x88C5;&#x914D;&#x7F6E; virt-manager</a>
+        <a class="level-2" href="#windows">&#x5B89;&#x88C5;Windows&#x865A;&#x62DF;&#x673A;</a>
+        <a class="level-2" href="#pci">&#x6DFB;&#x52A0;PCI&#x786C;&#x4EF6;</a>
+        <a class="level-2" href="#section-5">&#x542F;&#x52A8;&#x865A;&#x62DF;&#x673A;</a>
+        <a class="level-2" href="#hdmi">&#x63D2;&#x5165;HDMI&#x6B3A;&#x9A97;&#x5668;</a>
+        <a class="level-2" href="#section-6">&#x4E32;&#x6D41;</a>
+        <a class="level-3" href="#sunshine">&#x5B89;&#x88C5;sunshine</a>
+        <a class="level-3" href="#moonlight">&#x7269;&#x7406;&#x673A;&#x5B89;&#x88C5;moonlight</a>
+        <a class="level-2" href="#looking-glass">Looking-Glass</a>
+        <a class="level-3" href="#windows-1">Windows</a>
+        <a class="level-3" href="#linux">Linux</a>
+</nav>
+
+                </details>
+            <div class="article-body"><aside class="custom-container tip">
+<p class="custom-container-title">提示</p>
+<p>Hyper-V 显卡直通教程，参见<a href="https://learn.microsoft.com/zh-cn/windows-server/virtualization/hyper-v/deploy/deploying-graphics-devices-using-dda">DDA</a></p>
+<p><a href="https://looking-glass.io/">Looking-Glass</a></p>
+</aside>
+<h2 id="section">效果 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<p><img src="../../assets/images/ovmf/1.jpg" alt="KVM 显卡直通运行效果（1.jpg）" /></p>
+<p><img src="../../assets/images/ovmf/2.png" alt="KVM 显卡直通运行效果（2.png）" /></p>
+<h2 id="section-1">准备工作 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h2>
+<ol>
+<li>通读<a href="https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF">wiki</a></li>
+<li>Arch Linux</li>
+<li>Windows Guest</li>
+<li>QEMU/KVM</li>
+<li><strong>HDMI欺骗器</strong> 或 <strong>外接显示器</strong></li>
+</ol>
+<h2 id="section-2">(可选)导出离线驱动 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h2>
+<p>在物理机 Windows 系统中用 <code>Dism++</code> 导出离线驱动，重点保留显卡和音频设备驱动。</p>
+<h2 id="section-3">确保直通设备在同一组 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h2>
+<p>运行以下脚本</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">#!/bin/bash
+shopt -s nullglob
+for g in $(find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V); do
+    echo &quot;IOMMU Group ${g##*/}:&quot;
+    for d in $g/devices/*; do
+        echo -e &quot;\t$(lspci -nns ${d##*/})&quot;
+    done;
+done;
+</code></pre>
+</div>
+<p>输出示例</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">IOMMU Group 15:
+        01:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD107M [GeForce RTX 4050 Max-Q / Mobile] [10de:28e1] (rev a1)
+        01:00.1 Audio device [0403]: NVIDIA Corporation AD107 High Definition Audio Controller [10de:22be] (rev a1)
+</code></pre>
+</div>
+<p>记一下[10de:28e1]等ID</p>
+<h2 id="iommu">启用IOMMU <a class="heading-anchor" href="#iommu" aria-label="链接到本节">#</a></h2>
+<p>增加 <code>intel_iommu=on</code> 内核参数，对于 <code>grub</code> 而言，可以编辑 <code>/etc/default/grub</code>，对于 <code>systemd-boot</code> ，编辑 <code>/boot/loader/entries/arch.conf</code> 之类的文件，在末尾增加。</p>
+<h2 id="gpussd">隔离GPU和SSD <a class="heading-anchor" href="#gpussd" aria-label="链接到本节">#</a></h2>
+<p>新增 <code>/etc/modprobe.d/ovmf.conf</code>，写入如下内容</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">options vfio-pci ids=10de:28e1,10de:22be,1cc4:6a14
+</code></pre>
+</div>
+<p>分别是GPU、音频设备和SSD的ID，替换成自己的</p>
+<p>继续编辑 <code>/etc/mkinitcpio.conf</code>，增加 <code>vfio_pci vfio vfio_iommu_type1</code> 到 <code>MODULES</code> 列表中，然后运行 <code>sudo mkinitcpio -P</code> 生成新的内核镜像。</p>
+<p>或者增加 <code>/etc/dracut.conf.d/10-vfio.conf</code>，填入 <code>force_drivers+=&quot; vfio_pci vfio vfio_iommu_type1 &quot;</code>，并重新生成内核镜像 <code>sudo dracut -f</code>。</p>
+<h2 id="section-4">重启 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h2>
+<p>测试</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">lspci -nnk -d 10de:28e1
+</code></pre>
+</div>
+<p>输出</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">01:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD107M [GeForce RTX 4050 Max-Q / Mobile] [10de:28e1] (rev a1)
+        Subsystem: Lenovo Device [17aa:3e68]
+        Kernel driver in use: vfio-pci
+        Kernel modules: nouveau, nvidia_drm, nvidia
+</code></pre>
+</div>
+<h2 id="virt-manager">安装配置 <code>virt-manager</code> <a class="heading-anchor" href="#virt-manager" aria-label="链接到本节">#</a></h2>
+<p>参见 <a href="https://wiki.archlinux.org/title/Libvirt">Libvirt</a></p>
+<p>大部分配置应该开箱即用</p>
+<h2 id="windows">安装Windows虚拟机 <a class="heading-anchor" href="#windows" aria-label="链接到本节">#</a></h2>
+<p>注意CPU配置选择 <code>host-passthrough</code></p>
+<p>并且手动设置拓扑，比如一个插槽，8个核心，2个线程</p>
+<h2 id="pci">添加PCI硬件 <a class="heading-anchor" href="#pci" aria-label="链接到本节">#</a></h2>
+<p>virt-manager设置左下角添加硬件</p>
+<ul>
+<li><p>添加显卡（包括和它同一组的音频设备）</p>
+</li>
+<li><p>添加NVME磁盘</p>
+</li>
+<li><p>添加USB设备，如鼠标和键盘</p>
+</li>
+</ul>
+<h2 id="section-5">启动虚拟机 <a class="heading-anchor" href="#section-5" aria-label="链接到本节">#</a></h2>
+<p>现在显示用的是 <code>spice服务器</code>，驱动可能是 <code>qxl</code> 或者 <code>virtio</code>，不用管因为以后会删除，直接启动虚拟机</p>
+<p>安装显卡驱动，可以用离线驱动，或者去官网下载</p>
+<h2 id="hdmi">插入HDMI欺骗器 <a class="heading-anchor" href="#hdmi" aria-label="链接到本节">#</a></h2>
+<p>在设置确认有另一个显示器输出</p>
+<h2 id="section-6">串流 <a class="heading-anchor" href="#section-6" aria-label="链接到本节">#</a></h2>
+<h3 id="sunshine">安装sunshine <a class="heading-anchor" href="#sunshine" aria-label="链接到本节">#</a></h3>
+<p>设置好账号密码</p>
+<h3 id="moonlight">物理机安装moonlight <a class="heading-anchor" href="#moonlight" aria-label="链接到本节">#</a></h3>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">sudo pacman -S moonlight-qt
+</code></pre>
+</div>
+<p>启动 moonlight-qt，分辨率最高，刷新率选最高</p>
+<p>连接windows，配置pin码</p>
+<p>进入moonlight桌面后，在设备管理器禁用 <code>qxl</code> 等虚拟机显卡</p>
+<h2 id="looking-glass">Looking-Glass <a class="heading-anchor" href="#looking-glass" aria-label="链接到本节">#</a></h2>
+<h3 id="windows-1">Windows <a class="heading-anchor" href="#windows-1" aria-label="链接到本节">#</a></h3>
+<p>从此处下载服务端 <a href="https://looking-glass.io/downloads">https://looking-glass.io/downloads</a></p>
+<h3 id="linux">Linux <a class="heading-anchor" href="#linux" aria-label="链接到本节">#</a></h3>
+<p>先安装 <code>looking-glass-client</code></p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">git clone --recursive https://github.com/gnif/LookingGlass.git
+cd module
+sudo dkms install &quot;.&quot;
+sudo modprobe kvmfr static_size_mb=32 # See https://looking-glass.io/docs/B7/ivshmem_kvmfr/
+sudo chmod 777 /dev/kvmfr0
+</code></pre>
+</div>
+<p>编辑 <code>/etc/libvirt/qemu.conf</code>，取消注释 <code>cgroup_device_acl</code>，并添加 <code>/dev/kvmfr0</code>，然后重启 <code>libvirtd</code> 服务</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">cgroup_device_acl = [
+   &quot;/dev/null&quot;, &quot;/dev/full&quot;, &quot;/dev/zero&quot;,
+   &quot;/dev/random&quot;, &quot;/dev/urandom&quot;,
+   &quot;/dev/ptmx&quot;, &quot;/dev/kvm&quot;,
+   &quot;/dev/userfaultfd&quot;, &quot;/dev/kvmfr0&quot;
+]
+</code></pre>
+</div>
+<p>编辑 <code>Virt-Manager</code> 的 <code>XML</code> 文件，添加</p>
+<div class="code-block" data-language="xml">
+<div class="code-toolbar"><span class="code-language">xml</span></div>
+<pre><code class="language-xml">&lt;domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'&gt;
+
+&lt;qemu:commandline&gt;
+  &lt;qemu:arg value=&quot;-device&quot;/&gt;
+  &lt;qemu:arg value=&quot;{'driver':'ivshmem-plain','id':'shmem0','memdev':'looking-glass'}&quot;/&gt;
+  &lt;qemu:arg value=&quot;-object&quot;/&gt;
+  &lt;qemu:arg value=&quot;{'qom-type':'memory-backend-file','id':'looking-glass','mem-path':'/dev/kvmfr0','size':33554432,'share':true}&quot;/&gt;
+&lt;/qemu:commandline&gt;
+</code></pre>
+</div>
+<p><code>spice</code> 服务器选择监听地址</p>
+<p>在 Windows 端打开Looking Glass服务端，在 Linux 端运行Looking Glass客户端即可连接</p>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="./wsl.html">Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;</a>
+                        </li>
+                        <li>
+                            <a href="./godot.html">Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider</a>
+                        </li>
+                        <li>
+                            <a href="./ue.html">Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="./snap.html" rel="prev"><span>上一篇</span>Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;</a>
+                    <a href="../Windows/msvc.html" rel="next"><span>下一篇</span>Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">&#x6548;&#x679C;</a>
+        <a class="level-2" href="#section-1">&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</a>
+        <a class="level-2" href="#section-2">(&#x53EF;&#x9009;)&#x5BFC;&#x51FA;&#x79BB;&#x7EBF;&#x9A71;&#x52A8;</a>
+        <a class="level-2" href="#section-3">&#x786E;&#x4FDD;&#x76F4;&#x901A;&#x8BBE;&#x5907;&#x5728;&#x540C;&#x4E00;&#x7EC4;</a>
+        <a class="level-2" href="#iommu">&#x542F;&#x7528;IOMMU</a>
+        <a class="level-2" href="#gpussd">&#x9694;&#x79BB;GPU&#x548C;SSD</a>
+        <a class="level-2" href="#section-4">&#x91CD;&#x542F;</a>
+        <a class="level-2" href="#virt-manager">&#x5B89;&#x88C5;&#x914D;&#x7F6E; virt-manager</a>
+        <a class="level-2" href="#windows">&#x5B89;&#x88C5;Windows&#x865A;&#x62DF;&#x673A;</a>
+        <a class="level-2" href="#pci">&#x6DFB;&#x52A0;PCI&#x786C;&#x4EF6;</a>
+        <a class="level-2" href="#section-5">&#x542F;&#x52A8;&#x865A;&#x62DF;&#x673A;</a>
+        <a class="level-2" href="#hdmi">&#x63D2;&#x5165;HDMI&#x6B3A;&#x9A97;&#x5668;</a>
+        <a class="level-2" href="#section-6">&#x4E32;&#x6D41;</a>
+        <a class="level-3" href="#sunshine">&#x5B89;&#x88C5;sunshine</a>
+        <a class="level-3" href="#moonlight">&#x7269;&#x7406;&#x673A;&#x5B89;&#x88C5;moonlight</a>
+        <a class="level-2" href="#looking-glass">Looking-Glass</a>
+        <a class="level-3" href="#windows-1">Windows</a>
+        <a class="level-3" href="#linux">Linux</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

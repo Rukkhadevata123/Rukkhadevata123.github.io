@@ -1,0 +1,1379 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>&#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883; &#x2014; Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;</title>
+        <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+        <link rel="canonical" href="https://yoimiyalove.top/posts/Linux/podman.html">
+            <meta property="og:title" content="&#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;">
+            <meta property="og:type" content="article">
+            <meta property="og:url" content="https://yoimiyalove.top/posts/Linux/podman.html">
+            <meta property="og:site_name" content="Ciallo&#xFF5E;(&#x2220;&#x30FB;&#x3C9;&lt; )&#x2312;&#x2606;">
+                <meta property="og:description" content="All Sword and No Play Makes March a Dull Girl.">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="https://yoimiyalove.top/feed.xml">
+        <link rel="stylesheet" href="../../assets/razorfolio.73b9ac6aa7a48063.css">
+        <link rel="stylesheet" href="../../assets/code.f5c8ff2f0776ac1f.css">
+        <link rel="stylesheet" href="../../assets/search.ae97bee1db019c40.css">
+        <link rel="stylesheet" href="../../assets/mermaid.14fc6ca723f9a4ee.css">
+        <link rel="stylesheet" href="../../assets/math.47df0d8e6bd86d6d.css">
+        <link rel="stylesheet" href="../../assets/images.a0a57d546d7a8c17.css">
+        <link rel="stylesheet" href="../../assets/print.15d6b4af66694c46.css">
+    <script>
+        try {
+            const mode = localStorage.getItem("razorfolio-color-mode");
+            if (mode === "light" || mode === "dark") document.documentElement.dataset.theme = mode;
+        } catch { }
+    </script>
+        <script src="../../assets/theme.633fae1ab235d157.js" defer></script>
+        <script src="../../assets/search.ad52c4621fc1266d.js" defer></script>
+        <script src="../../assets/pagination.33779d0a5f20c06d.js" defer></script>
+</head>
+<body>
+    <a class="skip" href="#rf-main">跳至正文</a>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../../index.html">
+                    <img src="../../assets/icon/hutao.jpg" width="34" height="34" alt="">
+                <span>Ciallo&#xFF5E;</span>
+            </a>
+                <nav class="site-navigation desktop-navigation" aria-label="主导航">
+                    <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                </nav>
+            <div class="header-actions">
+                <button type="button" data-search-open aria-haspopup="dialog" aria-controls="rf-search" hidden>搜索</button>
+                <button class="theme-toggle" type="button" data-theme-toggle hidden>切换配色</button>
+            </div>
+                <details class="mobile-navigation">
+                    <summary>导航</summary>
+                    <nav class="site-navigation" aria-label="主导航">
+                        <ul>
+        <li><a href="../../index.html">&#x9996;&#x9875;</a></li>
+        <li><a href="../../favorites.html">&#x6536;&#x85CF;&#x5939;</a></li>
+        <li><a href="../../categories.html">&#x5206;&#x7C7B;</a></li>
+        <li><a href="../../tags.html">&#x6807;&#x7B7E;</a></li>
+        <li><a href="../../archives.html">&#x5F52;&#x6863;</a></li>
+        <li><a href="../../games.html">&#x5C0F;&#x6E38;&#x620F;</a></li>
+        <li><a href="../../intro.html">&#x5173;&#x4E8E;</a></li>
+</ul>
+
+                    </nav>
+                </details>
+        </div>
+    </header>
+    <dialog id="rf-search" class="search-dialog" aria-labelledby="rf-search-title" data-index-url="../../search-index.64f8bbf71e65cd51.json">
+    <div class="search-heading">
+        <h2 id="rf-search-title">站内搜索</h2>
+        <button type="button" data-search-close aria-label="关闭搜索">关闭</button>
+    </div>
+    <form class="search-form" role="search">
+        <label for="rf-search-query">搜索关键词</label>
+        <div class="search-input-row">
+            <input id="rf-search-query" type="search" name="q" maxlength="200" autocomplete="off"
+                   spellcheck="false" placeholder="搜索文章和页面" aria-describedby="rf-search-help" autofocus>
+            <button type="submit">搜索</button>
+        </div>
+        <p id="rf-search-help">搜索标题、标签和正文；用空格分隔的关键词需同时匹配。</p>
+    </form>
+    <div class="search-feedback">
+        <p data-search-status role="status" aria-live="polite" aria-atomic="true">输入关键词开始搜索。</p>
+        <button type="button" data-search-retry hidden>重试</button>
+    </div>
+    <ol class="search-results" aria-label="搜索结果" aria-busy="false"></ol>
+</dialog>
+
+    <main id="rf-main" tabindex="-1" class="article-page">
+        <div class="article-grid  ">
+        <aside class="site-sidebar">
+            <h2>浏览</h2>
+            <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html" aria-current="page">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="12 &#x7BC7;&#x6587;&#x7AE0;">12</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./godot.html">
+                            Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./podman.html" aria-current="page">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x793E;&#x533A;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+        </aside>
+    <div class="article-surface card">
+            <details class="mobile-sidebar">
+                <summary>浏览文章</summary>
+                <nav class="sidebar-navigation" aria-label="文章浏览">
+        <section class="sidebar-starred" aria-label="精选文章">
+            <h3>精选文章 <span class="sidebar-count" aria-label="4 &#x7BC7;&#x6587;&#x7AE0;">4</span></h3>
+            <ul>
+                    <li>
+                        <a href="./podman.html" aria-current="page">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </section>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">AI &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../AI/mcp.html">
+                            MiniMcp &#x5B9E;&#x73B0;&#x8BB0;&#x5F55;&#xFF1A;MCP&#x3001;Cloudflare Access &#x4E0E;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Android &#x5B9E;&#x8DF5;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Android/8gen2.html">
+                            &#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category" open="open">
+            <summary class="is-current">
+                <span class="sidebar-category-name">Linux &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="12 &#x7BC7;&#x6587;&#x7AE0;">12</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="./godot.html">
+                            Ubuntu &#x4ECE;&#x6E90;&#x7801;&#x6784;&#x5EFA; Godot .NET&#xFF0C;&#x4F7F;&#x7528; Clang&#x3001;Wayland &#x4E0E; Rider
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./podman.html" aria-current="page">
+                            &#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ue.html">
+                            Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./genshin.html">
+                            Arch Linux &#x8FD0;&#x884C;&#x539F;&#x795E;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./wsl.html">
+                            Arch Linux WSL &#x786C;&#x4EF6;&#x89C6;&#x9891;&#x52A0;&#x901F; &#x2B; &#x786C;&#x4EF6;&#x56FE;&#x5F62;&#x52A0;&#x901F;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./arch.html">
+                            Arch Linux &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; systemd-boot &#x2B; UKI &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./deb.html">
+                            Debian &#x6253;&#x5305;&#x5B8C;&#x6574;&#x6D41;&#x7A0B;&#x53C2;&#x8003;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./sb.html">
+                            Gentoo Secure Boot &#x914D;&#x7F6E;&#x8BB0;&#x5F55;&#xFF1A;shim &#x2B; GRUB &#x2B; MOK
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./dev.html">
+                            Linux &#x6548;&#x7387;&#x5DE5;&#x5177;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./snap.html">
+                            Snap&#x3001;Flatpak &#x4E0E; Nix&#xFF1A;Linux &#x8F6F;&#x4EF6;&#x5206;&#x53D1;&#x7684;&#x8FC7;&#x53BB;&#x3001;&#x73B0;&#x5728;&#x4E0E;&#x53EF;&#x6301;&#x7EED;&#x7684;&#x672A;&#x6765;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ovmf.html">
+                            KVM&#x663E;&#x5361;/&#x56FA;&#x6001;&#x76D8;&#x76F4;&#x901A;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./ubuntu.html">
+                            Ubuntu Tips
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">Windows &#x4F7F;&#x7528;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Windows/clang-cl-vcpkg.html">
+                            &#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/msvc.html">
+                            Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/oh-my-posh.html">
+                            &#x4F7F;&#x7528;oh-my-posh&#x7F8E;&#x5316;Windows&#x548C;WSL&#x7EC8;&#x7AEF;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/tips.html">
+                            &#x5C0F;&#x6280;&#x5DE7;&#x5408;&#x96C6;
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Windows/dev.html">
+                            Windows11 &#x5F00;&#x53D1;&#x73AF;&#x5883;&#x914D;&#x7F6E;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x793E;&#x533A;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/tech-argument.html">
+                            &#x6211;&#x4EEC;&#x5230;&#x5E95;&#x5728;&#x4E89;&#x8BBA;&#x4EC0;&#x4E48;&#xFF1A;&#x6280;&#x672F;&#x8BA8;&#x8BBA;&#x5982;&#x4F55;&#x4ECE;&#x5DE5;&#x7A0B;&#x5206;&#x6B67;&#x53D8;&#x6210;&#x8EAB;&#x4EFD;&#x51B2;&#x7A81;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x6280;&#x672F;&#x968F;&#x7B14;</span>
+                <span class="sidebar-count" aria-label="1 &#x7BC7;&#x6587;&#x7AE0;">1</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../Community/uiux.html">
+                            &#x628A;&#x8F6F;&#x4EF6;&#x505A;&#x5F97;&#x597D;&#x7528;&#xFF1A;UI/UX &#x7684;&#x8BBE;&#x8BA1;&#x4E0E;&#x5B9E;&#x73B0;
+                        </a>
+                    </li>
+            </ul>
+        </details>
+        <details class="sidebar-category">
+            <summary>
+                <span class="sidebar-category-name">&#x82F1;&#x8BED;&#x5B66;&#x4E60;</span>
+                <span class="sidebar-count" aria-label="5 &#x7BC7;&#x6587;&#x7AE0;">5</span>
+            </summary>
+            <ul>
+                    <li>
+                        <a href="../English/belobog.html">
+                            Today Is Yesterday&#x27;s Tomorrow
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/the-hungry-lamb.html">
+                            The Hungry Lamb: Traveling in the Late Ming Dynasty
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/yupanqui.html">
+                            Yupanqui&#x27;s Turnfire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/ATRI.html">
+                            ATRI -My Dear Moments-
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../English/cafestella.html">
+                            Caf&#xE9; Stella and the Reaper&#x27;s Butterflies
+                        </a>
+                    </li>
+            </ul>
+        </details>
+</nav>
+
+            </details>
+        <article>
+            <header class="article-header">
+                <div class="article-tools">
+                    <nav class="breadcrumb" aria-label="站点导航"><a href="../../index.html">← 返回首页</a></nav>
+                    <button type="button" data-print-article hidden>打印文章</button>
+                </div>
+                <p class="print-status" data-print-status role="status" hidden></p>
+                    <h1>&#x7528; Podman &#x548C; Dev Containers &#x7BA1;&#x7406; C&#x2B;&#x2B; &#x5F00;&#x53D1;&#x73AF;&#x5883;</h1>
+                    <p class="article-date"><time datetime="2026-11-10">2026-11-10</time></p>
+                    <p class="article-date article-updated">更新于 <time datetime="2026-11-14">2026-11-14</time></p>
+                    <p class="article-date article-reading-time">预计阅读 22 分钟</p>
+                    <ul class="article-categories" aria-label="文章分类">
+                            <li><a href="../../categories.html#category-4c696e757820e4bdbfe794a8">Linux &#x4F7F;&#x7528;</a></li>
+                    </ul>
+                    <ul class="article-tags" aria-label="文章标签">
+                            <li><a href="../../tags/f1deb75fa21d3c47a6e7a45967b79fad2d053947066dc95322c5bcee1e9fe21c.html">#C&#x2B;&#x2B;</a></li>
+                            <li><a href="../../tags/dcf103b39c072dc6ba804fab5401897e47a5175fcd4736c8ede992d392d9fde1.html">#Podman</a></li>
+                            <li><a href="../../tags/5d76904f98924950ca7cd8d01ca3f4685304f4519d94a557eb1583a9d9e0da3d.html">#Dev Containers</a></li>
+                    </ul>
+            </header>
+                <details class="mobile-toc">
+                    <summary><span>此页内容</span><span class="toc-current" aria-hidden="true"></span></summary>
+                    <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">1 &#x5148;&#x786E;&#x5B9A;&#x4F9D;&#x8D56;&#x7531;&#x8C01;&#x7BA1;&#x7406;</a>
+        <a class="level-3" href="#cmake">1.1 CMake &#x7684;&#x5DE5;&#x4F5C;&#x53EF;&#x4EE5;&#x5C11;&#x4E00;&#x70B9;</a>
+        <a class="level-3" href="#section-1">1.2 &#x6784;&#x5EFA;&#x76EE;&#x5F55;&#x4E0E;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x5206;&#x5F00;</a>
+        <a class="level-2" href="#containerfile">2 &#x628A;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x5199;&#x8FDB; Containerfile</a>
+        <a class="level-3" href="#arch">2.1 &#x4ECE; Arch &#x955C;&#x50CF;&#x51C6;&#x5907;&#x5DE5;&#x5177;&#x94FE;</a>
+        <a class="level-3" href="#sdk-opt">2.2 &#x6307;&#x5B9A;&#x7248;&#x672C;&#x7684; SDK &#x653E;&#x8FDB; /opt</a>
+        <a class="level-3" href="#section-2">2.3 &#x4FDD;&#x5B58;&#x914D;&#x65B9;&#xFF0C;&#x4E5F;&#x4FDD;&#x5B58;&#x5DF2;&#x7ECF;&#x6784;&#x5EFA;&#x597D;&#x7684;&#x73AF;&#x5883;</a>
+        <a class="level-2" href="#vs-code">3 &#x5728; VS Code &#x4E2D;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x5957;&#x5DE5;&#x5177;&#x94FE;</a>
+        <a class="level-3" href="#section-3">3.1 &#x9879;&#x76EE;&#x53EA;&#x5F15;&#x7528;&#x5F00;&#x53D1;&#x955C;&#x50CF;</a>
+        <a class="level-3" href="#section-4">3.2 &#x6302;&#x8F7D;&#x8DEF;&#x5F84;&#x51B3;&#x5B9A;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#x5728;&#x54EA;&#x91CC;</a>
+        <a class="level-2" href="#gpu-wayland">4 &#x8BA9;&#x5BB9;&#x5668;&#x8BBF;&#x95EE; GPU &#x548C; Wayland</a>
+        <a class="level-3" href="#nvidia-container-toolkit">4.1 NVIDIA &#x9A71;&#x52A8;&#x4E0E; Container Toolkit &#x653E;&#x5728;&#x5BBF;&#x4E3B;&#x673A;</a>
+        <a class="level-3" href="#section-5">4.2 &#x7528;&#x4E00;&#x4E2A;&#x4E34;&#x65F6;&#x5BB9;&#x5668;&#x5148;&#x6D4B;&#x8BD5;&#x7A97;&#x53E3;</a>
+        <a class="level-3" href="#dev-containers">4.3 &#x628A;&#x5DF2;&#x786E;&#x8BA4;&#x7684;&#x8FD0;&#x884C;&#x53C2;&#x6570;&#x52A0;&#x5165; Dev Containers</a>
+        <a class="level-2" href="#windows">5 Windows &#x548C;&#x5C0F;&#x578B;&#x5DE5;&#x5177;&#x4E5F;&#x80FD;&#x6CBF;&#x7528;&#x8FD9;&#x79CD;&#x5206;&#x5DE5;</a>
+        <a class="level-3" href="#section-6">5.1 &#x5DF2;&#x6709;&#x811A;&#x672C;&#x4E2D;&#x7684;&#x4FBF;&#x643A;&#x5DE5;&#x5177;&#x94FE;</a>
+        <a class="level-3" href="#portable-msys2">5.2 portable MSYS2 &#x7684;&#x540E;&#x7EED;&#x601D;&#x8DEF;</a>
+        <a class="level-2" href="#occt">&#x9644;&#x5F55;&#xFF1A;&#x5B8C;&#x6574;&#x7684; OCCT &#x5F00;&#x53D1;&#x955C;&#x50CF;&#x914D;&#x65B9;</a>
+</nav>
+
+                </details>
+            <div class="article-body"><p>写 C++ 之前，常常得先凑齐编译器、头文件、链接库和运行时 DLL。习惯了 <code>dotnet restore</code> 和 <code>cargo build</code>，再给 CMake 工程配环境，难免想把这些准备工作一次做完。</p>
+<p>最近整理了几个项目：工具链和依赖放进容器或独立 SDK，CMake 负责查找依赖和生成构建规则，Ninja 执行构建，VS Code 通过 Dev Containers 进入环境。</p>
+<p>Linux 部分记录 Arch + Podman + VS Code 的实际配置，包括 NVIDIA GPU 和 Wayland 窗口。Windows 部分介绍已有的 LLVM-MinGW 脚本和待尝试的 portable MSYS2；Windows 上的 OCCT 构建还没做。</p>
+<h2 id="section">1 先确定依赖由谁管理 <a class="heading-anchor" href="#section" aria-label="链接到本节">#</a></h2>
+<h3 id="cmake">1.1 CMake 的工作可以少一点 <a class="heading-anchor" href="#cmake" aria-label="链接到本节">#</a></h3>
+<p>CMake 既能用 <code>FetchContent</code> 下载第三方源码，也能用 <code>find_package()</code> 查找已安装的库。小项目可以随项目声明源码依赖；多个项目共用大型 SDK 时，我选择在开发环境中安装一次。参见 <a href="https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html">CMake 依赖指南</a>。</p>
+<p>职责分层：</p>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>放在哪里</th>
+<th>何时更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编译器、CMake、Ninja、调试器</td>
+<td>开发镜像或独立工具链目录</td>
+<td>更新开发环境时</td>
+</tr>
+<tr>
+<td>发行版提供的开发库</td>
+<td>镜像的包安装步骤</td>
+<td>调整包列表时</td>
+</tr>
+<tr>
+<td>指定版本的第三方 SDK</td>
+<td>镜像内的 <code>/opt</code></td>
+<td>升级 SDK 或修改构建选项时</td>
+</tr>
+<tr>
+<td>项目源文件、链接关系、编译标准</td>
+<td><code>CMakeLists.txt</code></td>
+<td>修改项目时</td>
+</tr>
+<tr>
+<td>构建类型和构建目录</td>
+<td><code>CMakePresets.json</code></td>
+<td>调整开发配置时</td>
+</tr>
+<tr>
+<td>缓存、目标文件和可执行文件</td>
+<td>项目的 <code>build/</code></td>
+<td>每次构建时</td>
+</tr>
+</tbody>
+</table>
+<p>例如，一个使用 SDL3 和 Vulkan 的项目，CMake 可以只有：</p>
+<div class="code-block" data-language="cmake">
+<div class="code-toolbar"><span class="code-language">cmake</span></div>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.24)
+project(viewer LANGUAGES CXX)
+
+find_package(SDL3 CONFIG REQUIRED)
+find_package(Vulkan REQUIRED)
+
+add_executable(viewer src/main.cpp)
+target_compile_features(viewer PRIVATE cxx_std_20)
+target_link_libraries(viewer PRIVATE SDL3::SDL3 Vulkan::Vulkan)
+</code></pre>
+</div>
+<p>缺少依赖时，CMake 配置阶段报错，回到镜像配方补齐即可。项目不用写 <code>pacman</code> 命令、下载地址或本机绝对库路径。</p>
+<p>优先链接库导出的 CMake target，让它携带头文件路径、编译定义和传递依赖。只有 pkg-config 信息的库，可以用 <code>pkg_check_modules(... IMPORTED_TARGET ...)</code>。</p>
+<p>依赖也可以由 Conan、vcpkg 或脚本准备。本文使用发行版包和自行安装的 SDK。</p>
+<h3 id="section-1">1.2 构建目录与依赖安装目录分开 <a class="heading-anchor" href="#section-1" aria-label="链接到本节">#</a></h3>
+<p>我的项目会保存一份类似这样的 <code>CMakePresets.json</code>：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;version&quot;: 3,
+  &quot;configurePresets&quot;: [
+    {
+      &quot;name&quot;: &quot;release&quot;,
+      &quot;generator&quot;: &quot;Ninja&quot;,
+      &quot;binaryDir&quot;: &quot;${sourceDir}/build/release&quot;,
+      &quot;cacheVariables&quot;: {
+        &quot;CMAKE_BUILD_TYPE&quot;: &quot;Release&quot;,
+        &quot;CMAKE_EXPORT_COMPILE_COMMANDS&quot;: true
+      }
+    }
+  ],
+  &quot;buildPresets&quot;: [
+    {
+      &quot;name&quot;: &quot;release&quot;,
+      &quot;configurePreset&quot;: &quot;release&quot;
+    }
+  ]
+}
+</code></pre>
+</div>
+<p>进入开发环境后，配置与构建分别执行：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">cmake --preset release
+cmake --build --preset release --parallel 4
+</code></pre>
+</div>
+<p>首次配置确定编译器和依赖位置，生成 Ninja 文件。之后只改源码时，通常直接构建即可。</p>
+<p>共享配置提交到 <code>CMakePresets.json</code>；本机 SDK 路径放在不提交的 <code>CMakeUserPresets.json</code>。参见 <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">Presets 文档</a>。</p>
+<p>删除 <code>build/release/</code> 不影响容器 <code>/usr</code>、<code>/opt</code> 中的依赖，大型 SDK 无需重编。源码依赖也能做到，但需另设缓存和安装目录。</p>
+<h2 id="containerfile">2 把开发环境写进 Containerfile <a class="heading-anchor" href="#containerfile" aria-label="链接到本节">#</a></h2>
+<h3 id="arch">2.1 从 Arch 镜像准备工具链 <a class="heading-anchor" href="#arch" aria-label="链接到本节">#</a></h3>
+<p>我选 Arch 镜像，方便一起更新编译器和开发库。希望版本变化少一些，可以选 Debian Stable 或 Ubuntu LTS；容器发行版不必与宿主机一致。</p>
+<p>下面提取两份实际配方的公共部分，保留窗口与 Vulkan 工具，计算库按需增减：</p>
+<div class="code-block" data-language="dockerfile">
+<div class="code-toolbar"><span class="code-language">dockerfile</span></div>
+<pre><code class="language-dockerfile">FROM docker.io/library/archlinux:latest
+
+RUN sed -i '1iServer = https://mirrors.cernet.edu.cn/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
+
+RUN pacman -Syu --noconfirm --needed \
+        base-devel cmake ninja pkgconf git curl ca-certificates \
+        clang lld gdb python \
+        zlib libpng fftw nlohmann-json glm eigen \
+        sdl3 wayland wayland-protocols wayland-utils libdecor libxkbcommon \
+        libxext libglvnd \
+        vulkan-headers vulkan-icd-loader vulkan-validation-layers vulkan-tools \
+        shader-slang shaderc glslang spirv-tools \
+        fontconfig freetype2 onetbb rapidjson gtk3 ttf-dejavu noto-fonts-cjk \
+    &amp;&amp; fc-cache -f \
+    &amp;&amp; pacman -Scc --noconfirm
+
+RUN install -d -m 0700 /tmp/xdg-runtime
+
+WORKDIR /workspaces
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+</div>
+<p>换源后执行完整更新。包列表可按用途删减：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>软件包</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编译与构建</td>
+<td><code>base-devel</code>、<code>cmake</code>、<code>ninja</code></td>
+</tr>
+<tr>
+<td>Vulkan 开发与诊断</td>
+<td>头文件、加载器、验证层、工具</td>
+</tr>
+<tr>
+<td>着色器编译</td>
+<td><code>shader-slang</code>、<code>shaderc</code>、<code>glslang</code></td>
+</tr>
+</tbody>
+</table>
+<p>GTK、Wayland、OpenGL 运行库不决定应用的渲染后端。例如 SDL3 的 Wayland 窗口装饰可能使用 libdecor，其插件另有运行时依赖。</p>
+<p>构建这个公共环境：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">podman build --pull=always \
+  -t localhost/arch-cpp-dev:20261110 \
+  -f Containerfile .
+</code></pre>
+</div>
+<p><strong>此镜像只有系统开发包。</strong> 后文的 <code>arch-occt:8.0.1</code> 另含 SDK 和演示程序，不能直接互换。</p>
+<h3 id="sdk-opt">2.2 指定版本的 SDK 放进 <code>/opt</code> <a class="heading-anchor" href="#sdk-opt" aria-label="链接到本节">#</a></h3>
+<p>仓库版本不合适时，在镜像构建阶段编译 SDK，用 <code>cmake --install</code> 安装到带版本号的 <code>/opt</code> 前缀：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">/opt/
+├── occt/8.0.1/
+│   ├── include/
+│   ├── lib/
+│   └── share/
+├── imgui/1.93.0-docking/
+│   ├── bin/
+│   ├── include/
+│   └── lib/
+└── src/
+    ├── OCCT-8_0_1/
+    └── imgui-1.93.0-docking/
+</code></pre>
+</div>
+<p>宿主机提前下载源码并记录版本、来源、校验和，Containerfile 用 <code>COPY</code> 导入。测试、文档及自动下载依赖等构建选项也在配方中设置。</p>
+<p>多阶段构建分三步：</p>
+<ol>
+<li>基础阶段安装工具。</li>
+<li>SDK 阶段编译依赖。</li>
+<li>从相同基础阶段创建开发镜像，复制 <code>/opt</code>。</li>
+</ol>
+<p>最终镜像保留编译工具和源码，供开发、调试使用；临时目标文件可以删除。</p>
+<p>ImGui 需要补一层安装配置：把固定版本的核心、SDL3 和 Vulkan 后端编译为静态库，安装头文件，导出 <code>imgui::imgui</code>、<code>imgui::sdl3</code>、<code>imgui::vulkan</code>。项目中使用：</p>
+<div class="code-block" data-language="cmake">
+<div class="code-toolbar"><span class="code-language">cmake</span></div>
+<pre><code class="language-cmake">find_package(imgui 1.93.0 EXACT CONFIG REQUIRED)
+target_link_libraries(viewer PRIVATE imgui::sdl3 imgui::vulkan)
+</code></pre>
+</div>
+<p>镜像通过环境变量提供 SDK 前缀：</p>
+<div class="code-block" data-language="dockerfile">
+<div class="code-toolbar"><span class="code-language">dockerfile</span></div>
+<pre><code class="language-dockerfile">ENV CMAKE_PREFIX_PATH=/opt/occt/8.0.1:/opt/imgui/1.93.0-docking
+</code></pre>
+</div>
+<p>路径分隔符取决于传入方式：</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>多个路径的分隔符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux 环境变量 <code>CMAKE_PREFIX_PATH</code></td>
+<td>冒号 <code>:</code></td>
+</tr>
+<tr>
+<td>CMake 参数 <code>-DCMAKE_PREFIX_PATH=&quot;...&quot;</code></td>
+<td>分号 <code>;</code>，加引号保护</td>
+</tr>
+</tbody>
+</table>
+<p>查找失败时，先检查 SDK 是否安装了 <code>*Config.cmake</code>：</p>
+<ul>
+<li><code>CMAKE_PREFIX_PATH</code>：安装前缀。</li>
+<li><code>imgui_DIR</code>：包含 <code>imguiConfig.cmake</code> 的目录。</li>
+</ul>
+<p>两者都不是头文件目录。查看搜索过程：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">cmake --preset release --debug-find-pkg=SDL3
+</code></pre>
+</div>
+<p>CMake 找到链接库后，运行时加载器仍需找到共享库。镜像中为 OCCT 配置：</p>
+<div class="code-block" data-language="dockerfile">
+<div class="code-toolbar"><span class="code-language">dockerfile</span></div>
+<pre><code class="language-dockerfile">RUN printf '%s\n' '/opt/occt/8.0.1/lib' &gt; /etc/ld.so.conf.d/occt.conf \
+    &amp;&amp; ldconfig
+</code></pre>
+</div>
+<p>这样不用每次设置 <code>LD_LIBRARY_PATH</code>。并行安装不兼容版本时，需检查加载顺序。</p>
+<h3 id="section-2">2.3 保存配方，也保存已经构建好的环境 <a class="heading-anchor" href="#section-2" aria-label="链接到本节">#</a></h3>
+<p>一次 SDK 构建耗时约 13 分 35 秒，镜像约 3.8 GB。日常直接引用成品，升级依赖时再构建。</p>
+<p><code>archlinux:latest</code> 和 <code>pacman -Syu</code> 会随仓库变化。固定基础镜像 digest 后，随后下载的软件包版本仍可能变化；要复现环境，还需要保存实际使用的版本。</p>
+<p>如果需要恢复当前环境，可以保存镜像和包清单：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">podman run --rm localhost/arch-occt:8.0.1 pacman -Q &gt; packages.txt
+podman save --format oci-archive \
+  -o arch-occt-8.0.1.oci.tar localhost/arch-occt:8.0.1
+
+# Restore the saved image when needed.
+podman load -i arch-occt-8.0.1.oci.tar
+</code></pre>
+</div>
+<p>包清单用于核对版本，OCI 归档用于恢复镜像。GPU 仍依赖宿主机，还需记录驱动版本和测试设备。</p>
+<p>无标签的 <code>&lt;none&gt;:&lt;none&gt;</code> 镜像可能来自中间阶段或旧构建。先用 <code>podman system df</code> 查看空间，确认不再需要缓存后再运行 <code>podman image prune</code>。</p>
+<h2 id="vs-code">3 在 VS Code 中使用同一套工具链 <a class="heading-anchor" href="#vs-code" aria-label="链接到本节">#</a></h2>
+<h3 id="section-3">3.1 项目只引用开发镜像 <a class="heading-anchor" href="#section-3" aria-label="链接到本节">#</a></h3>
+<p>宿主机安装 VS Code 和 Dev Containers 扩展，在用户设置中指定 Podman：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;dev.containers.dockerPath&quot;: &quot;podman&quot;
+}
+</code></pre>
+</div>
+<p>这是 <a href="https://code.visualstudio.com/remote/advancedcontainers/docker-options">VS Code 文档</a>提供的配置方式，但 Podman 等兼容 Docker CLI 的引擎不在其正式支持范围内。</p>
+<p>项目里的 <code>.devcontainer/devcontainer.json</code> 可以从下面这个配置开始：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Arch C++ development&quot;,
+  &quot;image&quot;: &quot;localhost/arch-cpp-dev:20261110&quot;,
+  &quot;workspaceMount&quot;: &quot;source=${localWorkspaceFolder},target=/workspaces/project,type=bind&quot;,
+  &quot;workspaceFolder&quot;: &quot;/workspaces/project&quot;,
+  &quot;customizations&quot;: {
+    &quot;vscode&quot;: {
+      &quot;extensions&quot;: [
+        &quot;ms-vscode.cmake-tools&quot;,
+        &quot;llvm-vs-code-extensions.vscode-clangd&quot;
+      ],
+      &quot;settings&quot;: {
+        &quot;cmake.useCMakePresets&quot;: &quot;always&quot;
+      }
+    }
+  }
+}
+</code></pre>
+</div>
+<p>打开项目，执行 <strong>Dev Containers: Reopen in Container</strong>。此时终端中的 <code>cmake</code>、<code>c++</code> 和调试器应来自容器，clangd 也在容器中解析代码和头文件，宿主机只显示编辑器界面。容器中需要安装 clangd 可执行程序，可以用 <code>clangd --version</code> 确认。</p>
+<p>clangd 根据 <code>compile_commands.json</code> 获取每个源文件的编译参数，包括头文件搜索路径、宏定义和语言标准。这是由构建系统生成的编译数据库，不需要手写。前面的 <code>CMakePresets.json</code> 已启用 <code>CMAKE_EXPORT_COMPILE_COMMANDS</code>，在容器内执行 <code>cmake --preset release</code> 后，Ninja 配置会生成 <code>build/release/compile_commands.json</code>。参见 <a href="https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html">CMake 编译数据库选项</a>。</p>
+<p>在项目根目录添加 <code>.clangd</code>，指定数据库所在目录：</p>
+<div class="code-block" data-language="yaml">
+<div class="code-toolbar"><span class="code-language">yaml</span></div>
+<pre><code class="language-yaml">CompileFlags:
+  CompilationDatabase: build/release
+</code></pre>
+</div>
+<p>这里的路径相对于 <code>.clangd</code> 文件。切换构建目录时同步修改它，调整编译选项后重新运行 CMake 配置。数据库应在容器内生成，使其中的源码、编译器和依赖路径与 clangd 的运行环境一致。配置说明见 <a href="https://clangd.llvm.org/config#compilationdatabase">clangd 文档</a>。</p>
+<p>如果需要微软 C/C++ 扩展提供的调试功能，可以再安装 <code>ms-vscode.cpptools</code>，并在上述 <code>settings</code> 中加入 <code>&quot;C_Cpp.intelliSenseEngine&quot;: &quot;disabled&quot;</code>，让代码补全与诊断继续由 clangd 负责。Linux 容器中可通过它的调试适配器调用 GDB，镜像配方已安装 <code>gdb</code>；调试时另用带调试信息的 <code>Debug</code> 或 <code>RelWithDebInfo</code> 构建。参见 <a href="https://code.visualstudio.com/docs/cpp/cpp-debug">VS Code C++ 调试说明</a>。</p>
+<p>多个项目共用一个开发镜像，各自维护 <code>devcontainer.json</code> 和 CMake 文件。临时装包可以用于排查，长期依赖要写回 Containerfile。</p>
+<p>同名镜像更新后，需要在 Dev Containers 中重新创建容器；已有容器不会自动换用新镜像。</p>
+<h3 id="section-4">3.2 挂载路径决定数据保存在哪里 <a class="heading-anchor" href="#section-4" aria-label="链接到本节">#</a></h3>
+<p>工作区使用 bind mount：宿主机项目目录映射到 <code>/workspaces/project</code>。源码和 <code>build/</code> 留在宿主机；未挂载出去的文件保存在容器内。</p>
+<p>如需读取其他源码或数据，可以额外挂载目录。下面是我用过的 Home 挂载片段：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;mounts&quot;: [
+    &quot;source=${localEnv:HOME},target=/host-home,type=bind&quot;
+  ]
+}
+</code></pre>
+</div>
+<p>将片段合并进已有配置。整个 Home 可写意味着容器也能修改其中的文件；通常只挂需要的子目录即可，必要时加 <code>readonly</code>。</p>
+<p>写权限要结合运行方式检查：</p>
+<table>
+<thead>
+<tr>
+<th>运行方式</th>
+<th>需要注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认 rootless Podman</td>
+<td>容器 root 通常映射到启动它的宿主用户</td>
+</tr>
+<tr>
+<td>容器内普通用户</td>
+<td>检查 UID 映射，必要时使用 <code>--userns=keep-id</code></td>
+</tr>
+<tr>
+<td>rootful Podman</td>
+<td>不套用 rootless 的映射假设</td>
+</tr>
+</tbody>
+</table>
+<p>Dev Containers 的用户配置也会参与其中。参见 <a href="https://docs.podman.io/en/latest/markdown/podman-run.1.html">Podman 用户与挂载选项</a>。</p>
+<p>小型构建脚本还可以只读挂载源码和依赖缓存，只向临时目录写入，成功后再复制产物。第 5 部分给出例子。</p>
+<p>代理可在 <code>containerEnv</code> 中设置为 <code>http://host.containers.internal:7890</code>，但端口需匹配实际配置，宿主服务也要允许容器访问。注意：</p>
+<ul>
+<li>容器中的 <code>127.0.0.1</code> 指向容器自身。</li>
+<li><code>containerEnv</code> 不负责镜像拉取和构建阶段的网络。</li>
+</ul>
+<h2 id="gpu-wayland">4 让容器访问 GPU 和 Wayland <a class="heading-anchor" href="#gpu-wayland" aria-label="链接到本节">#</a></h2>
+<h3 id="nvidia-container-toolkit">4.1 NVIDIA 驱动与 Container Toolkit 放在宿主机 <a class="heading-anchor" href="#nvidia-container-toolkit" aria-label="链接到本节">#</a></h3>
+<p>普通构建不需要 GPU 参数。运行 Vulkan 程序时，再接入设备和显示连接。以下配置使用 Arch 宿主机、RTX 4050 Laptop GPU 和 Wayland 桌面。</p>
+<p>先确认宿主机上的 NVIDIA 驱动可以正常工作，再安装容器工具：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">nvidia-smi
+sudo pacman -Syu --needed podman nvidia-container-toolkit
+
+sudo systemctl enable --now nvidia-cdi-refresh.path
+sudo systemctl enable --now nvidia-cdi-refresh.service
+nvidia-ctk cdi list
+</code></pre>
+</div>
+<p>实测 NVIDIA Container Toolkit 为 1.20.1。<code>nvidia-cdi-refresh</code> 生成 CDI 设备描述，Podman 据此接入 GPU 和所需的宿主机文件。该服务完成任务后退出，成功执行后显示 <code>inactive (dead)</code> 可以是正常状态。参见 <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html">NVIDIA CDI 文档</a>。</p>
+<p>如果 <code>nvidia-ctk cdi list</code> 没有列出设备，先检查服务日志：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">journalctl -u nvidia-cdi-refresh.service
+sudo systemctl restart nvidia-cdi-refresh.service
+</code></pre>
+</div>
+<p>CDI 方案中，镜像安装 Vulkan 加载器、头文件和工具；NVIDIA 驱动由宿主机提供，无需在镜像中安装内核驱动。</p>
+<p>本文使用 <code>--gpus=all</code>，也可按 Podman 版本选择显式 CDI 参数 <code>--device=nvidia.com/gpu=all</code>。参见 <a href="https://docs.podman.io/en/latest/markdown/podman-run.1.html#gpus-entry">GPU 参数说明</a>。</p>
+<h3 id="section-5">4.2 用一个临时容器先测试窗口 <a class="heading-anchor" href="#section-5" aria-label="链接到本节">#</a></h3>
+<p>分别检查 GPU 和窗口。Wayland 使用桌面会话的 Unix socket，不需要开放 TCP 端口。</p>
+<p>将实际配置保存为 <code>run-wayland.sh</code>，从宿主机 Wayland 桌面终端执行。默认运行 SDK 镜像中的 ImGui SDL3/Vulkan 示例；第 2.1 节的公共镜像不包含它。</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">#!/usr/bin/env bash
+set -euo pipefail
+
+image=&quot;${OCCT_DEV_IMAGE:-localhost/arch-occt:8.0.1}&quot;
+runtime_directory=&quot;${XDG_RUNTIME_DIR:?Run from a desktop session}&quot;
+display_name=&quot;${WAYLAND_DISPLAY:?WAYLAND_DISPLAY is not set}&quot;
+
+case &quot;$display_name&quot; in
+    /*) wayland_socket=&quot;$display_name&quot; ;;
+    *) wayland_socket=&quot;$runtime_directory/$display_name&quot; ;;
+esac
+
+if [[ ! -S &quot;$wayland_socket&quot; ]]; then
+    printf 'Wayland socket not found: %s\n' &quot;$wayland_socket&quot; &gt;&amp;2
+    exit 1
+fi
+
+if [[ $# -eq 0 ]]; then
+    set -- imgui-sdl3-vulkan-demo
+fi
+
+exec podman run --rm -it \
+    --network=none \
+    --gpus=all \
+    --security-opt=label=disable \
+    --env NVIDIA_DRIVER_CAPABILITIES=graphics,display,utility \
+    --env XDG_RUNTIME_DIR=/tmp/xdg-runtime \
+    --env WAYLAND_DISPLAY=wayland-0 \
+    --env SDL_VIDEODRIVER=wayland \
+    --env VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_validation \
+    --mount &quot;type=bind,source=$wayland_socket,target=/tmp/xdg-runtime/wayland-0&quot; \
+    &quot;$image&quot; &quot;$@&quot;
+</code></pre>
+</div>
+<p>脚本中的几个约定：</p>
+<ul>
+<li>镜像预先创建权限为 <code>0700</code> 的 <code>/tmp/xdg-runtime</code>，桌面 socket 挂载到其中。</li>
+<li><code>SDL_VIDEODRIVER=wayland</code> 强制使用原生 Wayland。</li>
+<li><code>--security-opt=label=disable</code> 关闭该容器的 SELinux 标签隔离；启用 SELinux 的系统需按挂载策略决定是否保留。</li>
+</ul>
+<p>随后分别检查设备和窗口：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">chmod +x run-wayland.sh
+./run-wayland.sh vulkaninfo --summary
+./run-wayland.sh
+</code></pre>
+</div>
+<p>实测识别到 RTX 4050 Laptop GPU，并显示了 ImGui 窗口：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVIDIA 驱动</td>
+<td><code>615.78.08</code></td>
+</tr>
+<tr>
+<td>GPU 支持的 Vulkan API</td>
+<td><code>1.4.351</code></td>
+</tr>
+<tr>
+<td>Vulkan Instance Version</td>
+<td><code>1.4.363</code></td>
+</tr>
+</tbody>
+</table>
+<p>Instance Version 与具体 GPU 的 API 版本不是同一项信息。</p>
+<p>这次试运行还暴露了几个具体问题：</p>
+<table>
+<thead>
+<tr>
+<th>输出或现象</th>
+<th>排查结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>提示设置了 <code>VK_INSTANCE_LAYERS</code></td>
+<td>脚本主动启用了验证层，是加载提示</td>
+</tr>
+<tr>
+<td><code>DISPLAY</code> 未设置</td>
+<td>这次使用 Wayland，没有提供 X11 的显示连接</td>
+</tr>
+<tr>
+<td><code>libgtk-3.so.0</code> 找不到</td>
+<td>libdecor 的 GTK 插件缺运行时依赖，配方补充了 <code>gtk3</code></td>
+</tr>
+<tr>
+<td>系统标题栏显示方框</td>
+<td>容器的 <code>fc-list</code> 没有输出，配方补充字体并更新缓存</td>
+</tr>
+<tr>
+<td><code>non-acquired-swapchain-image-used</code></td>
+<td>ImGui 交换链辅助代码提前转换图像布局，存在对应的上游问题</td>
+</tr>
+</tbody>
+</table>
+<p>交换链问题不能靠关闭验证层解决，见 <a href="https://github.com/ocornut/imgui/issues/9496">ImGui #9496</a>。配方已为示例的 render-pass 路径加入局部补丁。</p>
+<p>系统字体供标题栏等组件使用；ImGui 内部显示中文，仍需应用自行加载字体。</p>
+<h3 id="dev-containers">4.3 把已确认的运行参数加入 Dev Containers <a class="heading-anchor" href="#dev-containers" aria-label="链接到本节">#</a></h3>
+<p>命令行测试后，可以把 GPU 和 Wayland 相关配置合并到第 3.1 节的 <code>devcontainer.json</code>：</p>
+<div class="code-block" data-language="json">
+<div class="code-toolbar"><span class="code-language">json</span></div>
+<pre><code class="language-json">{
+  &quot;runArgs&quot;: [
+    &quot;--gpus=all&quot;,
+    &quot;--security-opt=label=disable&quot;
+  ],
+  &quot;containerEnv&quot;: {
+    &quot;NVIDIA_DRIVER_CAPABILITIES&quot;: &quot;graphics,display,utility&quot;,
+    &quot;XDG_RUNTIME_DIR&quot;: &quot;/tmp/xdg-runtime&quot;,
+    &quot;WAYLAND_DISPLAY&quot;: &quot;wayland-0&quot;,
+    &quot;SDL_VIDEODRIVER&quot;: &quot;wayland&quot;
+  },
+  &quot;mounts&quot;: [
+    &quot;source=${localEnv:XDG_RUNTIME_DIR}/${localEnv:WAYLAND_DISPLAY},target=/tmp/xdg-runtime/wayland-0,type=bind&quot;
+  ]
+}
+</code></pre>
+</div>
+<p>该片段假设宿主机 <code>WAYLAND_DISPLAY</code> 是 <code>wayland-0</code> 这样的相对名称。若已是绝对路径，需调整 <code>source</code>；其他挂载追加到同一个 <code>mounts</code> 数组。</p>
+<p>原配置使用 <code>/tmp/wayland-0</code> 绝对路径，这里统一为运行脚本的布局。验证层按程序需要单独开启即可。</p>
+<h2 id="windows">5 Windows 和小型工具也能沿用这种分工 <a class="heading-anchor" href="#windows" aria-label="链接到本节">#</a></h2>
+<h3 id="section-6">5.1 已有脚本中的便携工具链 <a class="heading-anchor" href="#section-6" aria-label="链接到本节">#</a></h3>
+<p>另一个小型 Windows 工具项目使用两个构建脚本，工具链管理方式也能复用。</p>
+<p>Linux 的 <code>build.sh</code> 固定 <code>mstorsjo/llvm-mingw:20261104</code> 镜像及 MinHook 版本、commit。宿主机准备依赖缓存，容器只读挂载源码和依赖，向临时目录写入：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash"># Run from the project directory after preparing the dependency cache.
+work_dir=&quot;$(mktemp -d /tmp/cpp-build.XXXXXX)&quot;
+dependency_dir=&quot;${MINHOOK_SOURCE_DIR:?Set the prepared dependency directory}&quot;
+
+podman run --rm --pull=never \
+  --userns=keep-id --network=none \
+  --volume &quot;$PWD:/src:ro&quot; \
+  --volume &quot;$dependency_dir:/minhook:ro&quot; \
+  --volume &quot;$work_dir:/work:rw&quot; \
+  --workdir /work \
+  docker.io/mstorsjo/llvm-mingw:20261104 \
+  x86_64-w64-mingw32-clang++ --version
+</code></pre>
+</div>
+<p>此处只演示挂载和工具链。实际脚本编译 EXE/DLL，确认产物齐全后复制到 <code>artifacts/</code>；容器退出即清理，临时目录留在 <code>/tmp</code> 供排查。</p>
+<p>Windows 的 <code>build.ps1</code> 使用 LLVM-MinGW UCRT 便携包：</p>
+<ol>
+<li>将工具链和 MinHook 归档缓存到 <code>%TEMP%</code> 下的专用目录。</li>
+<li>校验 SHA-256，再解压；工具链解压成功后复用缓存。</li>
+<li>编译并复制产物。</li>
+<li>恢复当前进程的 PATH，清理本次工作目录。</li>
+</ol>
+<p>少量源文件可以由脚本直接调用编译器。以后改用 CMake，仍可保留工具链准备、缓存、校验和产物复制流程。</p>
+<h3 id="portable-msys2">5.2 portable MSYS2 的后续思路 <a class="heading-anchor" href="#portable-msys2" aria-label="链接到本节">#</a></h3>
+<p>依赖较多时，可以把 MSYS2 放进独立目录。官方提供自解压包和 <code>.tar.zst</code> 归档，解压后运行一次登录 Shell 初始化；相比安装器，主要缺少快捷方式和卸载项等系统集成。参见 <a href="https://www.msys2.org/docs/installer/">安装方式说明</a>。</p>
+<p>例如环境放在 <code>C:\Dev\msys64</code>，项目放在 <code>C:\Projects</code>，启动 UCRT64 Shell：</p>
+<div class="code-block" data-language="powershell">
+<div class="code-toolbar"><span class="code-language">powershell</span></div>
+<pre><code class="language-powershell">C:\Dev\msys64\msys2_shell.cmd -ucrt64
+</code></pre>
+</div>
+<p>在打开的 Shell 中完整更新，然后安装对应工具：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">pacman -Syu
+
+pacman -S --needed \
+  mingw-w64-ucrt-x86_64-toolchain \
+  mingw-w64-ucrt-x86_64-cmake \
+  mingw-w64-ucrt-x86_64-ninja
+</code></pre>
+</div>
+<p>若更新要求退出终端，重新打开后继续完成更新。构建原生 Windows 程序，应使用对应 MinGW 环境的 CMake，可搭配 Ninja。参见 <a href="https://www.msys2.org/docs/cmake/">MSYS2 CMake 文档</a>。</p>
+<p>工具与 C++ 库保持在同一套环境中：</p>
+<table>
+<thead>
+<tr>
+<th>环境</th>
+<th>工具链与 C++ 标准库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UCRT64</td>
+<td>GCC / libstdc++</td>
+</tr>
+<tr>
+<td>CLANG64</td>
+<td>Clang / libc++</td>
+</tr>
+<tr>
+<td>MSVC</td>
+<td>MSVC 工具链及其 C++ 标准库</td>
+</tr>
+</tbody>
+</table>
+<p>同为 Windows x64，即使共用 UCRT，也不保证 C++ ABI 兼容。参见 <a href="https://www.msys2.org/docs/environments/">MSYS2 环境说明</a>。</p>
+<p>便携目录便于备份，但没有容器的进程与文件系统隔离。使用时：</p>
+<ul>
+<li>项目放在环境目录之外，通过启动脚本使用工具，少改全局 PATH。</li>
+<li>滚动仓库的包清单用于重装，完整目录快照用于恢复已知可用环境。</li>
+<li>恢复时尽量保留原路径，并重新创建项目构建目录。</li>
+</ul>
+<p>源码、依赖缓存、工具链和构建产物分开保存后，清理项目就不会顺手删掉整套 SDK。</p>
+<h2 id="occt">附录：完整的 OCCT 开发镜像配方 <a class="heading-anchor" href="#occt" aria-label="链接到本节">#</a></h2>
+<p>配方使用 OCCT 8.0.1 和 ImGui 1.93.0-docking。OCCT 保留建模、应用框架和数据交换模块，关闭 OpenGL 后端与 DRAW；部分工具库仍随模块依赖构建。ImGui 单独编译 SDL3/Vulkan 后端和示例。</p>
+<p>配套文件包括构建过滤规则、ImGui 安装配置、补丁、Wayland 脚本及源码来源和 SHA-256 清单。源码需另行下载，GUI 测试状态见 4.2 节。</p>
+<p>示例构建目录应当包含：</p>
+<div class="code-block" data-language="text">
+<div class="code-toolbar"><span class="code-language">text</span></div>
+<pre><code class="language-text">occt-8.0.1-build/
+├── Containerfile
+├── .containerignore
+├── cmake/imgui/
+│   ├── CMakeLists.txt
+│   └── imguiConfig.cmake.in
+├── patches/imgui-renderpass-acquire.patch
+├── run-wayland.sh
+└── sources/
+    ├── SHA256SUMS
+    ├── ORIGINS.txt
+    ├── OCCT-8_0_1/
+    └── imgui-1.93.0-docking/
+</code></pre>
+</div>
+<p>其中两个源码目录按以下命令准备。在解压出的 <code>occt-8.0.1-build</code> 目录执行：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">cd sources
+
+curl --fail --location --retry 3 \
+  -o occt-8.0.1.tar.gz \
+  https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V8_0_1.tar.gz
+
+curl --fail --location --retry 3 \
+  -o imgui-1.93.0-docking.tar.gz \
+  https://github.com/ocornut/imgui/archive/refs/tags/v1.93.0-docking.tar.gz
+
+sha256sum --check SHA256SUMS
+</code></pre>
+</div>
+<p>确认两项校验都通过后再解压：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">tar -xzf occt-8.0.1.tar.gz
+tar -xzf imgui-1.93.0-docking.tar.gz
+cd ..
+</code></pre>
+</div>
+<p>完整的 <code>Containerfile</code> 如下。<code>COPY</code> 使用的路径均相对于上述构建目录，配套的 CMake 文件和补丁不能省略。</p>
+<div class="code-block" data-language="dockerfile">
+<div class="code-toolbar"><span class="code-language">dockerfile</span></div>
+<pre><code class="language-dockerfile">FROM docker.io/library/archlinux:latest AS base
+
+RUN sed -i '1iServer = https://mirrors.cernet.edu.cn/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
+
+RUN pacman -Syu --noconfirm --needed \
+        base-devel cmake ninja pkgconf git curl ca-certificates \
+        clang lld gdb python \
+        zlib libpng fftw nlohmann-json glm eigen \
+        sdl3 wayland wayland-protocols wayland-utils libdecor libxkbcommon libxext libglvnd \
+        vulkan-headers vulkan-icd-loader vulkan-validation-layers vulkan-tools \
+        shader-slang shaderc glslang spirv-tools \
+        fontconfig freetype2 onetbb rapidjson gtk3 ttf-dejavu noto-fonts-cjk \
+    &amp;&amp; fc-cache -f \
+    &amp;&amp; pacman -Scc --noconfirm
+
+FROM base AS sdk-builder
+
+ARG BUILD_JOBS=4
+
+COPY sources/OCCT-8_0_1/ /opt/src/OCCT-8_0_1/
+
+RUN cmake -S /opt/src/OCCT-8_0_1 -B /tmp/occt-build -G Ninja \
+        -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+        -DBUILD_CPP_STANDARD=C++17 \
+        -DBUILD_LIBRARY_TYPE=Shared \
+        -DCMAKE_INSTALL_PREFIX=/opt/occt/8.0.1 \
+        -DINSTALL_DIR_LAYOUT=Unix \
+        -DINSTALL_DIR_WITH_VERSION=OFF \
+        -DBUILD_USE_VCPKG=OFF \
+        -DBUILD_GTEST=OFF \
+        -DBUILD_DOC_Overview=OFF \
+        -DBUILD_DOC_RefMan=OFF \
+        -DBUILD_USE_PCH=OFF \
+        -DBUILD_RELEASE_DISABLE_EXCEPTIONS=OFF \
+        -DBUILD_MODULE_FoundationClasses=ON \
+        -DBUILD_MODULE_ModelingData=ON \
+        -DBUILD_MODULE_ModelingAlgorithms=ON \
+        -DBUILD_MODULE_ApplicationFramework=ON \
+        -DBUILD_MODULE_DataExchange=ON \
+        -DBUILD_MODULE_Visualization=OFF \
+        -DBUILD_MODULE_Draw=OFF \
+        -DUSE_OPENGL=OFF \
+        -DUSE_GLES2=OFF \
+        -DUSE_XLIB=OFF \
+        -DUSE_TK=OFF \
+        -DUSE_FREETYPE=ON \
+        -DUSE_TBB=ON \
+        -DUSE_RAPIDJSON=ON \
+        -DUSE_FREEIMAGE=OFF \
+        -DUSE_FFMPEG=OFF \
+        -DUSE_OPENVR=OFF \
+        -DUSE_VTK=OFF \
+        -DUSE_DRACO=OFF \
+        -DUSE_MMGR_TYPE=NATIVE \
+    &amp;&amp; cmake --build /tmp/occt-build --parallel &quot;${BUILD_JOBS}&quot; \
+    &amp;&amp; cmake --install /tmp/occt-build \
+    &amp;&amp; rm -rf /tmp/occt-build
+
+COPY sources/imgui-1.93.0-docking/ /opt/src/imgui-1.93.0-docking/
+COPY cmake/imgui/ /tmp/imgui-cmake/
+COPY patches/imgui-renderpass-acquire.patch /tmp/imgui-renderpass-acquire.patch
+
+RUN patch -d /opt/src/imgui-1.93.0-docking -p1 &lt; /tmp/imgui-renderpass-acquire.patch \
+    &amp;&amp; cmake -S /tmp/imgui-cmake -B /tmp/imgui-build -G Ninja \
+        -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+        -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+        -DCMAKE_INSTALL_PREFIX=/opt/imgui/1.93.0-docking \
+        -DIMGUI_SOURCE_DIR=/opt/src/imgui-1.93.0-docking \
+    &amp;&amp; cmake --build /tmp/imgui-build --parallel &quot;${BUILD_JOBS}&quot; \
+    &amp;&amp; cmake --install /tmp/imgui-build \
+    &amp;&amp; rm -rf /tmp/imgui-build
+
+FROM base AS development
+
+COPY --from=sdk-builder /opt/ /opt/
+
+RUN printf '%s\n' '/opt/occt/8.0.1/lib' &gt; /etc/ld.so.conf.d/occt-8.0.1.conf \
+    &amp;&amp; ldconfig \
+    &amp;&amp; install -d -m 0700 /tmp/xdg-runtime
+
+ENV CMAKE_PREFIX_PATH=/opt/occt/8.0.1:/opt/imgui/1.93.0-docking
+ENV PATH=/opt/imgui/1.93.0-docking/bin:${PATH}
+
+WORKDIR /workspaces
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+</div>
+<p>在该目录构建并保留日志：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">set -o pipefail
+podman build --pull=always \
+  --build-arg BUILD_JOBS=4 \
+  -t localhost/arch-occt:8.0.1 \
+  -f Containerfile . 2&gt;&amp;1 | tee build.log
+</code></pre>
+</div>
+<p>排查同一配方时可改用 <code>--pull=never</code>，复用本地基础镜像。缓存失效范围取决于修改位置：</p>
+<ul>
+<li>改基础阶段包列表：后续 SDK 层需重新构建。</li>
+<li>只改 OCCT 步骤之后的 ImGui 配置：可能复用 OCCT 层。</li>
+</ul>
+<p>构建完成后，在宿主机 Wayland 桌面终端运行配套脚本：</p>
+<div class="code-block" data-language="bash">
+<div class="code-toolbar"><span class="code-language">bash</span></div>
+<pre><code class="language-bash">./run-wayland.sh vulkaninfo --summary
+./run-wayland.sh
+</code></pre>
+</div>
+</div>
+                <footer class="article-license" aria-label="文章许可">
+                    <span>本文许可：</span>
+                        <a href="https://creativecommons.org/licenses/by/4.0/deed.zh-hans" rel="license">CC BY 4.0</a>
+                </footer>
+        </article>
+            <section class="related-articles">
+                <h2>相关文章</h2>
+                <ul>
+                        <li>
+                            <a href="./ue.html">Arch Linux &#x5B89;&#x88C5; UE &#x4E8C;&#x8FDB;&#x5236;&#x7248;&#xFF0C;&#x5305;&#x62EC; Fab&#x3001;&#x6784;&#x5EFA;&#x3001;clangd &#x4E0E; CodeLLDB</a>
+                        </li>
+                        <li>
+                            <a href="../Windows/clang-cl-vcpkg.html">&#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;</a>
+                        </li>
+                        <li>
+                            <a href="../Windows/msvc.html">Windows&#x914D;&#x7F6E;MSVC&#x73AF;&#x5883;</a>
+                        </li>
+                </ul>
+            </section>
+            <nav class="article-navigation" aria-label="文章导航">
+                    <a href="../Windows/clang-cl-vcpkg.html" rel="prev"><span>上一篇</span>&#x7528; clang-cl&#x3001;vcpkg &#x548C; CMake Presets &#x914D;&#x7F6E; Windows C&#x2B;&#x2B; &#x5DE5;&#x7A0B;</a>
+                    <a href="../Android/8gen2.html" rel="next"><span>下一篇</span>&#x5C0F;&#x7C73; 13 &#x4ECE;&#x56FD;&#x884C; HyperOS &#x89E3;&#x9501; BL&#x3001;&#x5237;&#x5165; LineageOS &#x4E0E; KernelSU</a>
+            </nav>
+    </div>
+        <aside class="page-toc">
+            <h2>此页内容</h2>
+            <nav data-toc aria-label="文章目录">
+        <a class="level-2" href="#section">1 &#x5148;&#x786E;&#x5B9A;&#x4F9D;&#x8D56;&#x7531;&#x8C01;&#x7BA1;&#x7406;</a>
+        <a class="level-3" href="#cmake">1.1 CMake &#x7684;&#x5DE5;&#x4F5C;&#x53EF;&#x4EE5;&#x5C11;&#x4E00;&#x70B9;</a>
+        <a class="level-3" href="#section-1">1.2 &#x6784;&#x5EFA;&#x76EE;&#x5F55;&#x4E0E;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x5206;&#x5F00;</a>
+        <a class="level-2" href="#containerfile">2 &#x628A;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x5199;&#x8FDB; Containerfile</a>
+        <a class="level-3" href="#arch">2.1 &#x4ECE; Arch &#x955C;&#x50CF;&#x51C6;&#x5907;&#x5DE5;&#x5177;&#x94FE;</a>
+        <a class="level-3" href="#sdk-opt">2.2 &#x6307;&#x5B9A;&#x7248;&#x672C;&#x7684; SDK &#x653E;&#x8FDB; /opt</a>
+        <a class="level-3" href="#section-2">2.3 &#x4FDD;&#x5B58;&#x914D;&#x65B9;&#xFF0C;&#x4E5F;&#x4FDD;&#x5B58;&#x5DF2;&#x7ECF;&#x6784;&#x5EFA;&#x597D;&#x7684;&#x73AF;&#x5883;</a>
+        <a class="level-2" href="#vs-code">3 &#x5728; VS Code &#x4E2D;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x5957;&#x5DE5;&#x5177;&#x94FE;</a>
+        <a class="level-3" href="#section-3">3.1 &#x9879;&#x76EE;&#x53EA;&#x5F15;&#x7528;&#x5F00;&#x53D1;&#x955C;&#x50CF;</a>
+        <a class="level-3" href="#section-4">3.2 &#x6302;&#x8F7D;&#x8DEF;&#x5F84;&#x51B3;&#x5B9A;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#x5728;&#x54EA;&#x91CC;</a>
+        <a class="level-2" href="#gpu-wayland">4 &#x8BA9;&#x5BB9;&#x5668;&#x8BBF;&#x95EE; GPU &#x548C; Wayland</a>
+        <a class="level-3" href="#nvidia-container-toolkit">4.1 NVIDIA &#x9A71;&#x52A8;&#x4E0E; Container Toolkit &#x653E;&#x5728;&#x5BBF;&#x4E3B;&#x673A;</a>
+        <a class="level-3" href="#section-5">4.2 &#x7528;&#x4E00;&#x4E2A;&#x4E34;&#x65F6;&#x5BB9;&#x5668;&#x5148;&#x6D4B;&#x8BD5;&#x7A97;&#x53E3;</a>
+        <a class="level-3" href="#dev-containers">4.3 &#x628A;&#x5DF2;&#x786E;&#x8BA4;&#x7684;&#x8FD0;&#x884C;&#x53C2;&#x6570;&#x52A0;&#x5165; Dev Containers</a>
+        <a class="level-2" href="#windows">5 Windows &#x548C;&#x5C0F;&#x578B;&#x5DE5;&#x5177;&#x4E5F;&#x80FD;&#x6CBF;&#x7528;&#x8FD9;&#x79CD;&#x5206;&#x5DE5;</a>
+        <a class="level-3" href="#section-6">5.1 &#x5DF2;&#x6709;&#x811A;&#x672C;&#x4E2D;&#x7684;&#x4FBF;&#x643A;&#x5DE5;&#x5177;&#x94FE;</a>
+        <a class="level-3" href="#portable-msys2">5.2 portable MSYS2 &#x7684;&#x540E;&#x7EED;&#x601D;&#x8DEF;</a>
+        <a class="level-2" href="#occt">&#x9644;&#x5F55;&#xFF1A;&#x5B8C;&#x6574;&#x7684; OCCT &#x5F00;&#x53D1;&#x955C;&#x50CF;&#x914D;&#x65B9;</a>
+</nav>
+
+        </aside>
+</div>
+
+    <script src="../../assets/highlight.min.8ef1e46c2ad0a6ca.js" defer></script>
+    <script src="../../assets/code-blocks.09896a4e655ea2ef.js" defer></script>
+    <script src="../../assets/mermaid.169e02d2b0f90031.js" defer></script>
+    <script src="../../assets/math.07ba5143b166507a.js" defer></script>
+    <script src="../../assets/images.bb3220859ed6c16e.js" defer></script>
+    <script src="../../assets/print.c750ffebd14f08e1.js" defer></script>
+
+
+    </main>
+    <footer class="site-footer">
+            <span>I use Gentoo BTW.</span>
+            <a href="../../feed.xml">RSS 订阅</a>
+        <span>由 <a href="https://github.com/Rukkhadevata123/RazorFolio">RazorFolio</a> 生成</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#15131b" />
+    <meta
+      name="description"
+      content="基于《Snap、Flatpak 与 Nix：Linux 软件分发的过去、现在与可持续的未来》制作的网页演示。"
+    />
+    <title>Snap、Flatpak 与 Nix｜Linux 软件分发的责任模型</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="presentation" id="presentation">
+      <header class="topbar" aria-label="演示文稿工具栏">
+        <a class="brand" href="#1" aria-label="返回标题页">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>LINUX DELIVERY / 2026</span>
+        </a>
+        <div class="topbar-context" aria-live="polite">
+          <span id="sectionTitle">封面</span>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-button" id="overviewButton" type="button" aria-label="打开总览" title="总览（O）">
+            <span class="grid-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </button>
+          <button class="icon-button" id="fullscreenButton" type="button" aria-label="进入全屏" title="全屏（F）">
+            <span class="fullscreen-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </header>
+
+      <main class="deck" id="deck">
+        <section class="slide slide-cover is-active" data-title="封面" aria-hidden="false">
+          <div class="cover-orbit orbit-one"></div>
+          <div class="cover-orbit orbit-two"></div>
+          <div class="cover-grid"></div>
+          <div class="slide-inner cover-layout">
+            <div class="cover-copy">
+              <p class="eyebrow">LINUX SOFTWARE DELIVERY</p>
+              <h1>Snap、Flatpak<br />与 Nix</h1>
+              <p class="cover-subtitle">系统要稳定，应用要快速更新。长期成本由谁承担？</p>
+              <div class="cover-meta">
+                <span>基于 snap.md</span>
+                <span class="dot"></span>
+                <span>HTML Presentation</span>
+              </div>
+            </div>
+            <div class="terminal-card cover-terminal" aria-label="终端命令示例">
+              <div class="terminal-head">
+                <span></span><span></span><span></span>
+                <b>ubuntu — bash</b>
+              </div>
+              <div class="terminal-body">
+                <p><span class="prompt">$</span> sudo apt install firefox</p>
+                <p class="terminal-muted">Reading package lists... Done</p>
+                <p class="terminal-muted">Setting up firefox...</p>
+                <p class="terminal-result"><span>↳</span> installing the firefox snap</p>
+              </div>
+            </div>
+          </div>
+          <p class="cover-hint">按 <kbd>→</kbd> 或空格开始</p>
+        </section>
+
+        <section class="slide" data-title="一条命令，三处变化" aria-hidden="true">
+          <div class="slide-inner split-layout">
+            <div class="section-copy">
+              <p class="eyebrow">01 / THE ENTRY POINT</p>
+              <h2>命令没变，<br />软件交付已经变了</h2>
+              <p class="lead">用户以为自己在调用 deb 包管理器，安装结果却进入 Snap 的发布、更新和卸载体系。</p>
+              <div class="command-pair">
+                <code>apt install firefox</code>
+                <span>安装 Snap 版</span>
+              </div>
+              <div class="command-pair is-warning">
+                <code>apt remove firefox</code>
+                <span>不会移除 Snap</span>
+              </div>
+            </div>
+            <div class="conflict-stack" aria-label="三类矛盾">
+              <article class="conflict-card">
+                <span class="conflict-no">01</span>
+                <div><h3>用户预期</h3><p>输入 apt，结果被重定向到另一套渠道。</p></div>
+              </article>
+              <article class="conflict-card">
+                <span class="conflict-no">02</span>
+                <div><h3>更新节奏</h3><p>LTS 锁定基线，浏览器按数周节奏发布。</p></div>
+              </article>
+              <article class="conflict-card">
+                <span class="conflict-no">03</span>
+                <div><h3>维护责任</h3><p>发布、审核和支持从发行版转向上游与商店。</p></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="事实边界" aria-hidden="true">
+          <div class="slide-inner">
+            <div class="slide-heading">
+              <div><p class="eyebrow">02 / FACT CHECK</p><h2>Ubuntu 没有把整个系统换成 Snap</h2></div>
+              <p class="heading-note">文章在 Ubuntu 26.04 仓库中核对到的过渡包，集中在三类高频更新应用。</p>
+            </div>
+            <div class="fact-layout">
+              <div class="big-number-card">
+                <strong>3</strong>
+                <span>组主要过渡包</span>
+                <small>其余大量库、工具与开发环境仍由 deb 分发</small>
+              </div>
+              <div class="package-table" role="table" aria-label="Snap 过渡包">
+                <div class="package-row package-head" role="row">
+                  <span>应用</span><span>开始转换</span><span>Snap 发布者</span>
+                </div>
+                <div class="package-row" role="row">
+                  <b>Chromium</b><span>2019.10</span><span>Canonical</span>
+                </div>
+                <div class="package-row" role="row">
+                  <b>Firefox</b><span>2022.04</span><span>Mozilla</span>
+                </div>
+                <div class="package-row" role="row">
+                  <b>Thunderbird</b><span>后续转换</span><span>Canonical + Thunderbird</span>
+                </div>
+              </div>
+            </div>
+            <div class="fact-note"><span>事实边界</span> Mozilla 主动联系 Canonical 推动 Firefox 转换；合作关系成立，apt 静默重定向仍可单独批评。</div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="稳定系统与快速应用" aria-hidden="true">
+          <div class="slide-inner">
+            <p class="eyebrow">03 / THE STRUCTURAL CONFLICT</p>
+            <h2>稳定系统与快速应用，遵循两只不同的钟</h2>
+            <div class="clock-layout">
+              <article class="clock-card clock-slow">
+                <div class="clock-face"><span class="clock-hand hand-slow"></span><i></i></div>
+                <p class="clock-label">SYSTEM BASE</p>
+                <h3>多年维持兼容基线</h3>
+                <ul class="plain-list"><li>控制 ABI 与依赖变化</li><li>回溯安全修复</li><li>缩小集成测试范围</li></ul>
+              </article>
+              <div class="versus-column"><span>VS</span><i></i><p>维护压力<br />随分支累积</p></div>
+              <article class="clock-card clock-fast">
+                <div class="clock-face"><span class="clock-hand hand-fast"></span><i></i></div>
+                <p class="clock-label">FAST APPLICATION</p>
+                <h3>数周发布一个大版本</h3>
+                <ul class="plain-list"><li>安全补丁伴随重构</li><li>工具链持续更新</li><li>网站兼容要求新能力</li></ul>
+              </article>
+            </div>
+            <p class="bottom-thesis">Snap 和 Flatpak 的价值在于拆开两只钟，让应用按上游节奏更新，系统继续维持稳定基线。</p>
+          </div>
+        </section>
+
+        <section class="slide" data-title="交付的三个层次" aria-hidden="true">
+          <div class="slide-inner">
+            <div class="slide-heading compact-heading">
+              <div><p class="eyebrow">04 / THREE LAYERS</p><h2>先分清层次，再比较方案</h2></div>
+              <p class="heading-note">应用沙箱、系统包和不可变镜像解决的问题不同。</p>
+            </div>
+            <div class="layer-stack">
+              <article class="layer layer-app">
+                <div class="layer-index">03</div>
+                <div><span>独立应用</span><h3>Snap · Flatpak · AppImage · 如意玲珑</h3><p>应用拥有独立依赖和更新周期</p></div>
+                <b>APP</b>
+              </article>
+              <article class="layer layer-system">
+                <div class="layer-index">02</div>
+                <div><span>发行版组件</span><h3>deb · RPM</h3><p>组成经过集成测试的系统基座</p></div>
+                <b>BASE</b>
+              </article>
+              <article class="layer layer-image">
+                <div class="layer-index">01</div>
+                <div><span>系统镜像</span><h3>bootc · rpm-ostree · Ubuntu Core</h3><p>原子更新、回滚和可复现状态</p></div>
+                <b>IMAGE</b>
+              </article>
+              <div class="nix-rail"><span>NIX</span><p>横跨包、开发环境与操作系统配置</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="Snap 与 Flatpak" aria-hidden="true">
+          <div class="slide-inner">
+            <div class="slide-heading compact-heading">
+              <div><p class="eyebrow">05 / SNAP × FLATPAK</p><h2>两套工具，不是一张总分榜</h2></div>
+              <p class="heading-note">比较时要先问软件类型，再看沙箱、驱动与宿主访问。</p>
+            </div>
+            <div class="compare-grid">
+              <article class="compare-card snap-card">
+                <header><span class="product-mark snap-mark">S</span><div><p>SNAP</p><h3>覆盖范围更广</h3></div></header>
+                <div class="compare-items">
+                  <p><span>适合</span> CLI、IDE、后台服务、IoT</p>
+                  <p><span>优势</span> classic 模式深度访问宿主环境</p>
+                  <p><span>优势</span> 可定义服务与系统组件</p>
+                  <p><span>代价</span> 商店集中、桌面体验不齐</p>
+                </div>
+              </article>
+              <div class="compare-axis" aria-hidden="true">
+                <span>宿主访问</span><i></i><span>桌面隔离</span>
+              </div>
+              <article class="compare-card flatpak-card">
+                <header><span class="product-mark flatpak-mark">F</span><div><p>FLATPAK</p><h3>专注桌面 GUI</h3></div></header>
+                <div class="compare-items">
+                  <p><span>适合</span> 普通桌面 GUI 应用</p>
+                  <p><span>优势</span> Portal、Wayland 与权限工具成熟</p>
+                  <p><span>优势</span> Flathub 桌面生态活跃</p>
+                  <p><span>代价</span> CLI、IDE 与系统服务受限</p>
+                </div>
+              </article>
+            </div>
+            <div class="scenario-strip">
+              <span>GUI 应用 <b>Flatpak</b></span><span>IDE / CLI <b>原生包或 Snap</b></span><span>浏览器 <b>逐包评估</b></span><span>不可变 Fedora <b>Flatpak + 容器</b></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="技术取舍" aria-hidden="true">
+          <div class="slide-inner">
+            <p class="eyebrow">06 / ENGINEERING TRADE-OFFS</p>
+            <h2>隔离越完整，宿主集成越需要额外设计</h2>
+            <div class="tradeoff-layout">
+              <article class="diagram-card">
+                <div class="diagram-title"><span>BROWSER</span><h3>浏览器的嵌套沙箱</h3></div>
+                <div class="sandbox-diagram">
+                  <div class="outer-box snap-box"><span>Snap confinement</span><div class="inner-box"><span>浏览器自身沙箱</span><div class="processes"><i></i><i></i><i></i></div></div></div>
+                  <div class="diagram-divider">对照</div>
+                  <div class="outer-box flatpak-box"><span>Flatpak sandbox</span><div class="blocked-box">子命名空间受限</div></div>
+                </div>
+                <p>Snap 保留浏览器内部多进程隔离；Flatpak 的子命名空间限制带来长期兼容问题。</p>
+              </article>
+              <article class="diagram-card">
+                <div class="diagram-title"><span>GPU</span><h3>Nvidia 用户态驱动</h3></div>
+                <div class="driver-diagram">
+                  <div class="driver-row"><b>Snap</b><span>应用</span><i></i><span>宿主驱动</span><em>直接使用</em></div>
+                  <div class="driver-row"><b>Flatpak</b><span>应用</span><i></i><span>匹配 Runtime</span><em>需要同步</em></div>
+                </div>
+                <p>Snap 减少版本同步心智；Flatpak 的依赖解耦更完整，但要维护与宿主匹配的驱动 Runtime。</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="Snap 的具体问题" aria-hidden="true">
+          <div class="slide-inner">
+            <div class="slide-heading compact-heading">
+              <div><p class="eyebrow">07 / IMPLEMENTATION COSTS</p><h2>工程理由成立，具体实现仍要接受评价</h2></div>
+              <p class="heading-note">文章对 Snap 的批评集中在四个可定位的问题。</p>
+            </div>
+            <div class="issue-grid">
+              <article><span class="issue-code">UX-01</span><h3>apt 静默重定向</h3><p>安装前没有清楚告知软件会进入 Snap 渠道，卸载命令也不一致。</p><i class="issue-meter meter-high"></i></article>
+              <article><span class="issue-code">GOV-02</span><h3>商店闭源与中心化</h3><p>snapd 客户端开源，Store 服务端由 Canonical 独家运营，无法运行独立替代商店。</p><i class="issue-meter meter-high"></i></article>
+              <article><span class="issue-code">DESK-03</span><h3>桌面集成不齐</h3><p>Wayland、主题、输入法和硬件解码仍有逐包差异，早期 Firefox 体验影响了口碑。</p><i class="issue-meter meter-mid"></i></article>
+              <article><span class="issue-code">NET-04</span><h3>国内网络可达性</h3><p>单一分发源放大地区网络差异，Snap 也缺少 Flatpak 那样的公共镜像换源路径。</p><i class="issue-meter meter-high"></i></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="多条路线正在汇聚" aria-hidden="true">
+          <div class="slide-inner">
+            <p class="eyebrow">08 / INDUSTRY CONVERGENCE</p>
+            <h2>大家没有选择同一种格式，却在做相似的分层</h2>
+            <div class="route-map">
+              <article class="route-card ubuntu-route"><span>UBUNTU</span><h3>deb + Snap</h3><p>稳定 base 与跨场景应用分发</p><small>商店集中，默认切换直接</small></article>
+              <article class="route-card rhel-route"><span>RHEL</span><h3>RPM + Flatpak</h3><p>六年铺设 Runtime、预览与回退路径</p><small>渐进切换，企业策略优先</small></article>
+              <article class="route-card ublue-route"><span>UNIVERSAL BLUE</span><h3>bootc + Flatpak</h3><p>OCI 系统镜像、原子更新和回滚</p><small>依赖社区与镜像基础设施</small></article>
+              <article class="route-card deepin-route"><span>DEEPIN</span><h3>磐石 + 如意玲珑</h3><p>只读系统与本土应用生态分层</p><small>跨发行版成熟度仍需验证</small></article>
+              <div class="route-core"><b>共同方向</b><p>系统基座稳定</p><i></i><p>应用独立更新</p></div>
+            </div>
+            <p class="bottom-thesis">共同趋势只能说明问题相似，不能替每套方案的技术细节和治理结构背书。</p>
+          </div>
+        </section>
+
+        <section class="slide" data-title="用户的时间成本" aria-hidden="true">
+          <div class="slide-inner split-layout time-layout">
+            <div class="section-copy">
+              <p class="eyebrow">09 / USER TIME</p>
+              <h2>Linux 免费，<br />用户的时间并不免费</h2>
+              <blockquote>“普通人不想把修操作系统当爱好。”</blockquote>
+              <p class="quote-source">LTT Linux 挑战，作为用户体验样本</p>
+            </div>
+            <div class="time-costs">
+              <div class="cost-row"><span>AUTO UPDATE</span><div><b>自动更新</b><p>减少手动维护，也减少更新时间控制。</p></div><i style="--level: 72%"></i></div>
+              <div class="cost-row"><span>SANDBOX</span><div><b>应用沙箱</b><p>减少依赖冲突，增加权限与宿主集成步骤。</p></div><i style="--level: 58%"></i></div>
+              <div class="cost-row"><span>APP STORE</span><div><b>统一商店</b><p>降低发现成本，也把治理权交给运营方。</p></div><i style="--level: 84%"></i></div>
+              <div class="time-rule"><span>评价尺度</span><p>默认路径减少了多少非自愿维护时间？用户需要时能否接管控制？</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="发行版是责任模型" aria-hidden="true">
+          <div class="slide-inner">
+            <div class="slide-heading compact-heading">
+              <div><p class="eyebrow">10 / RESPONSIBILITY MODELS</p><h2>选择发行版，也是在选择由谁负责</h2></div>
+              <p class="heading-note">新旧、自由和稳定都要有人维护，差别在于成本由谁承担。</p>
+            </div>
+            <div class="responsibility-scale">
+              <div class="scale-labels"><span>发行版承担更多</span><span>用户承担更多</span></div>
+              <div class="scale-line"><i></i><i></i><i></i><i></i></div>
+              <div class="model-cards">
+                <article><span>UBUNTU</span><h3>集成默认值</h3><p>驱动、编解码器、商店和升级路径由发行版整合。</p></article>
+                <article><span>MINT</span><h3>传统桌面</h3><p>保留 Ubuntu LTS 基座，默认屏蔽 Snap，换取更传统的使用方式。</p></article>
+                <article><span>WSL</span><h3>务实隔离</h3><p>Windows 承担消费桌面，Linux 提供开发和服务器能力。</p></article>
+                <article><span>ARCH</span><h3>用户接管</h3><p>软件更新，配置显式；用户负责公告、完整升级与 AUR 审查。</p></article>
+              </div>
+            </div>
+            <div class="choice-question">别问“哪个最强”。问：谁负责更新？谁负责排错？你愿意承担多少维护工作？</div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="桌面生态循环" aria-hidden="true">
+          <div class="slide-inner ecosystem-slide">
+            <div class="section-copy">
+              <p class="eyebrow">11 / DESKTOP ECOSYSTEM</p>
+              <h2>技术可用，<br />不等于产品已经完成</h2>
+              <p class="lead">软件缺口、硬件长尾和求助成本会互相强化。新的包格式只能解决其中一部分。</p>
+              <div class="ecosystem-note"><span>社区能做什么</span><p>减少守门行为，给出清楚的推荐路径，把问题交给能负责的项目。</p></div>
+            </div>
+            <div class="loop-diagram" aria-label="Linux 桌面生态循环">
+              <div class="loop-core"><b>3% 左右</b><span>文章采用的长期桌面份额口径</span></div>
+              <article class="loop-node node-a"><b>用户规模有限</b><span>01</span></article>
+              <article class="loop-node node-b"><b>商业软件与硬件支持不足</b><span>02</span></article>
+              <article class="loop-node node-c"><b>安装与排错成本偏高</b><span>03</span></article>
+              <article class="loop-node node-d"><b>普通用户流失</b><span>04</span></article>
+              <svg class="loop-arrows" viewBox="0 0 600 600" aria-hidden="true">
+                <path d="M300 54 C455 54 546 146 546 300" />
+                <path d="M546 300 C546 454 454 546 300 546" />
+                <path d="M300 546 C146 546 54 454 54 300" />
+                <path d="M54 300 C54 146 146 54 300 54" />
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="组织可持续性" aria-hidden="true">
+          <div class="slide-inner">
+            <p class="eyebrow">12 / SUSTAINABILITY</p>
+            <h2>软件能运行，组织未必能长期运行</h2>
+            <div class="sustain-layout">
+              <div class="sustain-list">
+                <article><span>01</span><div><h3>维护者不会自动增加</h3><p>软件包和用户规模增长，不代表有人愿意承担审核、发布与支持。</p></div></article>
+                <article><span>02</span><div><h3>商业投入带来整合能力</h3><p>Canonical、Red Hat 与 Valve 能承担长期基础设施，也会集中产品决策权。</p></div></article>
+                <article><span>03</span><div><h3>责任必须匹配决策权</h3><p>Nix 的治理经历说明，技术成熟无法替代清楚的授权和稳定的决策流程。</p></div></article>
+              </div>
+              <div class="nix-card">
+                <p>NIX / CASE STUDY</p>
+                <div class="nix-code">
+                  <span>system.state</span><b>= reproducible;</b>
+                  <span>governance.state</span><b>= unresolved;</b>
+                </div>
+                <blockquote>配置可以精确描述软件状态，治理仍需要明确谁负责、谁决定。</blockquote>
+                <div class="nix-status"><i></i><span>技术路线可用</span><i class="warn"></i><span>权责结构承压</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide slide-final" data-title="结论" aria-hidden="true">
+          <div class="final-glow"></div>
+          <div class="slide-inner final-layout">
+            <p class="eyebrow">13 / CONCLUSION</p>
+            <h2>评价一种软件分发方案，<br />先回答四个问题</h2>
+            <div class="final-questions">
+              <article><span>01</span><h3>它解决哪一层的问题？</h3></article>
+              <article><span>02</span><h3>谁发布、审核与更新？</h3></article>
+              <article><span>03</span><h3>用户能否理解并接管？</h3></article>
+              <article><span>04</span><h3>谁长期承担维护成本？</h3></article>
+            </div>
+            <div class="final-command"><span>$</span><code>apt install firefox</code><i></i><b>一条命令，背后是一整套责任模型。</b></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="controls" aria-label="幻灯片控制">
+        <div class="slide-counter"><span id="currentSlide">01</span><i></i><span id="totalSlides">14</span></div>
+        <div class="control-buttons">
+          <button id="prevButton" type="button" aria-label="上一页">←</button>
+          <button id="nextButton" type="button" aria-label="下一页">→</button>
+        </div>
+      </footer>
+      <div class="progress-track" aria-hidden="true"><i id="progressBar"></i></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

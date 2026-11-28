@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Ciallo～(∠・ω&lt; )⌒☆</title>
+    <link>https://yoimiyalove.top/</link>
+    <description>All Sword and No Play Makes March a Dull Girl.</description>
+    <language>zh-CN</language>
+    <item>
+      <title>Ubuntu 从源码构建 Godot .NET，使用 Clang、Wayland 与 Rider</title>
+      <link>https://yoimiyalove.top/posts/Linux/godot.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/godot.html</guid>
+      <pubDate>Sun, 22 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>用 clang-cl、vcpkg 和 CMake Presets 配置 Windows C++ 工程</title>
+      <link>https://yoimiyalove.top/posts/Windows/clang-cl-vcpkg.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Windows/clang-cl-vcpkg.html</guid>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 GMT</pubDate>
+      <description>用独立安装的 LLVM、CMake、Ninja 和 vcpkg 配合 CMake Presets，让主程序与依赖统一使用 clang-cl 构建 Release，并启用 C++23 的 import std 与 import vulkan。</description>
+    </item>
+    <item>
+      <title>用 Podman 和 Dev Containers 管理 C++ 开发环境</title>
+      <link>https://yoimiyalove.top/posts/Linux/podman.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/podman.html</guid>
+      <pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>小米 13 从国行 HyperOS 解锁 BL、刷入 LineageOS 与 KernelSU</title>
+      <link>https://yoimiyalove.top/posts/Android/8gen2.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Android/8gen2.html</guid>
+      <pubDate>Sat, 31 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>MiniMcp 实现记录：MCP、Cloudflare Access 与三个工具</title>
+      <link>https://yoimiyalove.top/posts/AI/mcp.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/AI/mcp.html</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+      <description>记录 MiniMcp 的请求链路、MCP 协议、Access JWT 校验，以及 read_file、apply_patch 和一次性 Bash 的实现。</description>
+    </item>
+    <item>
+      <title>Arch Linux 安装 UE 二进制版，包括 Fab、构建、clangd 与 CodeLLDB</title>
+      <link>https://yoimiyalove.top/posts/Linux/ue.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/ue.html</guid>
+      <pubDate>Mon, 19 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Arch Linux 运行原神</title>
+      <link>https://yoimiyalove.top/posts/Linux/genshin.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/genshin.html</guid>
+      <pubDate>Sat, 17 Oct 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>把软件做得好用：UI/UX 的设计与实现</title>
+      <link>https://yoimiyalove.top/posts/Community/uiux.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Community/uiux.html</guid>
+      <pubDate>Wed, 07 Oct 2026 00:00:00 GMT</pubDate>
+      <description>从文件操作中的反馈与恢复出发，讨论 UI/UX 如何进入软件质量评价、设计系统与标准控件承担哪些工作，以及开发者怎样学习设计并验证 AI 生成的界面。</description>
+    </item>
+    <item>
+      <title>我们到底在争论什么：技术讨论如何从工程分歧变成身份冲突</title>
+      <link>https://yoimiyalove.top/posts/Community/tech-argument.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Community/tech-argument.html</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <description>从一次关于 Snap 的争论说起：哪些分歧可以靠证据澄清，为什么接受同一组事实的人仍会作出不同选择，又怎样看出一段对话已经转向了对人的评判。</description>
+    </item>
+    <item>
+      <title>Arch Linux WSL 硬件视频加速 + 硬件图形加速</title>
+      <link>https://yoimiyalove.top/posts/Linux/wsl.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/wsl.html</guid>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Arch Linux 配置记录：shim + systemd-boot + UKI + MOK</title>
+      <link>https://yoimiyalove.top/posts/Linux/arch.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/arch.html</guid>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Debian 打包完整流程参考</title>
+      <link>https://yoimiyalove.top/posts/Linux/deb.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/deb.html</guid>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Gentoo Secure Boot 配置记录：shim + GRUB + MOK</title>
+      <link>https://yoimiyalove.top/posts/Linux/sb.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/sb.html</guid>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Linux 效率工具</title>
+      <link>https://yoimiyalove.top/posts/Linux/dev.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/dev.html</guid>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Snap、Flatpak 与 Nix：Linux 软件分发的过去、现在与可持续的未来</title>
+      <link>https://yoimiyalove.top/posts/Linux/snap.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/snap.html</guid>
+      <pubDate>Wed, 13 May 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>KVM显卡/固态盘直通</title>
+      <link>https://yoimiyalove.top/posts/Linux/ovmf.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/ovmf.html</guid>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Windows配置MSVC环境</title>
+      <link>https://yoimiyalove.top/posts/Windows/msvc.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Windows/msvc.html</guid>
+      <pubDate>Wed, 09 Jul 2025 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Ubuntu Tips</title>
+      <link>https://yoimiyalove.top/posts/Linux/ubuntu.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Linux/ubuntu.html</guid>
+      <pubDate>Sun, 13 Oct 2024 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>使用oh-my-posh美化Windows和WSL终端</title>
+      <link>https://yoimiyalove.top/posts/Windows/oh-my-posh.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/Windows/oh-my-posh.html</guid>
+      <pubDate>Mon, 07 Oct 2024 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Today Is Yesterday's Tomorrow</title>
+      <link>https://yoimiyalove.top/posts/English/belobog.html</link>
+      <guid isPermaLink="true">https://yoimiyalove.top/posts/English/belobog.html</guid>
+      <pubDate>Fri, 04 Oct 2024 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
